@@ -1,0 +1,253 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const friendsPost = await getEntry("spec", "friends");
+
+if (!friendsPost) {
+	throw new Error("Friends page content not found");
+}
+
+const { Content } = await render(friendsPost);
+const items = [
+	{
+		title: "张洪Heo",
+		imgurl: "https://bu.dusays.com/2022/12/28/63ac2812183aa.png",
+		desc: "分享设计与科技生活",
+		siteurl: "https://blog.zhheo.com",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "梦爱吃鱼",
+		imgurl: "https://oss-cdn.bsgun.cn/logo/avatar.256.png",
+		desc: "但愿日子清静抬头遇见的满是柔情",
+		siteurl: "https://blog.bsgun.cn/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "Mo的记事簿",
+		imgurl: "https://blog.xiowo.net/img/avatar.png",
+		desc: "万年鸽王，哈哈OvO",
+		siteurl: "https://blog.xiowo.net/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "宏尘极客",
+		imgurl: "https://www.hcjike.com/favicon.ico",
+		desc: "专注于技术知识和NAS笔记等内容分享",
+		siteurl: "https://www.hcjike.com/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "bbb-lsy07",
+		imgurl:
+			"https://blog.6uu.us/upload/quality_restoration_20250211145207618.JPG",
+		desc: "专注于技术知识和NAS笔记等内容分享",
+		siteurl: "https://blog.6uu.us/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "秋实-Allenyou 的小窝",
+		imgurl:
+			"https://blog-oss.allenyou.top/avatar/59b2fbdd507a84fe181b0af3e4ad7be3",
+		desc: "稻花香里说丰年，听取 WA 声一片",
+		siteurl: "https://www.allenyou.wang/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "朽丘秋雨",
+		imgurl: "https://blog.koxiuqiu.cc/img/avatar/avatar.png",
+		desc: "一定会和喜欢的人在夏日夜晚牵手慢步",
+		siteurl: "https://blog.koxiuqiu.cc/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "龙星划空",
+		imgurl: "https://blog.245179.xyz/images/atiq.png",
+		desc: "人生近看是悲剧，远看是喜剧",
+		siteurl: "https://blog.245179.xyz/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "清羽飞扬",
+		imgurl: "https://blog.liushen.fun/info/avatar.ico",
+		desc: "柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜",
+		siteurl: "https://blog.liushen.fun/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "liuzhen932 的小窝",
+		imgurl: "https://blog.liuzhen932.top/favicon.png",
+		desc: "只要愿意去做，人无所不通",
+		siteurl: "https://blog.liuzhen932.top/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "夜轻Blog",
+		imgurl:
+			"https://image.yeqing.net/i/2025/05/15/62868e67dff91285992985db0cce57d5.webp",
+		desc: "一个人",
+		siteurl: "https://blog.yeqing.net/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "橙寻星球",
+		imgurl: "https://s3.bmp.ovh/imgs/2022/02/163746639f0d0e68.jpg",
+		desc: "人外有人，天外有天",
+		siteurl: "https://cloudwl.com/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "光 · 昭",
+		imgurl: "https://akipubliccdn.cn-nb1.rains3.com/pic/avatar.webp",
+		desc: "「あまねく奇跡の始発点」",
+		siteurl: "https://www.pyrzo.com/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "熊猫の小窝",
+		imgurl:
+			"https://cdn.akaere.online/https://avatars.githubusercontent.com/u/71202163",
+		desc: "一个温暖的家/一只懒懒的熊猫",
+		siteurl: "https://www.pysio.online/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "泯轲博客",
+		imgurl:
+			"http://q.qlogo.cn/headimg_dl?dst_uin=3589067134&spec=640&img_type=jpg",
+		desc: "咬咬稻草做动作，生活一点没烦恼！",
+		siteurl: "https://xn--tiqr96eenfg8o0kp.cn/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "Yeppioo",
+		imgurl: "https://blog.yeppioo.vip/static/img/screenshot.png",
+		desc: "梦想成为庄稼地里的读书人.....",
+		siteurl: "https://blog.yeppioo.vip/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "AcoFork",
+		imgurl: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=5",
+		desc: "Protect What You Love!",
+		siteurl: "https://www.afo.im/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "青序栈",
+		imgurl: "https://qxzhan.cn/favicon.png",
+		desc: "青序成栈·向简而生",
+		siteurl: "https://qxzhan.cn/",
+		category: "博客",
+		tags: ["博客"],
+	},
+	{
+		title: "可耐的小伙纸",
+		imgurl: "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
+		desc: "永远相信美好的事情即将发生",
+		siteurl: "https://kndxhz.cn",
+		category: "个人主页",
+		tags: ["个人主页"],
+	},
+	{
+		title: "zyh的个人站",
+		imgurl: "https://cdn.fishcpy.top/img/2025/04/05/67f0923d5dd91.jpg",
+		desc: "Who is minecraft？",
+		siteurl: "https://zyh666.dpdns.org",
+		category: "个人主页",
+		tags: ["个人主页"],
+	},
+	{
+		title: "Astro",
+		imgurl: "https://avatars.githubusercontent.com/u/44914786?s=48&v=4",
+		desc: "本站框架",
+		siteurl: "https://github.com/withastro/astro",
+		category: "框架&主题",
+		tags: ["框架&主题"],
+	},
+	{
+		title: "fuwari",
+		imgurl: "https://avatars.githubusercontent.com/u/44914786?s=48&v=4",
+		desc: "本站主题",
+		siteurl: "https://github.com/saicaca/fuwari",
+		category: "框架&主题",
+		tags: ["框架&主题"],
+	},
+];
+
+// 按分类对友链进行分组
+const groupedItems = items.reduce((acc, item) => {
+	const category = item.category || "其他";
+	if (!acc[category]) {
+		acc[category] = [];
+	}
+	acc[category].push(item);
+	return acc;
+}, {});
+---
+<MainGridLayout title={i18n(I18nKey.friends)} description={i18n(I18nKey.friends)}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <h1 class="text-4xl font-bold mb-6 text-neutral-900 dark:text-white">{i18n(I18nKey.friends)}</h1>
+            {Object.entries(groupedItems).map(([category, categoryItems]) => (
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-neutral-800 dark:text-neutral-200">{category}</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
+                        {categoryItems.map((item) => (
+                            <div class="flex flex-nowrap items-stretch h-28 gap-4 rounded-[var(--radius-large)]">
+                                <div class="w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden bg-zinc-200 dark:bg-zinc-900">
+                                    <img src={item.imgurl} alt="站点头像" class="w-full h-full object-cover">
+                                </div>
+                                <div class="grow w-full">
+                                    <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 mb-1">{item.title}</div>
+                                    <div class="text-50 text-sm font-medium">{item.desc}</div>
+                                    <div class:list={["items-center", {"flex": true, "hidden md:flex" : false}]}>
+                                        <div class="flex flex-row flex-nowrap items-center">
+                                            {(item.tags && item.tags.length > 0) && item.tags.map((tag,i) => (
+                                            <div class:list={[{"hidden": i==0}, "mx-1.5 text-[var(--meta-divider)] text-sm" ]}>
+                                                /
+                                            </div>
+                                            <span class="transition text-50 text-sm font-medium">
+                                                {tag}
+                                            </span>))}
+                                            {!(item.tags && item.tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href={item.siteurl} target="_blank" rel="noopener noreferrer" class="flex btn-regular w-[3.25rem] rounded-lg bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="transition text-[var(--primary)] text-4xl mx-auto iconify iconify--material-symbols" width="1em" height="1em" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+</MainGridLayout>

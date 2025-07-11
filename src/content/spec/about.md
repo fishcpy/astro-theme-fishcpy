@@ -1,9 +1,39 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
+<style>
+    .center-content {
+        text-align: center;
+    }
+    .center-content img {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        height: auto;
+    }
+</style>
+
+<div class="center-content">
+    <img src="https://www.fis.ink/img/logo_c.png" alt="图片描述">
+    <p>Hello 👋 I'm fishcpy</p>
+</div>
+
+# <a href="https://z.fishcpy.top" target="_blank">赞助</a>
+
+| 名字   | 时间       | 备注 | 金额（单位：元） |
+|--------|------------|------|------------------|
+| *G     | 2025-2-17  | 无   | 10               |
+| WB     | 2025-4-22  | 无   | 15               |
+| 洛狐	 | 2025-6-21  | FCL站长	 | 5             |
+| 洛狐	 | 2025-6-27  | 下载站6月分成 | 21.39             |
+
+# 联系我
+
+### 邮箱地址:[fishcpy@qq.com](mailto:fishcpy@qq.com)
+
+
+> ### 由以下云服务商提供云服务
+> - [cloudflare](https://www.cloudflare.com) -随时随地连⁠接、保⁠护、构建
+> - [云驰互联](https://cloud.zyidc.net/aff/MYIMKXBB) -提供企业一站式产品与服务
+
+# 本站由 [Fuwari](https://github.com/saicaca/fuwari) 强力驱动
 ::github{repo="saicaca/fuwari"}
-
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
