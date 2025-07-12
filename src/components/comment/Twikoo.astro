@@ -1,0 +1,127 @@
+---
+interface Props {
+  path: string;
+}
+
+import { commentConfig } from '@/config'
+
+const config = {
+  el: "#twikoo",
+  path: Astro.props.path,
+  envId: commentConfig.twikoo?.envId,
+  lang: commentConfig.twikoo?.lang || 'zh-CN',
+  region: commentConfig.twikoo?.region,
+};
+---
+
+<!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 -->
+<div id="twikoo"></div>
+<script define:vars={{ config }}>
+  function loadTwikoo() {
+    console.log('loadTwikoo function called', config);
+    console.log('EnvId value:', config.envId);
+    const script = document.createElement("script");
+    script.src =
+      "https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js";
+    script.defer = true;
+    script.onload = () => {
+      console.log('Twikoo script loaded, initializing...');
+      console.log('Twikoo config before init:', JSON.stringify(config));
+      
+      // 尝试多种环境ID格式
+      const originalEnvId = 'https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink';
+      const envIdWithoutProtocol = originalEnvId.replace(/^https?:\/\//, '');
+      
+      // 尝试使用原始URL
+      try {
+        console.log('Trying with original envId:', originalEnvId);
+        twikoo.init({
+          ...config,
+          envId: originalEnvId
+        });
+        console.log('Twikoo initialized with original envId');
+      } catch (error) {
+        console.error('Failed to initialize with original envId:', error);
+        
+        // 尝试使用不带协议的URL
+        try {
+          console.log('Trying with envId without protocol:', envIdWithoutProtocol);
+          twikoo.init({
+            ...config,
+            envId: envIdWithoutProtocol
+          });
+          console.log('Twikoo initialized with envId without protocol');
+        } catch (error) {
+          console.error('Failed to initialize with envId without protocol:', error);
+          
+          // 最后尝试使用一个简单的字符串
+          try {
+            const simpleEnvId = 'fishcpy-cloud-twkioo';
+            console.log('Trying with simple envId:', simpleEnvId);
+            twikoo.init({
+              ...config,
+              envId: simpleEnvId
+            });
+            console.log('Twikoo initialized with simple envId');
+          } catch (error) {
+            console.error('All initialization attempts failed:', error);
+          }
+        }
+      }
+      console.log('Twikoo initialized');
+    };
+    script.onerror = (error) => {
+      console.error('Failed to load Twikoo script:', error);
+    };
+    document.body.appendChild(script);
+  }
+  
+  // 监听加载评论事件
+  document.addEventListener("loadComment", () => {
+    console.log('loadComment event triggered');
+    loadTwikoo();
+  }, { once: true });
+  
+  // 页面加载完成后自动加载Twikoo（作为备用方案）
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event triggered');
+    // 检查是否已经加载过Twikoo
+    if (!document.querySelector('script[src*="twikoo.min.js"]')) {
+      console.log('Twikoo not loaded yet, loading now...');
+      loadTwikoo();
+    }
+  });
+  
+  console.log('Twikoo component initialized with config:', config);
+  
+  // 添加事件委托来处理评论区内的按钮点击
+  document.addEventListener('click', function(event) {
+    // 检查点击事件是否发生在评论区内
+    if (event.target.closest('#twikoo')) {
+      // 检查点击的元素是否是按钮或链接
+      const clickedElement = event.target.closest('button, a');
+      if (clickedElement) {
+        // 如果是链接且href为#或javascript:void(0)等，阻止默认行为
+        if (clickedElement.tagName === 'A' && 
+            (clickedElement.getAttribute('href') === '#' || 
+             clickedElement.getAttribute('href') === 'javascript:void(0)' ||
+             clickedElement.getAttribute('href') === '')) {
+          event.preventDefault();
+          console.log('Prevented default action for link in comment area');
+        }
+        
+        // 如果是按钮且没有type属性或type为submit，阻止默认行为
+        if (clickedElement.tagName === 'BUTTON' && 
+            (!clickedElement.getAttribute('type') || 
+             clickedElement.getAttribute('type') === 'submit')) {
+          // 只有当这个按钮不是真正需要提交表单的按钮时才阻止默认行为
+          // 通过检查按钮的类名或其他属性来判断
+          if (!clickedElement.classList.contains('tk-submit')) {
+            event.preventDefault();
+            console.log('Prevented default action for button in comment area');
+          }
+        }
+      }
+    }
+  });
+</script>

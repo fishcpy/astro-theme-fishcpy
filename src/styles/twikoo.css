@@ -1,0 +1,140 @@
+:root {
+  --tk-text: black;
+}
+
+html.dark {
+  --tk-text: #d1d5db;
+}
+
+.tk-comments {
+  @apply text-[var(--tk-text)];
+}
+
+.tk-submit {
+  .tk-avatar {
+    @apply hidden;
+  }
+}
+
+/* Text Area */
+.tk-row {
+  .tk-col {
+    @apply flex-col-reverse;
+    .tk-input {
+      textarea {
+        @apply rounded-[var(--radius-large)] py-4 px-6 !min-h-[150px] focus:border-[var(--primary)];
+      }
+    }
+  }
+}
+
+.el-input {
+  @apply !rounded-lg;
+}
+
+.tk-meta-input {
+  @apply min-h-10 relative mt-3;
+  .el-input-group__prepend {
+    @apply !bg-inherit;
+  }
+  div {
+    @apply py-1 rounded-l-lg;
+    min-height: inherit;
+  }
+  input {
+    @apply px-4 rounded-r-lg focus:!border-[var(--primary)];
+    min-height: inherit;
+  }
+}
+
+/* Button */
+.tk-row.actions {
+  @apply w-full !ml-0 !mt-0;
+  .__markdown {
+    @apply !hidden;
+  }
+  .tk-preview,
+  .tk-send,
+  .tk-cancel {
+    @apply border-none rounded-lg px-3 py-0 h-8
+       !bg-[var(--btn-regular-bg-active)] disabled:!bg-[var(--btn-regular-bg)]
+      !text-[var(--btn-content)] disabled:!text-[#ffffffa1];
+  }
+}
+
+/* Comment title */
+.tk-comments-title {
+  .__comments svg {
+    @apply fill-[var(--primary)];
+  }
+}
+
+.tk-comment {
+  @apply border-[1px] border-[rgba(144,147,153,0.31)] p-4 rounded-2xl hover:shadow-md transition-all;
+  .tk-action-icon svg {
+    @apply fill-[var(--primary)];
+  }
+}
+
+.tk-action {
+  .tk-action-count {
+    @apply text-[var(--btn-content)];
+  }
+}
+
+.tk-meta {
+  .tk-tag {
+    @apply border-none rounded-lg text-[var(--btn-content)];
+  }
+
+  .tk-tag-green {
+    @apply bg-[var(--btn-regular-bg)] dark:bg-[var(--primary)] dark:text-[var(--deep-text)];
+  }
+}
+
+.tk-content,
+.tk-preview-container {
+  a {
+    @apply link link-underline text-[var(--primary)] font-medium;
+  }
+
+  .tk-ruser {
+    @apply no-underline;
+  }
+
+  :not(pre) > code {
+    @apply bg-[var(--inline-code-bg)] rounded-md text-[--inline-code-color] px-1 py-0.5 font-semibold;
+  }
+
+  li{
+    @apply before:content-['•'] before:text-[var(--primary)];
+  }
+}
+
+/* Replies */
+.tk-replies {
+  .tk-comment {
+    @apply bg-[var(--page-bg)];
+    .tk-content {
+      > span:first-of-type {
+        @apply text-xs;
+      }
+    }
+  }
+}
+
+.twikoo .code-block {
+  pre {
+    @apply !rounded-xl;
+  }
+
+  .copy-btn-icon {
+    width: inherit !important;
+    height: inherit !important;
+  }
+}
+
+.tk-expand-wrap .tk-expand,
+.tk-collapse-wrap .tk-expand {
+  @apply hover:rounded-lg mt-1 hover:bg-[var(--btn-plain-bg-hover)];
+}

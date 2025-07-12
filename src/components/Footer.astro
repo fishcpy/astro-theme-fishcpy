@@ -1,0 +1,57 @@
+---
+import { profileConfig } from "../config";
+import { url } from "../utils/url-utils";
+
+const currentYear = new Date().getFullYear();
+---
+
+<div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div>
+<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
+    <div class="flex flex-col items-center gap-2">
+        <a href="https://www.travellings.cn/go.html" 
+        target="_blank" 
+        rel="noopener" 
+        title="开往-友链接力"
+        class="transition hover:opacity-80">
+        <img src="https://www.travellings.cn/assets/logo.gif" 
+            alt="开往-友链接力" 
+            width="120">
+        </a>
+
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+            <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌ICP备20241732号</a>
+            <a href='https://icp.fishcpy.top/query.php?keyword=20252224' class="transition link text-[var(--primary)]">鱼ICP备20252224</a>
+            <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a>
+        </div>
+
+        <div id="runtime_span" class="text-xs text-50"></div>
+        <!-- 版权和基础信息 -->
+        <div class="transition text-50 text-sm text-center mt-4">
+            &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. /
+            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
+            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>
+            Powered by
+            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
+            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+function show_runtime(){
+    window.setTimeout("show_runtime()",1000);
+    X = new Date("9/6/2024 00:00:00");
+    Y = new Date();
+    T = (Y.getTime() - X.getTime());
+    M = 24 * 60 * 60 * 1000;
+    a = T / M;
+    A = Math.floor(a);
+    b = (a - A) * 24;
+    B = Math.floor(b);
+    c = (b - B) * 60;
+    C = Math.floor(c);
+    D = Math.floor((c - C) * 60);
+    document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
+}
+show_runtime();
+</script>
