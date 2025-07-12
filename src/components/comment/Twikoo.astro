@@ -27,11 +27,11 @@ const config = {
     script.onload = () => {
       console.log('Twikoo script loaded, initializing...');
       console.log('Twikoo config before init:', JSON.stringify(config));
-      
+    
       // 尝试多种环境ID格式
       const originalEnvId = 'https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink';
       const envIdWithoutProtocol = originalEnvId.replace(/^https?:\/\//, '');
-      
+    
       // 尝试使用原始URL
       try {
         console.log('Trying with original envId:', originalEnvId);
@@ -42,7 +42,7 @@ const config = {
         console.log('Twikoo initialized with original envId');
       } catch (error) {
         console.error('Failed to initialize with original envId:', error);
-        
+      
         // 尝试使用不带协议的URL
         try {
           console.log('Trying with envId without protocol:', envIdWithoutProtocol);
@@ -53,7 +53,7 @@ const config = {
           console.log('Twikoo initialized with envId without protocol');
         } catch (error) {
           console.error('Failed to initialize with envId without protocol:', error);
-          
+        
           // 最后尝试使用一个简单的字符串
           try {
             const simpleEnvId = 'fishcpy-cloud-twkioo';
@@ -69,6 +69,11 @@ const config = {
         }
       }
       console.log('Twikoo initialized');
+    
+      // 在Twikoo初始化完成后添加事件处理
+      setTimeout(() => {
+        setupCommentEventHandlers();
+      }, 1000); // 给Twikoo一些时间来渲染评论区
     };
     script.onerror = (error) => {
       console.error('Failed to load Twikoo script:', error);
@@ -94,7 +99,112 @@ const config = {
   
   console.log('Twikoo component initialized with config:', config);
   
-  // 添加事件委托来处理评论区内的按钮点击
+  // 设置评论区事件处理函数
+  function setupCommentEventHandlers() {
+    console.log('Setting up comment event handlers');
+    
+    // 移除之前可能存在的事件监听器
+    document.removeEventListener('click', handleCommentClick);
+    
+    // 添加新的事件监听器
+    document.addEventListener('click', handleCommentClick);
+    
+    // 使用MutationObserver监听DOM变化
+    const observer = new MutationObserver((mutations) => {
+      // 当DOM变化时，确保所有新添加的按钮都被正确处理
+      console.log('DOM mutations detected in comment area');
+    });
+    
+    // 开始观察评论区的DOM变化
+    const twikooElement = document.getElementById('twikoo');
+    if (twikooElement) {
+      observer.observe(twikooElement, { 
+        childList: true, 
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['href', 'onclick']
+      });
+      console.log('MutationObserver started for #twikoo element');
+    }
+    
+    // 直接修改所有评论区内的链接和按钮
+    fixAllCommentButtons();
+  }
+  
+  // 处理评论区内的点击事件
+  function handleCommentClick(event) {
+    // 检查点击事件是否发生在评论区内
+    const twikooElement = event.target.closest('#twikoo');
+    if (!twikooElement) return;
+    
+    // 检查点击的元素是否是按钮或链接
+    const clickedElement = event.target.closest('button, a');
+    if (!clickedElement) return;
+    
+    // 获取原始点击事件的目标元素
+    const originalTarget = event.target;
+    
+    // 检查是否是评论提交按钮或其他特殊按钮
+    const isSubmitButton = clickedElement.classList.contains('tk-submit') || 
+                          clickedElement.classList.contains('el-button--primary') ||
+                          clickedElement.getAttribute('type') === 'submit';
+    
+    // 检查是否是有效的外部链接
+    const href = clickedElement.getAttribute('href');
+    const isExternalLink = href && href.startsWith('http') && !href.includes('#');
+    
+    // 如果不是提交按钮或外部链接，阻止默认行为
+    if (!isSubmitButton && !isExternalLink) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('Prevented default action for element in comment area:', clickedElement);
+      
+      // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
+      if (clickedElement.hasAttribute('onclick') || typeof clickedElement.onclick === 'function') {
+        console.log('Element has onclick handler, executing custom logic');
+        // 这里可以添加自定义逻辑来模拟点击效果
+      }
+    }
+  }
+  
+  // 修复所有评论区内的按钮
+  function fixAllCommentButtons() {
+    console.log('Fixing all comment buttons');
+    const twikooElement = document.getElementById('twikoo');
+    if (!twikooElement) return;
+    
+    // 修复所有链接
+    const links = twikooElement.querySelectorAll('a');
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === '#' || href === '' || href === 'javascript:void(0)') {
+        // 替换href属性，防止导航到页面顶部
+        link.setAttribute('href', 'javascript:void(0);');
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log('Prevented navigation for link:', link);
+        });
+      }
+    });
+    
+    // 修复所有按钮
+    const buttons = twikooElement.querySelectorAll('button');
+    buttons.forEach(button => {
+      if (!button.classList.contains('tk-submit') && 
+          !button.classList.contains('el-button--primary')) {
+        button.addEventListener('click', (e) => {
+          if (!e.target.closest('form')) {
+            e.preventDefault();
+            console.log('Prevented default action for button:', button);
+          }
+        });
+      }
+    });
+    
+    console.log('Fixed all comment buttons');
+  }
+  
+  // 初始的事件监听器设置
   document.addEventListener('click', function(event) {
     // 检查点击事件是否发生在评论区内
     if (event.target.closest('#twikoo')) {
