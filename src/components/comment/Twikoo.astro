@@ -70,6 +70,13 @@ const config = {
       }
       console.log('Twikoo initialized');
     
+      // 简单有效的移动端点击处理
+      document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('#twikoo button, #twikoo a')) {
+          e.preventDefault();
+        }
+      }, {passive: false});
+    
       // 在Twikoo初始化完成后添加事件处理
       setTimeout(() => {
         setupCommentEventHandlers();
