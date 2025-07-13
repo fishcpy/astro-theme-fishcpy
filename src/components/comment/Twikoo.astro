@@ -70,29 +70,69 @@ const config = {
       }
       console.log('Twikoo initialized');
     
-      // 改进的移动端点击处理
-      document.addEventListener('touchstart', function(e) {
+      // 全面改进的移动端点击处理
+      const preventDefaultForTwikoo = function(e) {
         const target = e.target.closest('#twikoo button, #twikoo a');
         if (target) {
-          e.preventDefault();
-          // 标记这个元素被触摸
-          target.dataset.touched = 'true';
-        }
-      }, {passive: false});
-      
-      document.addEventListener('touchend', function(e) {
-        const target = e.target.closest('#twikoo button, #twikoo a');
-        if (target && target.dataset.touched === 'true') {
-          e.preventDefault();
-          // 移除标记
-          delete target.dataset.touched;
+          // 特别处理href="#"的链接，这些链接会导致页面跳转到顶部
+          if (target.tagName === 'A' && 
+              (target.getAttribute('href') === '#' || 
+               target.getAttribute('href') === '' || 
+               target.getAttribute('href') === 'javascript:void(0)' ||
+               target.getAttribute('href') === 'javascript:;')) {
+            // 替换href属性，防止导航到页面顶部
+            if (target.getAttribute('original-href') === null) {
+              target.setAttribute('original-href', target.getAttribute('href'));
+            }
+            target.setAttribute('href', 'javascript:void(0);');
+          }
           
-          // 模拟点击事件
-          setTimeout(() => {
-            target.click();
-          }, 10);
+          // 阻止默认行为和事件冒泡
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // 标记这个元素被触摸
+          if (e.type === 'touchstart') {
+            target.dataset.touched = 'true';
+          }
+          
+          // 在touchend时模拟点击
+          if (e.type === 'touchend' && target.dataset.touched === 'true') {
+            // 移除标记
+            delete target.dataset.touched;
+            
+            // 模拟点击事件
+            setTimeout(() => {
+              // 创建一个新的点击事件，但阻止其默认行为
+              const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+              });
+              
+              // 分发事件但阻止默认行为
+              const cancelled = !target.dispatchEvent(clickEvent);
+              if (!cancelled) {
+                // 如果事件没有被取消，执行onclick处理函数
+                if (typeof target.onclick === 'function') {
+                  target.onclick.call(target);
+                }
+              }
+            }, 10);
+          }
         }
-      }, {passive: false});
+      };
+      
+      // 添加事件监听器
+      document.addEventListener('touchstart', preventDefaultForTwikoo, {passive: false, capture: true});
+      document.addEventListener('touchend', preventDefaultForTwikoo, {passive: false, capture: true});
+      document.addEventListener('click', function(e) {
+        const target = e.target.closest('#twikoo a[href="#"]');
+        if (target) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, {capture: true});
     
       // 在Twikoo初始化完成后添加事件处理
       setTimeout(() => {
