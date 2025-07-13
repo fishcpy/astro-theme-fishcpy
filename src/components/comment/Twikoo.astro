@@ -5,6 +5,16 @@ interface Props {
 
 import { commentConfig } from '@/config'
 
+const config = {
+  el: "#twikoo",
+  path: Astro.props.path,
+  envId: commentConfig.twikoo?.envId,
+  lang: commentConfig.twikoo?.lang || 'zh-CN',
+  region: commentConfig.twikoo?.region,
+};
+
+---
+
 <style>
   /* 移动端优化样式 */
   @media (max-width: 768px) {
@@ -19,15 +29,6 @@ import { commentConfig } from '@/config'
     }
   }
 </style>
-
-const config = {
-  el: "#twikoo",
-  path: Astro.props.path,
-  envId: commentConfig.twikoo?.envId,
-  lang: commentConfig.twikoo?.lang || 'zh-CN',
-  region: commentConfig.twikoo?.region,
-};
----
 
 <!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 -->
 <div id="twikoo"></div>
