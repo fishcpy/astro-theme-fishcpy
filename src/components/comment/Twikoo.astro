@@ -12,23 +12,7 @@ const config = {
   lang: commentConfig.twikoo?.lang || 'zh-CN',
   region: commentConfig.twikoo?.region,
 };
-
 ---
-
-<style>
-  /* 移动端优化样式 */
-  @media (max-width: 768px) {
-    #twikoo {
-      -webkit-overflow-scrolling: touch;
-      overflow-scrolling: touch;
-    }
-    #twikoo button, #twikoo a {
-      touch-action: manipulation;
-      min-height: 44px;
-      min-width: 44px;
-    }
-  }
-</style>
 
 <!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 -->
 <div id="twikoo"></div>
@@ -121,13 +105,9 @@ const config = {
     
     // 移除之前可能存在的事件监听器
     document.removeEventListener('click', handleCommentClick);
-    document.removeEventListener('touchstart', handleCommentTouch);
-    document.removeEventListener('touchend', handleCommentTouch);
     
     // 添加新的事件监听器
     document.addEventListener('click', handleCommentClick);
-    document.addEventListener('touchstart', handleCommentTouch, {passive: false});
-    document.addEventListener('touchend', handleCommentTouch, {passive: false});
     
     // 使用MutationObserver监听DOM变化
     const observer = new MutationObserver((mutations) => {
@@ -151,27 +131,6 @@ const config = {
     fixAllCommentButtons();
   }
   
-  // 处理评论区内的触摸事件
-  function handleCommentTouch(event) {
-    // 检查触摸事件是否发生在评论区内
-    const twikooElement = event.target.closest('#twikoo');
-    if (!twikooElement) return;
-    
-    // 检查触摸的元素是否是按钮或链接
-    const touchedElement = event.target.closest('button, a');
-    if (!touchedElement) return;
-    
-    // 阻止默认行为以防止页面跳转
-    event.preventDefault();
-    event.stopPropagation();
-    
-    // 如果是touchend事件且元素有onclick处理，模拟点击
-    if (event.type === 'touchend' && 
-        (touchedElement.hasAttribute('onclick') || typeof touchedElement.onclick === 'function')) {
-      touchedElement.click();
-    }
-  }
-
   // 处理评论区内的点击事件
   function handleCommentClick(event) {
     // 检查点击事件是否发生在评论区内
@@ -203,13 +162,7 @@ const config = {
       // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
       if (clickedElement.hasAttribute('onclick') || typeof clickedElement.onclick === 'function') {
         console.log('Element has onclick handler, executing custom logic');
-        // 模拟点击效果但不触发导航
-        const clickEvent = new MouseEvent('click', {
-          bubbles: true,
-          cancelable: true,
-          view: window
-        });
-        clickedElement.dispatchEvent(clickEvent);
+        // 这里可以添加自定义逻辑来模拟点击效果
       }
     }
   }
