@@ -70,10 +70,27 @@ const config = {
       }
       console.log('Twikoo initialized');
     
-      // 简单有效的移动端点击处理
+      // 改进的移动端点击处理
       document.addEventListener('touchstart', function(e) {
-        if (e.target.closest('#twikoo button, #twikoo a')) {
+        const target = e.target.closest('#twikoo button, #twikoo a');
+        if (target) {
           e.preventDefault();
+          // 标记这个元素被触摸
+          target.dataset.touched = 'true';
+        }
+      }, {passive: false});
+      
+      document.addEventListener('touchend', function(e) {
+        const target = e.target.closest('#twikoo button, #twikoo a');
+        if (target && target.dataset.touched === 'true') {
+          e.preventDefault();
+          // 移除标记
+          delete target.dataset.touched;
+          
+          // 模拟点击事件
+          setTimeout(() => {
+            target.click();
+          }, 10);
         }
       }, {passive: false});
     
