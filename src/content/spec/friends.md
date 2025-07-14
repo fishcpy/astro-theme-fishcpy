@@ -8,7 +8,7 @@
 网站地址:https://blog.fis.ink
 网站图标:https://www.fis.ink/img/logo.png
 网站描述:非淡泊无以明志，非宁静无以致远
-rss地址:https://blog.fis.ink/rss.xml
-网站类型:博客
+rss地址(若没有请留空):https://blog.fis.ink/rss.xml
+网站类型(主页请修改后方博客文字为主页):博客
 
 ```
