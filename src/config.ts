@@ -51,6 +51,11 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://www.travellings.cn/go.html", // 内部链接不应包含基础路径，因为会自动添加
 			external: true, // 显示外部链接图标并会在新标签页打开
 		},
+		{
+			name: "监控",
+			url: "https://status.fishcpy.top/status/web", // 内部链接不应包含基础路径，因为会自动添加
+			external: true, // 显示外部链接图标并会在新标签页打开
+		},
 	],
 };
 
