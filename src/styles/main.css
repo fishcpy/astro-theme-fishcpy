@@ -1,3 +1,30 @@
+@font-face {
+    font-family: 'YouSheBiaoTiHei';
+    src: url('https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1752514114855/YouSheBiaoTiHei-2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-primary: 'YouSheBiaoTiHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: 300; /* 调整为正常字重 */
+    font-synthesis: none; /* 禁止浏览器合成粗体/斜体 */
+    font-stretch: 70%; /* 轻微压缩字体宽度 */
+    line-height: 1.5; /* 增加行高改善可读性 */
+    letter-spacing: 0.5px; /* 适当增加字间距 */
+}
+
+/* 导航栏特殊样式 */
+nav, .navbar {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    transform: none !important;
+}
+
 @tailwind components;
 
 @layer components {
