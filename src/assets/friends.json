@@ -168,6 +168,14 @@
 		"tags": ["博客"]
 	},
 	{
+		"title": "Welcome to - 小枫的Blog",
+		"imgurl": "https://q.qlogo.cn/headimg_dl?dst_uin=1432777209&spec=640&img_type=jpg",
+		"desc": "这是一个致力于分享前后端技术的博客。同时也分享一些闲聊碎语",
+		"siteurl": "https://blog.zicheng.icu",
+		"category": "博客",
+		"tags": ["博客"]
+	},	
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
