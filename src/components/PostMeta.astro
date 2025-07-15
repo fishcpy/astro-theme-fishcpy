@@ -4,6 +4,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
 import { getCategoryUrl, getTagUrl } from "../utils/url-utils";
+import { commentConfig } from '@/config';
 
 interface Props {
 	class: string;
@@ -13,6 +14,7 @@ interface Props {
 	category: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
+	url?: string;
 }
 const {
 	published,
@@ -21,8 +23,11 @@ const {
 	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
+	url,
 } = Astro.props;
 const className = Astro.props.class;
+const path = url || Astro.url.pathname;
+const envId = commentConfig.twikoo?.envId;
 ---
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
@@ -79,4 +84,64 @@ const className = Astro.props.class;
             {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
         </div>
     </div>
+
+    <!-- comment count -->
+    <div class="flex items-center comment-count-container" data-path={path} data-env-id={envId}>
+        <div class="meta-icon">
+            <Icon name="material-symbols:comment-outline-rounded" class="text-xl"></Icon>
+        </div>
+        <span class="text-50 text-sm font-medium comment-count">0</span>
+    </div>
 </div>
+
+<script>
+    // 动态加载Twikoo
+    function loadTwikoo() {
+        return new Promise((resolve, reject) => {
+            if (window.twikoo) {
+                resolve(window.twikoo);
+                return;
+            }
+            
+            const script = document.createElement('script');
+            script.src = 'https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js';
+            script.onload = () => resolve(window.twikoo);
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    // 获取评论计数
+    async function updateCommentCounts() {
+        try {
+            const envId = document.querySelector('.comment-count-container')?.dataset.envId;
+            if (!envId) return;
+            
+            const twikoo = await loadTwikoo();
+            const containers = document.querySelectorAll('.comment-count-container');
+            
+            if (containers.length === 0) return;
+            
+            const paths = Array.from(containers).map(container => container.dataset.path);
+            
+            twikoo.getCommentsCount({
+                envId,
+                urls: paths,
+                includeReply: true,
+                onSuccess: function(counts) {
+                    containers.forEach((container, index) => {
+                        const countElement = container.querySelector('.comment-count');
+                        if (countElement && counts[index]) {
+                            countElement.textContent = counts[index].count;
+                        }
+                    });
+                }
+            });
+        } catch (error) {
+            console.error('Failed to load comment counts:', error);
+        }
+    }
+
+    // 页面加载完成后更新评论计数
+    document.addEventListener('DOMContentLoaded', updateCommentCounts);
+</script>
