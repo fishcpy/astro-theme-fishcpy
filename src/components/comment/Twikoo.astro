@@ -12,6 +12,12 @@ const config = {
   lang: commentConfig.twikoo?.lang || 'zh-CN',
   region: commentConfig.twikoo?.region,
 };
+
+console.log('Twikoo组件配置:', { 
+  path: Astro.props.path,
+  envId: commentConfig.twikoo?.envId,
+  region: commentConfig.twikoo?.region
+});
 ---
 
 <!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 -->
@@ -28,16 +34,26 @@ const config = {
       console.log('Twikoo script loaded, initializing...');
       console.log('Twikoo config before init:', JSON.stringify(config));
     
+      // 使用配置文件中的环境ID
+      const configEnvId = config.envId;
+      console.log('Using envId from config:', configEnvId);
+      
       // 尝试多种环境ID格式
-      const originalEnvId = 'https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink';
-      const envIdWithoutProtocol = originalEnvId.replace(/^https?:\/\//, '');
-    
+      const envIdWithoutProtocol = configEnvId.replace(/^https?:\/\//, '');
+      const simpleEnvId = envIdWithoutProtocol.split('.')[0];
+      
+      console.log('Prepared envId formats:', {
+        original: configEnvId,
+        withoutProtocol: envIdWithoutProtocol,
+        simple: simpleEnvId
+      });
+      
       // 尝试使用原始URL
       try {
-        console.log('Trying with original envId:', originalEnvId);
+        console.log('Trying with original envId:', configEnvId);
         twikoo.init({
           ...config,
-          envId: originalEnvId
+          envId: configEnvId
         });
         console.log('Twikoo initialized with original envId');
       } catch (error) {
@@ -56,7 +72,6 @@ const config = {
         
           // 最后尝试使用一个简单的字符串
           try {
-            const simpleEnvId = 'fishcpy-cloud-twkioo';
             console.log('Trying with simple envId:', simpleEnvId);
             twikoo.init({
               ...config,

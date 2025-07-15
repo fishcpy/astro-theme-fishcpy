@@ -26,8 +26,27 @@ const {
 	url,
 } = Astro.props;
 const className = Astro.props.class;
-const path = url || Astro.url.pathname;
+// 获取当前路径
+const originalPath = url || Astro.url.pathname;
+// 提取slug，确保与comment/index.astro组件中的路径处理方式完全一致
+let slug;
+if (originalPath.includes('/posts/')) {
+    // 如果URL是/posts/slug格式，直接提取slug
+    const pathParts = originalPath.split('/');
+    const postsIndex = pathParts.indexOf('posts');
+    if (postsIndex !== -1 && pathParts.length > postsIndex + 1) {
+        slug = pathParts[postsIndex + 1];
+    }
+} else {
+    // 否则，从URL末尾提取slug
+    const pathParts = originalPath.split('/');
+    slug = pathParts[pathParts.length - 1] || pathParts[pathParts.length - 2];
+}
+
+// 构造与comment/index.astro组件中完全一致的路径格式
+const path = `/posts/${slug}`;
 const envId = commentConfig.twikoo?.envId;
+console.log('PostMeta路径:', { originalPath, slug, formattedPath: path });
 ---
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
@@ -91,6 +110,10 @@ const envId = commentConfig.twikoo?.envId;
             <Icon name="material-symbols:comment-outline-rounded" class="text-xl"></Icon>
         </div>
         <span class="text-50 text-sm font-medium comment-count">0</span>
+        <!-- 添加调试信息，在开发环境中可见 -->
+        {import.meta.env.DEV && (
+            <span class="text-xs text-red-500" style="font-size: 8px;">({path})</span>
+        )}
     </div>
 </div>
 
@@ -104,44 +127,166 @@ const envId = commentConfig.twikoo?.envId;
             }
             
             const script = document.createElement('script');
-            script.src = 'https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js';
+            // 使用与Twikoo.astro相同的CDN源和版本
+            script.src = 'https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js';
             script.onload = () => resolve(window.twikoo);
             script.onerror = reject;
             document.head.appendChild(script);
         });
     }
 
+    // 获取URL路径（Twikoo可能更喜欢使用相对路径而不是完整URL）
+    function getUrlPath(path) {
+        console.log('getUrlPath 输入路径:', path);
+        
+        // 确保路径以/开头
+        if (!path.startsWith('/')) {
+            path = '/' + path;
+            console.log('添加前导斜杠后:', path);
+        }
+        
+        // 如果路径已经是完整URL，则提取路径部分
+        if (path.startsWith('http')) {
+            try {
+                const url = new URL(path);
+                const result = url.pathname;
+                console.log('从URL提取路径:', { 原始URL: path, 提取的路径: result });
+                return result;
+            } catch (e) {
+                console.error('解析URL失败:', e);
+                return path;
+            }
+        }
+        
+        // 否则直接返回路径
+        console.log('使用原始路径:', path);
+        return path;
+    }
+
     // 获取评论计数
     async function updateCommentCounts() {
         try {
-            const envId = document.querySelector('.comment-count-container')?.dataset.envId;
-            if (!envId) return;
-            
-            const twikoo = await loadTwikoo();
             const containers = document.querySelectorAll('.comment-count-container');
-            
             if (containers.length === 0) return;
             
-            const paths = Array.from(containers).map(container => container.dataset.path);
+            let envId = containers[0].dataset.envId;
+            if (!envId) {
+                console.error('Twikoo环境ID未设置');
+                return;
+            }
             
-            twikoo.getCommentsCount({
-                envId,
-                urls: paths,
-                includeReply: true,
-                onSuccess: function(counts) {
-                    containers.forEach((container, index) => {
-                        const countElement = container.querySelector('.comment-count');
-                        if (countElement && counts[index]) {
-                            countElement.textContent = counts[index].count;
-                        }
-                    });
-                }
+            console.log('原始Twikoo环境ID:', envId);
+            
+            // 尝试多种环境ID格式，与Twikoo.astro中的处理方式保持一致
+            // 1. 移除协议前缀
+            const envIdWithoutProtocol = envId.replace(/^https?:\/\//, '');
+            // 2. 移除末尾的斜杠
+            const envIdWithoutSlash = envIdWithoutProtocol.replace(/\/$/, '');
+            // 3. 只取域名的第一部分（如果是Vercel部署）
+            const simpleEnvId = envIdWithoutProtocol.split('.')[0];
+            
+            console.log('处理后的环境ID格式:', {
+                original: envId,
+                withoutProtocol: envIdWithoutProtocol,
+                withoutSlash: envIdWithoutSlash,
+                simple: simpleEnvId
             });
+            
+            const twikoo = await loadTwikoo();
+            if (!twikoo || typeof twikoo.getCommentsCount !== 'function') {
+                console.error('Twikoo加载失败或getCommentsCount方法不存在');
+                return;
+            }
+            
+            // 获取URL路径
+            const paths = Array.from(containers).map(container => {
+                const path = container.dataset.path;
+                // 使用getUrlPath函数确保路径格式正确
+                const formattedPath = getUrlPath(path);
+                console.log(`使用路径: ${formattedPath}`);
+                return formattedPath;
+            });
+            
+            console.log('准备获取评论数量，路径列表:', paths);
+            
+            // 依次尝试不同的环境ID格式
+            const tryWithEnvId = async (currentEnvId, retryCount = 0) => {
+                console.log(`尝试使用环境ID(${retryCount}): ${currentEnvId}`);
+                console.log(`当前路径列表: ${JSON.stringify(paths)}`);
+                
+                try {
+                    // 记录当前时间，用于计算获取评论计数的耗时
+                    const startTime = new Date().getTime();
+                    
+                    // 使用Promise包装Twikoo的回调API
+                    const counts = await new Promise((resolve, reject) => {
+                        // 检查twikoo对象和getCommentsCount方法
+                        if (!twikoo || typeof twikoo.getCommentsCount !== 'function') {
+                            console.error('Twikoo对象或getCommentsCount方法不存在:', twikoo);
+                            reject(new Error('Twikoo API不可用'));
+                            return;
+                        }
+                        
+                        console.log('调用twikoo.getCommentsCount，参数:', {
+                            envId: currentEnvId,
+                            urls: paths,
+                            includeReply: true
+                        });
+                        
+                        twikoo.getCommentsCount({
+                            envId: currentEnvId,
+                            urls: paths,
+                            includeReply: true,
+                            onSuccess: (res) => {
+                                const endTime = new Date().getTime();
+                                console.log(`成功获取评论计数 (耗时: ${endTime - startTime}ms):`, res);
+                                resolve(res);
+                            },
+                            onError: (err) => {
+                                const endTime = new Date().getTime();
+                                console.error(`获取评论计数失败 (耗时: ${endTime - startTime}ms):`, err);
+                                reject(err);
+                            }
+                        });
+                    });
+                    
+                    console.log(`使用环境ID ${currentEnvId} 获取评论数量成功:`, counts);
+                    if (counts && counts.length > 0) {
+                        containers.forEach((container, index) => {
+                            const countElement = container.querySelector('.comment-count');
+                            if (countElement && counts[index]) {
+                                countElement.textContent = counts[index].count;
+                                console.log(`设置评论数量: 索引=${index}, 路径=${paths[index]}, 数量=${counts[index].count}`);
+                            } else {
+                                console.log(`无法设置评论数量: 索引=${index}, 路径=${paths[index]}, counts[index]=${JSON.stringify(counts[index])}`);
+                            }
+                        });
+                        return true; // 成功获取评论数量
+                    }
+                    return false; // 没有获取到评论数量
+                } catch (error) {
+                    console.error(`使用环境ID ${currentEnvId} 获取评论数量失败:`, error);
+                    console.error(`路径列表: ${JSON.stringify(paths)}`);
+                    return false; // 获取评论数量失败
+                }
+            };
+            
+            // 按顺序尝试不同的环境ID格式
+            const envIds = [envId, envIdWithoutProtocol, envIdWithoutSlash, simpleEnvId];
+            for (const currentEnvId of envIds) {
+                const success = await tryWithEnvId(currentEnvId);
+                if (success) break; // 如果成功获取评论数量，就不再尝试其他环境ID格式
+            }
         } catch (error) {
-            console.error('Failed to load comment counts:', error);
+            console.error('评论计数更新过程中出错:', error);
         }
     }
 
-    // 页面加载完成后更新评论计数
-    document.addEventListener('DOMContentLoaded', updateCommentCounts);
+    // 确保Twikoo完全加载后再获取评论计数
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateCommentCounts);
+    } else {
+        // 如果DOM已经加载完成，延迟执行以确保其他脚本已加载
+        setTimeout(updateCommentCounts, 500);
+    }
 </script>

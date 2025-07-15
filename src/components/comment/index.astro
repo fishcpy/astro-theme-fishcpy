@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { id, data, slug } = Astro.props.post || {}
-const path = `/posts/${slug}`
+// 确保slug存在，并且路径格式正确
+const path = slug ? `/posts/${slug}` : Astro.url.pathname
+console.log('Comment组件路径:', { slug, path })
 
 let commentService = ''
 if (commentConfig?.twikoo) {
