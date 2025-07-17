@@ -76,7 +76,26 @@ const config = {
         target: null,
         x: 0,
         y: 0,
-        time: 0
+        time: 0,
+        isScrolling: false
+      };
+      
+      // 添加触摸移动事件处理
+      const handleTouchMove = function(e) {
+        if (!touchStartInfo.target) return;
+        
+        // 计算移动距离
+        const touchMoveX = e.touches[0].clientX;
+        const touchMoveY = e.touches[0].clientY;
+        const moveDistance = Math.sqrt(
+          Math.pow(touchMoveX - touchStartInfo.x, 2) + 
+          Math.pow(touchMoveY - touchStartInfo.y, 2)
+        );
+        
+        // 如果移动距离超过阈值，标记为滑动操作
+        if (moveDistance > 10) {
+          touchStartInfo.isScrolling = true;
+        }
       };
       
       const preventDefaultForTwikoo = function(e) {
@@ -95,10 +114,6 @@ const config = {
             target.setAttribute('href', 'javascript:void(0);');
           }
           
-          // 阻止默认行为和事件冒泡
-          e.preventDefault();
-          e.stopPropagation();
-          
           // 处理触摸开始事件
           if (e.type === 'touchstart') {
             // 记录触摸开始的目标元素和位置
@@ -106,10 +121,34 @@ const config = {
             touchStartInfo.x = e.touches[0].clientX;
             touchStartInfo.y = e.touches[0].clientY;
             touchStartInfo.time = Date.now();
+            touchStartInfo.isScrolling = false;
+            
+            // 对于空链接或按钮，阻止默认行为以防止可能的页面跳转
+            // 但不阻止其他元素的默认行为，以允许页面滑动
+            if (target.tagName === 'A' && 
+                (target.getAttribute('href') === '#' || 
+                 target.getAttribute('href') === '' || 
+                 target.getAttribute('href') === 'javascript:void(0)' ||
+                 target.getAttribute('href') === 'javascript:;')) {
+              e.preventDefault();
+            }
           }
           
           // 处理触摸结束事件
           if (e.type === 'touchend') {
+            // 如果被标记为滑动操作，不触发点击
+            if (touchStartInfo.isScrolling) {
+              // 重置触摸信息
+              touchStartInfo = {
+                target: null,
+                x: 0,
+                y: 0,
+                time: 0,
+                isScrolling: false
+              };
+              return;
+            }
+            
             // 计算触摸的移动距离和时间
             const touchEndX = e.changedTouches[0].clientX;
             const touchEndY = e.changedTouches[0].clientY;
@@ -129,6 +168,10 @@ const config = {
             
             // 只有当触摸结束时的元素与开始时相同，且移动距离小于阈值时，才触发点击
             if (isSameTarget && isValidTap) {
+              // 阻止默认行为，防止可能的页面跳转
+              e.preventDefault();
+              e.stopPropagation();
+              
               // 模拟点击事件
               setTimeout(() => {
                 // 创建一个新的点击事件，但阻止其默认行为
@@ -154,7 +197,8 @@ const config = {
               target: null,
               x: 0,
               y: 0,
-              time: 0
+              time: 0,
+              isScrolling: false
             };
           }
         }
@@ -162,6 +206,7 @@ const config = {
       
       // 添加事件监听器
       document.addEventListener('touchstart', preventDefaultForTwikoo, {passive: false, capture: true});
+      document.addEventListener('touchmove', handleTouchMove, {passive: true, capture: true});
       document.addEventListener('touchend', preventDefaultForTwikoo, {passive: false, capture: true});
       document.addEventListener('click', function(e) {
         const target = e.target.closest('#twikoo a[href="#"]');
