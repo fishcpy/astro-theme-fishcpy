@@ -71,6 +71,14 @@ const config = {
       console.log('Twikoo initialized');
     
       // 全面改进的移动端点击处理
+      // 存储触摸开始的信息
+      let touchStartInfo = {
+        target: null,
+        x: 0,
+        y: 0,
+        time: 0
+      };
+      
       const preventDefaultForTwikoo = function(e) {
         const target = e.target.closest('#twikoo button, #twikoo a');
         if (target) {
@@ -91,34 +99,63 @@ const config = {
           e.preventDefault();
           e.stopPropagation();
           
-          // 标记这个元素被触摸
+          // 处理触摸开始事件
           if (e.type === 'touchstart') {
-            target.dataset.touched = 'true';
+            // 记录触摸开始的目标元素和位置
+            touchStartInfo.target = target;
+            touchStartInfo.x = e.touches[0].clientX;
+            touchStartInfo.y = e.touches[0].clientY;
+            touchStartInfo.time = Date.now();
           }
           
-          // 在touchend时模拟点击
-          if (e.type === 'touchend' && target.dataset.touched === 'true') {
-            // 移除标记
-            delete target.dataset.touched;
+          // 处理触摸结束事件
+          if (e.type === 'touchend') {
+            // 计算触摸的移动距离和时间
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndTime = Date.now();
             
-            // 模拟点击事件
-            setTimeout(() => {
-              // 创建一个新的点击事件，但阻止其默认行为
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window
-              });
-              
-              // 分发事件但阻止默认行为
-              const cancelled = !target.dispatchEvent(clickEvent);
-              if (!cancelled) {
-                // 如果事件没有被取消，执行onclick处理函数
-                if (typeof target.onclick === 'function') {
-                  target.onclick.call(target);
+            const moveDistance = Math.sqrt(
+              Math.pow(touchEndX - touchStartInfo.x, 2) + 
+              Math.pow(touchEndY - touchStartInfo.y, 2)
+            );
+            const touchDuration = touchEndTime - touchStartInfo.time;
+            
+            // 检查触摸结束时的元素是否与开始时相同
+            const isSameTarget = touchStartInfo.target === target;
+            
+            // 设置阈值：移动距离小于10px且触摸时间小于300ms视为点击
+            const isValidTap = moveDistance < 10 && touchDuration < 300;
+            
+            // 只有当触摸结束时的元素与开始时相同，且移动距离小于阈值时，才触发点击
+            if (isSameTarget && isValidTap) {
+              // 模拟点击事件
+              setTimeout(() => {
+                // 创建一个新的点击事件，但阻止其默认行为
+                const clickEvent = new MouseEvent('click', {
+                  bubbles: true,
+                  cancelable: true,
+                  view: window
+                });
+                
+                // 分发事件但阻止默认行为
+                const cancelled = !target.dispatchEvent(clickEvent);
+                if (!cancelled) {
+                  // 如果事件没有被取消，执行onclick处理函数
+                  if (typeof target.onclick === 'function') {
+                    target.onclick.call(target);
+                  }
                 }
-              }
-            }, 10);
+              }, 10);
+            }
+            
+            // 重置触摸信息
+            touchStartInfo = {
+              target: null,
+              x: 0,
+              y: 0,
+              time: 0
+            };
           }
         }
       };
