@@ -18,57 +18,59 @@ const config = {
 <div id="twikoo"></div>
 <script define:vars={{ config }}>
   function loadTwikoo() {
-    console.log('loadTwikoo function called', config);
-    console.log('EnvId value:', config.envId);
+    console.log('loadTwikoo function called');
+    // 不输出包含敏感信息的配置
     const script = document.createElement("script");
     script.src =
       "https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js";
     script.defer = true;
     script.onload = () => {
       console.log('Twikoo script loaded, initializing...');
-      console.log('Twikoo config before init:', JSON.stringify(config));
+      // 不输出包含敏感信息的配置
     
       // 尝试多种环境ID格式
-      const originalEnvId = 'https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink';
-      const envIdWithoutProtocol = originalEnvId.replace(/^https?:\/\//, '');
+      const originalEnvId = config.envId;
+      const envIdWithoutProtocol = originalEnvId ? originalEnvId.replace(/^https?:\/\//, '') : '';
     
       // 尝试使用原始URL
       try {
-        console.log('Trying with original envId:', originalEnvId);
+        console.log('Initializing Twikoo...');
         twikoo.init({
           ...config,
           envId: originalEnvId
         });
-        console.log('Twikoo initialized with original envId');
+        console.log('Twikoo initialized successfully');
       } catch (error) {
-        console.error('Failed to initialize with original envId:', error);
+        console.error('Failed to initialize Twikoo, trying alternative configuration');
       
         // 尝试使用不带协议的URL
         try {
-          console.log('Trying with envId without protocol:', envIdWithoutProtocol);
           twikoo.init({
             ...config,
             envId: envIdWithoutProtocol
           });
-          console.log('Twikoo initialized with envId without protocol');
+          console.log('Twikoo initialized with alternative method');
         } catch (error) {
-          console.error('Failed to initialize with envId without protocol:', error);
+          console.error('Failed to initialize with alternative configuration');
         
           // 最后尝试使用一个简单的字符串
           try {
-            const simpleEnvId = 'fishcpy-cloud-twkioo';
-            console.log('Trying with simple envId:', simpleEnvId);
+            // 从原始envId中提取域名部分作为简单ID
+            const simpleEnvId = originalEnvId ? 
+              originalEnvId.replace(/^https?:\/\//, '').split('.')[0] : 
+              'twikoo-env';
+            
             twikoo.init({
               ...config,
               envId: simpleEnvId
             });
-            console.log('Twikoo initialized with simple envId');
+            console.log('Twikoo initialized with simplified method');
           } catch (error) {
-            console.error('All initialization attempts failed:', error);
+            console.error('All initialization attempts failed');
           }
         }
       }
-      console.log('Twikoo initialized');
+      console.log('Twikoo initialization process completed');
     
       // 全面改进的移动端点击处理
       // 存储触摸开始的信息
@@ -243,7 +245,7 @@ const config = {
     }
   });
   
-  console.log('Twikoo component initialized with config:', config);
+  console.log('Twikoo component initialized');
   
   // 设置评论区事件处理函数
   function setupCommentEventHandlers() {
@@ -303,11 +305,11 @@ const config = {
     if (!isSubmitButton && !isExternalLink) {
       event.preventDefault();
       event.stopPropagation();
-      console.log('Prevented default action for element in comment area:', clickedElement);
+      console.log('Prevented default action for element in comment area');
       
       // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
       if (clickedElement.hasAttribute('onclick') || typeof clickedElement.onclick === 'function') {
-        console.log('Element has onclick handler, executing custom logic');
+        console.log('Element has onclick handler, executing custom logic without navigation');
         // 这里可以添加自定义逻辑来模拟点击效果
       }
     }
@@ -328,7 +330,7 @@ const config = {
         link.setAttribute('href', 'javascript:void(0);');
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          console.log('Prevented navigation for link:', link);
+          console.log('Prevented navigation for link');
         });
       }
     });
@@ -341,7 +343,7 @@ const config = {
         button.addEventListener('click', (e) => {
           if (!e.target.closest('form')) {
             e.preventDefault();
-            console.log('Prevented default action for button:', button);
+            console.log('Prevented default action for button');
           }
         });
       }
