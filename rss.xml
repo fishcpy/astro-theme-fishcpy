@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description>No description</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>记一次和福瑞朋友去漫展</title><link>https://blog.fis.ink/posts/26/</link><guid isPermaLink="true">https://blog.fis.ink/posts/26/</guid><description>关键词:福瑞,furry,漫展。其他没什么好写的</description><pubDate>Sun, 13 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;首先声明，本人(fishcpy)不是福瑞控，不要瞎说。&lt;/h2&gt;
+&lt;h1&gt;照片？&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/07/14/68740ce6155ee.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/07/14/68740d9f2ceae.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;其他没什么了，又水了一篇，嘿嘿！&lt;/p&gt;
+</content:encoded></item><item><title>腾讯EO加速cloudflare内网穿透</title><link>https://blog.fis.ink/posts/1/</link><guid isPermaLink="true">https://blog.fis.ink/posts/1/</guid><description>本文详细介绍了如何结合Cloudflare内网穿透与腾讯EdgeOne（EO）实现网站免费加速和HTTPS加密。首先指导用户通过子域名部署Cloudflare内网穿透（避开主域名），随后分步演示腾讯EO的激活流程：包括免费套餐兑换、域名接入、TXT记录验证，以及关键性的CNAME解析设置（特别强调Cloudflare需设为&quot;仅DNS&quot;模式）。最终通过自动化SSL证书申请，实现零成本HTTPS加速方案。适用于中国大陆及国际版用户，附图文操作指引。</description><pubDate>Thu, 10 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;部署cloudflare内网穿透&lt;/h1&gt;
+&lt;p&gt;首先先部署cloudflare内网穿透，建议看&lt;a href=&quot;https://www.bilibili.com/video/BV1H4421X7Wg&quot;&gt;技术爬爬虾视频&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;div style=&quot;position:relative; padding-bottom:56.25%; /* 16:9比例 */&quot;&amp;gt;
+&amp;lt;iframe
+src=&quot;//player.bilibili.com/player.html?isOutside=true&amp;amp;aid=1755356599&amp;amp;bvid=BV1H4421X7Wg&amp;amp;cid=1569261069&amp;amp;p=1&quot;
+style=&quot;position:absolute; width:100%; height:100%;&quot;
+frameborder=&quot;no&quot;
+scrolling=&quot;no&quot;
+allowfullscreen=&quot;true&quot;&amp;gt;
+&amp;lt;/iframe&amp;gt;
+&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;注意：不要穿透你要使用EO加速的域名，请穿透一个不用的子域名&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1&gt;使用EO加速&lt;/h1&gt;
+&lt;p&gt;完成上方步骤后打开&lt;a href=&quot;https://edgeone.ai/&quot;&gt;腾讯EO&lt;/a&gt;注册账号使用兑换码激活免费套餐，中国大陆用户更推荐在&lt;a href=&quot;https://console.cloud.tencent.com/edgeone&quot;&gt;腾讯云&lt;/a&gt;平台激活&lt;/p&gt;
+&lt;p&gt;国际版点击兑换免费套餐即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-AAA033F7-6DB2-47A6-A97B-A2908F4BD58C.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;国内腾讯云在下方图片位置激活即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-3FAE9AD0-115C-4CE6-B4E4-0DB34997CC23.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;这里以国内腾讯云平台演示&lt;/p&gt;
+&lt;p&gt;随后添加域名，点击新增站点&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-24833938-76CF-432A-A2DB-69039901EE94.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;然后输入你的域名，例如我的就是fis.ink，再点击开始接入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-A2247AD0-B8FA-4690-9CB4-CC53E09F8F89.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;随后点击绑定至套餐，我这里绑定了，所以没有了，兑换完成是会有一个免费套餐的选择绑定即可&lt;br /&gt;
+&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-32F3F792-900D-49EC-8B64-DBF3E59B40CF.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;然后腾讯云会给你一个txt记录，在你当前的dns服务商添加即可。然后点击验证完成验证。&lt;/p&gt;
+&lt;p&gt;随后点击域名管理-添加域名&lt;br /&gt;
+&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-74343D1F-436D-4663-ABD0-B7E39F116260.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;按照我下方的填&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-DF9D3B38-23C6-49D8-8C09-D123FD1AA748.png&quot; alt=&quot;&quot; /&gt;点击下一步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-F19F95FD-0B63-46BB-8307-9DA7741B848B.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;然后添加cname记录&lt;/p&gt;
+&lt;p&gt;例如我在cloudflare就按照下方添加，其他dns同理。&lt;/p&gt;
+&lt;p&gt;如果在cloudflare请注意代理状态一定要为**&lt;em&gt;仅DNS&lt;/em&gt;**&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-10-4870BB2B-0BC6-4340-93F9-781AA8CDB215.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
+添加完成后等待一段时间腾讯EO就会**&lt;em&gt;免费&lt;/em&gt;&lt;strong&gt;为你申请SSL证书，开启&lt;/strong&gt;&lt;em&gt;免费https&lt;/em&gt;**访问&lt;/p&gt;
+&lt;p&gt;然后就可以访问自己的网站了&lt;/p&gt;
+</content:encoded></item><item><title>江西研学</title><link>https://blog.fis.ink/posts/2/</link><guid isPermaLink="true">https://blog.fis.ink/posts/2/</guid><description>清晨5:30集结出发，搭乘高铁穿越晨光奔赴江西。镜头捕捉了车站的启程瞬间、沿途流动的风景，以及研学途中的山水剪影——从青瓦白墙的古镇巷道到碧波倒映的湖光山色。归程在夜色中穿行，最后以一张导游的趣味彩蛋收尾，记录下这场融合历史探索与自然观览的紧凑旅程。</description><pubDate>Fri, 04 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;出发&lt;/h1&gt;
+&lt;p&gt;出发时间很早，要求5.30就到校&lt;/p&gt;
+&lt;p&gt;差不多6点左右坐车出发去高铁站，50左右到&lt;/p&gt;
+&lt;p&gt;我拍出发的图片，就放几张车站的图吧&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-F0FF7C80-D265-4F8D-9627-EBC4FB8FE0AF.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-3D88F235-2AD9-4635-91C9-19A1965F9266.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-B9092F33-B9BD-47ED-9062-0B55FEF059FE.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;坐高铁(去程)&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-19F082D8-35CF-443C-9721-947B2A81590B.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-0D902260-7D6D-4F76-8A15-12E708332782.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-43E97B38-FE65-4922-837B-6EF834C4A2CB.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-20B17889-B2BC-468A-A11E-AFF1A693B739.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-B5F9F0BF-EAFF-455F-A289-E5203657A0A3.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-C32033C6-7E05-4C26-8394-D1F1C10AE5BC.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-775B6AF4-EE31-436D-B4C9-566D15BE296C.jpg&quot; alt=&quot;2025-07-07-775B6AF4-EE31-436D-B4C9-566D15BE296C.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-07-418FF3FC-0D88-4BE9-8CA0-8FDA21AB48B1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;景点拍的照片&lt;/h1&gt;
+&lt;p&gt;太多了，就只放了一点&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-56FA67A1-8F93-4888-AD1D-CEADED15D97F.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-3418E993-638E-4E48-8C12-40A6189275A2.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-989BBCCD-F7F0-40F2-8227-FDDECEE37A26.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-8727068B-DB7B-469D-8F56-49744F64FAAA.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-C395BF14-CB13-4928-8FB0-E8AA6A0373EB.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-08B295A1-6644-4A01-8D75-22F93779D394.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-8B2E2A6F-CACA-4A77-8CBD-8E98BFA2CA80.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-69A5CC3A-EB1B-49EC-9E9D-CB4D989D7B3D.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-1E749159-5B67-4FF3-8216-7D907B4EFE92.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-499E5241-893D-49BF-A864-238A7F6642B7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-97E55B53-83C4-474E-A60A-AE6FCB31A643.jpg&quot; alt=&quot;2025-07-08-97E55B53-83C4-474E-A60A-AE6FCB31A643.jpg&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-473E5297-0783-4395-8BDD-638FDAD4BE69.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-F8D3626E-A866-4A1E-8539-ABF01AADE37A.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-550FE381-6862-452A-8A81-61E54E53AAAE.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-C38675AC-D977-4441-A6A7-D2C4E5E3C7E4.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-6499069F-8AA9-44A1-889F-4FACECB5AC41.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;坐高铁(回程)&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-5FA881A6-F94F-48AD-A9FF-ED35629668F6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-3932AB21-28B9-4124-A85A-DF50D5AC705B.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-157A3AA7-07FB-4588-81CB-7B9187D12CA5.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-F5EDCCD1-A593-475D-AB90-B25776A2D2D0.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-01C534E0-4486-48E6-8453-814C515129A3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;因为当时是晚上了，就没怎么拍照片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-49E2B037-74B3-45FC-83BC-CCC5B3080ECC.jpg&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-3FBDBEDC-A280-42AD-A871-432DAC628D81.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;彩蛋&lt;/h1&gt;
+&lt;p&gt;导游&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s3.fis.ink/blog/2025-07-08-269BC4CE-7831-4C61-87DB-8F18CEFD4136.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content:encoded></item><item><title>哪吒监控 V1美化</title><link>https://blog.fis.ink/posts/3/</link><guid isPermaLink="true">https://blog.fis.ink/posts/3/</guid><description>部署步骤参考哪吒监控官方文档进行部署：哪吒监控文档美化方法登录后台，进入「系统设置」→「自定义代码（样式和脚本）」插入提供的自定义代码（需按需修改参数）主要美化功能基础设置：自定义Logo、描述文字、关闭动画人物等视觉特效：自定义背景图片点击爱心特效樱花飘落效果鼠标星星轨迹效果卡通人物替换：将默认插图替换为自定义图片</description><pubDate>Sat, 07 Jun 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;如何部署&lt;/p&gt;
+&lt;p&gt;部署请看哪**&lt;em&gt;哪吒监控&lt;/em&gt;**&lt;a href=&quot;https://nezha.wiki/index.html&quot;&gt;&lt;strong&gt;&lt;em&gt;文档&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;美化&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://node.fishcpy.top/&quot;&gt;&lt;em&gt;点这里预览效果&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;登录到后台，点击**&lt;em&gt;头像&lt;/em&gt;&lt;strong&gt;再点击&lt;/strong&gt;&lt;em&gt;系统设置&lt;/em&gt;&lt;strong&gt;，在里面找到&lt;/strong&gt;&lt;em&gt;自定义代码（样式和脚本）&lt;/em&gt;** 插入**&lt;em&gt;下方代码&lt;/em&gt;**&lt;/p&gt;
+&lt;p&gt;请根据自己情况修改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    /*  基础设置 */
+    &amp;lt;script&amp;gt;
+        window.CustomLogo = &quot;https://cdn.fishcpy.top/img/2025/05/29/683836588877f.webp&quot;;  /*  自定义logo */
+        window.ShowNetTransfer  = &quot;true&quot;; /* 卡片显示上下行流量 */
+        window.DisableAnimatedMan  = &quot;true&quot;;    /*  关掉动画人物插图 */
+        window.CustomDesc =&quot;非淡泊无以明志，非宁静无以致远&quot;; /* 自定义描述 */
+    &amp;lt;/script&amp;gt;
+    /* 以上鼠标特效 */
+    &amp;lt;script&amp;gt;
+    window.CustomBackgroundImage=&quot;https://cdn.fishcpy.top/img/2025/05/05/68182abdc7d6e.png&quot;; /* 背景图 */
+    &amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;https://testingcf.jsdelivr.net/gh/mocchen/cssmeihua/js/aixin.js&quot;&amp;gt;&amp;lt;/script&amp;gt;/* 点击爱心特效 */
+    &amp;lt;script src=&quot;https://testingcf.jsdelivr.net/gh/mocchen/cssmeihua/js/yinghua.js&quot;&amp;gt;&amp;lt;/script&amp;gt;  /* 页面樱花效果 */ 
+    &amp;lt;span class=&quot;js-cursor-container&quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;script src=&quot;https://testingcf.jsdelivr.net/gh/mocchen/cssmeihua/js/xiaoxingxing.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    
+    /* 更换卡通小人 */
+    &amp;lt;script&amp;gt;
+    var observer = new MutationObserver(function(mutationsList, observer) {
+        var xpath = &quot;/html/body/div/div/main/div[2]/section[1]/div[4]/div&quot;;
+        var container = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    
+        if (container) {
+            observer.disconnect();
+            var existingImg = container.querySelector(&quot;img&quot;);
+            if (existingImg) {
+                container.removeChild(existingImg);
+            }
+            var imgElement = document.createElement(&quot;img&quot;);
+            imgElement.src = &quot;https://cdn.skyimg.de/up/2025/1/13/zera6q.webp&quot;;
+            imgElement.style.position = &quot;absolute&quot;;
+            imgElement.style.right = &quot;8px&quot;;
+            imgElement.style.top = &quot;-80px&quot;;
+            imgElement.style.zIndex = &quot;10&quot;;
+            imgElement.style.width = &quot;90px&quot;;
+            container.appendChild(imgElement);
+        }
+    });
+    var config = { childList: true, subtree: true };
+    observer.observe(document.body, config);
+    &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;代码来自&lt;a href=&quot;https://f5.pm/go-288695.html&quot;&gt;https://f5.pm/go-288695.html&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>可以屏蔽的测速ip</title><link>https://blog.fis.ink/posts/4/</link><guid isPermaLink="true">https://blog.fis.ink/posts/4/</guid><description>本文整理了来自 itdog（www.itdog.cn） 与 炸了吗（zhale.me） 两大测速平台的可疑或频繁探测的 IPv4 地址列表，适用于网络管理员、安全人员、站长等有屏蔽需求的场景。通过屏蔽这些 IP，可以减少不必要的测速请求，提高服务器安全性与性能稳定性。文章内容持续更新，建议根据实际访问日志灵活应用。</description><pubDate>Sat, 31 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;itdog(www.itdog.cn)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.itdog.cn/&quot;&gt;https://www.itdog.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ipv4&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;154.23.241.34
+23.225.146.6
+183.194.216.135
+106.225.239.7
+117.148.172.71
+112.65.95.205
+101.226.41.74
+221.130.18.132
+119.96.16.87
+120.220.190.144
+42.81.156.75
+36.158.204.68
+223.26.78.6
+218.98.53.88
+219.151.141.70
+124.160.160.70
+58.19.20.71
+116.153.63.68
+59.36.216.50
+111.6.225.75
+111.13.153.72
+112.123.37.68
+113.201.9.12
+124.225.103.136
+125.73.215.4
+116.162.51.68
+221.204.62.68
+218.57.21.135
+60.28.203.70
+223.244.186.68
+117.187.182.132
+202.108.15.148
+211.139.55.70
+36.104.133.71
+1.180.239.80
+59.49.86.70
+111.48.137.135
+112.29.205.70
+36.250.8.132
+101.207.252.75
+113.207.73.135
+180.130.113.72
+218.30.71.80
+116.176.33.201
+123.6.70.5
+116.177.229.5
+58.211.13.98
+49.71.77.84
+183.201.192.68
+111.32.145.8
+182.242.83.133
+112.48.150.134
+180.97.244.136
+36.150.79.4
+116.136.19.134
+42.63.75.72
+125.211.192.35
+36.147.38.70
+120.233.53.26
+111.62.174.73
+121.31.236.73
+117.168.153.198
+220.181.53.87
+117.161.136.74
+36.163.196.86
+153.0.230.8
+125.76.115.251
+112.90.210.132
+117.177.67.5
+113.240.100.81
+115.231.43.69
+111.51.76.68
+1.193.215.70
+45.251.101.5
+43.163.239.208
+59.80.45.132
+115.223.6.243
+118.213.140.68
+42.185.158.68
+156.253.8.27
+101.28.250.72
+117.157.235.95
+111.26.149.68
+36.136.125.68
+111.29.45.133
+183.2.175.12
+111.42.192.68
+125.64.2.134
+183.240.228.133
+218.61.211.101
+222.79.71.253
+120.201.243.134
+43.130.151.11
+150.139.140.70
+111.12.212.73
+42.202.219.70
+27.185.235.70
+116.172.154.17
+220.162.119.71
+222.75.5.70
+116.178.236.69
+171.15.110.73
+112.90.40.216
+125.77.129.206
+221.8.93.95
+43.156.69.84
+194.147.100.44
+109.248.18.86
+113.62.118.132
+150.109.245.197
+117.180.235.132
+120.71.150.171
+221.181.52.171
+43.131.29.194
+146.185.214.41
+38.54.126.18
+38.54.59.59
+185.99.132.104
+38.54.45.156
+38.60.209.194
+38.54.63.220
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;炸了吗(zhale.me)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://zhale.me/&quot;&gt;https://zhale.me/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ipv4&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;154.38.106.211
+148.113.173.25
+140.207.232.18
+120.204.196.162
+101.71.160.163
+116.153.81.2
+223.111.24.198
+220.202.21.129
+111.47.215.148
+58.215.177.156
+117.169.16.203
+180.153.91.3
+112.48.221.77
+123.6.27.10
+120.223.242.157
+111.206.4.152
+119.97.171.14
+59.63.230.4
+58.243.202.72
+59.83.222.20
+134.122.151.96
+115.236.144.231
+36.250.246.34
+125.39.11.1
+112.28.234.140
+36.158.254.130
+111.6.251.227
+183.201.231.162
+119.188.148.129
+150.138.178.3
+157.255.30.130
+111.62.70.129
+111.13.102.12
+211.91.243.88
+124.239.250.80
+111.32.157.133
+111.10.63.136
+59.38.99.166
+183.232.11.45
+175.6.41.195
+1.31.130.68
+61.240.153.196
+117.187.142.66
+36.102.218.76
+58.144.173.98
+218.25.106.113
+221.204.45.134
+36.131.159.78
+117.161.24.21
+117.24.3.143
+111.12.63.131
+116.253.27.152
+111.29.42.34
+121.31.231.89
+117.157.22.134
+218.203.117.72
+124.225.162.194
+116.176.35.201
+42.63.65.201
+183.224.38.14
+210.76.62.60
+182.242.140.26
+111.40.189.229
+111.19.212.248
+101.206.203.18
+117.174.129.181
+180.130.96.143
+36.104.140.200
+153.0.192.167
+1.32.216.91
+116.177.252.82
+139.215.167.76
+61.128.145.14
+59.80.37.156
+111.26.55.11
+219.144.80.136
+180.213.48.172
+125.74.24.2
+182.140.221.2
+15.235.167.152
+1.71.11.171
+111.12.157.228
+162.19.154.159
+51.77.203.76
+36.99.143.1
+116.178.71.245
+219.147.74.6
+51.38.70.219
+221.181.56.200
+45.202.210.37
+34.80.186.23
+141.164.56.18
+123.184.205.46
+43.242.167.44
+117.180.232.165
+222.75.58.106
+54.38.242.242
+110.157.249.53
+172.233.24.182
+139.99.134.84
+139.84.235.192
+61.190.114.193
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>使用1panel搭建免费开源的icp虚拟备案系统</title><link>https://blog.fis.ink/posts/7/</link><guid isPermaLink="true">https://blog.fis.ink/posts/7/</guid><description>本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。</description><pubDate>Mon, 19 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;预览&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/20/682b757d9de27.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/20/682b5c22934eb.jpg&quot; alt=&quot;1000000272.jpg&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;首先需要购买一台服务器&lt;/h1&gt;
+&lt;h2&gt;打开雨云官网&lt;/h2&gt;
+&lt;p&gt;点击链接打开雨云官网（使用这个链接会自动优惠）&lt;a href=&quot;https://www.rainyun.com/fishcpy_&quot;&gt;https://www.rainyun.com/fishcpy_&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.rainyun.com/fishcpy_&quot;&gt;https://www.rainyun.com/fishcpy_&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;或者注册时输入优惠码：fishcpy&lt;/p&gt;
+&lt;p&gt;注册完成后来到总揽，点击云服务器&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd048316cba.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;点击购买云服务器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd04e1aa3c8.png&quot; alt=&quot;&quot; /&gt;这里我推荐中国香港极速三网，三大运营商直连，速度超快&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd0588731de.png&quot; alt=&quot;&quot; /&gt;配置选择 &lt;strong&gt;AMD® EPYC&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd05cdd0361.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;如果你的网站访问量很大就选择 &lt;strong&gt;流量叠加型 ，&lt;/strong&gt; 访问量不大就选择 &lt;strong&gt;流量不限型。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/upload/image-KVAC.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;套餐选择KVM标准版&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd0ab2820f7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;其他的按照我的这个选&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;公网ip 1个&lt;br /&gt;
+debian版本选择12&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/14/67fd0d828cdce.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;安装1panel&lt;/h1&gt;
+&lt;p&gt;打开&lt;a href=&quot;https://www.hostbuf.com/&quot;&gt;finalshell&lt;/a&gt;官网&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;www.hostbuf.com&quot;&gt;www.hostbuf.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击顶部的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;FinalShell SSH工具,服务器管理,远程桌面加速软件,支持Windows,macOS,Linux,版本x.x.x,更新日期20xx.xx.xx&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/16/67fe8c90becb3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;选择自己的系统版本下载，安装。&lt;/p&gt;
+&lt;h2&gt;打开雨云&lt;/h2&gt;
+&lt;p&gt;点击你的服务器卡片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b44b158e9b.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b44d11b748.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;打开&lt;a href=&quot;https://www.hostbuf.com/&quot;&gt;finalshell&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;点击文件夹图标，打开链接管理器&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b4519c6d3e.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;点击白色加号图标，选择SSH链接(Linux)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b4570ddde0.png&quot; alt=&quot;image.png&quot; /&gt;&lt;img src=&quot;/upload/image-LUlI.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;名称&lt;/p&gt;
+&lt;p&gt;填写值&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;名称&lt;/p&gt;
+&lt;p&gt;随便&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;主机&lt;/p&gt;
+&lt;p&gt;填写雨云控制台中的公网ip地址&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;p&gt;用户名&lt;/p&gt;
+&lt;p&gt;填写雨云控制台中填写远程用户名&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;密码&lt;/p&gt;
+&lt;p&gt;填写雨云控制台中的远程密码&lt;/p&gt;
+&lt;p&gt;完成效果&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b46bd5aa75.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;填写完后，点击确定并在链接管理器中双击你刚添加的服务器链接&lt;/p&gt;
+&lt;p&gt;遇到这个点击 &lt;strong&gt;&lt;em&gt;接受并保存&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b46f29b346.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;不出意外，你应该来到这个页面&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b4733a4937.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;在下方 &lt;strong&gt;&lt;em&gt;命令输入框&lt;/em&gt;&lt;/strong&gt; 中输入下方命令并回车&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh &amp;amp;&amp;amp; bash quick_start.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b47c09ce23.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;填写输出的问题即可&lt;/p&gt;
+&lt;p&gt;来到最后输出的结尾打开外部地址的网址&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1Panel 2025-05-19 23:16:42 install Log]: 正在启动1Panel服务 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: =================感谢您的耐心等待，安装已完成================== 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: 请使用您的浏览器访问面板:  
+[1Panel 2025-05-19 23:16:43 install Log]: 外部地址:  http://154.64.254.179:12014/a46144d21a 
+[1Panel 2025-05-19 23:16:43 install Log]: 内部地址:  http://154.64.254.179:12014/a46144d21a 
+[1Panel 2025-05-19 23:16:43 install Log]: 面板用户:  d88f56f426 
+[1Panel 2025-05-19 23:16:43 install Log]: 面板密码:  79157ec8b5 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: 官方网站: https://1panel.cn 
+[1Panel 2025-05-19 23:16:43 install Log]: 项目文档: https://1panel.cn/docs 
+[1Panel 2025-05-19 23:16:43 install Log]: 代码仓库: https://github.com/1Panel-dev/1Panel 
+[1Panel 2025-05-19 23:16:43 install Log]: 前往 1Panel 官方论坛获取帮助: https://bbs.fit2cloud.com/c/1p/7 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: 如果您使用的是云服务器，请在安全组中打开端口 12014 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: 为了您的服务器安全，离开此屏幕后您将无法再次看到您的密码，请记住您的密码。 
+[1Panel 2025-05-19 23:16:43 install Log]:  
+[1Panel 2025-05-19 23:16:43 install Log]: ================================================================ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;例如我就打开http://154.64.254.179:12014/a46144d21a&lt;/p&gt;
+&lt;p&gt;输入上方的用户和密码&lt;/p&gt;
+&lt;h1&gt;部署系统&lt;/h1&gt;
+&lt;p&gt;点击侧边栏应用商店安装OpenResty，配置保持默认即可&lt;/p&gt;
+&lt;p&gt;OpenResty安装完后，点击侧边栏的网站-运行环境，在PHP中点击创建运行环境，并按照我这样配置，名称随便。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b4dc74ff57.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;点击确定，等待镜像制作完成&lt;/p&gt;
+&lt;p&gt;制作完成后点击网站并点击创建按钮，按照我这样配置&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b52f6a3f24.png&quot; alt=&quot;image.png&quot; /&gt;主域名如果用自己的域名就把 域名 解析 A 记录到你服务器的ip上，那么这里就写你自己的域名&lt;/p&gt;
+&lt;p&gt;点击**&lt;em&gt;确定 ，&lt;/em&gt;** 打开ip或域名如果为下图即为创建成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/19/682b5398523b0.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;下载程序&lt;/h2&gt;
+&lt;p&gt;打开&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbb-lsy07/dBd-Filing/releases&quot;&gt;https://github.com/bbb-lsy07/dBd-Filing/releases&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择最新版本下载，例如我就下载 &lt;a href=&quot;https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip&quot;&gt;&lt;strong&gt;&lt;em&gt;dBd-Filing-V2.5.0.zip&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在1panel中点击按钮&lt;br /&gt;
+将 &lt;a href=&quot;https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip&quot;&gt;&lt;strong&gt;&lt;em&gt;dBd-Filing-V2.5.0.zip&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;_中的内容解压到含有_index.php 的目录，配置请按照下方仓库简介配置&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbb-lsy07/dBd-Filing/&quot;&gt;https://github.com/bbb-lsy07/dBd-Filing/&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;安装数据库&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/31/6839dc198678c.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;在1panel应用商店里找到MySQL点击确定，安装&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/31/6839dc4c3f5e5.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;点击侧边栏数据库按钮&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/31/6839dca036d9d.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;创建一个新数据库&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/31/6839dcddf3471.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;点击这里查看链接信息&lt;/p&gt;
+&lt;p&gt;在ip或域名里填写数据库信息&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;验证id：489356&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+</content:encoded></item><item><title>25.5.3-5.4被攻击经过</title><link>https://blog.fis.ink/posts/5/</link><guid isPermaLink="true">https://blog.fis.ink/posts/5/</guid><description>2025 年 5 月初，服务器突遭大规模访问请求，疑似遭受 DDoS 攻击。初期由免费 CDN 托底防御，后通过转移至 Cloudflare 并开启限流策略，成功缓解流量压力并终止攻击。本文记录整个过程与应对措施，供有类似需求的站长参考。</description><pubDate>Mon, 05 May 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;经过&lt;/h2&gt;
+&lt;p&gt;大概在2025年5月3日下午服务器开始被攻击，刚开始全靠我使用的cdn硬抗。&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/05/6818a63dd6cfe.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;cdn数据&lt;/p&gt;
+&lt;p&gt;第二天也就是5月4日，cdn流量在短时间内达到了至少70GB，毕竟我使用的是免费cdn，为了减少流量我将部分域名转移到cloudflare CDN并进行了优选，并且加入了请求限制。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/upload/image-BXsQ.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;在5月4日上午攻击结束。&lt;br /&gt;
+&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/05/05/6818a818b2bd1.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;cloudflare数据&lt;/p&gt;
+</content:encoded></item><item><title>小米平板7pro澎湃os2Bate版使用体验</title><link>https://blog.fis.ink/posts/6/</link><guid isPermaLink="true">https://blog.fis.ink/posts/6/</guid><description>更新至新系统版本后，整体体验有明显提升：动画更流畅、发热情况改善、应用切换更加顺畅。本文分享实际使用感受。</description><pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;系统版本&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/04/18/680135d18da6a.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;使用感受&lt;/h1&gt;
+&lt;p&gt;1.感觉动画更连贯更丝滑了&lt;/p&gt;
+&lt;p&gt;2.没有明显发热&lt;/p&gt;
+&lt;p&gt;3.后台切换某些应用没有感觉到卡一下应用重启&lt;/p&gt;
+&lt;h1&gt;金凡 雷军！&lt;/h1&gt;
+</content:encoded></item><item><title>音乐播放器预览</title><link>https://blog.fis.ink/posts/8/</link><guid isPermaLink="true">https://blog.fis.ink/posts/8/</guid><description>本文展示了两种音乐播放器界面的视觉效果——默认样式与圆盘样式，分别呈现暂停、播放状态及歌词显示，便于界面设计对比与参考，适用于 UI 调整或前端开发场景。</description><pubDate>Sat, 22 Mar 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;默认&lt;/h2&gt;
+&lt;h4&gt;暂停&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/03/21/67dd8cbd2ba06.png&quot; alt=&quot;屏幕截图 2025-03-21 235825.png&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;播放&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/03/22/67dd8d385ee45.png&quot; alt=&quot;屏幕截图 2025-03-22 000039.png&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;同时屏幕中间有歌词&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/03/22/67dd8d6e17a71.png&quot; alt=&quot;屏幕截图 2025-03-22 000131.png&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;圆盘&lt;/h2&gt;
+&lt;h4&gt;暂停&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/03/21/67dd8bd4daf0a.jpg&quot; alt=&quot;0863eaa3-ee38-4765-8784-ae2c9fcd9230.jpg&quot; /&gt;&lt;/p&gt;
+&lt;h4&gt;播放&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/03/21/67dd8c352fb50.png&quot; alt=&quot;屏幕截图 2025-03-21 235617.png&quot; /&gt;&lt;/p&gt;
+</content:encoded></item><item><title>爱国图片</title><link>https://blog.fis.ink/posts/9/</link><guid isPermaLink="true">https://blog.fis.ink/posts/9/</guid><description>本篇文章整理并分享了多张高质量爱国主题图片，包括《中华人民共和国国旗》《袁隆平·稻下乘凉梦》《永远的人民英雄》《开国大典》等经典画面，适合用于宣传设计、纪念活动或学习参考。文末附带图包下载链接，支持一键获取。</description><pubDate>Tue, 18 Mar 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;分享一些爱国图片&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%9B%BD%E6%97%97_compressed.png&quot; alt=&quot;&quot; /&gt;
+中华人民共和国国旗.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E8%A2%81%E9%9A%86%E5%B9%B3-%E7%A8%BB%E4%B8%8B%E4%B9%98%E5%87%89%E6%A2%A6_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;袁隆平-稻下乘凉梦.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E6%B0%B8%E8%BF%9C%E7%9A%84%E4%BA%BA%E6%B0%91%E8%8B%B1%E9%9B%84_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;永远的人民英雄.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E5%A4%A9%E5%AE%89%E9%97%A8.%E9%9B%AA_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;天安门.雪.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E6%97%A5%E6%9C%AC%E6%8A%95%E9%99%8D%E7%AD%BE%E5%AD%97%E4%BB%AA%E5%BC%8F_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;日本投降签字仪式.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E5%85%AD%E4%BB%A3%E6%9C%BA%E5%87%BB%E7%A0%B4%E9%95%BF%E7%A9%BA%EF%BC%8C%E6%AF%9B%E4%B8%BB%E5%B8%AD131%E5%B9%B4%E8%AF%9E%E8%BE%B0%E4%B8%87%E5%B2%81%EF%BC%81_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;六代机击破长空，毛主席131年诞辰万岁！.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E5%BC%80%E5%9B%BD%E5%A4%A7%E5%85%B84K_compressed.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;开国大典4K.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgse.fishcpy.top/upload/%E5%9B%BD%E5%BE%BD_compressed.png&quot; alt=&quot;&quot; /&gt;国徽.png&lt;/p&gt;
+&lt;p&gt;下载：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.123pan.com/s/rnITjv-JIG13&quot;&gt;123盘&lt;/a&gt;，提取码6666&lt;/p&gt;
+</content:encoded></item><item><title>极域</title><link>https://blog.fis.ink/posts/10/</link><guid isPermaLink="true">https://blog.fis.ink/posts/10/</guid><description>部分内容不向互联网公开</description><pubDate>Fri, 07 Mar 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;2025.3.6 最新密码xxxxxxxx2023&lt;/h2&gt;
+&lt;h1&gt;此文章由 yaoyikkudeyupy 发布&lt;/h1&gt;
+</content:encoded></item><item><title>一班热榜历史记录2024-2025（下半学期）</title><link>https://blog.fis.ink/posts/11/</link><guid isPermaLink="true">https://blog.fis.ink/posts/11/</guid><description>记录 2025 年 2 月 27 日与 28 日的班级日常：有同学积极领奖，也有不当行为和未交作业的情况。文中还特别送出新年祝福，并附有历史记录传送门，见证热榜成长足迹。</description><pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;2025-2-28&lt;/h2&gt;
+&lt;p&gt;好：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;今天有 12 名同学上台领奖 👍&lt;br /&gt;
+不好：&lt;/li&gt;
+&lt;li&gt;今日有一名同学“&lt;em&gt;拿&lt;/em&gt;”别人东西&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2025-2-27&lt;/h2&gt;
+&lt;p&gt;好：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;今天开业第一天。祝看到热榜的人“&lt;strong&gt;&lt;em&gt;幸福快乐，平安健康&lt;/em&gt;&lt;/strong&gt;”（网页版也开始营业了，祝看到这行字的人“&lt;strong&gt;&lt;em&gt;蛇年新禧，祥福并济&lt;/em&gt;&lt;/strong&gt;”）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;不好：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;今天有几位同学没交罚写 &lt;strong&gt;&lt;em&gt;老师也会生气的！&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;回顾历史&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.fis.ink/archives/yi-ban-re-bang-li-shi-ji-lu-2024-2025-shang-ban-xue-qi&quot;&gt;https://blog.fis.ink/archives/yi-ban-re-bang-li-shi-ji-lu-2024-2025-shang-ban-xue-qi&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>greasyfork新可用地址</title><link>https://blog.fis.ink/posts/22/</link><guid isPermaLink="true">https://blog.fis.ink/posts/22/</guid><description>本文介绍了 GreasyFork 在中国遭遇 SNI 阻断后提供的最新可用域名和镜像地址，并详细说明了访问限制、使用注意事项以及推荐的 DNS 服务器，确保用户能够稳定访问 GreasyFork 脚本资源。</description><pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;更多请前往github仓库&lt;a href=&quot;https://github.com/fishcpy/greasyfork&quot;&gt;https://github.com/fishcpy/greasyfork&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;由于greasyfork在中国突然被sni阻断，这里提供一个新地址&lt;/h1&gt;
+&lt;h1&gt;25.3.27更新&lt;/h1&gt;
+&lt;p&gt;最新地址:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://greasyfork.dpdns.org&quot;&gt;https://greasyfork.dpdns.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;长期：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://nextgo.dpdns.org/&quot;&gt;https://nextgo.dpdns.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;25.2.14更新&lt;/h1&gt;
+&lt;p&gt;更新长期地址自动跳转&lt;/p&gt;
+&lt;p&gt;请求地址 &lt;a href=&quot;https://nextgo.us.kg/api&quot;&gt;https://nextgo.us.kg/api&lt;/a&gt;&lt;br /&gt;
+例；&lt;br /&gt;
+原先地址 &lt;a href=&quot;https://www.greasyfork.us.kg/zh-CN/scripts/by-site/bilibili.com&quot;&gt;https://www.greasyfork.us.kg/zh-CN/scripts/by-site/bilibili.com&lt;/a&gt;&lt;br /&gt;
+长期自动跳转地址 &lt;a href=&quot;https://nextgo.us.kg/api/zh-CN/scripts/by-site/bilibili.com&quot;&gt;https://nextgo.us.kg/api/zh-CN/scripts/by-site/bilibili.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用这个可以长期自动跳转到最新域名&lt;/p&gt;
+&lt;h2&gt;中文:&lt;/h2&gt;
+&lt;p&gt;新域名 &lt;a href=&quot;https://nextgo.us.kg/&quot;&gt;https://nextgo.us.kg/&lt;/a&gt; (此域名为中转,确保以后更换域名不用费劲心思再找)&lt;/p&gt;
+&lt;p&gt;它将有以下限制：&lt;br /&gt;
+1.日本地区ip将会被阻止&lt;br /&gt;
+2.繁体中文将会重定向到 &lt;a href=&quot;https://greasyfork.org/zh-TW&quot;&gt;https://greasyfork.org/zh-TW&lt;/a&gt;&lt;br /&gt;
+3.由于服务器带宽不高，将会进行人机验证&lt;br /&gt;
+4.可能无法登录，ps：没试过&lt;/p&gt;
+&lt;p&gt;此域名为镜像 cn-greasyfork.org&lt;/p&gt;
+&lt;p&gt;下载地址为 update.greasyfork.us.kg&lt;/p&gt;
+&lt;p&gt;⚠️注意事项：&lt;br /&gt;
+由于.us.kg域名的特殊性，如果跳反诈基本是由于使用了运营商dns，可以更改dns为其他的，我在这里列几个&lt;br /&gt;
+阿里云：223.5.5.5&lt;br /&gt;
+腾讯云：119.29.29.29&lt;br /&gt;
+114dns：114.114.114.114&lt;br /&gt;
+360dns：101.198.198.198&lt;br /&gt;
+google：8.8.8.8&lt;br /&gt;
+cloudflare：1.1.1.1&lt;/p&gt;
+&lt;h2&gt;English:&lt;/h2&gt;
+&lt;p&gt;New domain: &lt;a href=&quot;https://nextgo.us.kg/&quot;&gt;https://nextgo.us.kg/&lt;/a&gt; (This domain name for the transit, to ensure that the future replacement of the domain name do not have to struggle to find again)&lt;/p&gt;
+&lt;p&gt;It will have the following restrictions:&lt;/p&gt;
+&lt;p&gt;1.IP addresses from Japan will be blocked.&lt;br /&gt;
+2.Traditional Chinese will be redirected to &lt;a href=&quot;https://greasyfork.org/zh-TW&quot;&gt;https://greasyfork.org/zh-TW&lt;/a&gt;.&lt;br /&gt;
+3.Due to low server bandwidth, human verification will be implemented.&lt;br /&gt;
+4.Login may not be possible; PS: not tested.&lt;/p&gt;
+&lt;p&gt;This domain is a mirror of cn-greasyfork.org.&lt;/p&gt;
+&lt;p&gt;The download address is update.greasyfork.us.kg.&lt;/p&gt;
+&lt;p&gt;⚠️ Notices:&lt;br /&gt;
+Due to the unique nature of the .us.kg domain, if you experience issues with fraud prevention, it is likely due to using your ISP’s DNS. You can change the DNS to others; here are a few options:&lt;br /&gt;
+Alibaba Cloud: 223.5.5.5&lt;br /&gt;
+Tencent Cloud: 119.29.29.29&lt;br /&gt;
+114dns: 114.114.114.114&lt;br /&gt;
+360dns: 101.198.198.198&lt;br /&gt;
+Google: 8.8.8.8&lt;br /&gt;
+Cloudflare: 1.1.1.1&lt;/p&gt;
+</content:encoded></item><item><title>启用cloudflare cdn后js无法正常加载解决办法</title><link>https://blog.fis.ink/posts/25/</link><guid isPermaLink="true">https://blog.fis.ink/posts/25/</guid><description>这个方法有效解决了开启 Cloudflare Rocket Loader 后导致的页面部分内容加载异常问题，关闭该功能后网站正常显示。</description><pubDate>Sat, 18 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;问题描述&lt;/h1&gt;
+&lt;h3&gt;前段时间想提升一下多人的网站性能，就把cloudflare cdn打开了，发现评论区和关于页的部分东西加载不正常。&lt;/h3&gt;
+&lt;h1&gt;解决方法&lt;/h1&gt;
+&lt;h3&gt;1.在cloudflare控制面板中点击域名&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://blogpng.fishcpy.top/img/2025/01/18/678b9c4de7f20.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;2.点击侧边栏的 速度-优化-内容优化 把里面的 Rocket Loader™ 关掉&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://blogpng.fishcpy.top/img/2025/01/18/678b9d081c70e.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content:encoded></item><item><title>水-1</title><link>https://blog.fis.ink/posts/23/</link><guid isPermaLink="true">https://blog.fis.ink/posts/23/</guid><description>中国是一个拥有悠久历史和丰富文化传统的国家。几千年来，中华民族创造了灿烂的文化，涵盖了诗歌、书法、绘画、音乐、戏曲、建筑等多个领域，展现出独特的艺术魅力。书法被誉为“东方艺术之花”，不仅是文字的书写，更是一种富有美感和韵律的艺术表达。中国的传统绘画讲究意境和笔墨的运用，以山水和花鸟为常见题材，反映了人们对自然的热爱和哲理思考。音乐方面，古代乐曲如《广陵散》和《阳关三叠》等传承至今，表达了中国人细腻的情感与艺术追求。中国的戏曲种类繁多，京剧、豫剧、越剧等各具特色，结合唱念做打等表演形式，生动地传递故事和文化底蕴，深受各地人民喜爱。建筑则以长城、故宫等宏伟壮观的古代建筑闻名于世，它们不仅体现了精湛的工艺水平，还融入了“天人合一”的理念，强调人与自然的和谐共生。这些文化传统不仅丰富了中国人的精神世界，也为世界文化宝库增添了独特的色彩。它们体现了中华民族对美好生活的向往和不懈追求，彰显了深厚的历史积淀和文化自信。正是这些多样而独特的文化形式，使中国成为一个文化底蕴深厚、充满魅力的国家。</description><pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;提示词：写一篇400字的描述中国的作文&lt;/p&gt;
+&lt;h1&gt;中国的文化传统&lt;/h1&gt;
+&lt;p&gt;中国是一个拥有悠久历史和丰富文化传统的国家。中国的文化源远流长，包括诗歌、绘画、音乐、戏剧、建筑等多个领域，都展现出独特的魅力。其中，中国的书法被誉为“东方艺术之花”，每一笔每一画都蕴含着深厚的文化内涵。中国的传统绘画以山水、花鸟为主题，追求意境的抒发和笔墨的韵味，体现了中国人对自然的独特感悟。 中国的音乐也是独具特色，古代的乐曲如《广陵散》、《阳关三叠》等流传至今，展现了中国人对音乐艺术的热爱和追求。中国的传统戏曲更是独树一帜，有京剧、豫剧、越剧等不同类型，每一种戏曲都有其独特的表演风格和表现形式，深受中国人民的喜爱。 此外，中国的建筑也是举世闻名，如万里长城、故宫等建筑奇迹，展现了中国古代建筑工艺的精湛和气势恢宏。中国的传统建筑注重“天人合一”的理念，追求与自然的和谐共生，体现了中国人对宇宙和谐的追求。 总的来说，中国的文化传统是丰富多彩的，融合了诗歌、绘画、音乐、戏剧、建筑等多种艺术形式，展现了中国人民对美好生活的向往和追求。这些传统文化不仅丰富了中国人民的精神生活，也为世界文化的多样性做出了重要贡献。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AI 也可能犯错，请仔细辨别&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>给你的博客加上一个十年倒计时吧</title><link>https://blog.fis.ink/posts/21/</link><guid isPermaLink="true">https://blog.fis.ink/posts/21/</guid><description>本文详细介绍了如何在 hexo-theme-anzhiyu 主题博客中添加自定义倒计时功能。通过新建JavaScript文件和在Markdown文件中插入HTML代码，实现动态倒计时显示，且支持自定义目标时间和样式。</description><pubDate>Fri, 10 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;h2&gt;效果预览 &lt;a href=&quot;https://mengmengmao.cn/about/&quot;&gt;关于 fishcpy的小破站&lt;/a&gt;&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;打开： 你博客目录/themes/anzhiyu/source/js&lt;/h1&gt;
+&lt;p&gt;在里面新建一个.js文件，例如我新建了一个clock.js文件 编辑文件，加入下面代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 设置倒计时的目标日期
+var countDownDate = new Date(&quot;September 6, 2034 00:00:00&quot;).getTime();
+
+// 每秒更新倒计时
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    // 计算天、小时、分钟和秒
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // 显示结果
+    document.getElementById(&quot;countdown&quot;).innerHTML = 
+        days + &quot;天 &quot; + hours + &quot;小时 &quot; + 
+        minutes + &quot;分钟 &quot; + seconds + &quot;秒 &quot;;
+
+    // 倒计时结束显示提示
+    if (distance &amp;lt; 0) {
+        clearInterval(x);
+        document.getElementById(&quot;countdown&quot;).innerHTML = &quot;你发现了彩蛋&quot;;
+    }
+}, 1000);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参数&lt;/p&gt;
+&lt;p&gt;注释&lt;/p&gt;
+&lt;p&gt;可改值&lt;/p&gt;
+&lt;p&gt;你发现了彩蛋&lt;/p&gt;
+&lt;p&gt;倒计时结束的文字&lt;/p&gt;
+&lt;p&gt;随意&lt;/p&gt;
+&lt;p&gt;September 6&lt;/p&gt;
+&lt;p&gt;日期&lt;/p&gt;
+&lt;p&gt;英文月份+日期&lt;/p&gt;
+&lt;p&gt;2034 00:00:00&lt;/p&gt;
+&lt;p&gt;日期&lt;/p&gt;
+&lt;p&gt;年份+具体时间&lt;/p&gt;
+&lt;h1&gt;在你要的文件里(本人仅测试了md文件)加入下面代码即可实现&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style&amp;gt;
+.big-font {
+    font-size: 50px;  /* 字体大小保持原样 */
+    font-weight: bold;
+}
+&amp;lt;/style&amp;gt;
+
+&amp;lt;body&amp;gt;
+    &amp;lt;!-- 倒计时容器 --&amp;gt;
+    &amp;lt;div id=&quot;countdown&quot; class=&quot;big-font&quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+    &amp;lt;!-- 修正类名前多余的点号 --&amp;gt;
+    &amp;lt;script data-pjax defer src=&apos;/js/clock.js&apos;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;div class=&quot;pjax-reload&quot;&amp;gt;&amp;lt;/div&amp;gt;  &amp;lt;!-- 修正后的类名 --&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参数&lt;/p&gt;
+&lt;p&gt;注释&lt;/p&gt;
+&lt;p&gt;可改值&lt;/p&gt;
+&lt;p&gt;50px&lt;/p&gt;
+&lt;p&gt;大小&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://geek-docs.com/html/html-ask-answer/824_html_how_to_change_font_size_in_html.html&quot;&gt;可以看一下这个&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;/js/clock.js&lt;/p&gt;
+&lt;p&gt;文件位置&lt;/p&gt;
+&lt;p&gt;/js/文件名.js， 文件名为你刚创建的文件名&lt;/p&gt;
+</content:encoded></item><item><title>在byrutgame上下载免费游戏</title><link>https://blog.fis.ink/posts/24/</link><guid isPermaLink="true">https://blog.fis.ink/posts/24/</guid><description>这段教程详细介绍了如何查找游戏英文名、通过byrutgame网站获取游戏资源并下载 .torrent 文件，以及如何使用 qBittorrent 增强版客户端下载和启动游戏。图片和步骤清晰，方便操作。</description><pubDate>Mon, 23 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;找到游戏英文名&lt;/h1&gt;
+&lt;p&gt;在百度或必应等搜索引擎上搜索游戏英文名 例如我搜索&lt;strong&gt;地平线5英文名&lt;/strong&gt; 得到FORZA HORIZON 5&lt;/p&gt;
+&lt;h1&gt;找到游戏链接&lt;/h1&gt;
+&lt;p&gt;打开 &lt;a href=&quot;https://byrutgame.org/&quot;&gt;byrutgame&lt;/a&gt; &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/676958bd6e023.png&quot; alt=&quot;&quot; /&gt; 在搜索栏里输入刚刚搜索到的游戏英文名，例如我的就是FORZA HORIZON 5 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/67695974ef06c.png&quot; alt=&quot;&quot; /&gt; 直接搜索 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/676959c05467d.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：图片有红色印章的是可以联网的游戏&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;点击想要的游戏来到这页 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/67695a424d63c.png&quot; alt=&quot;&quot; /&gt; 点击这个按钮下载.torrent文件 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/67695bec8fafd.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1&gt;下载下载器&lt;/h1&gt;
+&lt;p&gt;这里推荐qbittorrent增强版 &lt;a href=&quot;https://github.com/c0re100/qBittorrent-Enhanced-Edition/&quot;&gt;github&lt;/a&gt; 链接不上github的可以用 123&lt;a href=&quot;https://www.123pan.com/s/rnITjv-lxY13&quot;&gt;盘下载&lt;/a&gt;（仅适用于Windows） 打开软件之后是这样的 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/67695c75c6372.png&quot; alt=&quot;&quot; /&gt; 点击左上角 文件-添加torrent文件，把刚下的文件导入进去 选择文件保存位置后点击确定就可以开始下载了 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/23/67695d0cd48f0.png&quot; alt=&quot;&quot; /&gt; 下载完点击对应启动程序启动游戏&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记得在游戏设置里改语言！&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>安知鱼主题音乐馆默认歌单修改</title><link>https://blog.fis.ink/posts/20/</link><guid isPermaLink="true">https://blog.fis.ink/posts/20/</guid><description>本文介绍了如何在 hexo-theme-anzhiyu 主题中，通过修改 utils.js 文件中的 getCustomPlayList 函数，自定义歌单ID及音乐服务商，实现简化访问音乐接口的配置方法。</description><pubDate>Sat, 14 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;仅适用于&lt;a href=&quot;https://github.com/anzhiyu-c/hexo-theme-anzhiyu&quot;&gt;hexo-theme-anzhiyu&lt;/a&gt;，其他请自行测试&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;文件路径&lt;/h2&gt;
+&lt;p&gt;打开博客根目录目录 依次打开 /themes/anzhiyu/source/js 里面有一个utils.js 打开它 按ctrl+f搜索 getCustomPlayList: function () &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/14/675d0caa60c94.png&quot; alt=&quot;&quot; /&gt; 文件参数是这样的 修改const userId = 你歌单的id 如果想修改歌单音乐服务商就改const userServer = netease或tencent或kugou,或xiami或 baidu 这样访问 /music/接可以了，不用在后面加?id=歌单id&amp;amp;server=音乐服务商&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考 &lt;a href=&quot;https://blog.csdn.net/2202_75762088/article/details/138251572#:~:text=%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B0%B1%E6%98%AFBloghemesanzhiyusourcejsutils.js%20%E6%89%93%E5%BC%80%E8%AF%A5%E6%96%87%E4%BB%B6%EF%BC%8C%E6%8C%89Ctrl%2BF%E6%90%9C%E7%B4%A2%20getCustomPlayList%3A,function%20%28%29%20%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E5%86%85%E5%B0%B1%E6%98%AF%E5%85%B3%E4%BA%8E%E9%9F%B3%E4%B9%90%E6%BA%90%E7%9A%84%E8%AE%BE%E7%BD%AE%EF%BC%8C%E6%94%B9%E6%88%90%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B0%B1%E5%A5%BD%EF%BC%9A&quot;&gt;避坑：我找到了Hexo安知鱼的音乐馆配置(目前好像还没有教程)&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>引入Aplayer播放音乐-自定义api地址</title><link>https://blog.fis.ink/posts/19/</link><guid isPermaLink="true">https://blog.fis.ink/posts/19/</guid><description>本文分享如何在 akilar糖果屋主题中自定义 Aplayer 的 meting_js API 地址，解决官方API不稳定、歌曲播放断续的问题，通过在注入的 Aplayer 容器中添加 `data-meting_api` 参数，实现调用自定义的音乐接口。</description><pubDate>Sat, 07 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;h2&gt;此文章仅适用于akilar糖果屋中的 &lt;strong&gt;引入Aplayer播放音乐&lt;/strong&gt; 文章 &lt;a href=&quot;https://akilar.top/posts/3afa069a/&quot;&gt;https://akilar.top/posts/3afa069a/&lt;/a&gt; ，其他请自行测试]&lt;/h2&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;1.为什么要自定义api地址&lt;/h1&gt;
+&lt;p&gt;meting_js的官方api很不稳定，播放歌曲断断续续，所以要自定义api地址&lt;/p&gt;
+&lt;h1&gt;2.如何自定义api地址&lt;/h1&gt;
+&lt;p&gt;akilar糖果屋中有这样一些字 4.在主题配置文件&lt;code&gt;[Blogroot]\_config.butterfly.yml&lt;/code&gt;的inject配置项中添加Aplayer的容器。&lt;/p&gt;
+&lt;p&gt;1
+2
+3
+4&lt;/p&gt;
+&lt;p&gt;inject:
+head:
+bottom:
+- &amp;lt;div class=&quot;aplayer no-destroy&quot; data-id=&quot;5183531430&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-fixed=&quot;true&quot; data-mini=&quot;true&quot; data-listFolded=&quot;false&quot; data-order=&quot;random&quot; data-preload=&quot;none&quot; data-autoplay=&quot;false&quot; muted&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Aplayer的网易云歌单接口时不时的会挂掉，所以如果你确定你配置正确，但是歌单还是没有出现。不妨去看看其他人的站点是不是也没有Aplayer标签了来判断是Aplayer本身接口的问题还是自己配置出错的问题。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;里面并没有说如何自定义api地址 所根据我的尝试，成功自定义api地址&lt;/p&gt;
+&lt;p&gt;1
+2
+3
+4
+5&lt;/p&gt;
+&lt;p&gt;# akilar糖果屋中原本代码
+- &amp;lt;div class=&quot;aplayer no-destroy&quot; data-id=&quot;5183531430&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-fixed=&quot;true&quot; data-mini=&quot;true&quot; data-listFolded=&quot;false&quot; data-order=&quot;random&quot; data-preload=&quot;none&quot; data-autoplay=&quot;false&quot; muted&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;# 修改后
+- &amp;lt;div class=&quot;aplayer no-destroy&quot; data-id=&quot;5183531430&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-fixed=&quot;true&quot; data-mini=&quot;true&quot; data-listFolded=&quot;false&quot; data-order=&quot;random&quot; data-preload=&quot;none&quot; data-autoplay=&quot;false&quot; data-meting_api=&quot;https://meting.qjqq.cn/?server=:server&amp;amp;type=:type&amp;amp;id=:id&amp;amp;auth=:auth&amp;amp;r=:r&quot; muted&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+&lt;p&gt;根据上方的配置参数，这里添加了一个data-meting_api=”&lt;a href=&quot;https://meting.qjqq.cn/?server=:server&amp;amp;type=:type&amp;amp;id=:id&amp;amp;auth=:auth&amp;amp;r=:r&quot;&gt;https://meting.qjqq.cn/?server=:server&amp;amp;type=:type&amp;amp;id=:id&amp;amp;auth=:auth&amp;amp;r=:r&lt;/a&gt;“ 如果以后这个挂了也可以自建或者使用别人的api&lt;/p&gt;
+</content:encoded></item><item><title>购买雨云服务器并部署hexo博客-购买云服务器</title><link>https://blog.fis.ink/posts/16/</link><guid isPermaLink="true">https://blog.fis.ink/posts/16/</guid><description>本文介绍了为什么选择云服务器来部署静态博客，指出相比于GitHub的限制和网络不稳定，云服务器具有更好的全国访问稳定性和更大存储空间。并详细讲解了如何在雨云云服务平台购买适合的云服务器。</description><pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;为什么要用云服务器部署静态博客&lt;/h1&gt;
+&lt;p&gt;hexo为静态博客，可以直接在github部署。 但是例如我这个域名github.mengmengmao.cn ping就有30个测速节点无法ping通，并且github每个仓库只有500MB存储空间 但是有了云服务器就不一样了，基本全国都可以ping通，例如我这个域名blog.mengmengmao.cn ping之后只有2个节点无法ping通&lt;/p&gt;
+&lt;h1&gt;购买云服务器&lt;/h1&gt;
+&lt;p&gt;本次使用的云服务商为 &lt;a href=&quot;https://www.rainyun.com/home&quot;&gt;雨云&lt;/a&gt; 打开雨云官网 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/06/6752d64e51d1c.png&quot; alt=&quot;&quot; /&gt; 点击登录/注册，经行注册，优惠码可以填fishcpy 或者点击&lt;a href=&quot;https://www.rainyun.com/mmm_&quot;&gt;这里一键填写&lt;/a&gt; 点击导航栏的总览&amp;gt;云服务器&amp;gt;购买云服务器 本人建议用香港的云服务器，有35ms和80ms的 如果对延迟有需求的可以选择35ms的，反之可以选择80ms的 演示使用80ms的，因为上行相对来说更高一些 &lt;img src=&quot;https://blogpng.mengmengmao.cn/mengmengmao/2024/12/06/6752d80303d56.png&quot; alt=&quot;&quot; /&gt; 点击立即购买，充钱后就可以购买成功 至此购买云服务器结束&lt;/p&gt;
+</content:encoded></item><item><title>butterfly导航栏图标修改</title><link>https://blog.fis.ink/posts/17/</link><guid isPermaLink="true">https://blog.fis.ink/posts/17/</guid><description>本文介绍如何为导航栏添加图标，通过FontAwesome官网选择合适的图标类名，并替换官方配置中的图标名称，实现自定义导航栏图标的效果。</description><pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;导航栏图标&lt;/h1&gt;
+&lt;p&gt;我看了官方配置文件，里面好像没有关于导航栏图标的描述，修改完效果如下 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751ab17651d2.png&quot; alt=&quot;&quot; /&gt; 官方配置代码如下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1
+
+例： 首页: / || fas fa-home
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打开&lt;a href=&quot;https://fontawesome.com/&quot;&gt;fontawesome&lt;/a&gt; &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751acefe84bf.png&quot; alt=&quot;&quot; /&gt; 点击顶部导航栏的icons &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751ad8fe887b.png&quot; alt=&quot;&quot; /&gt; 比如我在搜索栏里搜索bilibili 点击你想要的图标 &lt;img src=&quot;https://blogpng.mengmengmao.cn/mengmengmao/2024/12/05/6751ade0a08b5.png&quot; alt=&quot;&quot; /&gt; 这里他给了一个html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1
+
+&amp;lt;i class=&quot;fa-brands fa-bilibili&quot;&amp;gt;&amp;lt;/i&amp;gt;```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;把里面的fa-brands fa-bilibili复制下来&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1234
+
+# 原来代码首页: / || fas fa-home#修改后首页: / || fa-brands fa-bilibili
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;至此修改完毕&lt;/p&gt;
+</content:encoded></item><item><title>12月到了</title><link>https://blog.fis.ink/posts/15/</link><guid isPermaLink="true">https://blog.fis.ink/posts/15/</guid><description>12月到了我要更加努力</description><pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;12月到了，我要更加努力💪&lt;/h1&gt;
+</content:encoded></item><item><title>一班热榜历史记录2024-2025（上半学期）</title><link>https://blog.fis.ink/posts/13/</link><guid isPermaLink="true">https://blog.fis.ink/posts/13/</guid><description>这是一份2024年10月至12月间的班级日常记录，涵盖了学生的学习表现、课堂纪律、考试成绩及师生互动等方面的详细情况。记录中既有对学生优异表现的表扬，也包括对不良行为的批评和纠正，同时穿插了班主任对学生整体表现的总结和鼓励，反映了班级管理和教学的日常状态。</description><pubDate>Fri, 20 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;完结&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.fishcpy.top/archives/yi-ban-re-bang-li-shi-ji-lu-2024-2025-xia-ban-xue-qi&quot;&gt;https://blog.fishcpy.top/archives/yi-ban-re-bang-li-shi-ji-lu-2024-2025-xia-ban-xue-qi&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;2024.12.27 星期五&lt;/h2&gt;
+&lt;p&gt;无图片&lt;/p&gt;
+&lt;h2&gt;2024.12.26 星期四&lt;/h2&gt;
+&lt;p&gt;好 1.唐语彤帮助老师发口罩 2.今天语文课老师听课，同学们表现优异 不好 1.体育课后，两名同学&lt;strong&gt;自由搏击&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;2024.12.25 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.语文模拟考优秀平均分比年级优秀平均分高出一半（太棒了） 2.英语小测一名同学满分💯 不好 1.王yu好 1.语文模拟考优秀平均分比年级优秀平均分高出一半（太棒了） 2.英语小测一名同学满分💯 不好 1.王昱涵值日太不认真了跟没扫一样，批评他&lt;/p&gt;
+&lt;h2&gt;2024.12.24 星期二&lt;/h2&gt;
+&lt;p&gt;无图片&lt;/p&gt;
+&lt;h2&gt;2024.12.23 星期一&lt;/h2&gt;
+&lt;p&gt;无，图片&lt;/p&gt;
+&lt;h2&gt;2024.12.20 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.今日数学小测多名同学100分 💯 不好 1.今日多名同学因上生物课时&lt;strong&gt;扰乱&lt;/strong&gt;课堂纪律，导致生物老师直接火山爆发🔥&lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/20/676581ea4489c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;温馨提示：距离期末考试还有18天&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2024.12.19 星期四&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;h3&gt;考试！&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;2024.12.18 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.明天模考 2.二班一名同学好心给我们班做值日（其实是被罚的） 不好 1.今日历史课两名男生一直说话，让历史老师发火🔥&lt;/p&gt;
+&lt;h2&gt;2024.12.16 星期一&lt;/h2&gt;
+&lt;p&gt;好 1.今日卫生表现不错，没让二班扣分 不好 1.今日有&lt;strong&gt;一些&lt;/strong&gt;同学在道法课上&lt;strong&gt;大闹天宫&lt;/strong&gt; 2.今日多名同学给地理老&lt;strong&gt;师负荆请罪&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;2024.12.13 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.英语听写六名同学100分 2.王昕妍，陆子俊，刘嘉乐被老师评为&lt;strong&gt;整理收纳小能手&lt;/strong&gt; 不好 1.今日午休一些男生在&lt;strong&gt;拆家&lt;/strong&gt;被老师发现实施&lt;strong&gt;爱的教育&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;2024.12.12 星期四&lt;/h2&gt;
+&lt;p&gt;好 1.今日有同学默写pronous全对 不好 1.道法课上同学们开天辟地&lt;/p&gt;
+&lt;h2&gt;2024.12.11 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.今日李承宣数学小测100分（进步很大） 不好 1.今日有很多男生的羽毛球丢了（看起来很伤心），建议下次别带了，&lt;strong&gt;好好学习&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;2024.12.10 星期二&lt;/h2&gt;
+&lt;p&gt;好 1.今日六名同学数学小测100分 不好 1。今日上课有同学太energetic了&lt;/p&gt;
+&lt;h2&gt;2024.12.9 星期一&lt;/h2&gt;
+&lt;p&gt;好 1.今日班级获得六星班级 不好 1.今日体活课三名同学玩羽毛球被点名 2.今日班级出现了新大遍超人（翻译：抄最多）&lt;/p&gt;
+&lt;h2&gt;2024.12.6 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.今日多名同学英语听写全对 不好 1.今日地理课两名同学罚站 2.今日许多男生被罚跑400米&lt;/p&gt;
+&lt;h2&gt;2024.12.5 星期四&lt;/h2&gt;
+&lt;p&gt;无图片&lt;/p&gt;
+&lt;h2&gt;2024.12.4 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.数学阶段测试张宇泽同学轻松拿下年纪和班级双第一👍 不好 1.今天又有一名男生弄坏了班级公共器材 2.今天音乐课四名男生被老师留下&lt;/p&gt;
+&lt;h2&gt;2024.12.3 星期二&lt;/h2&gt;
+&lt;p&gt;好 1.班级几名同学主动领取运动器材 不好 1.某位男生私自借高年级运动器材并损坏&lt;/p&gt;
+&lt;h2&gt;2024.12.2 星期一&lt;/h2&gt;
+&lt;p&gt;好 1.今日班级获得 &lt;strong&gt;三帆星旗&lt;/strong&gt; 和 &lt;strong&gt;小熊&lt;/strong&gt; 2.今日地理课几位同学不用写作业 不好 今日有几位同学上课老说话&lt;/p&gt;
+&lt;h2&gt;2024.11.29 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.数学考试同学们表现优异，值得表扬👍 2.索林熙数学课被表扬，继续努力 不好 1.某名同学被调到“金牌VIP”座位 2.音乐课某人“cossplay”蚂蚱&lt;/p&gt;
+&lt;h2&gt;2024.11.28 星期四&lt;/h2&gt;
+&lt;p&gt;无图片 数学老师信息： 课前小测共有39位同学获得满分💯&lt;/p&gt;
+&lt;h2&gt;2024.11.27 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.今日数学小测多名同学100分 不好 1.英语课纪律不好 2.今日有一名同学再次没写完作业&lt;/p&gt;
+&lt;h2&gt;2024.11.26 星期二&lt;/h2&gt;
+&lt;p&gt;好 1.闫博凯同学数学公开课讲题思路清晰被表扬 2.部分同学在课间积极讨论数学问题 不好 1.三名同学在食堂“传达情报”被抓捕&lt;/p&gt;
+&lt;h2&gt;2024.11.25 星期一&lt;/h2&gt;
+&lt;p&gt;好 1.上周获得五星班级（继续加油） 2.雨给郑讲题 3.闫博凯给李子宇贴心披外套 wo！ 不好 1.早读三名同学说话 2.地理课三名同学习题抄写 3.英语课三名同学总说话&lt;/p&gt;
+&lt;h2&gt;2024.11.22 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.今天语文默写22名同学满分 2.经过全班共同努力，争取到了下周二的数学公开课&lt;/p&gt;
+&lt;h2&gt;2024.11.21 星期四&lt;/h2&gt;
+&lt;p&gt;好 1.今天数学小测32同学💯分 2.体育课老师表扬了三名女生 不好 无&lt;/p&gt;
+&lt;h2&gt;2024.11.20 星期三&lt;/h2&gt;
+&lt;p&gt;好 1.今天数学小测多名同学💯分 不好 1.自习课一名同学“创意DIY” 2.某名同学生物课“神游天外” 班主任信息 大课间，唐语彤，张耘卓奋笔疾书。刘溢昕张紫涵在背古诗。王思萌，张雨泽，马敏萱，郑旭晴，闫博凯，郭佳怡，孟诗颖在安静学习。王欣妍问完各科老师问题，还在背初中语文古诗词拓展。&lt;/p&gt;
+&lt;h2&gt;2024.11.19 星期二&lt;/h2&gt;
+&lt;p&gt;好 1.英语阅读单词梳理许多同学积极发言 2.同学们数学小条积极改错 不好 1.李同学喜提跑步大礼包 2。某位同学体育课玩闹被抓&lt;/p&gt;
+&lt;h2&gt;2024.11.18 星期一&lt;/h2&gt;
+&lt;p&gt;无图片 数学老师信息 今天早上进行了第1、2章的基础知识过关，共有20名同学一次性通关。恭喜以下同学 王思萌，侯芊黛，刘溢昕，刘佳懿，张耘卓，张雨泽，孟诗颖，王昕妍，李子宇，闫博凯，于浩楠，陈骏洁，姜子跃，王腾煊，唐语彤，郑旭晴，杜明露，李嘉晟，陆子俊，李泽辰。&lt;/p&gt;
+&lt;h2&gt;2024.11.15 星期五&lt;/h2&gt;
+&lt;p&gt;无图片&lt;/p&gt;
+&lt;h2&gt;2024.11.14 星期四&lt;/h2&gt;
+&lt;p&gt;无图片&lt;/p&gt;
+&lt;h2&gt;2024.11.13星期三&lt;/h2&gt;
+&lt;p&gt;好 1、今日数学计算多人100分 2、今日课间多名同学认真学习 不好 1、有一位同学被地理老师罚写 2、有一位同学地理课上写作业 3、今日有一位同学午休搞破坏 4、有一位同学不做课前准备（多次）&lt;/p&gt;
+&lt;h2&gt;2024.11.12星期二&lt;/h2&gt;
+&lt;p&gt;好 1、李承宣遵守班级规定，知错就改 2、数学课上小测27人全对 3、数学错题同学积极改错 不好 1、今日某位老师抓拍午休混乱瞬间 2、王腾煊午休奇怪睡姿（今日奇怪事件）&lt;/p&gt;
+&lt;h2&gt;2024.11.11星期一&lt;/h2&gt;
+&lt;p&gt;好 1、毛立珑数学课被老师表扬 2、数学小测很多同学满分 不好 1、一名同学罚抄时写“天书”&lt;/p&gt;
+&lt;h2&gt;2024.11.8 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.今日英语听写很多人听写100分 2.今日有一些同学学习态度十分不错 不好 1.今日有一位同学因为某些原因扣了文明一分 2.今日英语课有很多人笑 3.今日有多名同学没完成作业&lt;/p&gt;
+&lt;h2&gt;2024.11.7 星期四&lt;/h2&gt;
+&lt;p&gt;好 1.索林熙今日上课被数学老师表扬 2.今日毛立龙英语练习满分 不好 1.今日有一位同学给书改名（语文改甲骨文，英语改鸟语，历史改拉史。。。） 2.今日生物课纪律不好&lt;/p&gt;
+&lt;h2&gt;2024.11.6 星期三&lt;/h2&gt;
+&lt;p&gt;好 1,.今天早读大多数同学按时背诵短文 2.李承宣英语课被老师表扬 3.李子宇同学引体向上做了三个 不好 1.一名同学音乐课活跃过度 2.英语课有一部分人没有按时交英语作业，喜提罚抄一遍&lt;/p&gt;
+&lt;h2&gt;2024.11.5 星期二&lt;/h2&gt;
+&lt;p&gt;好 1.今日有些人贡献口罩给同学 2.数学课有些同学回答问题 不好 1.今日好多同学午休写作业吵闹 2.今日有三名同学在文明就餐区吃饭&lt;/p&gt;
+&lt;h2&gt;2024.11.4 星期一&lt;/h2&gt;
+&lt;p&gt;好 1.今日唐雨彤在班级里修复地板 不好 1.今日有很多同学没有完成英语作业 2.今日卫生扣了一分&lt;/p&gt;
+&lt;h2&gt;2024.11.1 星期五&lt;/h2&gt;
+&lt;p&gt;好 1.今日英语听写20人满分 2.在考试中有很多同学获得优秀奖进步奖 3.今日李嘉晟多次主动回答问题 4今日有很多同学在班级里学习 不好 1.今日舞蹈有两人逃课 2.今日上课有很多人没做课前准备 3今日上操有同学乱动乱说话&lt;/p&gt;
+&lt;h2&gt;2024.10.31 星期四&lt;/h2&gt;
+&lt;p&gt;无，图片&lt;/p&gt;
+&lt;h2&gt;2024.10.30 星期三&lt;/h2&gt;
+&lt;p&gt;无，图片&lt;/p&gt;
+&lt;h2&gt;2024.10.29 星期二&lt;/h2&gt;
+&lt;p&gt;考试，无&lt;/p&gt;
+&lt;h2&gt;2024.10.28 星期一&lt;/h2&gt;
+&lt;p&gt;没有图片 今日有考试&lt;/p&gt;
+&lt;h2&gt;2024.10.25 星期五&lt;/h2&gt;
+&lt;p&gt;好 1 今日默写有 11 名同学 100 分 不好 1 无，大家都很棒 每日一笑 1 今日班级进行了 2b 铅笔争夺战，伤亡人众多（伤是发出叫声，亡是没抢到） 2 今日课间 有一位同学被老师罚叫了100“鹅” 3 今日生物课有一位同学PK输了，用抹布擦脸 最后祝大家，下周星期一、星期二都能取得理想成绩。 –fish 2024.10.25&lt;/p&gt;
+&lt;h2&gt;2024.10.24 星期四&lt;/h2&gt;
+&lt;p&gt;好 1 有 22 名同学语文小测满分💯 2 今日李嘉晟多次回答问题 不好 1 有一位同学上课迟到 5 分钟 2 有几位同学没有做课前准备&lt;/p&gt;
+&lt;h2&gt;2024.10.23 星期三&lt;/h2&gt;
+&lt;p&gt;好 1 今日龚晟鑫第一个背完英语 2 17 名同学语文听写全对 3 李承宣上课认真 不好 1 今日有个别同学没写英语作业 2 今日还有几位同学上体育课违反纪律 每日一笑 今日两位同学在课间写天书&lt;/p&gt;
+&lt;h2&gt;2024.10.22 星期二&lt;/h2&gt;
+&lt;p&gt;没有图片，无热榜 年纪表扬👍 优秀班干部：侯芊黛，唐语彤，刘佳懿 优秀课代表：刘溢昕，王思萌，张云卓 学习标兵：于浩楠，张宇泽，李子宇 主动帮忙打扫卫生：刘嘉乐，申嘉怡，李承轩，王沛禹，郑旭晴，张云卓 班主任信息 今日小测后八首古诗默写。以下同学全对：刘佳懿，杜明露，李泽辰，王思萌，于浩楠，王腾煊，陈骏洁。错一个的同学有闫博凯，白晰，张雨泽，侯芊黛，陆子俊，郑旭晴，辛栋，李子宇，姜子跃。其中白晰同学进步明显，态度积极，特此表扬。明天默写继续听写这八首古诗。期待同学们更好的巩固。&lt;/p&gt;
+&lt;h2&gt;2024.10.21 星期一&lt;/h2&gt;
+&lt;p&gt;好 1 今天班级获得六星班级 2龚晟鑫给马一然饭卡 不好 1 有几位同学没写作业 班主任信息 上一周表现优秀的班委（以下为班委年级组评选） 学习标兵：于浩楠，张雨泽，李子宇 优秀班干部：侯芊黛，唐语彤，刘佳懿 优秀课代表：刘溢昕，王思萌，张耘卓 运动会助人为乐，年级表彰卫生小组为张耘卓小组。组员刘嘉乐，申嘉怡，李承轩，王沛禹，郑旭晴。&lt;/p&gt;
+&lt;h2&gt;2024.10.18 星期五 运动会&lt;/h2&gt;
+&lt;p&gt;今日无热榜 &lt;a href=&quot;/yi-ban-2024-di-jiu-jie-qiu-ji-tian-jing-yun-dong-hui-tu-ku&quot;&gt;运动会图库 点这里&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;2024.10.17 星期四 运动会&lt;/h2&gt;
+&lt;p&gt;好 1 龚晟鑫和张雨泽提供自助餐 2 班委们很负责 3 今日运动员们十分卖力 4 王昕妍和刘佳懿无私奉献 不好 1 有几位同学违反纪律 &lt;a href=&quot;/yi-ban-2024-di-jiu-jie-qiu-ji-tian-jing-yun-dong-hui-tu-ku&quot;&gt;运动会图库 点击这里&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;2024.10.16 星期三&lt;/h2&gt;
+&lt;p&gt;好 1 李嘉晟上课十分认真 2 今日有十个人听写全对 💯 不好 1 无&lt;/p&gt;
+&lt;h2&gt;2024.10.15 星期二&lt;/h2&gt;
+&lt;p&gt;好 1 今日耿思凡主动借饭卡给索林熙 2 李承宣课上被老师表扬 👍 3 今日语文听写 15 个全对💯 不好 1 今日某人没写英语作业（小马哥）🐎 2 两位同学记律太差👎 班主任信息 今天继续听写论语十二章，以下同学全对。辛栋，孟诗颖，郭佳怡，李嘉晟，张紫涵，于浩楠，张耘卓，闫博凯，王思萌，陈骏洁，王腾煊，张紫萱，马一然，姜子跃。王昱涵，张雨泽。恭喜以上同学。今天班里小伙子表现很好。期待大家更好表现。&lt;/p&gt;
+&lt;h2&gt;2024.10.14 星期一&lt;/h2&gt;
+&lt;p&gt;好 1 姜子跃，王昱涵和侯睿祺上课认真听讲 2 今日论语默写有 20 人全对 3.1 张紫萱，侯芊黛和孟诗颖为优秀课代表 3.2 王昕妍，张紫萱和段茗涵为优秀班委 3.3 杜明露，汪洋和闫博凯为学习标兵 不好 1 今日有一名同学所有作业都没带 2 今日升旗时，两位同学乱动，享受了免费健身服务 3两位同学历史作业在讲台，被历史老师请到班级后面（已补完） 4 今日小干部扣了3分😭&lt;/p&gt;
+&lt;h2&gt;2024.10.12 星期六&lt;/h2&gt;
+&lt;p&gt;好 1 王昕妍，陈骏洁，段茗涵当选学生代表 2 毛立龙在班里认真学习 不好 1 两位同学在课上吵架 2 有一位同学逃值日 3 地理课上有几位同学没拿地球仪 4 四位同学课间跳舞&lt;/p&gt;
+&lt;h2&gt;2024.10.11 星期五&lt;/h2&gt;
+&lt;p&gt;好 1 今日王沛禹主动为班级喊口号 2 今日班委会正式成立 3 今日有 10 名同学默写全对，23 名同学优秀 4 索林熙分享自己珍藏的昆虫标本 不好 1 三名同学上课玩笔+罗阵 2 两名同学在图书馆说话 班主任信息 今天语文课默写全对的的同学有王思萌，辛栋，张耘卓，杜明露，张紫萱，刘溢昕，孟诗颖，陈骏洁，郭佳怡，段茗涵。错两个以内的同学有，李泽辰，郑旭晴，王昱涵，王腾煊，张紫涵，李子宇，李嘉晟，侯芊黛，闫博凯，王欣妍，陆子俊，马敏萱于浩楠，张雨泽。恭喜以上同学。期待看到更多孩子优秀的表现。&lt;/p&gt;
+&lt;h2&gt;2024.10.10 星期四&lt;/h2&gt;
+&lt;p&gt;好 1 今天有八个同学英语听写 100 分 2 张雨泽数学 100 分（周二热搜） 3 本周卫生角没有扣分，十分难得 4 刘佳懿，梦诗颖，刘溢昕，张耘卓，王思萌，于浩楠语文默写全对 不好 1 有两位男生在图书馆说小话 2 某位同学道法课带历史书，历史课带道法书 3 某人在历史课上写作业&lt;/p&gt;
+&lt;h2&gt;2024.10.9 星期三&lt;/h2&gt;
+&lt;p&gt;好 1 张雨泽数学 100 分（至今未超越） 2 刘佳懿，梦诗颖，刘溢昕，张耘卓，王思萌，于浩楠语文听写 100 分 不好 1 昨天有 4 个男生没找老师背论语 2 早读有位同学说话被罚站&lt;/p&gt;
+&lt;h2&gt;2024.10.8 星期二&lt;/h2&gt;
+&lt;p&gt;好 1 张雨泽数学 100 分 2 姜子跃和索林熙自觉在教室学习 3 马敏宣背完语文书 4 王腾煊回答了许多男生不会的问题 不好 1 数学课上 4 个男生回答不出问题 2 有两位男生在生物课上说话&lt;/p&gt;
+&lt;h1&gt;更早以前&lt;/h1&gt;
+&lt;p&gt;没有啦，那时一班热榜都还没有啊！&lt;/p&gt;
+&lt;h1&gt;维护名单&lt;/h1&gt;
+&lt;p&gt;名字&lt;/p&gt;
+&lt;p&gt;分组&lt;/p&gt;
+&lt;p&gt;孟**&lt;/p&gt;
+&lt;p&gt;班委&lt;/p&gt;
+&lt;p&gt;fishcpy&lt;/p&gt;
+&lt;p&gt;班委&lt;/p&gt;
+&lt;p&gt;郭**&lt;/p&gt;
+&lt;p&gt;班委&lt;/p&gt;
+&lt;p&gt;陈**&lt;/p&gt;
+&lt;p&gt;班委&lt;/p&gt;
+&lt;p&gt;梁*&lt;/p&gt;
+&lt;p&gt;班主任&lt;/p&gt;
+</content:encoded></item><item><title>我的ai网站发布啦</title><link>https://blog.fis.ink/posts/12/</link><guid isPermaLink="true">https://blog.fis.ink/posts/12/</guid><description>这是一个指向 AI 相关网站的链接，方便用户快速访问 fishcpy 提供的 AI 服务入口。</description><pubDate>Mon, 09 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://ai.fishcpy.us.kg/&quot;&gt;https://ai.fishcpy.us.kg/&lt;/a&gt;&lt;/p&gt;
+</content:encoded></item><item><title>关于casaos国内无法拉取镜像解决方法</title><link>https://blog.fis.ink/posts/14/</link><guid isPermaLink="true">https://blog.fis.ink/posts/14/</guid><description>本文指导用户如何为 CasaOS 配置 Docker 镜像加速，通过编辑 `daemon.json` 文件添加多个镜像源，加速 Docker 镜像的下载。最后通过重启 Docker 服务和设备，使配置生效。</description><pubDate>Fri, 06 Sep 2024 00:00:00 GMT</pubDate><content:encoded>&lt;ol&gt;
+&lt;li&gt;进入 CasaOS。&lt;/li&gt;
+&lt;li&gt;打开 &lt;strong&gt;Files&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;点击文件下方的 &lt;strong&gt;root&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;打开 &lt;strong&gt;etc&lt;/strong&gt; 文件夹。&lt;/li&gt;
+&lt;li&gt;使用 &lt;strong&gt;Ctrl + F&lt;/strong&gt; 搜索 &lt;strong&gt;docker&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;打开 &lt;strong&gt;docker&lt;/strong&gt; 文件夹。&lt;/li&gt;
+&lt;li&gt;在电脑本地创建一个 txt 文件，加入以下内容（JSON 格式）：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;{
+  &quot;registry-mirrors&quot;: [
+    &quot;https://dockerhub.icu&quot;,
+    &quot;https://docker.chenby.cn&quot;,
+    &quot;https://docker.1panel.live&quot;,
+    &quot;https://docker.awsl9527.cn&quot;,
+    &quot;https://docker.anyhub.us.kg&quot;,
+    &quot;https://dhub.kubesre.xyz&quot;,
+    &quot;https://dockerproxy.cn/&quot;,
+    &quot;https://hub.rat.dev/&quot;,
+    &quot;https://docker.actima.top/&quot;
+  ]
+}
+保存并重命名为 daemon.json。
+
+上传该文件到 docker 文件夹。
+
+使用 SSH 连接打开终端，输入以下命令：
+
+bash
+复制
+编辑
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo reboot
+设备重启后，即可使用应用商店。&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Markdown Example</title><link>https://blog.fis.ink/posts/markdown/</link><guid isPermaLink="true">https://blog.fis.ink/posts/markdown/</guid><description>A simple example of a Markdown blog post.</description><pubDate>Sun, 01 Oct 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Simple Guides for Fuwari&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Cover image source: &lt;a href=&quot;https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg&quot;&gt;Source&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This blog template is built with &lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;. For the things that are not mentioned in this guide, you may find the answers in the &lt;a href=&quot;https://docs.astro.build/&quot;&gt;Astro Docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Front-matter of Posts&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Attribute&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The title of the post.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;published&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The date the post was published.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;description&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;A short description of the post. Displayed on index page.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The cover image path of the post.&amp;lt;br/&amp;gt;1. Start with &lt;code&gt;http://&lt;/code&gt; or &lt;code&gt;https://&lt;/code&gt;: Use web image&amp;lt;br/&amp;gt;2. Start with &lt;code&gt;/&lt;/code&gt;: For image in &lt;code&gt;public&lt;/code&gt; dir&amp;lt;br/&amp;gt;3. With none of the prefixes: Relative to the markdown file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tags&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The tags of the post.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;category&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;The category of the post.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;draft&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;If this post is still a draft, which won&apos;t be displayed.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;Where to Place the Post Files&lt;/h2&gt;
+&lt;p&gt;Your post files should be placed in &lt;code&gt;src/content/posts/&lt;/code&gt; directory. You can also create sub-directories to better organize your posts and assets.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;src/content/posts/
+├── post-1.md
+└── post-2/
+    ├── cover.png
+    └── index.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;markdown.md&lt;/h1&gt;
+&lt;h1&gt;An h1 header&lt;/h1&gt;
+&lt;p&gt;Paragraphs are separated by a blank line.&lt;/p&gt;
+&lt;p&gt;2nd paragraph. &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, and &lt;code&gt;monospace&lt;/code&gt;. Itemized lists
+look like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;this one&lt;/li&gt;
+&lt;li&gt;that one&lt;/li&gt;
+&lt;li&gt;the other one&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Block quotes are
+written like so.&lt;/p&gt;
+&lt;p&gt;They can span multiple paragraphs,
+if you like.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., &quot;it&apos;s all
+in chapters 12--14&quot;). Three dots ... will be converted to an ellipsis.
+Unicode is supported. ☺&lt;/p&gt;
+&lt;h2&gt;An h2 header&lt;/h2&gt;
+&lt;p&gt;Here&apos;s a numbered list:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;first item&lt;/li&gt;
+&lt;li&gt;second item&lt;/li&gt;
+&lt;li&gt;third item&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here&apos;s a code sample:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;define foobar() {
+    print &quot;Welcome to flavor country!&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(which makes copying &amp;amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import time
+# Quick, count to ten!
+for i in range(10):
+    # (but not *too* quick)
+    time.sleep(0.5)
+    print i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;An h3 header&lt;/h3&gt;
+&lt;p&gt;Now a nested list:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;First, get these ingredients:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;carrots&lt;/li&gt;
+&lt;li&gt;celery&lt;/li&gt;
+&lt;li&gt;lentils&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Boil some water.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dump everything in the pot and follow
+this algorithm:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; find wooden spoon
+ uncover pot
+ stir
+ cover pot
+ balance wooden spoon precariously on pot handle
+ wait 10 minutes
+ goto first step (or shut off burner when done)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Do not bump wooden spoon or it will fall.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).&lt;/p&gt;
+&lt;p&gt;Here&apos;s a link to &lt;a href=&quot;http://foo.bar&quot;&gt;a website&lt;/a&gt;, to a &lt;a href=&quot;local-doc.html&quot;&gt;local
+doc&lt;/a&gt;, and to a &lt;a href=&quot;#an-h2-header&quot;&gt;section heading in the current
+doc&lt;/a&gt;. Here&apos;s a footnote [^1].&lt;/p&gt;
+&lt;p&gt;[^1]: Footnote text goes here.&lt;/p&gt;
+&lt;p&gt;Tables can look like this:&lt;/p&gt;
+&lt;p&gt;size material color&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;9 leather brown
+10 hemp canvas natural
+11 glass transparent&lt;/p&gt;
+&lt;p&gt;Table: Shoes, their sizes, and what they&apos;re made of&lt;/p&gt;
+&lt;p&gt;(The above is the caption for the table.) Pandoc also supports
+multi-line tables:&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;keyword text&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;red Sunsets, apples, and
+other red or reddish
+things.&lt;/p&gt;
+&lt;p&gt;green Leaves, grass, frogs
+and other things it&apos;s
+not easy being.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;A horizontal rule follows.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Here&apos;s a definition list:&lt;/p&gt;
+&lt;p&gt;apples
+: Good for making applesauce.
+oranges
+: Citrus!
+tomatoes
+: There&apos;s no &quot;e&quot; in tomatoe.&lt;/p&gt;
+&lt;p&gt;Again, text is indented 4 spaces. (Put a blank line between each
+term/definition pair to spread things out more.)&lt;/p&gt;
+&lt;p&gt;Here&apos;s a &quot;line block&quot;:&lt;/p&gt;
+&lt;p&gt;| Line one
+| Line too
+| Line tree&lt;/p&gt;
+&lt;p&gt;and images can be specified like so:&lt;/p&gt;
+&lt;p&gt;Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:&lt;/p&gt;
+&lt;p&gt;$$I = \int \rho R^{2} dV$$&lt;/p&gt;
+&lt;p&gt;$$
+\begin{equation*}
+\pi
+=3.1415926535
+;8979323846;2643383279;5028841971;6939937510;5820974944
+;5923078164;0628620899;8628034825;3421170679;\ldots
+\end{equation*}
+$$&lt;/p&gt;
+&lt;p&gt;And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.&lt;/p&gt;
+&lt;h1&gt;video.md&lt;/h1&gt;
+&lt;p&gt;Just copy the embed code from YouTube or other platforms, and paste it in the markdown file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: Include Video in the Post
+published: 2023-10-19
+// ...
+---
+
+&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;YouTube&lt;/h2&gt;
+&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/p&gt;
+&lt;h2&gt;Bilibili&lt;/h2&gt;
+&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;//player.bilibili.com/player.html?bvid=BV1fK4y1s7Qf&amp;amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&amp;gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+&lt;h1&gt;markdown-extended.md&lt;/h1&gt;
+&lt;h2&gt;GitHub Repository Cards&lt;/h2&gt;
+&lt;p&gt;You can add dynamic cards that link to GitHub repositories, on page load, the repository information is pulled from the GitHub API.&lt;/p&gt;
+&lt;p&gt;::github{repo=&quot;Fabrizz/MMM-OnSpotify&quot;}&lt;/p&gt;
+&lt;p&gt;Create a GitHub repository card with the code &lt;code&gt;::github{repo=&quot;&amp;lt;owner&amp;gt;/&amp;lt;repo&amp;gt;&quot;}&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::github{repo=&quot;saicaca/fuwari&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Admonitions&lt;/h2&gt;
+&lt;p&gt;Following types of admonitions are supported: &lt;code&gt;note&lt;/code&gt; &lt;code&gt;tip&lt;/code&gt; &lt;code&gt;important&lt;/code&gt; &lt;code&gt;warning&lt;/code&gt; &lt;code&gt;caution&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;:::note
+Highlights information that users should take into account, even when skimming.
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+Optional information to help a user be more successful.
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+Crucial information necessary for users to succeed.
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+Critical content demanding immediate user attention due to potential risks.
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+Negative potential consequences of an action.
+:::&lt;/p&gt;
+&lt;h3&gt;Basic Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;:::note
+Highlights information that users should take into account, even when skimming.
+:::
+
+:::tip
+Optional information to help a user be more successful.
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Custom Titles&lt;/h3&gt;
+&lt;p&gt;The title of the admonition can be customized.&lt;/p&gt;
+&lt;p&gt;:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::note[MY CUSTOM TITLE]
+This is a note with a custom title.
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;GitHub Syntax&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!TIP]
+&lt;a href=&quot;https://github.com/orgs/community/discussions/16925&quot;&gt;The GitHub syntax&lt;/a&gt; is also supported.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; [!NOTE]
+&amp;gt; The GitHub syntax is also supported.
+
+&amp;gt; [!TIP]
+&amp;gt; The GitHub syntax is also supported.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;expressive-code.md&lt;/h1&gt;
+&lt;h4&gt;Rendering ANSI escape sequences&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;ANSI colors:
+- Regular: [31mRed[0m [32mGreen[0m [33mYellow[0m [34mBlue[0m [35mMagenta[0m [36mCyan[0m
+- Bold:    [1;31mRed[0m [1;32mGreen[0m [1;33mYellow[0m [1;34mBlue[0m [1;35mMagenta[0m [1;36mCyan[0m
+- Dimmed:  [2;31mRed[0m [2;32mGreen[0m [2;33mYellow[0m [2;34mBlue[0m [2;35mMagenta[0m [2;36mCyan[0m
+
+256 colors (showing colors 160-177):
+[38;5;160m160 [38;5;161m161 [38;5;162m162 [38;5;163m163 [38;5;164m164 [38;5;165m165[0m
+[38;5;166m166 [38;5;167m167 [38;5;168m168 [38;5;169m169 [38;5;170m170 [38;5;171m171[0m
+[38;5;172m172 [38;5;173m173 [38;5;174m174 [38;5;175m175 [38;5;176m176 [38;5;177m177[0m
+
+Full RGB colors:
+[38;2;34;139;34mForestGreen - RGB(34, 139, 34)[0m
+
+Text formatting: [1mBold[0m [2mDimmed[0m [3mItalic[0m [4mUnderline[0m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Editor &amp;amp; Terminal Frames&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/frames/&quot;&gt;Editor &amp;amp; Terminal Frames&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Code editor frames&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;Title attribute example&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- src/content/index.html --&amp;gt;
+&amp;lt;div&amp;gt;File name comment example&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Terminal frames&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;This terminal frame has no title&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;Write-Output &quot;This one has a title!&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Overriding frame types&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;Look ma, no frame!&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;# Without overriding, this would be a terminal frame
+function Watch-Tail { Get-Content -Tail 20 -Wait $args }
+New-Alias tail Watch-Tail
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Text &amp;amp; Line Markers&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/text-markers/&quot;&gt;Text &amp;amp; Line Markers&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Marking full lines &amp;amp; line ranges&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Line 1 - targeted by line number
+// Line 2
+// Line 3
+// Line 4 - targeted by line number
+// Line 5
+// Line 6
+// Line 7 - targeted by range &quot;7-8&quot;
+// Line 8 - targeted by range &quot;7-8&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Selecting line marker types (mark, ins, del)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  console.log(&apos;this line is marked as deleted&apos;)
+  // This line and the next one are marked as inserted
+  console.log(&apos;this is the second inserted line&apos;)
+
+  return &apos;this line uses the neutral default marker type&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Adding labels to line markers&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// labeled-line-markers.jsx
+&amp;lt;button
+  role=&quot;button&quot;
+  {...props}
+  value={value}
+  className={buttonClassName}
+  disabled={disabled}
+  active={active}
+&amp;gt;
+  {children &amp;amp;&amp;amp;
+    !active &amp;amp;&amp;amp;
+    (typeof children === &apos;string&apos; ? &amp;lt;span&amp;gt;{children}&amp;lt;/span&amp;gt; : children)}
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Adding long labels on their own lines&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// labeled-line-markers.jsx
+&amp;lt;button
+  role=&quot;button&quot;
+  {...props}
+
+  value={value}
+  className={buttonClassName}
+
+  disabled={disabled}
+  active={active}
+&amp;gt;
+
+  {children &amp;amp;&amp;amp;
+    !active &amp;amp;&amp;amp;
+    (typeof children === &apos;string&apos; ? &amp;lt;span&amp;gt;{children}&amp;lt;/span&amp;gt; : children)}
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Using diff-like syntax&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;+this line will be marked as inserted
+-this line will be marked as deleted
+this is a regular line
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;--- a/README.md
++++ b/README.md
+@@ -1,3 +1,4 @@
++this is an actual diff file
+-all contents will remain unmodified
+ no whitespace will be removed either
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Combining syntax highlighting with diff-like syntax&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;  function thisIsJavaScript() {
+    // This entire block gets highlighted as JavaScript,
+    // and we can still add diff markers to it!
+-   console.log(&apos;Old code to be removed&apos;)
++   console.log(&apos;New and shiny code!&apos;)
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Marking individual text inside lines&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  // Mark any given text inside lines
+  return &apos;Multiple matches of the given text are supported&apos;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Regular expressions&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;The words yes and yep will be marked.&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Escaping forward slashes&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;Test&quot; &amp;gt; /home/test.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Selecting inline marker types (mark, ins, del)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  console.log(&apos;These are inserted and deleted marker types&apos;);
+  // The return statement uses the default marker type
+  return true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Word Wrap&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/word-wrap/&quot;&gt;Word Wrap&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Configuring word wrap per block&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Example with wrap
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Example with wrap=false
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Configuring indentation of wrapped lines&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Example with preserveIndent (enabled by default)
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Example with preserveIndent=false
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Collapsible Sections&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/plugins/collapsible-sections/&quot;&gt;Collapsible Sections&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// All this boilerplate setup code will be collapsed
+import { someBoilerplateEngine } from &apos;@example/some-boilerplate&apos;
+import { evenMoreBoilerplate } from &apos;@example/even-more-boilerplate&apos;
+
+const engine = someBoilerplateEngine(evenMoreBoilerplate())
+
+// This part of the code will be visible by default
+engine.doSomething(1, 2, 3, calcFn)
+
+function calcFn() {
+  // You can have multiple collapsed sections
+  const a = 1
+  const b = 2
+  const c = a + b
+
+  // This will remain visible
+  console.log(`Calculation result: ${a} + ${b} = ${c}`)
+  return c
+}
+
+// All this code until the end of the block will be collapsed again
+engine.closeConnection()
+engine.freeMemory()
+engine.shutdown({ reason: &apos;End of example boilerplate code&apos; })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Line Numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/plugins/line-numbers/&quot;&gt;Line Numbers&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Displaying line numbers per block&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// This code block will show line numbers
+console.log(&apos;Greetings from line 2!&apos;)
+console.log(&apos;I am on line 3&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Line numbers are disabled for this block
+console.log(&apos;Hello?&apos;)
+console.log(&apos;Sorry, do you know what line I am on?&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Changing the starting line number&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;Greetings from line 5!&apos;)
+console.log(&apos;I am on line 6&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1&gt;draft.md&lt;/h1&gt;
+&lt;h1&gt;This Article is a Draft&lt;/h1&gt;
+&lt;p&gt;This article is currently in a draft state and is not published. Therefore, it will not be visible to the general audience. The content is still a work in progress and may require further editing and review.&lt;/p&gt;
+&lt;p&gt;When the article is ready for publication, you can update the &quot;draft&quot; field to &quot;false&quot; in the Frontmatter:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: Draft Example
+published: 2024-01-11T04:40:26.381Z
+tags: [Markdown, Blogging, Demo]
+category: Examples
+draft: false
+---&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>站点历程</title><link>https://blog.fis.ink/posts/18/</link><guid isPermaLink="true">https://blog.fis.ink/posts/18/</guid><description>站点历程</description><pubDate>Tue, 01 Jan 1901 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;本站历程&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;2024.9 宝塔面板无法安装，发现了1panel面板&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.9 在应用商店里发现halo建站，开始了我的建站之路&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.9 发布自己的第一篇文章&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.9 购买了云服务器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.10 发现wordpass有一款主题特别好看，于是转到WordPress&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.11 wordpass优化不好，有转到hexo倾向&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.12 全站正式转到hexo，开始对butterfly美化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.12 基本定型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2024.12 更换安知鱼主题，启用cloudflare cdn&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2025.1.1 安知鱼主题加载太慢，并且页脚不能加 html，关闭 cloudflare CDN&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2025.2 又换回halo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2025.3 发现halo-theme-dream2.0-plus，图片分流丘盾CDN 和 cloudflare CDN&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等待发展&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded></item></channel></rss>

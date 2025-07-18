@@ -1,0 +1,947 @@
+<!DOCTYPE html><html lang="zh-CN" class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]" data-overlayscrollbars-initialize data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 260;--page-width: 75rem;"> <head><title>使用1panel搭建免费开源的icp虚拟备案系统 - fishcpy的小破站</title><meta charset="UTF-8"><meta name="description" content="本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。"><meta name="author" content="fishcpy"><meta name="keywords" content="fishcpy, fishcpy博客, 技术博客, 云服务, 网站部署, 内网穿透, CDN优化, Cloudflare, Serverless, Docker, Kubernetes, 微服务架构, API开发, GitHub Actions, 自动化部署, 对象存储, 文件图床, 性能优化, 网站安全, Web开发, 全栈开发, 云原生, 前后端逆向, 访问统计, 在线工具, meme生成器, AI工具, Koishi, QQ机器人"><meta property="og:site_name" content="fishcpy的小破站"><meta property="og:url" content="https://blog.fis.ink/posts/7/"><meta property="og:title" content="使用1panel搭建免费开源的icp虚拟备案系统 - fishcpy的小破站"><meta property="og:description" content="本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。"><meta property="og:type" content="article"><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://blog.fis.ink/posts/7/"><meta name="twitter:title" content="使用1panel搭建免费开源的icp虚拟备案系统 - fishcpy的小破站"><meta name="twitter:description" content="本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v5.10.2"><link rel="icon" href="https://www.fis.ink/img/logo_c.png"><!-- Set the theme before the page is rendered to avoid a flash --><script>(function(){const DEFAULT_THEME = "auto";
+const LIGHT_MODE = "light";
+const DARK_MODE = "dark";
+const AUTO_MODE = "auto";
+const BANNER_HEIGHT_EXTEND = 30;
+const PAGE_WIDTH = 75;
+const configHue = 260;
+
+			// Load the theme from local storage
+			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
+			switch (theme) {
+				case LIGHT_MODE:
+					document.documentElement.classList.remove('dark');
+					break
+				case DARK_MODE:
+					document.documentElement.classList.add('dark');
+					break
+				case AUTO_MODE:
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+						document.documentElement.classList.add('dark');
+					} else {
+						document.documentElement.classList.remove('dark');
+					}
+			}
+
+			// Load the hue from local storage
+			const hue = localStorage.getItem('hue') || configHue;
+			document.documentElement.style.setProperty('--hue', hue);
+
+			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
+			let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
+			offset = offset - offset % 4;
+			document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
+		})();</script><!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用1panel搭建免费开源的icp虚拟备案系统","description":"本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。","keywords":["虚拟备案","ICP","网站"],"author":{"@type":"Person","name":"fishcpy","url":"https://blog.fis.ink/"},"datePublished":"2025-05-19","inLanguage":"zh-CN"}</script><link rel="alternate" type="application/rss+xml" title="fishcpy" href="https://blog.fis.ink/rss.xml"><script defer src="https://um.fis.ink/script.js" data-website-id="6c6c79ee-4ce0-42f2-ab4c-3f01e4c5411b"></script><link rel="stylesheet" href="/_astro/Layout.CFwGdNXj.css">
+<link rel="stylesheet" href="/_astro/Layout.DSulWsr7.css">
+<link rel="stylesheet" href="/_astro/_page_.DcD4a1Ee.css">
+<link rel="stylesheet" href="/_astro/_page_.CO27kg37.css">
+<link rel="stylesheet" href="/_astro/about.BfOJD98x.css">
+<style>input.svelte-1adkdfv:focus{outline:0}.search-panel.svelte-1adkdfv{max-height:calc(100vh - 100px);overflow-y:auto}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex){-webkit-appearance:none;height:1.5rem;background-image:var(--color-selection-bar);transition:background-image .15s ease-in-out}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-webkit-slider-thumb{-webkit-appearance:none;height:1rem;width:.5rem;border-radius:.125rem;background:#ffffffb3;box-shadow:none}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-webkit-slider-thumb:hover{background:#fffc}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-webkit-slider-thumb:active{background:#fff9}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-moz-range-thumb{-webkit-appearance:none;height:1rem;width:.5rem;border-radius:.125rem;border-width:0;background:#ffffffb3;box-shadow:none}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-moz-range-thumb:hover{background:#fffc}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-moz-range-thumb:active{background:#fff9}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-ms-thumb{-webkit-appearance:none;height:1rem;width:.5rem;border-radius:.125rem;background:#ffffffb3;box-shadow:none}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-ms-thumb:hover{background:#fffc}#display-setting.svelte-1s19bex input[type=range]:where(.svelte-1s19bex)::-ms-thumb:active{background:#fff9}
+</style><script type="module" src="/_astro/page.D6-Kvdo4.js"></script></head> <body class=" min-h-screen transition  enable-banner" data-overlayscrollbars-initialize data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 260;--page-width: 75rem;"> <div id="config-carrier" data-hue="260"></div>    <div id="top-row" class="z-50 pointer-events-none relative transition-all duration-700 max-w-[var(--page-width)] px-0 md:px-4 mx-auto"> <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all"> <div id="navbar" class="z-50 onload-animation"> <div class="absolute h-8 left-0 right-0 -top-8 bg-[var(--card-bg)] transition"></div> <!-- used for onload animation --> <div class="card-base !overflow-visible max-w-[var(--page-width)] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-4"> <a href="/" class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95"> <div class="flex flex-row text-[var(--primary)] items-center text-md"> <svg width="1em" height="1em" class="text-[1.75rem] mb-1 mr-2" data-icon="material-symbols:home-outline-rounded">   <symbol id="ai:material-symbols:home-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-5q0-.425.288-.712T10 13h4q.425 0 .713.288T15 14v5h3v-9l-6-4.5L6 10zm-2 0v-9q0-.475.213-.9t.587-.7l6-4.5q.525-.4 1.2-.4t1.2.4l6 4.5q.375.275.588.7T20 10v9q0 .825-.588 1.413T18 21h-4q-.425 0-.712-.288T13 20v-5h-2v5q0 .425-.288.713T10 21H6q-.825 0-1.412-.587T4 19m8-6.75"/></symbol><use href="#ai:material-symbols:home-outline-rounded"></use>  </svg> fishcpy的小破站 </div> </a> <div class="hidden md:flex"> <a aria-label="主页" href="/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 主页  </div> </a><a aria-label="归档" href="/archive/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 归档  </div> </a><a aria-label="友链" href="/friends/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 友链  </div> </a><a aria-label="关于" href="/about/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 关于  </div> </a><a aria-label="开往" href="https://www.travellings.cn/go.html" target="_blank" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 开往 <svg width="1em" height="1em" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]" data-icon="fa6-solid:arrow-up-right-from-square">   <symbol id="ai:fa6-solid:arrow-up-right-from-square" viewBox="0 0 512 512"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 32C35.8 32 0 67.8 0 112v320c0 44.2 35.8 80 80 80h320c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32z"/></symbol><use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </div> </a><a aria-label="监控" href="https://status.fishcpy.top/status/web" target="_blank" class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"> <div class="flex items-center"> 监控 <svg width="1em" height="1em" viewBox="0 0 512 512" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]" data-icon="fa6-solid:arrow-up-right-from-square">   <use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </div> </a> </div> <div class="flex"> <!--<SearchPanel client:load>--> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="jqkUu" component-url="/_astro/Search.B1g1kcSk.js" component-export="default" renderer-url="/_astro/client.svelte.BnYA9ZeA.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island>  <astro-island uid="Z20StJP" component-url="/_astro/LightDarkSwitch.CtueORjQ.js" component-export="default" renderer-url="/_astro/client.svelte.BnYA9ZeA.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;LightDarkSwitch&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island> <button aria-label="Menu" name="Nav Menu" class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 md:!hidden" id="nav-menu-switch"> <svg width="1em" height="1em" class="text-[1.25rem]" data-icon="material-symbols:menu-rounded">   <symbol id="ai:material-symbols:menu-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></symbol><use href="#ai:material-symbols:menu-rounded"></use>  </svg> </button> </div> <div id="nav-menu-panel" class="float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"> <a href="/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 主页 </div> <svg width="1em" height="1em" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <symbol id="ai:material-symbols:chevron-right-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></symbol><use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/archive/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 归档 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/friends/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 友链 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="/about/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        "> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 关于 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="transition text-[1.25rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg>  </a><a href="https://www.travellings.cn/go.html" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        " target="_blank"> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 开往 </div>  <svg width="1em" height="1em" viewBox="0 0 512 512" class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1" data-icon="fa6-solid:arrow-up-right-from-square">   <use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </a><a href="https://status.fishcpy.top/status/web" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+        " target="_blank"> <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]"> 监控 </div>  <svg width="1em" height="1em" viewBox="0 0 512 512" class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1" data-icon="fa6-solid:arrow-up-right-from-square">   <use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </a> </div> <astro-island uid="Z2jQKrh" component-url="/_astro/DisplaySettings.D34xkJOa.js" component-export="default" renderer-url="/_astro/client.svelte.BnYA9ZeA.js" props="{}" ssr client="only" opts="{&quot;name&quot;:&quot;DisplaySettings&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island> </div> </div> <script type="module">function c(){localStorage.theme==="dark"?(document.documentElement.classList.remove("dark"),localStorage.theme="light"):(document.documentElement.classList.add("dark"),localStorage.theme="dark")}function o(){let t=document.getElementById("scheme-switch");t&&(t.onclick=function(){c()});let n=document.getElementById("display-settings-switch");n&&(n.onclick=function(){let e=document.getElementById("display-setting");e&&e.classList.toggle("float-panel-closed")});let l=document.getElementById("nav-menu-switch");l&&(l.onclick=function(){let e=document.getElementById("nav-menu-panel");e&&e.classList.toggle("float-panel-closed")})}o();</script> <script>(function(){const scriptUrl = "/pagefind/pagefind.js";
+
+async function loadPagefind() {
+    try {
+        const response = await fetch(scriptUrl, { method: 'HEAD' });
+        if (!response.ok) {
+            throw new Error(`Pagefind script not found: ${response.status}`);
+        }
+
+        const pagefind = await import(scriptUrl);
+
+        await pagefind.options({
+            excerptLength: 20
+        });
+
+        window.pagefind = pagefind;
+
+        document.dispatchEvent(new CustomEvent('pagefindready'));
+        console.log('Pagefind loaded and initialized successfully, event dispatched.');
+    } catch (error) {
+        console.error('Failed to load Pagefind:', error);
+        window.pagefind = {
+            search: () => Promise.resolve({ results: [] }),
+            options: () => Promise.resolve(),
+        };
+        document.dispatchEvent(new CustomEvent('pagefindloaderror'));
+        console.log('Pagefind load error, event dispatched.');
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPagefind);
+} else {
+    loadPagefind();
+}
+})();</script> </div> </div>  <div id="banner-wrapper" class="absolute z-10 w-full transition duration-700 overflow-hidden" style="top: -30vh"> <div id="banner" class="object-cover h-full transition duration-700 opacity-0 scale-105 overflow-hidden relative"> <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>  <img src="https://cdn.fishcpy.top/img/2025/05/05/68182abdc7d6e.png" alt="Banner image of the blog" class="w-full h-full object-cover" style="object-position: center"> </div> </div> <div class="absolute w-full z-30 pointer-events-none" style="top: calc(35vh - 3.5rem)"> <!-- The pointer-events-none here prevent blocking the click event of the TOC --> <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto"> <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] lg:grid-rows-[auto]
+    mx-auto gap-4 px-0 md:px-4"> <!-- Banner image credit -->  <div id="sidebar" class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation w-full"> <div class="flex flex-col w-full gap-4 mb-4"> <div class="card-base p-3"> <a aria-label="Go to About Page" href="/about/" class="group block relative mx-auto mt-1 lg:mx-0 lg:mt-0 mb-3
+       max-w-[12rem] lg:max-w-none overflow-hidden rounded-xl active:scale-95"> <div class="absolute transition pointer-events-none group-hover:bg-black/30 group-active:bg-black/50
+        w-full h-full z-50 flex items-center justify-center"> <svg width="1.13em" height="1em" class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl" data-icon="fa6-regular:address-card">   <symbol id="ai:fa6-regular:address-card" viewBox="0 0 576 512"><path fill="currentColor" d="M512 80c8.8 0 16 7.2 16 16v320c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm144 224a64 64 0 1 0 0-128a64 64 0 1 0 0 128m-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80zm200-144c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24z"/></symbol><use href="#ai:fa6-regular:address-card"></use>  </svg> </div> <div class="mx-auto lg:w-full h-full lg:mt-0  overflow-hidden relative"> <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>  <img src="https://www.fis.ink/img/logo.png" alt="Profile Image of the Author" class="w-full h-full object-cover" style="object-position: center"> </div> </a> <div class="px-2"> <div class="font-bold text-xl text-center mb-1 dark:text-neutral-50 transition">fishcpy</div> <div class="h-1 w-5 bg-[var(--primary)] mx-auto rounded-full mb-2 transition"></div> <div class="text-center text-neutral-400 mb-2.5 transition">非淡泊无以明志，非宁静无以致远</div> <div class="flex gap-2 justify-center mb-1"> <a rel="me" aria-label="Rss" href="/rss.xml" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="1em" height="1em" class="text-[1.5rem]" data-icon="ic:twotone-rss-feed">   <symbol id="ai:ic:twotone-rss-feed" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18" fill="currentColor"/><path fill="currentColor" d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56m0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9"/></symbol><use href="#ai:ic:twotone-rss-feed"></use>  </svg> </a><a rel="me" aria-label="Steam" href="https://steamcommunity.com/id/fishcpy" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.97em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:steam">   <symbol id="ai:fa6-brands:steam" viewBox="0 0 496 512"><path fill="currentColor" d="M496 256c0 137-111.2 248-248.4 248c-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4c39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5c0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8C384.8 8 496 119 496 256M155.7 384.3l-30.5-12.6a52.8 52.8 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4c5.4-13 5.5-27.3.1-40.3S206 305.6 193 300.2c-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7c-8.3 19.9-31 29.2-50.8 21m173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3s62.4 28 62.4 62.3s-27.9 62.3-62.4 62.3m.1-15.6c25.9 0 46.9-21 46.9-46.8c0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8"/></symbol><use href="#ai:fa6-brands:steam"></use>  </svg> </a><a rel="me" aria-label="GitHub" href="https://github.com/fishcpy" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.97em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:github">   <symbol id="ai:fa6-brands:github" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2"/></symbol><use href="#ai:fa6-brands:github"></use>  </svg> </a>  </div> </div> </div> </div> <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4"> <widget-layout data-id="categories" data-is-collapsed="true" class="pb-4 card-base onload-animation" style="animation-delay: 150ms; --collapsedHeight: 7.5rem;" data-astro-cid-ucso7hve="true"> <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+        before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">分类</div> <div id="categories" class="collapse-wrapper px-4 overflow-hidden collapsed" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <a href="/archive/?category=AI" aria-label="View all posts in the AI category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> AI </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=Aplayer" aria-label="View all posts in the Aplayer category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> Aplayer </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=cf%20X%20eo" aria-label="View all posts in the cf X eo category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> cf X eo </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=cloudflare" aria-label="View all posts in the cloudflare category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> cloudflare </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=Examples" aria-label="View all posts in the Examples category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> Examples </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E4%B8%AA%E4%BA%BA%E8%99%9A%E6%8B%9F%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F" aria-label="View all posts in the 个人虚拟备案系统 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 个人虚拟备案系统 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E4%B8%BB%E9%A2%98" aria-label="View all posts in the 主题 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 主题 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E4%B8%BB%E9%A2%98%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E9%A2%84%E8%A7%88" aria-label="View all posts in the 主题音乐播放器预览 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 主题音乐播放器预览 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%88%86%E4%BA%AB%E7%88%B1%E5%9B%BD%E5%9B%BE%E7%89%87" aria-label="View all posts in the 分享爱国图片 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 分享爱国图片 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%8A%A0%E6%B2%B9" aria-label="View all posts in the 加油 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 加油 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts in the 十年之约 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 十年之约 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%8D%9A%E5%AE%A2" aria-label="View all posts in the 博客 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 博客 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%93%AA%E5%90%92%E7%9B%91%E6%8E%A7" aria-label="View all posts in the 哪吒监控 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 哪吒监控 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E5%AE%B6%E6%A0%A1" aria-label="View all posts in the 家校 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 家校 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 2 </div> </div> </button> </a><a href="/archive/?category=%E5%B0%8F%E7%B1%B3" aria-label="View all posts in the 小米 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 小米 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E6%9E%81%E5%9F%9F" aria-label="View all posts in the 极域 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 极域 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E6%B5%8B%E9%80%9F%E7%AB%99" aria-label="View all posts in the 测速站 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 测速站 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E6%B8%B8%E6%88%8F" aria-label="View all posts in the 游戏 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 游戏 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E6%BC%AB%E5%B1%95" aria-label="View all posts in the 漫展 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 漫展 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E7%A0%94%E5%AD%A6" aria-label="View all posts in the 研学 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 研学 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E7%AB%99%E7%82%B9%E5%8E%86%E7%A8%8B" aria-label="View all posts in the 站点历程 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 站点历程 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E8%A2%AB%E6%94%BB%E5%87%BB" aria-label="View all posts in the 被攻击 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 被攻击 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 1 </div> </div> </button> </a><a href="/archive/?category=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts in the 解决问题 category"> <button class="
+            w-full
+            h-10
+            rounded-lg
+            bg-none
+            hover:bg-[var(--btn-plain-bg-hover)]
+            active:bg-[var(--btn-plain-bg-active)]
+            transition-all
+            pl-2
+            hover:pl-3
+            
+            text-neutral-700
+            hover:text-[var(--primary)]
+            dark:text-neutral-300
+            dark:hover:text-[var(--primary)]
+        "> <div class="flex items-center justify-between relative mr-2"> <div class="overflow-hidden text-left whitespace-nowrap overflow-ellipsis  "> 解决问题 </div> <div class="transition px-2 h-7 ml-4 min-w-[2rem] rounded-lg text-sm font-bold
+                    text-[var(--btn-content)] dark:text-[var(--deep-text)]
+                    bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[var(--primary)]
+                    flex items-center justify-center"> 4 </div> </div> </button> </a> </div> <div class="expand-btn px-4 -mb-2" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <button class="btn-plain rounded-lg w-full h-9" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <div class="text-[var(--primary)] flex items-center justify-center gap-2 -translate-x-2" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <svg width="1em" height="1em" class="text-[1.75rem]" data-astro-cid-ucso7hve="true" data-icon="material-symbols:more-horiz">   <symbol id="ai:material-symbols:more-horiz" viewBox="0 0 24 24"><path fill="currentColor" d="M6 14q-.825 0-1.412-.587T4 12t.588-1.412T6 10t1.413.588T8 12t-.587 1.413T6 14m6 0q-.825 0-1.412-.587T10 12t.588-1.412T12 10t1.413.588T14 12t-.587 1.413T12 14m6 0q-.825 0-1.412-.587T16 12t.588-1.412T18 10t1.413.588T20 12t-.587 1.413T18 14"/></symbol><use href="#ai:material-symbols:more-horiz"></use>  </svg> 更多 </div> </button> </div> </widget-layout>  <script type="module">class d extends HTMLElement{constructor(){if(super(),this.dataset.isCollapsed!=="true")return;const e=this.dataset.id,t=this.querySelector(".expand-btn"),s=this.querySelector(`#${e}`);t.addEventListener("click",()=>{s.classList.remove("collapsed"),t.classList.add("hidden")})}}customElements.get("widget-layout")||customElements.define("widget-layout",d);</script> <widget-layout data-id="tags" data-is-collapsed="true" class="pb-4 card-base onload-animation" style="animation-delay: 200ms; --collapsedHeight: 7.5rem;" data-astro-cid-ucso7hve="true"> <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 relative ml-8 mt-4 mb-2
+        before:w-1 before:h-4 before:rounded-md before:bg-[var(--primary)]
+        before:absolute before:left-[-16px] before:top-[5.5px]" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">标签</div> <div id="tags" class="collapse-wrapper px-4 overflow-hidden collapsed" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;">  <div class="flex gap-2 flex-wrap"> <a href="/archive/?tag=AI" aria-label="View all posts with the AI tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  AI </a><a href="/archive/?tag=Aplayer" aria-label="View all posts with the Aplayer tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Aplayer </a><a href="/archive/?tag=Blogging" aria-label="View all posts with the Blogging tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Blogging </a><a href="/archive/?tag=CDN" aria-label="View all posts with the CDN tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  CDN </a><a href="/archive/?tag=cloudflare" aria-label="View all posts with the cloudflare tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  cloudflare </a><a href="/archive/?tag=Demo" aria-label="View all posts with the Demo tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Demo </a><a href="/archive/?tag=docker" aria-label="View all posts with the docker tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  docker </a><a href="/archive/?tag=EO" aria-label="View all posts with the EO tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  EO </a><a href="/archive/?tag=furry" aria-label="View all posts with the furry tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  furry </a><a href="/archive/?tag=ICP" aria-label="View all posts with the ICP tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  ICP </a><a href="/archive/?tag=Markdown" aria-label="View all posts with the Markdown tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  Markdown </a><a href="/archive/?tag=pad" aria-label="View all posts with the pad tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  pad </a><a href="/archive/?tag=%E4%B8%BB%E9%A2%98" aria-label="View all posts with the 主题 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  主题 </a><a href="/archive/?tag=%E5%88%86%E4%BA%AB" aria-label="View all posts with the 分享 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  分享 </a><a href="/archive/?tag=%E5%8A%A0%E6%B2%B9" aria-label="View all posts with the 加油 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  加油 </a><a href="/archive/?tag=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts with the 十年之约 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  十年之约 </a><a href="/archive/?tag=%E5%8D%9A%E5%AE%A2" aria-label="View all posts with the 博客 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  博客 </a><a href="/archive/?tag=%E5%93%AA%E5%90%92%E7%9B%91%E6%8E%A7" aria-label="View all posts with the 哪吒监控 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  哪吒监控 </a><a href="/archive/?tag=%E5%AE%89%E5%85%A8" aria-label="View all posts with the 安全 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  安全 </a><a href="/archive/?tag=%E5%AE%89%E7%9F%A5%E9%B1%BC" aria-label="View all posts with the 安知鱼 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  安知鱼 </a><a href="/archive/?tag=%E5%AE%B6%E6%A0%A1" aria-label="View all posts with the 家校 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  家校 </a><a href="/archive/?tag=%E5%B0%8F%E7%B1%B3" aria-label="View all posts with the 小米 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  小米 </a><a href="/archive/?tag=%E5%B9%B3%E6%9D%BF" aria-label="View all posts with the 平板 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  平板 </a><a href="/archive/?tag=%E6%9E%81%E5%9F%9F" aria-label="View all posts with the 极域 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  极域 </a><a href="/archive/?tag=%E6%B1%9F%E8%A5%BF" aria-label="View all posts with the 江西 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  江西 </a><a href="/archive/?tag=%E6%B5%8B%E9%80%9F" aria-label="View all posts with the 测速 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  测速 </a><a href="/archive/?tag=%E6%B8%B8%E6%88%8F" aria-label="View all posts with the 游戏 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  游戏 </a><a href="/archive/?tag=%E6%BC%AB%E5%B1%95" aria-label="View all posts with the 漫展 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  漫展 </a><a href="/archive/?tag=%E7%A0%94%E5%AD%A6" aria-label="View all posts with the 研学 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  研学 </a><a href="/archive/?tag=%E7%A0%B4%E8%A7%A3" aria-label="View all posts with the 破解 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  破解 </a><a href="/archive/?tag=%E7%A6%8F%E7%91%9E" aria-label="View all posts with the 福瑞 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  福瑞 </a><a href="/archive/?tag=%E7%AB%99%E7%82%B9%E5%8E%86%E7%A8%8B" aria-label="View all posts with the 站点历程 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  站点历程 </a><a href="/archive/?tag=%E7%BD%91%E7%AB%99" aria-label="View all posts with the 网站 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  网站 </a><a href="/archive/?tag=%E7%BE%8E%E5%8C%96" aria-label="View all posts with the 美化 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  美化 </a><a href="/archive/?tag=%E8%99%9A%E6%8B%9F%E5%A4%87%E6%A1%88" aria-label="View all posts with the 虚拟备案 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  虚拟备案 </a><a href="/archive/?tag=%E8%A2%AB%E6%94%BB%E5%87%BB" aria-label="View all posts with the 被攻击 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  被攻击 </a><a href="/archive/?tag=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts with the 解决问题 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  解决问题 </a><a href="/archive/?tag=%E9%9F%B3%E4%B9%90" aria-label="View all posts with the 音乐 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  音乐 </a><a href="/archive/?tag=%E9%A2%84%E8%A7%88" aria-label="View all posts with the 预览 tag" class="btn-regular h-8 text-sm px-3 rounded-lg">  预览 </a> </div>  </div> <div class="expand-btn px-4 -mb-2" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <button class="btn-plain rounded-lg w-full h-9" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <div class="text-[var(--primary)] flex items-center justify-center gap-2 -translate-x-2" data-astro-cid-ucso7hve style="--collapsedHeight: 7.5rem;"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[1.75rem]" data-astro-cid-ucso7hve="true" data-icon="material-symbols:more-horiz">   <use href="#ai:material-symbols:more-horiz"></use>  </svg> 更多 </div> </button> </div> </widget-layout>   <div class="flex flex-col w-full gap-4 mb-4 sticky top-4 z-10"> <a href="https://cloud.zyidc.net/aff/MYIMKXBB" target="_blank" rel="noopener noreferrer" class="block mt-4"> <img src="https://cdn.fishcpy.top/img/2025/04/19/680346cf235f8.png" alt="广告" class="w-full rounded-lg"> </a> </div> </div> </div> <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden"> <div id="content-wrapper" class="onload-animation"> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property -->   <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4"> <div id="post-container" class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full "> <!-- word count and reading time --> <div class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation"> <div class="flex flex-row items-center"> <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"> <svg width="1em" height="1em" data-icon="material-symbols:notes-rounded">   <symbol id="ai:material-symbols:notes-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h10q.425 0 .713.288T15 17t-.288.713T14 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></symbol><use href="#ai:material-symbols:notes-rounded"></use>  </svg> </div> <div class="text-sm">986  字</div> </div> <div class="flex flex-row items-center"> <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"> <svg width="1em" height="1em" data-icon="material-symbols:schedule-outline-rounded">   <symbol id="ai:material-symbols:schedule-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M13 11.6V8q0-.425-.288-.712T12 7t-.712.288T11 8v3.975q0 .2.075.388t.225.337l3.3 3.3q.275.275.7.275T16 16t.275-.7t-.275-.7zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.325 0 5.663-2.337T20 12t-2.337-5.663T12 4T6.337 6.338T4 12t2.338 5.663T12 20"/></symbol><use href="#ai:material-symbols:schedule-outline-rounded"></use>  </svg> </div> <div class="text-sm"> 5  分钟 </div> </div> </div> <!-- title --> <div class="relative onload-animation"> <div data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title" class="transition w-full block font-bold mb-3
+                    text-3xl md:text-[2.25rem]/[2.75rem]
+                    text-black/90 dark:text-white/90
+                    md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
+                    before:absolute before:top-[0.75rem] before:left-[-1.125rem]
+                "> 使用1panel搭建免费开源的icp虚拟备案系统 </div> </div> <!-- metadata --> <div class="onload-animation"> <div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-05-19</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E4%B8%AA%E4%BA%BA%E8%99%9A%E6%8B%9F%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F" aria-label="View all posts in the 个人虚拟备案系统 category" class="link-lg transition text-50 text-sm font-medium
+                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 个人虚拟备案系统 </a> </div> </div> <!-- tags --> <div class="items-center flex"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:tag-rounded">   <symbol id="ai:material-symbols:tag-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m9 16l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T6.3 18.8L7 16H4.275q-.5 0-.8-.387T3.3 14.75q.075-.35.35-.55t.625-.2H7.5l1-4H5.775q-.5 0-.8-.387T4.8 8.75q.075-.35.35-.55t.625-.2H9l.825-3.275Q9.9 4.4 10.15 4.2t.6-.2q.475 0 .775.375t.175.825L11 8h4l.825-3.275q.075-.325.325-.525t.6-.2q.475 0 .775.375t.175.825L17 8h2.725q.5 0 .8.387t.175.863q-.075.35-.35.55t-.625.2H16.5l-1 4h2.725q.5 0 .8.388t.175.862q-.075.35-.35.55t-.625.2H15l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T12.3 18.8L13 16zm.5-2h4l1-4h-4z"/></symbol><use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
+                <a href="/archive/?tag=%E8%99%9A%E6%8B%9F%E5%A4%87%E6%A1%88" aria-label="View all posts with the 虚拟备案 tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 虚拟备案 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
+                <a href="/archive/?tag=ICP" aria-label="View all posts with the ICP tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> ICP </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
+                <a href="/archive/?tag=%E7%BD%91%E7%AB%99" aria-label="View all posts with the 网站 tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 网站 </a>  </div> </div> </div>  </div> <!-- always show cover as long as it has one --> <div id="post-cover" class="mb-8 rounded-xl banner-container onload-animation overflow-hidden relative"> <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>  <img src="https://cdn.fishcpy.top/img/2025/05/20/682c5b5d7659e.png" alt class="w-full h-full object-cover" style="object-position: center"> </div> <div data-pagefind-body class="prose dark:prose-invert prose-base !max-w-none custom-md mb-6 markdown-content onload-animation"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="预览">预览<a class="anchor" href="#预览"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p><img src="https://cdn.fishcpy.top/img/2025/05/20/682b757d9de27.jpg" alt=""></p><p><img src="https://cdn.fishcpy.top/img/2025/05/20/682b5c22934eb.jpg" alt="1000000272.jpg"></p></section>
+<section><h1 id="首先需要购买一台服务器">首先需要购买一台服务器<a class="anchor" href="#首先需要购买一台服务器"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><section><h2 id="打开雨云官网">打开雨云官网<a class="anchor" href="#打开雨云官网"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2><p>点击链接打开雨云官网（使用这个链接会自动优惠）<a href="https://www.rainyun.com/fishcpy_">https://www.rainyun.com/fishcpy_</a></p><p><a href="https://www.rainyun.com/fishcpy_">https://www.rainyun.com/fishcpy_</a></p><p>或者注册时输入优惠码：fishcpy</p><p>注册完成后来到总揽，点击云服务器<br>
+<img src="https://cdn.fishcpy.top/img/2025/04/14/67fd048316cba.png" alt=""></p><p>点击购买云服务器</p><p><img src="https://cdn.fishcpy.top/img/2025/04/14/67fd04e1aa3c8.png" alt="">这里我推荐中国香港极速三网，三大运营商直连，速度超快<br>
+<img src="https://cdn.fishcpy.top/img/2025/04/14/67fd0588731de.png" alt="">配置选择 <strong>AMD® EPYC</strong></p><p><img src="https://cdn.fishcpy.top/img/2025/04/14/67fd05cdd0361.png" alt=""></p><p>如果你的网站访问量很大就选择 <strong>流量叠加型 ，</strong> 访问量不大就选择 <strong>流量不限型。</strong></p><p><img src="/upload/image-KVAC.png" alt=""></p><p>套餐选择KVM标准版</p><p><img src="https://cdn.fishcpy.top/img/2025/04/14/67fd0ab2820f7.png" alt=""></p><p>其他的按照我的这个选</p><p><strong>公网ip 1个<br>
+debian版本选择12</strong></p><p><img src="https://cdn.fishcpy.top/img/2025/04/14/67fd0d828cdce.png" alt=""></p></section></section>
+<section><h1 id="安装1panel">安装1panel<a class="anchor" href="#安装1panel"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>打开<a href="https://www.hostbuf.com/">finalshell</a>官网</p><p><a href="www.hostbuf.com">www.hostbuf.com</a></p><p>点击顶部的</p><p><strong><em>FinalShell SSH工具,服务器管理,远程桌面加速软件,支持Windows,macOS,Linux,版本x.x.x,更新日期20xx.xx.xx</em></strong></p><p><img src="https://cdn.fishcpy.top/img/2025/04/16/67fe8c90becb3.png" alt=""></p><p>选择自己的系统版本下载，安装。</p><section><h2 id="打开雨云">打开雨云<a class="anchor" href="#打开雨云"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2><p>点击你的服务器卡片</p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b44b158e9b.png" alt="image.png"></p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b44d11b748.png" alt="image.png"></p></section><section><h2 id="打开finalshell">打开<a href="https://www.hostbuf.com/">finalshell</a><a class="anchor" href="#打开finalshell"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2><p>点击文件夹图标，打开链接管理器<br>
+<img src="https://cdn.fishcpy.top/img/2025/05/19/682b4519c6d3e.png" alt="image.png"></p><p>点击白色加号图标，选择SSH链接(Linux)</p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b4570ddde0.png" alt="image.png"><img src="/upload/image-LUlI.png" alt=""></p><p>名称</p><p>填写值</p><p>1</p><p>名称</p><p>随便</p><p>2</p><p>主机</p><p>填写雨云控制台中的公网ip地址</p><p>3</p><p>用户名</p><p>填写雨云控制台中填写远程用户名</p><p>4</p><p>密码</p><p>填写雨云控制台中的远程密码</p><p>完成效果</p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b46bd5aa75.png" alt="image.png"></p><p>填写完后，点击确定并在链接管理器中双击你刚添加的服务器链接</p><p>遇到这个点击 <strong><em>接受并保存</em></strong><br>
+<img src="https://cdn.fishcpy.top/img/2025/05/19/682b46f29b346.png" alt="image.png"></p><p>不出意外，你应该来到这个页面<br>
+<img src="https://cdn.fishcpy.top/img/2025/05/19/682b4733a4937.png" alt="image.png"></p><p>在下方 <strong><em>命令输入框</em></strong> 中输入下方命令并回车</p><div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.d1dr8.css"><script type="module" src="/_astro/ec.qopfj.js"></script><figure class="frame"><figcaption class="header"></figcaption><pre data-language="plaintext" class="wrap" style="--ecMaxLine:111ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh &#x26;&#x26; bash quick_start.sh</span></div></div></code><button class="copy-btn" aria-label="Copy code"><div class="copy-btn-icon"><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon copy-icon"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"></path></svg><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon success-icon"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"></path></svg></div></button></pre></figure></div><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b47c09ce23.png" alt="image.png"></p><p>填写输出的问题即可</p><p>来到最后输出的结尾打开外部地址的网址</p><div class="expressive-code"><figure class="frame"><figcaption class="header"></figcaption><pre data-language="plaintext" class="wrap" style="--ecMaxLine:106ch"><code><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">1</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:42 install Log]: 正在启动1Panel服务</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">2</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">3</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: =================感谢您的耐心等待，安装已完成==================</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">4</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">5</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 请使用您的浏览器访问面板:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">6</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 外部地址:  http://154.64.254.179:12014/a46144d21a</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">7</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 内部地址:  http://154.64.254.179:12014/a46144d21a</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">8</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 面板用户:  d88f56f426</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">9</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 面板密码:  79157ec8b5</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">10</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">11</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 官方网站: https://1panel.cn</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">12</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 项目文档: https://1panel.cn/docs</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">13</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 代码仓库: https://github.com/1Panel-dev/1Panel</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">14</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 前往 1Panel 官方论坛获取帮助: https://bbs.fit2cloud.com/c/1p/7</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">15</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">16</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 如果您使用的是云服务器，请在安全组中打开端口 12014</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">17</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">18</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: 为了您的服务器安全，离开此屏幕后您将无法再次看到您的密码，请记住您的密码。</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">19</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]:</span></div></div><div class="ec-line"><div class="gutter"><div class="ln" aria-hidden="true">20</div></div><div class="code"><span style="--0:#e1e4e8;--1:#e1e4e8">[1Panel 2025-05-19 23:16:43 install Log]: ================================================================</span></div></div></code><button class="copy-btn" aria-label="Copy code"><div class="copy-btn-icon"><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon copy-icon"><path d="M368.37-237.37q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-474.26q0-34.48 24.26-58.74 24.26-24.26 58.74-24.26h378.26q34.48 0 58.74 24.26 24.26 24.26 24.26 58.74v474.26q0 34.48-24.26 58.74-24.26 24.26-58.74 24.26H368.37Zm0-83h378.26v-474.26H368.37v474.26Zm-155 238q-34.48 0-58.74-24.26-24.26-24.26-24.26-58.74v-515.76q0-17.45 11.96-29.48 11.97-12.02 29.33-12.02t29.54 12.02q12.17 12.03 12.17 29.48v515.76h419.76q17.45 0 29.48 11.96 12.02 11.97 12.02 29.33t-12.02 29.54q-12.03 12.17-29.48 12.17H213.37Zm155-238v-474.26 474.26Z"></path></svg><svg viewBox="0 -960 960 960" xmlns="http://www.w3.org/2000/svg" class="copy-btn-icon success-icon"><path d="m389-377.13 294.7-294.7q12.58-12.67 29.52-12.67 16.93 0 29.61 12.67 12.67 12.68 12.67 29.53 0 16.86-12.28 29.14L419.07-288.41q-12.59 12.67-29.52 12.67-16.94 0-29.62-12.67L217.41-430.93q-12.67-12.68-12.79-29.45-.12-16.77 12.55-29.45 12.68-12.67 29.62-12.67 16.93 0 29.28 12.67L389-377.13Z"></path></svg></div></button></pre></figure></div><p>例如我就打开<a href="http://154.64.254.179:12014/a46144d21a">http://154.64.254.179:12014/a46144d21a</a></p><p>输入上方的用户和密码</p></section></section>
+<section><h1 id="部署系统">部署系统<a class="anchor" href="#部署系统"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p>点击侧边栏应用商店安装OpenResty，配置保持默认即可</p><p>OpenResty安装完后，点击侧边栏的网站-运行环境，在PHP中点击创建运行环境，并按照我这样配置，名称随便。</p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b4dc74ff57.png" alt="image.png"></p><p>点击确定，等待镜像制作完成</p><p>制作完成后点击网站并点击创建按钮，按照我这样配置<br>
+<img src="https://cdn.fishcpy.top/img/2025/05/19/682b52f6a3f24.png" alt="image.png">主域名如果用自己的域名就把 域名 解析 A 记录到你服务器的ip上，那么这里就写你自己的域名</p><p>点击<strong><em>确定 ，</em></strong> 打开ip或域名如果为下图即为创建成功</p><p><img src="https://cdn.fishcpy.top/img/2025/05/19/682b5398523b0.png" alt="image.png"></p><section><h2 id="下载程序">下载程序<a class="anchor" href="#下载程序"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2><p>打开</p><p><a href="https://github.com/bbb-lsy07/dBd-Filing/releases">https://github.com/bbb-lsy07/dBd-Filing/releases</a></p><p>选择最新版本下载，例如我就下载 <a href="https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip"><strong><em>dBd-Filing-V2.5.0.zip</em></strong></a></p><p>在1panel中点击按钮<br>
+将 <a href="https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip"><strong><em>dBd-Filing-V2.5.0.zip</em></strong></a>_中的内容解压到含有_index.php 的目录，配置请按照下方仓库简介配置</p><p><a href="https://github.com/bbb-lsy07/dBd-Filing/">https://github.com/bbb-lsy07/dBd-Filing/</a></p></section></section>
+<section><h1 id="安装数据库">安装数据库<a class="anchor" href="#安装数据库"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1><p><img src="https://cdn.fishcpy.top/img/2025/05/31/6839dc198678c.png" alt="image.png"></p><p>在1panel应用商店里找到MySQL点击确定，安装</p><p><img src="https://cdn.fishcpy.top/img/2025/05/31/6839dc4c3f5e5.png" alt="image.png"></p><p>点击侧边栏数据库按钮</p><p><img src="https://cdn.fishcpy.top/img/2025/05/31/6839dca036d9d.png" alt="image.png"></p><p>创建一个新数据库</p><p><img src="https://cdn.fishcpy.top/img/2025/05/31/6839dcddf3471.png" alt="image.png"></p><p>点击这里查看链接信息</p><p>在ip或域名里填写数据库信息</p><hr><p><strong><em>验证id：489356</em></strong></p></section>  </div> <script type="module">document.addEventListener("click",function(s){const t=s.target;if(t&&t.classList.contains("copy-btn")){const c=t.closest("pre")?.querySelector("code"),i=Array.from(c?.querySelectorAll(".code:not(summary *)")??[]).map(e=>e.textContent).map(e=>e===`
+`?"":e).join(`
+`);navigator.clipboard.writeText(i);const o=t.getAttribute("data-timeout-id");o&&clearTimeout(parseInt(o)),t.classList.add("success");const n=setTimeout(()=>{t.classList.remove("success")},1e3);t.setAttribute("data-timeout-id",n.toString())}});</script> <div class="relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 mb-6 rounded-xl license-container onload-animation"> <div class="transition font-bold text-black/75 dark:text-white/75"> 使用1panel搭建免费开源的icp虚拟备案系统 </div> <a href="https://blog.fis.ink/posts/7/" class="link text-[var(--primary)]"> https://blog.fis.ink/posts/7/ </a> <div class="flex gap-6 mt-2"> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">作者</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">fishcpy</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">发布于</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">2025-05-19</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">许可协议</div> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="link text-[var(--primary)] line-clamp-2">CC BY-NC-SA 4.0</a> </div> </div> <svg width="0.97em" height="1em" class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5" data-icon="fa6-brands:creative-commons">   <symbol id="ai:fa6-brands:creative-commons" viewBox="0 0 496 512"><path fill="currentColor" d="m245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93c-22.13 0-33.22 14.61-33.22 43.84c0 23.57 9.21 43.84 33.22 43.84c14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98c-22.6 0-73.96-10.32-73.96-77.05c0-58.69 43-77.06 72.63-77.06c30.72-.01 52.7 11.95 65.99 35.86m143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93c-22.14 0-33.22 14.61-33.22 43.84c0 23.55 9.23 43.84 33.22 43.84c14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98c-22.69 0-73.96-9.87-73.96-77.05c0-58.67 42.97-77.06 72.63-77.06c30.71-.01 52.58 11.95 65.56 35.86M247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248c129.93 0 248.44-100.87 248.44-248c0-137.87-106.62-248-248.44-248m.87 450.81c-112.54 0-203.7-93.04-203.7-202.81c0-105.42 85.43-203.27 203.72-203.27c112.53 0 202.82 89.46 202.82 203.26c-.01 121.69-99.68 202.82-202.84 202.82"/></symbol><use href="#ai:fa6-brands:creative-commons"></use>  </svg> </div> </div> </div> <div class="card-base p-6 mb-4"> <!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 --><div id="twikoo"></div> <script>(function(){const config = {"el":"#twikoo","path":"/posts/7","envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/","lang":"zh-CN"};
+
+  function loadTwikoo() {
+    console.log('loadTwikoo function called');
+    // 不输出包含敏感信息的配置
+    const script = document.createElement("script");
+    script.src =
+      "https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js";
+    script.defer = true;
+    script.onload = () => {
+      console.log('Twikoo script loaded, initializing...');
+      // 不输出包含敏感信息的配置
+    
+      // 尝试多种环境ID格式
+      const originalEnvId = config.envId;
+      const envIdWithoutProtocol = originalEnvId ? originalEnvId.replace(/^https?:\/\//, '') : '';
+    
+      // 尝试使用原始URL
+      try {
+        console.log('Initializing Twikoo...');
+        twikoo.init({
+          ...config,
+          envId: originalEnvId
+        });
+        console.log('Twikoo initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize Twikoo, trying alternative configuration');
+      
+        // 尝试使用不带协议的URL
+        try {
+          twikoo.init({
+            ...config,
+            envId: envIdWithoutProtocol
+          });
+          console.log('Twikoo initialized with alternative method');
+        } catch (error) {
+          console.error('Failed to initialize with alternative configuration');
+        
+          // 最后尝试使用一个简单的字符串
+          try {
+            // 从原始envId中提取域名部分作为简单ID
+            const simpleEnvId = originalEnvId ? 
+              originalEnvId.replace(/^https?:\/\//, '').split('.')[0] : 
+              'twikoo-env';
+            
+            twikoo.init({
+              ...config,
+              envId: simpleEnvId
+            });
+            console.log('Twikoo initialized with simplified method');
+          } catch (error) {
+            console.error('All initialization attempts failed');
+          }
+        }
+      }
+      console.log('Twikoo initialization process completed');
+    
+      // 全面改进的移动端点击处理
+      // 存储触摸开始的信息
+      let touchStartInfo = {
+        target: null,
+        x: 0,
+        y: 0,
+        time: 0,
+        isScrolling: false
+      };
+      
+      // 添加触摸移动事件处理
+      const handleTouchMove = function(e) {
+        if (!touchStartInfo.target) return;
+        
+        // 计算移动距离
+        const touchMoveX = e.touches[0].clientX;
+        const touchMoveY = e.touches[0].clientY;
+        const moveDistance = Math.sqrt(
+          Math.pow(touchMoveX - touchStartInfo.x, 2) + 
+          Math.pow(touchMoveY - touchStartInfo.y, 2)
+        );
+        
+        // 如果移动距离超过阈值，标记为滑动操作
+        if (moveDistance > 10) {
+          touchStartInfo.isScrolling = true;
+        }
+      };
+      
+      const preventDefaultForTwikoo = function(e) {
+        const target = e.target.closest('#twikoo button, #twikoo a');
+        if (target) {
+          // 特别处理href="#"的链接，这些链接会导致页面跳转到顶部
+          if (target.tagName === 'A' && 
+              (target.getAttribute('href') === '#' || 
+               target.getAttribute('href') === '' || 
+               target.getAttribute('href') === 'javascript:void(0)' ||
+               target.getAttribute('href') === 'javascript:;')) {
+            // 替换href属性，防止导航到页面顶部
+            if (target.getAttribute('original-href') === null) {
+              target.setAttribute('original-href', target.getAttribute('href'));
+            }
+            target.setAttribute('href', 'javascript:void(0);');
+          }
+          
+          // 处理触摸开始事件
+          if (e.type === 'touchstart') {
+            // 记录触摸开始的目标元素和位置
+            touchStartInfo.target = target;
+            touchStartInfo.x = e.touches[0].clientX;
+            touchStartInfo.y = e.touches[0].clientY;
+            touchStartInfo.time = Date.now();
+            touchStartInfo.isScrolling = false;
+            
+            // 只对空链接阻止默认行为，允许按钮正常工作
+            if (target.tagName === 'A' && 
+                (target.getAttribute('href') === '#' || 
+                 target.getAttribute('href') === '' || 
+                 target.getAttribute('href') === 'javascript:void(0)' ||
+                 target.getAttribute('href') === 'javascript:;')) {
+              e.preventDefault();
+            }
+          }
+          
+          // 处理触摸结束事件
+          if (e.type === 'touchend') {
+            // 如果被标记为滑动操作，不触发点击
+            if (touchStartInfo.isScrolling) {
+              // 重置触摸信息
+              touchStartInfo = {
+                target: null,
+                x: 0,
+                y: 0,
+                time: 0,
+                isScrolling: false
+              };
+              return;
+            }
+            
+            // 计算触摸的移动距离和时间
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndTime = Date.now();
+            
+            const moveDistance = Math.sqrt(
+              Math.pow(touchEndX - touchStartInfo.x, 2) + 
+              Math.pow(touchEndY - touchStartInfo.y, 2)
+            );
+            const touchDuration = touchEndTime - touchStartInfo.time;
+            
+            // 检查触摸结束时的元素是否与开始时相同
+            const isSameTarget = touchStartInfo.target === target;
+            
+            // 设置阈值：移动距离小于10px且触摸时间小于300ms视为点击
+            const isValidTap = moveDistance < 10 && touchDuration < 300;
+            
+            // 只有当触摸结束时的元素与开始时相同，且移动距离小于阈值时，才触发点击
+            if (isSameTarget && isValidTap) {
+              // 只对空链接阻止默认行为，允许按钮正常工作
+              if (target.tagName === 'A' && 
+                  (target.getAttribute('href') === '#' || 
+                   target.getAttribute('href') === '' || 
+                   target.getAttribute('href') === 'javascript:void(0)' ||
+                   target.getAttribute('href') === 'javascript:;')) {
+                e.preventDefault();
+                
+                // 如果链接有onclick处理函数，手动触发它
+                if (typeof target.onclick === 'function') {
+                  target.onclick.call(target);
+                }
+              }
+              // 不再阻止按钮的默认行为
+            }
+            
+            // 重置触摸信息
+            touchStartInfo = {
+              target: null,
+              x: 0,
+              y: 0,
+              time: 0,
+              isScrolling: false
+            };
+          }
+        }
+      };
+      
+      // 添加事件监听器
+      document.addEventListener('touchstart', preventDefaultForTwikoo, {passive: false, capture: true});
+      document.addEventListener('touchmove', handleTouchMove, {passive: true, capture: true});
+      document.addEventListener('touchend', preventDefaultForTwikoo, {passive: false, capture: true});
+      document.addEventListener('click', function(e) {
+        const target = e.target.closest('#twikoo a[href="#"]');
+        if (target) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, {capture: true});
+    
+      // 在Twikoo初始化完成后添加事件处理
+      setTimeout(() => {
+        setupCommentEventHandlers();
+      }, 1000); // 给Twikoo一些时间来渲染评论区
+    };
+    script.onerror = (error) => {
+      console.error('Failed to load Twikoo script:', error);
+    };
+    document.body.appendChild(script);
+  }
+  
+  // 监听加载评论事件
+  document.addEventListener("loadComment", () => {
+    console.log('loadComment event triggered');
+    loadTwikoo();
+  }, { once: true });
+  
+  // 页面加载完成后自动加载Twikoo（作为备用方案）
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event triggered');
+    // 检查是否已经加载过Twikoo
+    if (!document.querySelector('script[src*="twikoo.min.js"]')) {
+      console.log('Twikoo not loaded yet, loading now...');
+      loadTwikoo();
+    }
+  });
+  
+  console.log('Twikoo component initialized');
+  
+  // 设置评论区事件处理函数
+  function setupCommentEventHandlers() {
+    console.log('Setting up comment event handlers');
+    
+    // 移除之前可能存在的事件监听器
+    document.removeEventListener('click', handleCommentClick);
+    
+    // 添加新的事件监听器
+    document.addEventListener('click', handleCommentClick);
+    
+    // 使用MutationObserver监听DOM变化
+    const observer = new MutationObserver((mutations) => {
+      // 当DOM变化时，确保所有新添加的按钮都被正确处理
+      console.log('DOM mutations detected in comment area');
+    });
+    
+    // 开始观察评论区的DOM变化
+    const twikooElement = document.getElementById('twikoo');
+    if (twikooElement) {
+      observer.observe(twikooElement, { 
+        childList: true, 
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['href', 'onclick']
+      });
+      console.log('MutationObserver started for #twikoo element');
+    }
+    
+    // 直接修改所有评论区内的链接和按钮
+    fixAllCommentButtons();
+  }
+  
+  // 处理评论区内的点击事件
+  function handleCommentClick(event) {
+    // 检查点击事件是否发生在评论区内
+    const twikooElement = event.target.closest('#twikoo');
+    if (!twikooElement) return;
+    
+    // 检查点击的元素是否是按钮或链接
+    const clickedElement = event.target.closest('button, a');
+    if (!clickedElement) return;
+    
+    // 获取原始点击事件的目标元素
+    const originalTarget = event.target;
+    
+    // 检查是否是评论提交按钮或其他特殊按钮
+    const isSubmitButton = clickedElement.classList.contains('tk-submit') || 
+                          clickedElement.classList.contains('el-button--primary') ||
+                          clickedElement.getAttribute('type') === 'submit';
+    
+    // 检查是否是有效的外部链接
+    const href = clickedElement.getAttribute('href');
+    const isExternalLink = href && href.startsWith('http') && !href.includes('#');
+    
+    // 只阻止空链接的默认行为，允许其他按钮正常工作
+    if (clickedElement.tagName === 'A' && 
+        (href === '#' || href === '' || href === 'javascript:void(0)' || href === 'javascript:;')) {
+      event.preventDefault();
+      console.log('Prevented default action for empty link in comment area');
+      
+      // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
+      if (clickedElement.hasAttribute('onclick') || typeof clickedElement.onclick === 'function') {
+        console.log('Element has onclick handler, executing custom logic without navigation');
+        // 这里可以添加自定义逻辑来模拟点击效果
+      }
+    }
+  }
+  
+  // 修复所有评论区内的按钮
+  function fixAllCommentButtons() {
+    console.log('Fixing all comment buttons');
+    const twikooElement = document.getElementById('twikoo');
+    if (!twikooElement) return;
+    
+    // 只修复空链接，避免干扰其他正常链接
+    const links = twikooElement.querySelectorAll('a');
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === '#' || href === '' || href === 'javascript:void(0)') {
+        // 替换href属性，防止导航到页面顶部
+        link.setAttribute('href', 'javascript:void(0);');
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log('Prevented navigation for empty link');
+          
+          // 如果链接有onclick处理函数，手动触发它
+          if (typeof link.onclick === 'function') {
+            link.onclick.call(link);
+          }
+        });
+      }
+    });
+    
+    // 不再阻止按钮的默认行为，让它们正常工作
+    
+    console.log('Fixed all comment buttons');
+  }
+  
+  // 初始的事件监听器设置 - 只处理空链接
+  document.addEventListener('click', function(event) {
+    // 检查点击事件是否发生在评论区内
+    if (event.target.closest('#twikoo')) {
+      // 检查点击的元素是否是链接
+      const clickedElement = event.target.closest('a');
+      if (clickedElement) {
+        // 如果是链接且href为#或javascript:void(0)等，阻止默认行为
+        if (clickedElement.getAttribute('href') === '#' || 
+            clickedElement.getAttribute('href') === 'javascript:void(0)' ||
+            clickedElement.getAttribute('href') === '') {
+          event.preventDefault();
+          console.log('Prevented default action for empty link in comment area');
+          
+          // 如果链接有onclick处理函数，手动触发它
+          if (typeof clickedElement.onclick === 'function') {
+            clickedElement.onclick.call(clickedElement);
+          }
+        }
+      }
+      
+      // 不再阻止按钮的默认行为，让它们正常工作
+    }
+  });
+})();</script>  </div> <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"> <a href="/posts/4/" class="w-full font-bold overflow-hidden active:scale-95"> <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-start gap-4"> <svg width="1em" height="1em" class="text-[2rem] text-[var(--primary)]" data-icon="material-symbols:chevron-left-rounded">   <symbol id="ai:material-symbols:chevron-left-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m10.8 12l3.9 3.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.212-.325T8.425 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7z"/></symbol><use href="#ai:material-symbols:chevron-left-rounded"></use>  </svg> <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75"> 可以屏蔽的测速ip </div> </div> </a> <a href="/posts/5/" class="w-full font-bold overflow-hidden active:scale-95"> <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center !justify-end gap-4"> <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75"> 25.5.3-5.4被攻击经过 </div> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-[2rem] text-[var(--primary)]" data-icon="material-symbols:chevron-right-rounded">   <use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg> </div> </a> </div>    <div class="footer col-span-2 onload-animation hidden lg:block"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="flex flex-col items-center gap-2"> <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力" class="transition hover:opacity-80"> <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"> </a> <div class="flex flex-wrap justify-center gap-4 text-sm"> <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌备20241732号</a> <a href="https://icp.fishcpy.top/query.php?keyword=20252224" class="transition link text-[var(--primary)]">鱼备20252224</a> <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a> </div> <div id="runtime_span" class="text-xs text-50"></div> <!-- 版权和基础信息 --> <div class="transition text-50 text-sm text-center mt-4">
+&copy; <span id="copyright-year">2025</span> fishcpy. All Rights Reserved. /
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/rss.xml">RSS</a> /
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
+Powered by
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a> </div> </div> </div> <script>
+function show_runtime(){
+    window.setTimeout("show_runtime()",1000);
+    X = new Date("9/6/2024 00:00:00");
+    Y = new Date();
+    T = (Y.getTime() - X.getTime());
+    M = 24 * 60 * 60 * 1000;
+    a = T / M;
+    A = Math.floor(a);
+    b = (a - A) * 24;
+    B = Math.floor(b);
+    c = (b - B) * 60;
+    C = Math.floor(c);
+    D = Math.floor((c - C) * 60);
+    document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
+}
+show_runtime();
+</script> </div> </div> </main> <div class="footer col-span-2 onload-animation block lg:hidden"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="flex flex-col items-center gap-2"> <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力" class="transition hover:opacity-80"> <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"> </a> <div class="flex flex-wrap justify-center gap-4 text-sm"> <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌备20241732号</a> <a href="https://icp.fishcpy.top/query.php?keyword=20252224" class="transition link text-[var(--primary)]">鱼备20252224</a> <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a> </div> <div id="runtime_span" class="text-xs text-50"></div> <!-- 版权和基础信息 --> <div class="transition text-50 text-sm text-center mt-4">
+&copy; <span id="copyright-year">2025</span> fishcpy. All Rights Reserved. /
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/rss.xml">RSS</a> /
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
+Powered by
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a> </div> </div> </div> <script>
+function show_runtime(){
+    window.setTimeout("show_runtime()",1000);
+    X = new Date("9/6/2024 00:00:00");
+    Y = new Date();
+    T = (Y.getTime() - X.getTime());
+    M = 24 * 60 * 60 * 1000;
+    a = T / M;
+    A = Math.floor(a);
+    b = (a - A) * 24;
+    B = Math.floor(b);
+    c = (b - B) * 60;
+    C = Math.floor(c);
+    D = Math.floor((c - C) * 60);
+    document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
+}
+show_runtime();
+</script> </div> </div> <!-- There can't be a filter on parent element, or it will break `fixed` --><div class="back-to-top-wrapper hidden lg:block" data-astro-cid-eymb5ayk> <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()" data-astro-cid-eymb5ayk> <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]" data-astro-cid-eymb5ayk> <svg width="1em" height="1em" class="mx-auto" data-astro-cid-eymb5ayk="true" data-icon="material-symbols:keyboard-arrow-up-rounded">   <symbol id="ai:material-symbols:keyboard-arrow-up-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></symbol><use href="#ai:material-symbols:keyboard-arrow-up-rounded"></use>  </svg> </button> </div> </div>  <script>
+function backToTop() {
+    window.scroll({ top: 0, behavior: 'smooth' });
+}
+</script> </div> </div>  <div class="absolute w-full z-0 hidden 2xl:block"> <div class="relative max-w-[var(--page-width)] mx-auto"> <!-- TOC component --> <div id="toc-wrapper" class="hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] items-center toc-hide"> <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar"> <div id="toc" class="w-full h-full transition-swup-fade "> <div class="h-8 w-full"></div> <table-of-contents class="group"><a href="#预览" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">1</div><div class="transition text-sm text-50">预览</div></a><a href="#首先需要购买一台服务器" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">2</div><div class="transition text-sm text-50">首先需要购买一台服务器</div></a><a href="#打开雨云官网" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold ml-4"><div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div></div><div class="transition text-sm text-50">打开雨云官网</div></a><a href="#安装1panel" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">3</div><div class="transition text-sm text-50">安装1panel</div></a><a href="#打开雨云" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold ml-4"><div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div></div><div class="transition text-sm text-50">打开雨云</div></a><a href="#打开finalshell" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold ml-4"><div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div></div><div class="transition text-sm text-50">打开finalshell</div></a><a href="#部署系统" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">4</div><div class="transition text-sm text-50">部署系统</div></a><a href="#下载程序" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold ml-4"><div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div></div><div class="transition text-sm text-50">下载程序</div></a><a href="#安装数据库" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+        hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">5</div><div class="transition text-sm text-50">安装数据库</div></a><div id="active-indicator" class="-z-10 absolute bg-[var(--toc-btn-hover)] left-0 right-0 rounded-xl transition-all group-hover:bg-transparent border-2 border-[var(--toc-btn-hover)] group-hover:border-[var(--toc-btn-active)] border-dashed"></div></table-of-contents><script type="module">class l extends HTMLElement{tocEl=null;visibleClass="visible";observer;anchorNavTarget=null;headingIdxMap=new Map;headings=[];sections=[];tocEntries=[];active=[];activeIndicator=null;constructor(){super(),this.observer=new IntersectionObserver(this.markVisibleSection,{threshold:0})}markVisibleSection=t=>{t.forEach(e=>{const i=e.target.children[0]?.getAttribute("id"),s=i?this.headingIdxMap.get(i):void 0;s!=null&&(this.active[s]=e.isIntersecting),e.isIntersecting&&this.anchorNavTarget==e.target.firstChild&&(this.anchorNavTarget=null)}),this.active.includes(!0)||this.fallback(),this.update()};toggleActiveHeading=()=>{let t=this.active.length-1,e=this.active.length-1,i=0;for(;t>=0&&!this.active[t];)this.tocEntries[t].classList.remove(this.visibleClass),t--;for(;t>=0&&this.active[t];)this.tocEntries[t].classList.add(this.visibleClass),e=Math.min(e,t),i=Math.max(i,t),t--;for(;t>=0;)this.tocEntries[t].classList.remove(this.visibleClass),t--;let s=this.tocEl?.getBoundingClientRect().top||0,n=this.tocEl?.scrollTop||0,o=this.tocEntries[e].getBoundingClientRect().top-s+n,c=this.tocEntries[i].getBoundingClientRect().bottom-s+n;this.activeIndicator?.setAttribute("style",`top: ${o}px; height: ${c-o}px`)};scrollToActiveHeading=()=>{if(this.anchorNavTarget||!this.tocEl)return;const t=document.querySelectorAll(`#toc .${this.visibleClass}`);if(!t.length)return;const e=t[0],i=t[t.length-1],s=this.tocEl.clientHeight;let n;i.getBoundingClientRect().bottom-e.getBoundingClientRect().top<.9*s?n=e.offsetTop-32:n=i.offsetTop-s*.8,this.tocEl.scrollTo({top:n,left:0,behavior:"smooth"})};update=()=>{requestAnimationFrame(()=>{this.toggleActiveHeading(),this.scrollToActiveHeading()})};fallback=()=>{if(this.sections.length)for(let t=0;t<this.sections.length;t++){let e=this.sections[t].getBoundingClientRect().top,i=this.sections[t].getBoundingClientRect().bottom;if(this.isInRange(e,0,window.innerHeight)||this.isInRange(i,0,window.innerHeight)||e<0&&i>window.innerHeight)this.markActiveHeading(t);else if(e>window.innerHeight)break}};markActiveHeading=t=>{this.active[t]=!0};handleAnchorClick=t=>{const e=t.composedPath().find(i=>i instanceof HTMLAnchorElement);if(e){const i=decodeURIComponent(e.hash?.substring(1)),s=this.headingIdxMap.get(i);s!==void 0?this.anchorNavTarget=this.headings[s]:this.anchorNavTarget=null}};isInRange(t,e,i){return e<t&&t<i}connectedCallback(){const t=document.querySelector(".prose");t?t.addEventListener("animationend",()=>{this.init()},{once:!0}):console.debug("Animation element not found")}init(){if(this.tocEl=document.getElementById("toc-inner-wrapper"),!!this.tocEl&&(this.tocEl.addEventListener("click",this.handleAnchorClick,{capture:!0}),this.activeIndicator=document.getElementById("active-indicator"),this.tocEntries=Array.from(document.querySelectorAll("#toc a[href^='#']")),this.tocEntries.length!==0)){this.sections=new Array(this.tocEntries.length),this.headings=new Array(this.tocEntries.length);for(let t=0;t<this.tocEntries.length;t++){const e=decodeURIComponent(this.tocEntries[t].hash?.substring(1)),i=document.getElementById(e),s=i?.parentElement;i instanceof HTMLElement&&s instanceof HTMLElement&&(this.headings[t]=i,this.sections[t]=s,this.headingIdxMap.set(e,t))}this.active=new Array(this.tocEntries.length).fill(!1),this.sections.forEach(t=>this.observer.observe(t)),this.fallback(),this.update()}}disconnectedCallback(){this.sections.forEach(t=>this.observer.unobserve(t)),this.observer.disconnect(),this.tocEl?.removeEventListener("click",this.handleAnchorClick)}}customElements.get("table-of-contents")||customElements.define("table-of-contents",l);</script> <div class="h-8 w-full"></div> </div> </div> </div> <!-- #toc needs to exist for Swup to work normally -->  </div> </div>  <!-- increase the page height during page transition to prevent the scrolling animation from jumping --> <div id="page-height-extend" class="hidden h-[300vh]" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 260;--page-width: 75rem;"></div>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.DAHrxWCB.js"></script> <script type="module" src="/_astro/Layout.astro_astro_type_script_index_1_lang.DWsBL-oU.js"></script></body></html>
