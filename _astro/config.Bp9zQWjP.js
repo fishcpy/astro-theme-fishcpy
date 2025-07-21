@@ -1,0 +1,1 @@
+var t=(o=>(o[o.Home=0]="Home",o[o.Archive=1]="Archive",o[o.About=2]="About",o[o.Friends=3]="Friends",o[o.Moments=4]="Moments",o))(t||{});const s={lang:"zh_CN"};t.Home,t.Archive,t.Friends,t.About;const e={theme:"github-dark"},n={twikoo:{envId:"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"}};export{n as c,e,s};
