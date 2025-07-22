@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description>No description</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>记一次和福瑞朋友去漫展</title><link>https://blog.fis.ink/posts/26/</link><guid isPermaLink="true">https://blog.fis.ink/posts/26/</guid><description>关键词:福瑞,furry,漫展。其他没什么好写的</description><pubDate>Sun, 13 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;首先声明，本人(fishcpy)不是福瑞控，不要瞎说。&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description>No description</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>我的第一个API发布啦</title><link>https://blog.fis.ink/posts/27/</link><guid isPermaLink="true">https://blog.fis.ink/posts/27/</guid><description>fishcpy API</description><pubDate>Tue, 22 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;官网&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.api.fis.ink&quot;&gt;点击这里哦&lt;/a&gt;打不开说明正在部署&lt;/p&gt;
+&lt;h1&gt;支持什么&lt;/h1&gt;
+&lt;h3&gt;我的世界(MC) ，图片100+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;https://api.fis.ink/mc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;预览(刷新网页可查看新图)&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://api.fis.ink/mc&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3&gt;暗区突围，图片40+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;https://api.fis.ink/aqtw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;预览(刷新网页可查看新图)&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&quot;https://api.fis.ink/aqtw&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;Api by fishcpy cloud.&lt;/li&gt;
+&lt;li&gt;Cdn by cloudflare.&lt;/li&gt;
+&lt;li&gt;Fishcpy. All Rights Reserved.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded></item><item><title>记一次和福瑞朋友去漫展</title><link>https://blog.fis.ink/posts/26/</link><guid isPermaLink="true">https://blog.fis.ink/posts/26/</guid><description>关键词:福瑞,furry,漫展。其他没什么好写的</description><pubDate>Sun, 13 Jul 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;首先声明，本人(fishcpy)不是福瑞控，不要瞎说。&lt;/h2&gt;
 &lt;h1&gt;照片？&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/07/14/68740ce6155ee.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://cdn.fishcpy.top/img/2025/07/14/68740d9f2ceae.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -1423,7 +1442,10 @@ draft: false
 &lt;p&gt;2025.3 发现halo-theme-dream2.0-plus，图片分流丘盾CDN 和 cloudflare CDN&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;等待发展&lt;/p&gt;
+&lt;p&gt;2025.7 实在受不了halo的臃肿，换到了新框架Astro并使用fuwari&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2025.7 分线路解析中国大陆境内使用腾讯EO香港节点，境外使用cloudflare cdn，实现秒开&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </content:encoded></item></channel></rss>
