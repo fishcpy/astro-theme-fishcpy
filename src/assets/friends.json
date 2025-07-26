@@ -234,6 +234,15 @@
 		"openInNewTab": true
 	},
 	{
+		"title": "百里博客",
+		"imgurl": "https://q2.qlogo.cn/headimg_dl?dst_uin=3166269605&spec=5",
+		"desc": "Everything as Code",
+		"siteurl": "https://blog.my0811.cn",
+		"category": "博客",
+		"tags": [""],
+		"openInNewTab": true
+	},
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
