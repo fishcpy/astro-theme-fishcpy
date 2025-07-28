@@ -192,3 +192,126 @@ nav, .navbar {
 .collapsed {
     height: var(--collapsedHeight);
 }
+
+/* =================== */
+/* 📘 AI 摘要模块样式 */
+/* =================== */
+
+.ai-summary {
+    background-color: var(--liushen-maskbg);
+    background: var(--liushen-card-secondbg);
+    border-radius: 12px;
+    padding: 8px 8px 12px 8px;
+    line-height: 1.3;
+    flex-direction: column;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 5px;
+    position: relative;
+}
+
+.ai-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: blur(8px);
+    opacity: 0.4;
+    background-image: var(--liushen-ai-bg);
+    transform: scaleX(1) scaleY(0.95) translateY(2px);
+}
+
+.ai-summary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    border-radius: 12px;
+    background: var(--liushen-maskbg);
+}
+
+.ai-summary .ai-explanation {
+    z-index: 10;
+    padding: 8px 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--liushen-text);
+    text-align: justify;
+}
+
+/* ✅ 打字机光标动画 */
+.ai-summary .ai-explanation::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 2px;
+    margin-left: 2px;
+    background: var(--liushen-text);
+    vertical-align: bottom;
+    animation: blink-underline 1s ease-in-out infinite;
+    transition: all 0.3s;
+    position: relative;
+    bottom: 3px;
+}
+
+/* 打字完成后隐藏光标 */
+.ai-summary .ai-explanation.typing-complete::after {
+    display: none;
+}
+
+.ai-summary .ai-title {
+    z-index: 10;
+    font-size: 14px;
+    display: flex;
+    border-radius: 8px;
+    align-items: center;
+    position: relative;
+    padding: 0 12px;
+    cursor: default;
+    user-select: none;
+}
+
+.ai-summary .ai-title .ai-title-left {
+    display: flex;
+    align-items: center;
+    color: var(--liushen-title-font-color);
+}
+
+.ai-summary .ai-title .ai-title-left i {
+    margin-right: 3px;
+    display: flex;
+    color: var(--liushen-title-font-color);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-summary .ai-title .ai-title-left .ai-title-text {
+    font-weight: 500;
+}
+
+.ai-summary .ai-title .ai-tag {
+    color: var(--liushen-secondtext);
+    font-weight: 300;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* ✅ 打字机光标闪烁动画 */
+@keyframes blink-underline {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
