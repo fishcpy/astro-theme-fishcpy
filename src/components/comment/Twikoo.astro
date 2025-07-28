@@ -300,9 +300,9 @@ const config = {
       console.log('Prevented default action for empty link in comment area');
       
       // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
-      if (clickedElement.hasAttribute('onclick') || typeof clickedElement.onclick === 'function') {
+      if (typeof clickedElement.onclick === 'function') {
         console.log('Element has onclick handler, executing custom logic without navigation');
-        // 这里可以添加自定义逻辑来模拟点击效果
+        clickedElement.onclick.call(clickedElement);
       }
     }
   }
