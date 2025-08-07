@@ -243,6 +243,15 @@
 		"openInNewTab": true
 	},
 	{
+		"title": "Wer Blog",
+		"imgurl": "https://blog.isyyo.com/upload/favicon.ico",
+		"desc": "The only way to do great is to love what you do",
+		"siteurl": "https://blog.isyyo.com",
+		"category": "博客",
+		"tags": [""],
+		"openInNewTab": true
+	},
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
