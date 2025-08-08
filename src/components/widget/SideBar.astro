@@ -3,7 +3,6 @@ import type { MarkdownHeading } from "astro";
 import Categories from "./Categories.astro";
 import Profile from "./Profile.astro";
 import Tag from "./Tags.astro";
-import VisitorStats from "./VisitorStats.svelte";
 
 interface Props {
 	class?: string;
@@ -19,8 +18,7 @@ const className = Astro.props.class;
     <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
         <Categories class="onload-animation" style="animation-delay: 150ms"></Categories>
         <Tag class="onload-animation" style="animation-delay: 200ms"></Tag>
-        <VisitorStats class="onload-animation" style="animation-delay: 250ms"></VisitorStats>
-        <div class="flex flex-col w-full gap-4 mb-4 sticky top-4 z-10 onload-animation" style="animation-delay: 300ms">
+        <div class="flex flex-col w-full gap-4 mb-4 sticky top-4 z-10 onload-animation" style="animation-delay: 250ms">
             <div class="card-base card-shadow p-4">
                 <a href="https://cloud.zyidc.net/aff/MYIMKXBB" target="_blank" rel="noopener noreferrer" class="block">
                     <img src="https://cdn.fishcpy.top/img/2025/04/19/680346cf235f8.png" alt="广告" class="w-full rounded-lg" />

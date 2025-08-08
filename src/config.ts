@@ -104,11 +104,3 @@ export const commentConfig: CommentConfig = {
 			"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/",
 	},
 };
-
-export const statsConfig = {
-	enable: true, // 是否启用访问统计
-	provider: "twikoo", // 统计提供商: 'api' | 'twikoo' | 'none'
-	api: {
-		url: "https://um-api.fis.ink/blog/", // API统计服务地址
-	},
-};
