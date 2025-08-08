@@ -252,6 +252,15 @@
 		"openInNewTab": true
 	},
 	{
+		"title": "Tavre Blog",
+		"imgurl": "https://q1.qlogo.cn/g?b=qq&nk=2987304764&s=640",
+		"desc": "茫茫大海 我与你相遇",
+		"siteurl": "https://blog.tsd.my",
+		"category": "博客",
+		"tags": [""],
+		"openInNewTab": true
+	},
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
