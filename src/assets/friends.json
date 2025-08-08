@@ -261,6 +261,15 @@
 		"openInNewTab": true
 	},
 	{
+		"title": "彬红茶日记",
+		"imgurl": "https://note.redcha.cn/upload/favicon-256x256.png",
+		"desc": "个人生活笔记📒",
+		"siteurl": "https://note.redcha.cn",
+		"category": "博客",
+		"tags": [""],
+		"openInNewTab": true
+	},
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
