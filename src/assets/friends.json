@@ -270,6 +270,24 @@
 		"openInNewTab": true
 	},
 	{
+		"title": "yCENzh’s blog",
+		"imgurl": "https://fuwari.14131413.xyz/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
+		"desc": "Ciallo～(∠・ω< )⌒☆",
+		"siteurl": "https://fuwari.14131413.xyz",
+		"category": "博客",
+		"tags": ["等添加"],
+		"openInNewTab": true
+	},
+	{
+		"title": "星辰の笔记",
+		"imgurl": "https://blog.strarry.top/avatar.jpg",
+		"desc": "Code | Think | Share | Repeat",
+		"siteurl": "https://blog.strarry.top",
+		"category": "博客",
+		"tags": ["等添加"],
+		"openInNewTab": true
+	},
+	{
 		"title": "可耐的小伙纸",
 		"imgurl": "https://kndxhz.cn/images/b_2ba0f0b166b43ef17e4f147b782418b0.webp",
 		"desc": "永远相信美好的事情即将发生",
