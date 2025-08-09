@@ -276,6 +276,7 @@ footer p {
 }
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果你需要自定义背景可以把上方css中的第36行左右的 https://api.fis.ink/mc 换为自己的图片或图片api&lt;/p&gt;
 </content:encoded></item><item><title>我名字的由来</title><link>https://blog.fis.ink/posts/28/</link><guid isPermaLink="true">https://blog.fis.ink/posts/28/</guid><description>名字的由来</description><pubDate>Fri, 01 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;由于很多人对我的名字有疑问(包括QQ)，所以我来说一下&lt;/p&gt;
 &lt;p&gt;由于我中文名我起的是 咬一口的鱼py ，所以我23年抽风的大脑因为注册github所以想了个英文名，fishcpy&lt;/p&gt;
 &lt;p&gt;那么这个名字是怎么来的呢？&lt;/p&gt;
