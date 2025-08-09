@@ -152,7 +152,6 @@ a.item-name:hover {
   color: var(--bs-blue) !important;
 }
 
-/* 服务OK样式 */
 .overall-status .ok {
   color: var(--bs-green) !important;
 }
@@ -165,7 +164,6 @@ a.item-name:hover {
   justify-content: space-between;
 }
 
-/* 状态百分比呼吸效果 */
 .info .badge.rounded-pill.bg-primary {
   --bg: var(--bs-green);
 }
