@@ -452,6 +452,7 @@ const setup = () => {
 	  initCustomScrollbar();
 	  initCommentComponent(); // 添加这行
 	  initMouseEffect(); // 添加鼠标效果初始化
+	  showBanner(); // 确保banner图片在页面切换后正确显示
 	})
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked
