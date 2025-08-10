@@ -20,8 +20,10 @@
     }
 
     a:not(.no-styling) {
-        @apply relative bg-none link font-medium text-[var(--primary)]
-        underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
+        @apply relative bg-none transition rounded-md p-1 -m-1 font-medium text-[var(--primary)]
+        underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4
+        before:ease-out before:transition active:bg-none hover:before:bg-[var(--btn-plain-bg-hover)] active:before:bg-[var(--btn-plain-bg-active)] z-0
+        before:absolute before:rounded-[inherit] before:inset-0 before:scale-[0.85] hover:before:scale-100 before:-z-10;
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
     
