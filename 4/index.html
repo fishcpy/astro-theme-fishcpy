@@ -5,9 +5,11 @@ const AUTO_MODE = "auto";
 const BANNER_HEIGHT_EXTEND = 30;
 const PAGE_WIDTH = 75;
 const configHue = 260;
+const configTheme = "dark";
 
-			// Load the theme from local storage
-			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
+			// Load the theme from config or local storage
+			const isThemeForced = configTheme === LIGHT_MODE || configTheme === DARK_MODE;
+			const theme = isThemeForced ? configTheme : (localStorage.getItem('theme') || DEFAULT_THEME);
 			switch (theme) {
 				case LIGHT_MODE:
 					document.documentElement.classList.remove('dark');
