@@ -7,6 +7,7 @@ import type {
 	SiteConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
+import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "./constants/constants";
 
 export const siteConfig: SiteConfig = {
 	title: "fishcpy的小破站",
@@ -16,6 +17,7 @@ export const siteConfig: SiteConfig = {
 		hue: 260, // 主题色默认色调，取值范围0-360。例如红色:0，蓝绿色:200，青色:250，粉色:345
 		fixed: true, // 对访客隐藏主题色选择器
 	},
+	theme: DARK_MODE, // 主题模式: AUTO_MODE(默认), LIGHT_MODE(强制浅色), DARK_MODE(强制深色)
 	banner: {
 		enable: true,
 		src: "https://api.fis.ink/mc", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
