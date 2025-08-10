@@ -111,9 +111,10 @@ const bannerOffset =
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
-			// Load the theme from local storage
-			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue, configTheme: siteConfig.theme}}>
+			// Load the theme from config or local storage
+			const isThemeForced = configTheme === LIGHT_MODE || configTheme === DARK_MODE;
+			const theme = isThemeForced ? configTheme : (localStorage.getItem('theme') || DEFAULT_THEME);
 			switch (theme) {
 				case LIGHT_MODE:
 					document.documentElement.classList.remove('dark');
