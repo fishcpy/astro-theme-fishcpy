@@ -1,3 +1,4 @@
+import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "./constants/constants";
 import type {
 	CommentConfig,
 	ExpressiveCodeConfig,
@@ -7,7 +8,6 @@ import type {
 	SiteConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
-import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "./constants/constants";
 
 export const siteConfig: SiteConfig = {
 	title: "fishcpy的小破站",
@@ -27,6 +27,11 @@ export const siteConfig: SiteConfig = {
 			enable: false, // 是否显示横幅图片的版权信息
 			text: "", // 要显示的版权文本
 			url: "", // (可选) 原作品或艺术家页面的URL链接
+		},
+		text: {
+			enable: true, // 是否在banner中显示文字
+			title: "非淡泊无以明志，非宁静无以致远", // banner主标题
+			subtitle: "Welcome to my blog", // banner副标题
 		},
 	},
 	toc: {

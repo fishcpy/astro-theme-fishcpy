@@ -20,6 +20,11 @@ export type SiteConfig = {
 			text: string;
 			url?: string;
 		};
+		text?: {
+			enable: boolean;
+			title?: string;
+			subtitle?: string;
+		};
 	};
 	toc: {
 		enable: boolean;
