@@ -85,9 +85,6 @@ const jsonLd = {
                 </div>
             </div>
 
-            <!-- AI Summary -->
-            {entry.data.description && <AISummary content={entry.data.description} class="onload-animation" />}
-
             <!-- metadata -->
             <div class="onload-animation">
                 <PostMetadata
@@ -100,6 +97,9 @@ const jsonLd = {
                 ></PostMetadata>
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
+
+            <!-- AI Summary -->
+            {entry.data.description && <AISummary content={entry.data.description} class="mb-6 onload-animation" />}
 
             <!-- always show cover as long as it has one -->
 
