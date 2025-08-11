@@ -139,10 +139,7 @@ $: if (initialized && keywordMobile) {
 </script>
 
 <!-- search bar for desktop view -->
-<div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg
-      bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
-      dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
-">
+<div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg search-bar-glass">
     <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
     <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
            class="transition-all pl-10 text-sm bg-transparent outline-0
@@ -157,14 +154,11 @@ $: if (initialized && keywordMobile) {
 </button>
 
 <!-- search panel -->
-<div id="search-panel" class="float-panel float-panel-closed search-panel absolute md:w-[30rem]
+<div id="search-panel" class="float-panel float-panel-closed search-panel search-panel-glass absolute md:w-[30rem]
 top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
 
     <!-- search bar inside panel for phone/tablet -->
-    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl
-      bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
-      dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
-  ">
+    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl search-bar-glass">
         <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
         <input placeholder="Search" bind:value={keywordMobile}
                class="pl-10 absolute inset-0 text-sm bg-transparent outline-0
@@ -194,5 +188,50 @@ top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
   .search-panel {
     max-height: calc(100vh - 100px);
     overflow-y: auto;
+  }
+  
+  .search-panel-glass {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 深色模式下的搜索面板半透明效果 */
+  :global(.dark) .search-panel-glass {
+    background-color: rgba(35, 35, 35, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  /* 搜索框的半透明效果 */
+  .search-bar-glass {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .search-bar-glass:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .search-bar-glass:focus-within {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* 深色模式下的搜索框半透明效果 */
+  :global(.dark) .search-bar-glass {
+    background-color: rgba(35, 35, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .search-bar-glass:hover {
+    background-color: rgba(35, 35, 35, 0.7);
+  }
+  
+  :global(.dark) .search-bar-glass:focus-within {
+    background-color: rgba(35, 35, 35, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
   }
 </style>

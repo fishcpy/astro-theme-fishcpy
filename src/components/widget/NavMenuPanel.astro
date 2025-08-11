@@ -9,7 +9,7 @@ interface Props {
 
 const links = Astro.props.links;
 ---
-<div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"]}>
+<div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2 nav-menu-glass"]}>
     {links.map((link, index) => (
         <div class="nav-menu-item">
             {link.children && link.children.length > 0 ? (
@@ -97,3 +97,18 @@ initSubmenuToggle();
 
 document.addEventListener('astro:page-load', initSubmenuToggle);
 </script>
+
+<style>
+    .nav-menu-glass {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 深色模式下的半透明效果 */
+    :global(.dark) .nav-menu-glass {
+        background-color: rgba(35, 35, 35, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+</style>
