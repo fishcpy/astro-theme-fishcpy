@@ -571,7 +571,7 @@ if (document.readyState === 'loading') {
                 "> 给你的博客加上一个十年倒计时吧 </div> </div> <!-- AI Summary --> <div class="ai-summary"><div class="ai-title"><div class="ai-title-left"><i>🤖</i><span class="ai-title-text">AI 摘要</span></div><div class="ai-tag">fishcpy AI</div></div><div class="ai-explanation" data-content="本文详细介绍了如何在 hexo-theme-anzhiyu 主题博客中添加自定义倒计时功能。通过新建JavaScript文件和在Markdown文件中插入HTML代码，实现动态倒计时显示，且支持自定义目标时间和样式。"></div></div><script type="module">function u(){return window.location.pathname.includes("/posts/")}function c(){if(!u())return;document.querySelectorAll(".ai-summary").forEach(n=>{const t=n.querySelector(".ai-explanation");if(!t||t.hasAttribute("data-initialized"))return;const i=t.getAttribute("data-content");if(!i)return;t.setAttribute("data-initialized","true"),t.textContent="",t.classList.remove("typing-complete");let a=0;const r=30;function s(){a<i.length?(t.textContent+=i.charAt(a),a++,setTimeout(s,r)):t.classList.add("typing-complete")}setTimeout(s,800)})}function e(){setTimeout(c,100)}function d(){document.readyState==="loading"?document.addEventListener("DOMContentLoaded",e):e(),document.addEventListener("astro:page-load",e),window.addEventListener("popstate",e);const o=history.pushState,n=history.replaceState;history.pushState=function(){o.apply(history,arguments),setTimeout(e,100)},history.replaceState=function(){n.apply(history,arguments),setTimeout(e,100)}}d();</script> <!-- metadata --> <div class="onload-animation"> <div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-10</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts in the 十年之约 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 十年之约 </a> </div> </div> <!-- tags --> <div class="items-center flex"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:tag-rounded">   <symbol id="ai:material-symbols:tag-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m9 16l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T6.3 18.8L7 16H4.275q-.5 0-.8-.387T3.3 14.75q.075-.35.35-.55t.625-.2H7.5l1-4H5.775q-.5 0-.8-.387T4.8 8.75q.075-.35.35-.55t.625-.2H9l.825-3.275Q9.9 4.4 10.15 4.2t.6-.2q.475 0 .775.375t.175.825L11 8h4l.825-3.275q.075-.325.325-.525t.6-.2q.475 0 .775.375t.175.825L17 8h2.725q.5 0 .8.387t.175.863q-.075.35-.35.55t-.625.2H16.5l-1 4h2.725q.5 0 .8.388t.175.862q-.075.35-.35.55t-.625.2H15l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T12.3 18.8L13 16zm.5-2h4l1-4h-4z"/></symbol><use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts with the 十年之约 tag" class="link-lg transition text-50 text-sm font-medium
-                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 十年之约 </a>  </div> </div> <!-- page views --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:visibility-outline-rounded">   <symbol id="ai:material-symbols:visibility-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16q1.875 0 3.188-1.312T16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16m0-1.8q-1.125 0-1.912-.788T9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2m0 4.8q-3.35 0-6.113-1.8t-4.362-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19m0-2q2.825 0 5.188-1.487T20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17"/></symbol><use href="#ai:material-symbols:visibility-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium"> <span id="twikoo_visitors">0</span> 次访问
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 十年之约 </a>  </div> </div> <!-- page views --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:visibility-outline-rounded">   <symbol id="ai:material-symbols:visibility-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16q1.875 0 3.188-1.312T16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16m0-1.8q-1.125 0-1.912-.788T9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2m0 4.8q-3.35 0-6.113-1.8t-4.362-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19m0-2q2.825 0 5.188-1.487T20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17"/></symbol><use href="#ai:material-symbols:visibility-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium"> <span id="twikoo_visitors__posts_21_">0</span> 次访问
 </span> </div> </div>  </div> <!-- always show cover as long as it has one --> <div id="post-cover" class="mb-8 rounded-xl banner-container onload-animation overflow-hidden relative"> <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>  <img src="https://imgse.fishcpy.top/upload/6777c2707cff0.webp" alt class="w-full h-full object-cover" style="object-position: center"> </div> <div data-pagefind-body class="prose dark:prose-invert prose-base !max-w-none custom-md mb-6 markdown-content onload-animation"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <blockquote>
 <section><h2 id="效果预览-关于-fishcpy的小破站">效果预览 <a href="https://mengmengmao.cn/about/">关于 fishcpy的小破站</a><a class="anchor" href="#效果预览-关于-fishcpy的小破站"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2></section>
 </blockquote>
@@ -938,7 +938,7 @@ Powered by
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a><br>
 Server by
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.fis.ink">Fishcpy cloud</a> &
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a> </div> </div> </div> <script>
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a><br> <div id="performance_info" class="text-xs text-50 mt-1"></div> </div> </div> </div> <script>
 function show_runtime(){
     window.setTimeout("show_runtime()",1000);
     X = new Date("9/6/2024 00:00:00");
@@ -954,6 +954,96 @@ function show_runtime(){
     D = Math.floor((c - C) * 60);
     document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
 }
+
+(function() {
+    let startTime = Date.now();
+    let loadingTimer = null;
+    let isPageLoaded = false;
+
+    function updateLoadingTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        if (!isPageLoaded) {
+            const currentTime = Date.now() - startTime;
+            
+            // 获取内存信息（如果浏览器支持）
+            let memoryInfo = '';
+            if (window.performance && window.performance.memory) {
+                const memory = window.performance.memory;
+                const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+                memoryInfo = ` | 内存占用: ${usedMB}MB`;
+            }
+            
+            performanceElement.innerHTML = `页面加载时间: ${currentTime}ms${memoryInfo}`;
+            
+            // 每100毫秒更新一次加载时间
+            loadingTimer = setTimeout(updateLoadingTime, 100);
+        }
+    }
+
+    function showFinalLoadTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        isPageLoaded = true;
+        
+        // 清除加载计时器
+        if (loadingTimer) {
+            clearTimeout(loadingTimer);
+            loadingTimer = null;
+        }
+        
+        // 获取最终的页面加载时间
+        let finalLoadTime;
+        if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+            finalLoadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+        } else {
+            finalLoadTime = Date.now() - startTime;
+        }
+        
+        // 获取内存信息（如果浏览器支持）
+        let memoryInfo = '';
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            memoryInfo = ` | 内存占用: ${usedMB}MB`;
+        }
+        
+        performanceElement.innerHTML = `页面加载时间: ${finalLoadTime}ms${memoryInfo}`;
+        
+        // 开始定期更新内存信息
+        updateMemoryInfo();
+    }
+
+    function updateMemoryInfo() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement || !isPageLoaded) return;
+        
+        // 只更新内存信息部分
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            const currentContent = performanceElement.innerHTML;
+            const loadTimePart = currentContent.split(' | ')[0];
+            performanceElement.innerHTML = `${loadTimePart} | 内存占用: ${usedMB}MB`;
+        }
+        
+        // 每5秒更新一次内存信息
+        setTimeout(updateMemoryInfo, 5000);
+    }
+    
+    // 立即开始显示加载时间计时
+    updateLoadingTime();
+
+    // 等待页面完全加载后显示最终加载时间
+    if (document.readyState === 'complete') {
+        showFinalLoadTime();
+    } else {
+        window.addEventListener('load', showFinalLoadTime);
+    }
+})();
+
 show_runtime();
 </script> </div> </div> </main> <div class="footer col-span-2 onload-animation block lg:hidden"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="flex flex-col items-center gap-2"> <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力" class="transition hover:opacity-80"> <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"> </a> <div class="text-center"> <a href="https://beian.miit.gov.cn" target="_blank" class="transition link text-[var(--primary)] font-medium text-base">京ICP备2025138063号</a> </div> <div class="flex justify-center gap-4 mt-2"> <a href="https://hopedomain.com/zh/age/fis.ink" target="_blank"> <img src="https://hopedomain.com/api/badge/domain-age/fis.ink?theme=spotify&lang=zh" alt="域名年龄"> </a> <a href="https://ipw.cn/ssl/?site=blog.fis.ink" title="本站支持SSL安全访问" target="_blank"> <img style="display:inline-block;vertical-align:middle" alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"> </a> </div> <div id="runtime_span" class="text-xs text-50"></div> <div class="flex flex-wrap justify-center gap-4 text-sm mt-2"> <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌备20241732号</a> <a href="https://icp.fishcpy.top/query.php?keyword=20252224" class="transition link text-[var(--primary)]">鱼备20252224</a> <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a> <a href="http://icpgov.xin/beian/ICP-1145141145.html" class="transition link text-[var(--primary)]">酱1145141145号</a> </div> <!-- 版权和基础信息 --> <div class="transition text-50 text-sm text-center mt-4">
 &copy; 2024-<span id="copyright-year">2025</span> fishcpy. All Rights Reserved. /
@@ -964,7 +1054,7 @@ Powered by
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a><br>
 Server by
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.fis.ink">Fishcpy cloud</a> &
-<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a> </div> </div> </div> <script>
+<a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a><br> <div id="performance_info" class="text-xs text-50 mt-1"></div> </div> </div> </div> <script>
 function show_runtime(){
     window.setTimeout("show_runtime()",1000);
     X = new Date("9/6/2024 00:00:00");
@@ -980,6 +1070,96 @@ function show_runtime(){
     D = Math.floor((c - C) * 60);
     document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
 }
+
+(function() {
+    let startTime = Date.now();
+    let loadingTimer = null;
+    let isPageLoaded = false;
+
+    function updateLoadingTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        if (!isPageLoaded) {
+            const currentTime = Date.now() - startTime;
+            
+            // 获取内存信息（如果浏览器支持）
+            let memoryInfo = '';
+            if (window.performance && window.performance.memory) {
+                const memory = window.performance.memory;
+                const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+                memoryInfo = ` | 内存占用: ${usedMB}MB`;
+            }
+            
+            performanceElement.innerHTML = `页面加载时间: ${currentTime}ms${memoryInfo}`;
+            
+            // 每100毫秒更新一次加载时间
+            loadingTimer = setTimeout(updateLoadingTime, 100);
+        }
+    }
+
+    function showFinalLoadTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        isPageLoaded = true;
+        
+        // 清除加载计时器
+        if (loadingTimer) {
+            clearTimeout(loadingTimer);
+            loadingTimer = null;
+        }
+        
+        // 获取最终的页面加载时间
+        let finalLoadTime;
+        if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+            finalLoadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+        } else {
+            finalLoadTime = Date.now() - startTime;
+        }
+        
+        // 获取内存信息（如果浏览器支持）
+        let memoryInfo = '';
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            memoryInfo = ` | 内存占用: ${usedMB}MB`;
+        }
+        
+        performanceElement.innerHTML = `页面加载时间: ${finalLoadTime}ms${memoryInfo}`;
+        
+        // 开始定期更新内存信息
+        updateMemoryInfo();
+    }
+
+    function updateMemoryInfo() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement || !isPageLoaded) return;
+        
+        // 只更新内存信息部分
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            const currentContent = performanceElement.innerHTML;
+            const loadTimePart = currentContent.split(' | ')[0];
+            performanceElement.innerHTML = `${loadTimePart} | 内存占用: ${usedMB}MB`;
+        }
+        
+        // 每5秒更新一次内存信息
+        setTimeout(updateMemoryInfo, 5000);
+    }
+    
+    // 立即开始显示加载时间计时
+    updateLoadingTime();
+
+    // 等待页面完全加载后显示最终加载时间
+    if (document.readyState === 'complete') {
+        showFinalLoadTime();
+    } else {
+        window.addEventListener('load', showFinalLoadTime);
+    }
+})();
+
 show_runtime();
 </script> </div> </div> <!-- There can't be a filter on parent element, or it will break `fixed` --><div class="back-to-top-wrapper hidden lg:block" data-astro-cid-eymb5ayk> <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()" data-astro-cid-eymb5ayk> <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]" data-astro-cid-eymb5ayk> <svg width="1em" height="1em" class="mx-auto" data-astro-cid-eymb5ayk="true" data-icon="material-symbols:keyboard-arrow-up-rounded">   <symbol id="ai:material-symbols:keyboard-arrow-up-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></symbol><use href="#ai:material-symbols:keyboard-arrow-up-rounded"></use>  </svg> </button> </div> </div>  <script>
 function backToTop() {
@@ -991,4 +1171,4 @@ function backToTop() {
         hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
     "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">1</div><div class="transition text-sm text-50">打开： 你博客目录/themes/anzhiyu/source/js</div></a><a href="#在你要的文件里本人仅测试了md文件加入下面代码即可实现" class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
         hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
-    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">2</div><div class="transition text-sm text-50">在你要的文件里(本人仅测试了md文件)加入下面代码即可实现</div></a><div id="active-indicator" class="-z-10 absolute bg-[var(--toc-btn-hover)] left-0 right-0 rounded-xl transition-all group-hover:bg-transparent border-2 border-[var(--toc-btn-hover)] group-hover:border-[var(--toc-btn-active)] border-dashed"></div></table-of-contents><script type="module">class l extends HTMLElement{tocEl=null;visibleClass="visible";observer;anchorNavTarget=null;headingIdxMap=new Map;headings=[];sections=[];tocEntries=[];active=[];activeIndicator=null;constructor(){super(),this.observer=new IntersectionObserver(this.markVisibleSection,{threshold:0})}markVisibleSection=t=>{t.forEach(e=>{const i=e.target.children[0]?.getAttribute("id"),s=i?this.headingIdxMap.get(i):void 0;s!=null&&(this.active[s]=e.isIntersecting),e.isIntersecting&&this.anchorNavTarget==e.target.firstChild&&(this.anchorNavTarget=null)}),this.active.includes(!0)||this.fallback(),this.update()};toggleActiveHeading=()=>{let t=this.active.length-1,e=this.active.length-1,i=0;for(;t>=0&&!this.active[t];)this.tocEntries[t].classList.remove(this.visibleClass),t--;for(;t>=0&&this.active[t];)this.tocEntries[t].classList.add(this.visibleClass),e=Math.min(e,t),i=Math.max(i,t),t--;for(;t>=0;)this.tocEntries[t].classList.remove(this.visibleClass),t--;let s=this.tocEl?.getBoundingClientRect().top||0,n=this.tocEl?.scrollTop||0,o=this.tocEntries[e].getBoundingClientRect().top-s+n,c=this.tocEntries[i].getBoundingClientRect().bottom-s+n;this.activeIndicator?.setAttribute("style",`top: ${o}px; height: ${c-o}px`)};scrollToActiveHeading=()=>{if(this.anchorNavTarget||!this.tocEl)return;const t=document.querySelectorAll(`#toc .${this.visibleClass}`);if(!t.length)return;const e=t[0],i=t[t.length-1],s=this.tocEl.clientHeight;let n;i.getBoundingClientRect().bottom-e.getBoundingClientRect().top<.9*s?n=e.offsetTop-32:n=i.offsetTop-s*.8,this.tocEl.scrollTo({top:n,left:0,behavior:"smooth"})};update=()=>{requestAnimationFrame(()=>{this.toggleActiveHeading(),this.scrollToActiveHeading()})};fallback=()=>{if(this.sections.length)for(let t=0;t<this.sections.length;t++){let e=this.sections[t].getBoundingClientRect().top,i=this.sections[t].getBoundingClientRect().bottom;if(this.isInRange(e,0,window.innerHeight)||this.isInRange(i,0,window.innerHeight)||e<0&&i>window.innerHeight)this.markActiveHeading(t);else if(e>window.innerHeight)break}};markActiveHeading=t=>{this.active[t]=!0};handleAnchorClick=t=>{const e=t.composedPath().find(i=>i instanceof HTMLAnchorElement);if(e){const i=decodeURIComponent(e.hash?.substring(1)),s=this.headingIdxMap.get(i);s!==void 0?this.anchorNavTarget=this.headings[s]:this.anchorNavTarget=null}};isInRange(t,e,i){return e<t&&t<i}connectedCallback(){const t=document.querySelector(".prose");t?t.addEventListener("animationend",()=>{this.init()},{once:!0}):console.debug("Animation element not found")}init(){if(this.tocEl=document.getElementById("toc-inner-wrapper"),!!this.tocEl&&(this.tocEl.addEventListener("click",this.handleAnchorClick,{capture:!0}),this.activeIndicator=document.getElementById("active-indicator"),this.tocEntries=Array.from(document.querySelectorAll("#toc a[href^='#']")),this.tocEntries.length!==0)){this.sections=new Array(this.tocEntries.length),this.headings=new Array(this.tocEntries.length);for(let t=0;t<this.tocEntries.length;t++){const e=decodeURIComponent(this.tocEntries[t].hash?.substring(1)),i=document.getElementById(e),s=i?.parentElement;i instanceof HTMLElement&&s instanceof HTMLElement&&(this.headings[t]=i,this.sections[t]=s,this.headingIdxMap.set(e,t))}this.active=new Array(this.tocEntries.length).fill(!1),this.sections.forEach(t=>this.observer.observe(t)),this.fallback(),this.update()}}disconnectedCallback(){this.sections.forEach(t=>this.observer.unobserve(t)),this.observer.disconnect(),this.tocEl?.removeEventListener("click",this.handleAnchorClick)}}customElements.get("table-of-contents")||customElements.define("table-of-contents",l);</script> <div class="h-8 w-full"></div> </div> </div> </div> <!-- #toc needs to exist for Swup to work normally -->  </div> </div>  <script type="module" src="/_astro/MainGridLayout.astro_astro_type_script_index_0_lang.BmgLr3yq.js"></script>  <!-- increase the page height during page transition to prevent the scrolling animation from jumping --> <div id="page-height-extend" class="hidden h-[300vh]" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 260;--page-width: 75rem;"></div>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.DAHrxWCB.js"></script> <script type="module" src="/_astro/Layout.astro_astro_type_script_index_1_lang.BhRvt8S5.js"></script></body></html>
+    "><div class="transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold bg-[var(--toc-badge-bg)] text-[var(--btn-content)]">2</div><div class="transition text-sm text-50">在你要的文件里(本人仅测试了md文件)加入下面代码即可实现</div></a><div id="active-indicator" class="-z-10 absolute bg-[var(--toc-btn-hover)] left-0 right-0 rounded-xl transition-all group-hover:bg-transparent border-2 border-[var(--toc-btn-hover)] group-hover:border-[var(--toc-btn-active)] border-dashed"></div></table-of-contents><script type="module">class l extends HTMLElement{tocEl=null;visibleClass="visible";observer;anchorNavTarget=null;headingIdxMap=new Map;headings=[];sections=[];tocEntries=[];active=[];activeIndicator=null;constructor(){super(),this.observer=new IntersectionObserver(this.markVisibleSection,{threshold:0})}markVisibleSection=t=>{t.forEach(e=>{const i=e.target.children[0]?.getAttribute("id"),s=i?this.headingIdxMap.get(i):void 0;s!=null&&(this.active[s]=e.isIntersecting),e.isIntersecting&&this.anchorNavTarget==e.target.firstChild&&(this.anchorNavTarget=null)}),this.active.includes(!0)||this.fallback(),this.update()};toggleActiveHeading=()=>{let t=this.active.length-1,e=this.active.length-1,i=0;for(;t>=0&&!this.active[t];)this.tocEntries[t].classList.remove(this.visibleClass),t--;for(;t>=0&&this.active[t];)this.tocEntries[t].classList.add(this.visibleClass),e=Math.min(e,t),i=Math.max(i,t),t--;for(;t>=0;)this.tocEntries[t].classList.remove(this.visibleClass),t--;let s=this.tocEl?.getBoundingClientRect().top||0,n=this.tocEl?.scrollTop||0,o=this.tocEntries[e].getBoundingClientRect().top-s+n,c=this.tocEntries[i].getBoundingClientRect().bottom-s+n;this.activeIndicator?.setAttribute("style",`top: ${o}px; height: ${c-o}px`)};scrollToActiveHeading=()=>{if(this.anchorNavTarget||!this.tocEl)return;const t=document.querySelectorAll(`#toc .${this.visibleClass}`);if(!t.length)return;const e=t[0],i=t[t.length-1],s=this.tocEl.clientHeight;let n;i.getBoundingClientRect().bottom-e.getBoundingClientRect().top<.9*s?n=e.offsetTop-32:n=i.offsetTop-s*.8,this.tocEl.scrollTo({top:n,left:0,behavior:"smooth"})};update=()=>{requestAnimationFrame(()=>{this.toggleActiveHeading(),this.scrollToActiveHeading()})};fallback=()=>{if(this.sections.length)for(let t=0;t<this.sections.length;t++){let e=this.sections[t].getBoundingClientRect().top,i=this.sections[t].getBoundingClientRect().bottom;if(this.isInRange(e,0,window.innerHeight)||this.isInRange(i,0,window.innerHeight)||e<0&&i>window.innerHeight)this.markActiveHeading(t);else if(e>window.innerHeight)break}};markActiveHeading=t=>{this.active[t]=!0};handleAnchorClick=t=>{const e=t.composedPath().find(i=>i instanceof HTMLAnchorElement);if(e){const i=decodeURIComponent(e.hash?.substring(1)),s=this.headingIdxMap.get(i);s!==void 0?this.anchorNavTarget=this.headings[s]:this.anchorNavTarget=null}};isInRange(t,e,i){return e<t&&t<i}connectedCallback(){const t=document.querySelector(".prose");t?t.addEventListener("animationend",()=>{this.init()},{once:!0}):console.debug("Animation element not found")}init(){if(this.tocEl=document.getElementById("toc-inner-wrapper"),!!this.tocEl&&(this.tocEl.addEventListener("click",this.handleAnchorClick,{capture:!0}),this.activeIndicator=document.getElementById("active-indicator"),this.tocEntries=Array.from(document.querySelectorAll("#toc a[href^='#']")),this.tocEntries.length!==0)){this.sections=new Array(this.tocEntries.length),this.headings=new Array(this.tocEntries.length);for(let t=0;t<this.tocEntries.length;t++){const e=decodeURIComponent(this.tocEntries[t].hash?.substring(1)),i=document.getElementById(e),s=i?.parentElement;i instanceof HTMLElement&&s instanceof HTMLElement&&(this.headings[t]=i,this.sections[t]=s,this.headingIdxMap.set(e,t))}this.active=new Array(this.tocEntries.length).fill(!1),this.sections.forEach(t=>this.observer.observe(t)),this.fallback(),this.update()}}disconnectedCallback(){this.sections.forEach(t=>this.observer.unobserve(t)),this.observer.disconnect(),this.tocEl?.removeEventListener("click",this.handleAnchorClick)}}customElements.get("table-of-contents")||customElements.define("table-of-contents",l);</script> <div class="h-8 w-full"></div> </div> </div> </div> <!-- #toc needs to exist for Swup to work normally -->  </div> </div>  <script type="module" src="/_astro/MainGridLayout.astro_astro_type_script_index_0_lang.B17_cgvg.js"></script>  <!-- increase the page height during page transition to prevent the scrolling animation from jumping --> <div id="page-height-extend" class="hidden h-[300vh]" data-astro-cid-sckkx6r4 style="--bannerOffset: 15vh;--banner-height-home: 65vh;--banner-height: 35vh;--configHue: 260;--page-width: 75rem;"></div>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.DAHrxWCB.js"></script> <script type="module" src="/_astro/Layout.astro_astro_type_script_index_1_lang.BhRvt8S5.js"></script></body></html>
