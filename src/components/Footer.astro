@@ -50,7 +50,8 @@ const currentYear = new Date().getFullYear();
             <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a><br>
             Server by
             <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.fis.ink">Fishcpy cloud</a> &
-            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a>
+            <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://www.cloudflare.com">Cloudflare</a><br>
+            <div id="performance_info" class="text-xs text-50 mt-1"></div>
         </div>
     </div>
 </div>
@@ -71,5 +72,95 @@ function show_runtime(){
     D = Math.floor((c - C) * 60);
     document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
 }
+
+(function() {
+    let startTime = Date.now();
+    let loadingTimer = null;
+    let isPageLoaded = false;
+
+    function updateLoadingTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        if (!isPageLoaded) {
+            const currentTime = Date.now() - startTime;
+            
+            // 获取内存信息（如果浏览器支持）
+            let memoryInfo = '';
+            if (window.performance && window.performance.memory) {
+                const memory = window.performance.memory;
+                const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+                memoryInfo = ` | 内存占用: ${usedMB}MB`;
+            }
+            
+            performanceElement.innerHTML = `页面加载时间: ${currentTime}ms${memoryInfo}`;
+            
+            // 每100毫秒更新一次加载时间
+            loadingTimer = setTimeout(updateLoadingTime, 100);
+        }
+    }
+
+    function showFinalLoadTime() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement) return;
+        
+        isPageLoaded = true;
+        
+        // 清除加载计时器
+        if (loadingTimer) {
+            clearTimeout(loadingTimer);
+            loadingTimer = null;
+        }
+        
+        // 获取最终的页面加载时间
+        let finalLoadTime;
+        if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
+            finalLoadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+        } else {
+            finalLoadTime = Date.now() - startTime;
+        }
+        
+        // 获取内存信息（如果浏览器支持）
+        let memoryInfo = '';
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            memoryInfo = ` | 内存占用: ${usedMB}MB`;
+        }
+        
+        performanceElement.innerHTML = `页面加载时间: ${finalLoadTime}ms${memoryInfo}`;
+        
+        // 开始定期更新内存信息
+        updateMemoryInfo();
+    }
+
+    function updateMemoryInfo() {
+        const performanceElement = document.getElementById('performance_info');
+        if (!performanceElement || !isPageLoaded) return;
+        
+        // 只更新内存信息部分
+        if (window.performance && window.performance.memory) {
+            const memory = window.performance.memory;
+            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            const currentContent = performanceElement.innerHTML;
+            const loadTimePart = currentContent.split(' | ')[0];
+            performanceElement.innerHTML = `${loadTimePart} | 内存占用: ${usedMB}MB`;
+        }
+        
+        // 每5秒更新一次内存信息
+        setTimeout(updateMemoryInfo, 5000);
+    }
+    
+    // 立即开始显示加载时间计时
+    updateLoadingTime();
+
+    // 等待页面完全加载后显示最终加载时间
+    if (document.readyState === 'complete') {
+        showFinalLoadTime();
+    } else {
+        window.addEventListener('load', showFinalLoadTime);
+    }
+})();
+
 show_runtime();
 </script>
