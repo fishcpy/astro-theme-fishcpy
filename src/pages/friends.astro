@@ -1,10 +1,10 @@
 ---
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
+import items from "../assets/friends.json";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import items from "../assets/friends.json";
 
 const friendsPost = await getEntry("spec", "friends");
 
@@ -15,14 +15,17 @@ if (!friendsPost) {
 const { Content } = await render(friendsPost);
 
 // 按分类对友链进行分组
-const groupedItems = items.reduce((acc, item) => {
-	const category = item.category || "其他";
-	if (!acc[category]) {
-		acc[category] = [];
-	}
-	acc[category].push(item);
-	return acc;
-}, {});
+const groupedItems = items.reduce(
+	(acc: Record<string, typeof items>, item) => {
+		const category = item.category || "其他";
+		if (!acc[category]) {
+			acc[category] = [];
+		}
+		acc[category].push(item);
+		return acc;
+	},
+	{} as Record<string, typeof items>,
+);
 ---
 <MainGridLayout title={i18n(I18nKey.friends)} description={i18n(I18nKey.friends)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">

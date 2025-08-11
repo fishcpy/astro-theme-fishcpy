@@ -53,6 +53,7 @@ export type NavBarLink = {
 	url: string;
 	external?: boolean;
 	icon?: string;
+	children?: NavBarLink[];
 };
 
 export type NavBarConfig = {

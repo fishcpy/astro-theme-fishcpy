@@ -52,21 +52,36 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
-		LinkPreset.Friends,
-		LinkPreset.Moments,
-		LinkPreset.About,
+		{
+			name: "友链",
+			url: "#",
+			icon: "fa6-solid:link",
+			children: [
+				{
+					name: "友链",
+					url: "/friends/",
+					icon: "fa6-solid:user-group",
+				},
+				{
+					name: "朋友圈",
+					url: "/circle/",
+					icon: "fa6-solid:circle-nodes",
+				},
+			],
+		},
 		{
 			name: "开往",
-			url: "https://www.travellings.cn/go.html", // 内部链接不应包含基础路径，因为会自动添加
-			external: true, // 显示外部链接图标并会在新标签页打开
-			icon: "fa6-solid:train-subway", // Font Awesome 6 图标
+			url: "https://www.travellings.cn/go.html",
+			external: true,
+			icon: "fa6-solid:train-subway",
 		},
 		{
 			name: "监控",
-			url: "https://status.fishcpy.top/status/web", // 内部链接不应包含基础路径，因为会自动添加
-			external: true, // 显示外部链接图标并会在新标签页打开
-			icon: "fa6-solid:chart-line", // Font Awesome 6 图标
+			url: "https://status.fishcpy.top/status/web",
+			external: true,
+			icon: "fa6-solid:chart-line",
 		},
+		LinkPreset.About,
 	],
 	showHomeIcon: false, // 控制是否显示home图标
 };

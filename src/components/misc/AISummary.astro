@@ -1,18 +1,19 @@
 ---
 export interface Props {
-  content: string;
+	content: string;
+	class?: string;
 }
 
-const { content } = Astro.props;
+const { content, class: className } = Astro.props;
 
 // 如果没有内容，不渲染组件
-if (!content || content.trim() === '') {
-  return null;
+if (!content || content.trim() === "") {
+	return null;
 }
 ---
 
 {content && (
-  <div class="ai-summary">
+  <div class:list={["ai-summary", className]}>
     <div class="ai-title">
       <div class="ai-title-left">
         <i>🤖</i>
