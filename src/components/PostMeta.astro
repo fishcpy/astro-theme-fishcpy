@@ -13,6 +13,7 @@ interface Props {
 	category: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
+	url?: string;
 }
 const {
 	published,
@@ -21,8 +22,21 @@ const {
 	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
+	url,
 } = Astro.props;
 const className = Astro.props.class;
+
+// 生成访问量元素的ID
+const generateVisitorId = (url?: string) => {
+	if (!url) {
+		// 如果没有传入URL，使用当前页面路径
+		const currentPath = Astro.url.pathname;
+		return `twikoo_visitors_${currentPath.replace(/[^a-zA-Z0-9]/g, '_')}`;
+	}
+	return `twikoo_visitors_${url.replace(/[^a-zA-Z0-9]/g, '_')}`;
+};
+
+const visitorId = generateVisitorId(url);
 ---
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
@@ -86,7 +100,7 @@ const className = Astro.props.class;
             <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
         </div>
         <span class="text-50 text-sm font-medium">
-            <span id="twikoo_visitors">0</span> 次访问
+            <span id={visitorId}>0</span> 次访问
         </span>
     </div>
 </div>
