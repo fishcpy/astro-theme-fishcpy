@@ -187,8 +187,8 @@ class TwikooVisitorManager {
 
   // 更新所有访问量显示
   async updateAllVisitors() {
-    // 查找所有访问量元素（包括带URL后缀和不带后缀的）
-    const visitorElements = document.querySelectorAll('[id^="twikoo_visitors"]');
+    // 查找所有访问量元素
+    const visitorElements = document.querySelectorAll('[id^="twikoo_visitors_"]');
     
     if (visitorElements.length === 0) {
       console.log('No visitor elements found');
@@ -239,24 +239,15 @@ class TwikooVisitorManager {
 
   // 从元素ID中提取URL
   extractUrlFromId(id) {
-    // 处理不同格式的ID
-    if (id === 'twikoo_visitors') {
-      // 如果是固定的ID，使用当前页面路径
-      return window.location.pathname;
-    } else if (id.startsWith('twikoo_visitors_')) {
-      // 移除前缀并将下划线转换回斜杠
-      let url = id.replace('twikoo_visitors_', '').replace(/_/g, '/');
-      
-      // 确保URL以/开头
-      if (!url.startsWith('/')) {
-        url = '/' + url;
-      }
-      
-      return url;
+    // 移除前缀并将下划线转换回斜杠
+    let url = id.replace('twikoo_visitors_', '').replace(/_/g, '/');
+    
+    // 确保URL以/开头
+    if (!url.startsWith('/')) {
+      url = '/' + url;
     }
     
-    // 默认返回当前页面路径
-    return window.location.pathname;
+    return url;
   }
 
   // 批量获取访问量
