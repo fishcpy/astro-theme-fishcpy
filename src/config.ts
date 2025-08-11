@@ -59,13 +59,16 @@ export const navBarConfig: NavBarConfig = {
 			name: "开往",
 			url: "https://www.travellings.cn/go.html", // 内部链接不应包含基础路径，因为会自动添加
 			external: true, // 显示外部链接图标并会在新标签页打开
+			icon: "fa6-solid:train-subway", // Font Awesome 6 图标
 		},
 		{
 			name: "监控",
 			url: "https://status.fishcpy.top/status/web", // 内部链接不应包含基础路径，因为会自动添加
 			external: true, // 显示外部链接图标并会在新标签页打开
+			icon: "fa6-solid:chart-line", // Font Awesome 6 图标
 		},
 	],
+	showHomeIcon: false, // 控制是否显示home图标
 };
 
 export const profileConfig: ProfileConfig = {
