@@ -38,12 +38,21 @@ const togglePanel = () => {
 
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
-	if (!panel || !isDesktop) return;
+	if (!panel) return;
 
-	if (show) {
-		panel.classList.remove("float-panel-closed");
-	} else {
-		panel.classList.add("float-panel-closed");
+	// 对于桌面端，根据搜索结果控制面板显示
+	if (isDesktop) {
+		if (show) {
+			panel.classList.remove("float-panel-closed");
+		} else {
+			panel.classList.add("float-panel-closed");
+		}
+	}
+	// 移动端面板的显示由用户手动控制，但如果没有结果且关键词为空，也应该隐藏
+	else {
+		if (!show && (!keywordMobile || keywordMobile.trim() === "")) {
+			panel.classList.add("float-panel-closed");
+		}
 	}
 };
 
@@ -65,11 +74,20 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 		if (import.meta.env.PROD && pagefindLoaded && window.pagefind) {
 			const response = await window.pagefind.search(keyword);
-			searchResults = await Promise.all(
-				response.results.map((item) => item.data()),
-			);
+			if (response.results && response.results.length > 0) {
+				searchResults = await Promise.all(
+					response.results.map((item) => item.data()),
+				);
+			} else {
+				searchResults = [];
+			}
 		} else if (import.meta.env.DEV) {
-			searchResults = fakeResult;
+			// 在开发环境中，如果关键词为空或很短，返回空结果
+			if (keyword.trim().length < 2) {
+				searchResults = [];
+			} else {
+				searchResults = fakeResult;
+			}
 		} else {
 			searchResults = [];
 			console.error("Pagefind is not available in production environment.");
@@ -125,13 +143,13 @@ onMount(() => {
 	}
 });
 
-$: if (initialized && keywordDesktop) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordDesktop, true);
 	})();
 }
 
-$: if (initialized && keywordMobile) {
+$: if (initialized) {
 	(async () => {
 		await search(keywordMobile, false);
 	})();
