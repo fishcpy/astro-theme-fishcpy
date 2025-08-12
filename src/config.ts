@@ -53,6 +53,11 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		{
+			name: "瞬间",
+			url: "/essay/",
+			icon: "material-symbols:photo-camera",
+		},
+		{
 			name: "友链",
 			url: "#",
 			icon: "fa6-solid:link",
