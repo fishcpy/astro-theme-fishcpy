@@ -1,0 +1,1 @@
+const E="light",s="dark",o="auto",t=45,N=35,_=80,a=3.5,n={lang:"zh_CN",theme:s},H={theme:"github-dark"},e={twikoo:{envId:"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"}};export{o as A,N as B,s as D,E as L,a as M,t as a,_ as b,e as c,H as e,n as s};
