@@ -50,12 +50,10 @@ export const siteConfig: SiteConfig = {
 
 export const navBarConfig: NavBarConfig = {
 	links: [
-		LinkPreset.Home,
-		LinkPreset.Archive,
 		{
-			name: "瞬间",
-			url: "/essay/",
-			icon: "material-symbols:photo-camera",
+			name: "归档",
+			url: "/archive/",
+			icon: "fa6-solid:box-archive",
 		},
 		{
 			name: "友链",
@@ -75,18 +73,41 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 		{
+			name: "其他",
+			url: "#",
+			icon: "fa6-solid:chart-line",
+			children: [
+				{
+					name: "监控",
+					url: "https://status.fishcpy.top/status/web",
+					external: true,
+					icon: "fa6-solid:chart-line",
+				},
+			],
+		},
+		{
+			name: "我的",
+			url: "#",
+			icon: "fa6-solid:user",
+			children: [
+				{
+					name: "瞬间",
+					url: "/essay/",
+					icon: "material-symbols:photo-camera",
+				},
+				{
+					name: "关于",
+					url: "/about/",
+					icon: "fa6-solid:user",
+				},
+			],
+		},
+		{
 			name: "开往",
 			url: "https://www.travellings.cn/go.html",
 			external: true,
 			icon: "fa6-solid:train-subway",
 		},
-		{
-			name: "监控",
-			url: "https://status.fishcpy.top/status/web",
-			external: true,
-			icon: "fa6-solid:chart-line",
-		},
-		LinkPreset.About,
 	],
 	showHomeIcon: false, // 控制是否显示home图标
 };
