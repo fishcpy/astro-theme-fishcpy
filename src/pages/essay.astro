@@ -35,7 +35,8 @@ const mockPost = {
                         <!-- 图片 -->
                         {essay.images && essay.images.length > 0 && (
                             <div class="essay-images mb-4">
-                                <div class="grid gap-3" class:list={[
+                                <div class:list={[
+                                    "custom-md grid gap-3",
                                     essay.images.length === 1 ? "grid-cols-1" : 
                                     essay.images.length === 2 ? "grid-cols-2" :
                                     essay.images.length === 3 ? "grid-cols-3" :
@@ -79,14 +80,7 @@ const mockPost = {
                                 )}
                             </div>
                             
-                            <!-- 评论按钮 -->
-                            <button 
-                                class="comment-btn flex items-center gap-1 px-3 py-1 rounded-full bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-card-bg-hover)] transition-colors cursor-pointer"
-                                data-content={essay.content}
-                            >
-                                <Icon name="material-symbols:comment" class="text-base" />
-                                <span>评论</span>
-                            </button>
+
                         </div>
                     </div>
                 ))}
@@ -100,60 +94,7 @@ const mockPost = {
     </div>
 </MainGridLayout>
 
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-        // 为所有评论按钮添加点击事件监听器
-        const commentButtons = document.querySelectorAll('.comment-btn');
-        commentButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const content = this.getAttribute('data-content');
-                const commentsSection = document.getElementById('comments-section');
-                if (commentsSection) {
-                    commentsSection.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // 延迟一下确保评论区已经加载
-                    setTimeout(() => {
-                        // 查找评论输入框
-                        const commentInput = document.querySelector('#twikoo .el-textarea__inner, #twikoo textarea, .tk-input[name="comment"]');
-                        if (commentInput && content) {
-                            const quotedContent = `> ${content}\n\n`;
-                            commentInput.value = quotedContent;
-                            commentInput.focus();
-                            // 触发输入事件以确保框架能检测到变化
-                            const event = new Event('input', { bubbles: true });
-                            commentInput.dispatchEvent(event);
-                        }
-                    }, 500);
-                }
-            });
-        });
-    });
-    
-    // 图片点击放大功能
-    document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('.essay-images img');
-        images.forEach(img => {
-            img.addEventListener('click', function() {
-                // 创建模态框显示大图
-                const modal = document.createElement('div');
-                modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 cursor-pointer';
-                modal.innerHTML = `
-                    <img src="${this.src}" alt="${this.alt}" class="max-w-full max-h-full object-contain">
-                `;
-                
-                // 点击模态框关闭
-                modal.addEventListener('click', function() {
-                    document.body.removeChild(modal);
-                });
-                
-                document.body.appendChild(modal);
-            });
-        });
-    });
-</script>
+
 
 <style>
     .essay-item {
