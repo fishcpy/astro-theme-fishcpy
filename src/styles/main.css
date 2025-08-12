@@ -198,8 +198,8 @@ nav, .navbar {
 /* =================== */
 
 .ai-summary {
-    background-color: var(--liushen-maskbg);
-    background: var(--liushen-card-secondbg);
+    background: var(--card-bg);
+    border: 1px solid var(--line-divider);
     border-radius: 12px;
     padding: 8px 8px 12px 8px;
     line-height: 1.3;
@@ -208,32 +208,13 @@ nav, .navbar {
     display: flex;
     gap: 5px;
     position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
 }
 
-.ai-summary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    filter: blur(8px);
-    opacity: 0.4;
-    background-image: var(--liushen-ai-bg);
-    transform: scaleX(1) scaleY(0.95) translateY(2px);
-}
-
-.ai-summary::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    border-radius: 12px;
-    background: var(--liushen-maskbg);
+.ai-summary:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .ai-summary .ai-explanation {
@@ -241,7 +222,7 @@ nav, .navbar {
     padding: 8px 12px;
     font-size: 15px;
     line-height: 1.4;
-    color: var(--liushen-text);
+    @apply text-90;
     text-align: justify;
 }
 
@@ -252,7 +233,7 @@ nav, .navbar {
     width: 8px;
     height: 2px;
     margin-left: 2px;
-    background: var(--liushen-text);
+    @apply bg-black/90 dark:bg-white/90;
     vertical-align: bottom;
     animation: blink-underline 1s ease-in-out infinite;
     transition: all 0.3s;
@@ -280,13 +261,13 @@ nav, .navbar {
 .ai-summary .ai-title .ai-title-left {
     display: flex;
     align-items: center;
-    color: var(--liushen-title-font-color);
+    color: var(--primary);
 }
 
 .ai-summary .ai-title .ai-title-left i {
     margin-right: 3px;
     display: flex;
-    color: var(--liushen-title-font-color);
+    color: var(--primary);
     border-radius: 20px;
     justify-content: center;
     align-items: center;
@@ -297,7 +278,7 @@ nav, .navbar {
 }
 
 .ai-summary .ai-title .ai-tag {
-    color: var(--liushen-secondtext);
+    color: var(--btn-content);
     font-weight: 300;
     margin-left: auto;
     display: flex;
