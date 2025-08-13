@@ -78,8 +78,14 @@ export const navBarConfig: NavBarConfig = {
 			icon: "fa6-solid:chart-line",
 			children: [
 				{
-					name: "监控",
+					name: "服务监控",
 					url: "https://status.fishcpy.top/status/web",
+					external: true,
+					icon: "fa6-solid:chart-line",
+				},
+				{
+					name: "节点监控",
+					url: "https://node.fishcpy.top",
 					external: true,
 					icon: "fa6-solid:chart-line",
 				},
@@ -99,6 +105,12 @@ export const navBarConfig: NavBarConfig = {
 					name: "关于",
 					url: "/about/",
 					icon: "fa6-solid:user",
+				},
+				{
+					name: "主页",
+					url: "https://www.fis.ink",
+					external: true,
+					icon: "material-symbols:home",
 				},
 			],
 		},
