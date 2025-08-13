@@ -20,7 +20,7 @@ export async function GET(context: APIContext) {
 
 	return rss({
 		title: siteConfig.title,
-		description: siteConfig.subtitle || "No description",
+		description: siteConfig.subtitle || " 非淡泊无以明志，非宁静无以致远",
 		site: context.site ?? "https://fuwari.vercel.app",
 		items: blog.map((post) => {
 			const content =
@@ -37,5 +37,6 @@ export async function GET(context: APIContext) {
 			};
 		}),
 		customData: `<language>${siteConfig.lang}</language>`,
+		stylesheet: "/rss-style.xsl",
 	});
 }
