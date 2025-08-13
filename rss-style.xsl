@@ -6,6 +6,7 @@
     <html lang="zh-CN">
       <head>
         <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <title><xsl:value-of select="rss/channel/title"/> - RSS订阅</title>
         <style>
@@ -26,7 +27,8 @@
           }
           
           .container {
-            width: 1000px;
+            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
             background: #2d2d2d;
             border-radius: 8px;
@@ -194,7 +196,51 @@
             text-decoration: underline;
           }
           
-
+          /* 移动端适配 */
+          @media (max-width: 768px) {
+            body {
+              padding: 10px;
+            }
+            
+            .container {
+              width: 100%;
+              border-radius: 6px;
+            }
+            
+            .header, .content, .footer {
+              padding: 15px;
+            }
+            
+            .site-title {
+              font-size: 1.6em;
+            }
+            
+            .post-item {
+              padding: 15px;
+            }
+            
+            .post-meta {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 5px;
+            }
+          }
+          
+          /* 小屏幕手机适配 */
+          @media (max-width: 480px) {
+            .site-title {
+              font-size: 1.4em;
+            }
+            
+            .post-title {
+              font-size: 1.1em;
+            }
+            
+            .post-item {
+              padding: 12px;
+              margin-bottom: 15px;
+            }
+          }
         </style>
       </head>
       <body>
