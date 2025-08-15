@@ -250,49 +250,28 @@ class TwikooVisitorManager {
     return url;
   }
 
-  // 批量获取访问量
+  // 批量获取访问量（Twikoo不支持真正的批量API，所以逐个获取）
   async getVisitorCounts(urls) {
     if (!window.twikoo) {
       throw new Error('Twikoo not available');
     }
 
-    try {
-      // 尝试使用 Twikoo 的批量API
-      const response = await fetch(this.config.envId, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          event: 'COUNTER_GET',
-          urls: urls
-        })
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Batch visitor counts response:', data);
-        
-        // 处理返回的数据
-        const counts = {};
-        if (Array.isArray(data)) {
-          data.forEach((item, index) => {
-            counts[urls[index]] = item.time || 0;
-          });
-        } else if (data.data && Array.isArray(data.data)) {
-          data.data.forEach((item, index) => {
-            counts[urls[index]] = item.time || 0;
-          });
-        }
-        
-        return counts;
+    console.log('Getting visitor counts for URLs:', urls);
+    const counts = {};
+    
+    // 逐个获取每个URL的访问量
+    for (const url of urls) {
+      try {
+        const count = await this.getSingleVisitorCount(url);
+        counts[url] = count;
+        console.log(`Got count for ${url}: ${count}`);
+      } catch (error) {
+        console.error(`Failed to get count for ${url}:`, error);
+        counts[url] = 0;
       }
-    } catch (error) {
-      console.error('Batch API failed:', error);
     }
-
-    // 如果批量API失败，返回空对象让调用者处理单独获取
-    throw new Error('Batch API not available');
+    
+    return counts;
   }
 
   // 获取单个页面的访问量
@@ -319,10 +298,10 @@ class TwikooVisitorManager {
         console.log(`Single visitor count for ${url}:`, data);
         
         // 处理返回的数据
-        if (data.time !== undefined) {
-          return data.time;
-        } else if (data.data && data.data.time !== undefined) {
+        if (data.data && data.data.time !== undefined) {
           return data.data.time;
+        } else if (data.time !== undefined) {
+          return data.time;
         }
       }
 
