@@ -1,21 +1,22 @@
 ---
-import { commentConfig } from '@/config'
-import Twikoo from './Twikoo.astro'
+import { commentConfig } from "@/config";
+import Twikoo from "./Twikoo.astro";
+
 interface Props {
-  post: any
+	post: any;
 }
 
-const { id, data, slug } = Astro.props.post || {}
+const { id, data, slug } = Astro.props.post || {};
 // 确保slug存在，并且路径格式正确
-const path = slug ? `/posts/${slug}` : Astro.url.pathname
-console.log('Comment组件初始化')
+const path = slug ? `/posts/${slug}` : Astro.url.pathname;
+console.log("Comment组件初始化");
 
-let commentService = ''
+let commentService = "";
 if (commentConfig?.twikoo) {
-  commentService = 'twikoo'
+	commentService = "twikoo";
 }
 ---
-<div class="card-base p-6 mb-4">
+<div class="card-base p-6 mb-4 mt-4">
   {commentService === 'twikoo' && <Twikoo path={path} />}
   {commentService === '' && null}
-</div> 
+</div>

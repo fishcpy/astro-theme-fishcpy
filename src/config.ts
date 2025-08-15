@@ -70,6 +70,11 @@ export const navBarConfig: NavBarConfig = {
 					url: "/circle/",
 					icon: "fa6-solid:circle-nodes",
 				},
+				{
+					name: "留言板",
+					url: "/comments/",
+					icon: "fa6-solid:message",
+				},
 			],
 		},
 		{

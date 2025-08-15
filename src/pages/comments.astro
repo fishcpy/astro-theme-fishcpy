@@ -1,0 +1,33 @@
+---
+import { getEntry, render } from "astro:content";
+import Twikoo from "@components/comment/Twikoo.astro";
+import Markdown from "@components/misc/Markdown.astro";
+import { commentConfig } from "../config";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const commentsPost = await getEntry("spec", "comments");
+
+if (!commentsPost) {
+	throw new Error("Comments page content not found");
+}
+
+const { Content } = await render(commentsPost);
+---
+<MainGridLayout title="留言板" description="留言板">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <h1 class="text-4xl font-bold mb-6 text-neutral-900 dark:text-white">留言板</h1>
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+    
+    {commentConfig?.twikoo && (
+      <div class="card-base p-6 mb-4 mt-4">
+        <Twikoo path="/comments/" />
+      </div>
+    )}
+</MainGridLayout>
