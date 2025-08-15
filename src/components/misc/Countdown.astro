@@ -1,16 +1,16 @@
 ---
 interface Props {
-  targetDate: string; // 目标日期，格式为 'YYYY-MM-DD'
-  startDate: string; // 起始日期，格式为 'YYYY-MM-DD'
-  title?: string; // 倒计时标题，可选
+	targetDate: string; // 目标日期，格式为 'YYYY-MM-DD'
+	startDate: string; // 起始日期，格式为 'YYYY-MM-DD'
+	title?: string; // 倒计时标题，可选
 }
 
 const { targetDate, startDate, title = "倒计时" } = Astro.props;
 
 // 格式化日期为"年月日"格式
 function formatDateToChinese(dateStr: string) {
-  const [year, month, day] = dateStr.split('-');
-  return `${year}年${month}月${day}日`;
+	const [year, month, day] = dateStr.split("-");
+	return `${year}年${month}月${day}日`;
 }
 
 const startDateChinese = formatDateToChinese(startDate);
@@ -58,81 +58,52 @@ const targetDateChinese = formatDateToChinese(targetDate);
   .countdown-container {
     margin: 2rem 0;
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: var(--theme-surface-1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--line-divider);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: all 0.3s;
   }
 
-  /* 增强深色模式下容器的可见性 */
-  :global(.dark) .countdown-container {
-    background-color: rgba(35, 35, 50, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-  }
+
 
   .countdown-title {
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
-    color: var(--theme-text);
-    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
-  }
-
-  /* 确保在深色模式下标题可见 */
-  :global(.dark) .countdown-title {
-    color: white;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    color: var(--primary);
+    font-weight: 500;
+    text-align: center;
   }
 
   .countdown-dates {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     font-size: 1rem;
-    color: var(--text-2);
-    font-weight: 500;
+    color: var(--btn-content);
+    font-weight: 300;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-style: italic;
   }
 
-  /* 确保在深色模式下日期文本可见 */
-  :global(.dark) .countdown-dates {
-    color: hsl(0, 0%, 90%);
-    text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
-    font-weight: 500;
-    opacity: 1;
-  }
-
   .progress-container {
-    margin: 1.5rem 0;
+    margin: 0.8rem 0;
     position: relative;
     height: 20px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background: var(--btn-regular-bg);
     border-radius: 10px;
     overflow: hidden;
-  }
-
-  /* 确保在深色模式下进度条背景可见 */
-  :global(.dark) .progress-container {
-    background-color: rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3), 0 0 2px rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--line-divider);
   }
 
   .progress-bar {
     height: 100%;
-    background-color: var(--theme-primary);
+    background: var(--primary);
     border-radius: 10px;
     width: 0%;
     transition: width 0.5s ease;
-  }
-
-  /* 增强深色模式下进度条的可见性 */
-  :global(.dark) .progress-bar {
-    background-color: var(--theme-primary);
-    box-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.8), 0 0 4px rgba(255, 255, 255, 0.4);
-    filter: brightness(1.3);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   }
 
   .progress-text {
@@ -140,16 +111,10 @@ const targetDateChinese = formatDateToChinese(targetDate);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--theme-text);
+    color: var(--btn-content);
     font-weight: bold;
     font-size: 0.8rem;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-  }
-
-  /* 确保在深色模式下文本可见 */
-  :global(.dark) .progress-text {
-    color: white;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
   }
 
   .countdown {
@@ -157,7 +122,7 @@ const targetDateChinese = formatDateToChinese(targetDate);
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
   }
 
   .countdown-item {
@@ -170,31 +135,20 @@ const targetDateChinese = formatDateToChinese(targetDate);
   .countdown-value {
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--theme-primary);
+    color: var(--primary);
+    transition: all 0.3s;
   }
 
-  /* 确保在深色模式下数值更明显 */
-  :global(.dark) .countdown-value {
-    color: hsl(0, 0%, 95%);
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 6px rgba(255, 255, 255, 0.5);
-    font-weight: 800;
-    filter: brightness(1.4);
-    opacity: 1;
+  .countdown-item:hover .countdown-value {
+    transform: scale(1.05);
+    filter: brightness(1.1);
   }
 
   .countdown-label {
     font-size: 0.9rem;
-    color: var(--theme-text-light);
+    color: var(--btn-content);
     margin-top: 0.25rem;
-  }
-
-  /* 确保在深色模式下标签文本可见 */
-  :global(.dark) .countdown-label {
-    color: hsl(0, 0%, 90%);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 2px rgba(0, 0, 0, 0.5);
-    font-weight: 600;
-    opacity: 0.95;
-    letter-spacing: 0.05em;
+    font-weight: 300;
   }
 
   @media (max-width: 768px) {
