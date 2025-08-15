@@ -280,9 +280,9 @@
 	},
 	{
 		"title": "yCENzh’s blog",
-		"imgurl": "https://fuwari.14131413.xyz/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
+		"imgurl": "https://fuwari.oh1.top/favicon/icon.webp",
 		"desc": "Ciallo～(∠・ω< )⌒☆",
-		"siteurl": "https://fuwari.14131413.xyz",
+		"siteurl": "https://fuwari.oh1.top",
 		"category": "博客",
 		"tags": [""],
 		"openInNewTab": true
@@ -310,6 +310,15 @@
 		"imgurl": "https://avatars.githubusercontent.com/u/91101909?v=4",
 		"desc": "愛することを忘れないで",
 		"siteurl": "https://blog.sakura.ink",
+		"category": "博客",
+		"tags": [""],
+		"openInNewTab": true
+	},
+	{
+		"title": "TNTの小破站",
+		"imgurl": "https://cdn.fis.ink/cdn/2025/08/15/689ed0ef4b2a3.webp",
+		"desc": "萝卜青菜，各有所爱",
+		"siteurl": "https://blog.tnto.fun",
 		"category": "博客",
 		"tags": [""],
 		"openInNewTab": true
