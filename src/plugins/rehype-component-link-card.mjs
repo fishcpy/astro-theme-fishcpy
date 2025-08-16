@@ -37,7 +37,8 @@ export function LinkCardComponent(properties, children) {
 	const domain = new URL(url).hostname;
 
 	// Use custom icon if provided, otherwise use Google favicon service
-	const iconUrl = customIcon || `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+	const iconUrl =
+		customIcon || `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
 	const nFavicon = h(`div#${cardUuid}-favicon`, {
 		class: "lc-favicon",
 		style: `background-image: url(${iconUrl})`,
