@@ -1,4 +1,306 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>Uptime Kuma监控美化</title><link>https://blog.fis.ink/posts/29/</link><guid isPermaLink="true">https://blog.fis.ink/posts/29/</guid><description>这是一个关于部署和美化Uptime Kuma监控面板的分享，内容总结如下：首先介绍了Uptime Kuma的部署，可以通过Docker等平台部署，具体细节见官方GitHub仓库。接着提供了一份自定义CSS，用于美化界面，特点包括浅色和暗色模式切换、自定义颜色变量、背景固定图片、卡片半透明和模糊效果、按钮带玻璃质感、状态指示点和百分比徽章的呼吸动画、响应式移动端布局、隐藏更新时间信息，以及柔和的文字边框阴影等视觉优化。最后给出了示例监控站点链接https://status.fishcpy.top/status/web，适合喜欢暗色模式和现代玻璃拟态风格的用户，方便直接套用或二次修改。</description><pubDate>Sat, 09 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;部署Uptime Kuma&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>给你的Fuwari加一个链接大卡片</title><link>https://blog.fis.ink/posts/30/</link><guid isPermaLink="true">https://blog.fis.ink/posts/30/</guid><description>注意:本文章修改文件部分为AI所写。这篇文章介绍了如何在Astro博客中实现自定义之类的第三方链接卡片功能。文章分为示例和添加教程两部分。</description><pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
+由于我没有实力，本篇文章修改文件部分为AI所写
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+修改文件前请注意备份，防止修改失败无法回退
+:::&lt;/p&gt;
+&lt;h1&gt;示例&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot;}&lt;/p&gt;
+&lt;h2&gt;自定义标题和描述&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot;}&lt;/p&gt;
+&lt;h2&gt;带图片的链接卡片&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;h2&gt;自定义图标的链接卡片&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;h1&gt;添加教程&lt;/h1&gt;
+&lt;h2&gt;再次提示&lt;/h2&gt;
+&lt;p&gt;:::tip
+由于我没有实力，下方内容为AI所写
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+修改文件前请注意备份，防止修改失败无法回退
+:::&lt;/p&gt;
+&lt;h3&gt;1. 创建组件文件&lt;/h3&gt;
+&lt;p&gt;首先，在 &lt;code&gt;src/plugins/&lt;/code&gt; 目录下创建 &lt;code&gt;rehype-component-link-card.mjs&lt;/code&gt; 文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/// &amp;lt;reference types=&quot;mdast&quot; /&amp;gt;
+import { h } from &quot;hastscript&quot;;
+
+/**
+ * Creates a Link Card component for third-party links.
+ */
+export function LinkCardComponent(properties, children) {
+	if (Array.isArray(children) &amp;amp;&amp;amp; children.length !== 0)
+		return h(&quot;div&quot;, { class: &quot;hidden&quot; }, [
+			&apos;Invalid directive. (&quot;link-card&quot; directive must be leaf type &quot;::link-card{url=&quot;https://example.com&quot;}&quot;))&apos;,
+		]);
+
+	if (!properties.url || !properties.url.startsWith(&apos;http&apos;))
+		return h(
+			&quot;div&quot;,
+			{ class: &quot;hidden&quot; },
+			&apos;Invalid URL. (&quot;url&quot; attribute must be a valid HTTP/HTTPS URL)&apos;,
+		);
+
+	const url = properties.url;
+	const customTitle = properties.title;
+	const customDescription = properties.description;
+	const customImage = properties.image;
+	const customIcon = properties.icon;
+	const cardUuid = `LC${Math.random().toString(36).slice(-6)}`;
+
+	// Extract domain from URL for display
+	const domain = new URL(url).hostname;
+
+	// Use custom icon if provided, otherwise use Google favicon service
+	const iconUrl = customIcon || `https://www.google.com/s2/favicons?domain=${domain}&amp;amp;sz=32`;
+	const nFavicon = h(`div#${cardUuid}-favicon`, { 
+		class: &quot;lc-favicon&quot;,
+		style: `background-image: url(${iconUrl})` 
+	});
+
+	const nTitle = h(&quot;div&quot;, { class: &quot;lc-titlebar&quot; }, [
+		h(&quot;div&quot;, { class: &quot;lc-titlebar-left&quot; }, [
+			h(&quot;div&quot;, { class: &quot;lc-site&quot; }, [
+				nFavicon,
+				h(&quot;div&quot;, { class: &quot;lc-domain&quot; }, domain),
+			]),
+		]),
+		h(&quot;div&quot;, { class: &quot;lc-external-icon&quot; }),
+	]);
+
+	const nCardTitle = h(
+		`div#${cardUuid}-title`,
+		{ class: &quot;lc-card-title&quot; },
+		customTitle || &quot;Loading...&quot;,
+	);
+
+	const nDescription = h(
+		`div#${cardUuid}-description`,
+		{ class: &quot;lc-description&quot; },
+		customDescription || &quot;Loading description...&quot;,
+	);
+
+	const nImage = h(
+		`div#${cardUuid}-image`,
+		{ class: &quot;lc-image&quot; },
+		customImage ? h(&quot;img&quot;, { src: customImage, alt: &quot;Link preview&quot; }) : null
+	);
+
+	// Only fetch metadata if custom data is not provided
+	const needsFetch = !customTitle || !customDescription;
+	
+	const nScript = needsFetch ? h(
+		`script#${cardUuid}-script`,
+		{ type: &quot;text/javascript&quot;, defer: true },
+		`
+			// Simple metadata extraction for link cards
+			try {
+				const cardElement = document.getElementById(&apos;${cardUuid}-card&apos;);
+				const titleElement = document.getElementById(&apos;${cardUuid}-title&apos;);
+				const descElement = document.getElementById(&apos;${cardUuid}-description&apos;);
+				
+				// Set default values if custom ones weren&apos;t provided
+				if (!titleElement.dataset.hasCustomTitle) {
+					titleElement.innerText = &apos;${domain}&apos;;
+				}
+				if (!descElement.dataset.hasCustomDesc) {
+					descElement.innerText = &apos;Visit ${domain}&apos;;
+				}
+				
+				cardElement.classList.remove(&quot;fetch-waiting&quot;);
+				console.log(&quot;[LINK-CARD] Loaded card for ${url} | ${cardUuid}.&quot;);
+			} catch (err) {
+				const c = document.getElementById(&apos;${cardUuid}-card&apos;);
+				c?.classList.add(&quot;fetch-error&quot;);
+				console.warn(&quot;[LINK-CARD] (Error) Loading card for ${url} | ${cardUuid}.&quot;);
+			}
+		`,
+	) : null;
+
+	// Set data attributes for custom content
+	if (customTitle) {
+		nCardTitle.properties[&apos;data-has-custom-title&apos;] = &apos;true&apos;;
+	}
+	if (customDescription) {
+		nDescription.properties[&apos;data-has-custom-desc&apos;] = &apos;true&apos;;
+	}
+
+	const cardContent = [
+		nTitle,
+		nCardTitle,
+		nDescription,
+	];
+
+	if (customImage) {
+		cardContent.push(nImage);
+	}
+
+	if (nScript) {
+		cardContent.push(nScript);
+	}
+
+	return h(
+		`a#${cardUuid}-card`,
+		{
+			class: needsFetch ? &quot;card-link fetch-waiting no-styling&quot; : &quot;card-link no-styling&quot;,
+			href: url,
+			target: &quot;_blank&quot;,
+			rel: &quot;noopener noreferrer&quot;,
+			&apos;data-url&apos;: url,
+		},
+		cardContent,
+	);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. 添加CSS样式&lt;/h3&gt;
+&lt;p&gt;在 &lt;code&gt;src/styles/markdown-extend.styl&lt;/code&gt; 文件中添加以下样式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// Link Card Styles
+a.card-link
+  display: block
+  text-decoration: none
+  border: 1px solid var(--line-divider)
+  border-radius: 8px
+  padding: 16px
+  margin: 16px 0
+  background-color: var(--card-bg)
+  transition: all 0.2s ease
+  position: relative
+  overflow: hidden
+  color: inherit
+
+  &amp;amp;:hover
+    background-color: var(--btn-regular-bg-hover)
+
+    .lc-titlebar
+      .lc-external-icon
+        opacity: 1
+
+  &amp;amp;:active
+    transform: translateY(0)
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+
+  .lc-titlebar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 8px
+
+    .lc-titlebar-left
+      display: flex
+      align-items: center
+
+    .lc-site
+      display: flex
+      align-items: center
+      gap: 8px
+
+    .lc-favicon
+      width: 16px
+      height: 16px
+      background-size: contain
+      background-repeat: no-repeat
+      background-position: center
+      flex-shrink: 0
+
+    .lc-domain
+      font-size: 14px
+      color: var(--text-color-secondary)
+      font-weight: 500
+
+    .lc-external-icon
+      width: 16px
+      height: 16px
+      opacity: 0.6
+      transition: opacity 0.2s ease
+      background-image: url(&apos;data:image/svg+xml;utf8,&amp;lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&amp;gt;&amp;lt;path d=&quot;M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&quot;&amp;gt;&amp;lt;/path&amp;gt;&amp;lt;polyline points=&quot;15,3 21,3 21,9&quot;&amp;gt;&amp;lt;/polyline&amp;gt;&amp;lt;line x1=&quot;10&quot; y1=&quot;14&quot; x2=&quot;21&quot; y2=&quot;3&quot;&amp;gt;&amp;lt;/line&amp;gt;&amp;lt;/svg&amp;gt;&apos;)
+      background-size: contain
+      background-repeat: no-repeat
+      background-position: center
+
+  .lc-card-title
+    font-size: 18px
+    font-weight: 600
+    color: var(--text-color-primary)
+    margin-bottom: 8px
+    line-height: 1.3
+
+  .lc-description
+    font-size: 14px
+    color: var(--text-color-secondary)
+    line-height: 1.4
+    margin-bottom: 12px
+
+  .lc-image
+    margin-top: 12px
+    
+    img
+      width: 100%
+      max-height: 200px
+      object-fit: cover
+      border-radius: 4px
+
+  &amp;amp;.fetch-waiting
+    .lc-card-title, .lc-description
+      animation: pulse 1.5s ease-in-out infinite
+
+  &amp;amp;.fetch-error
+    border-color: var(--error-color)
+    background-color: var(--error-bg)
+
+@keyframes pulse
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 0.5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. 配置Astro&lt;/h3&gt;
+&lt;p&gt;在 &lt;code&gt;astro.config.mjs&lt;/code&gt; 文件中导入组件并注册：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 添加导入
+import { LinkCardComponent } from &quot;./src/plugins/rehype-component-link-card.mjs&quot;;
+
+// 在 rehypeComponents 配置中添加
+rehypeComponents,
+{
+  components: {
+    github: GithubCardComponent,
+    &quot;link-card&quot;: LinkCardComponent, // 添加这一行
+    note: (x, y) =&amp;gt; AdmonitionComponent(x, y, &quot;note&quot;),
+    // ... 其他组件
+  },
+},
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;4. 使用方法&lt;/h3&gt;
+&lt;p&gt;配置完成后，你就可以在Markdown文件中使用链接卡片了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 基本用法
+::link-card{url=&quot;https://example.com&quot;}
+
+// 自定义标题和描述
+::link-card{url=&quot;https://github.com&quot; title=&quot;GitHub&quot; description=&quot;代码托管平台&quot;}
+
+// 带自定义图片
+::link-card{url=&quot;https://vercel.com&quot; title=&quot;Vercel&quot; description=&quot;部署平台&quot; image=&quot;https://example.com/image.png&quot;}
+
+// 自定义图标
+::link-card{url=&quot;https://github.com&quot; title=&quot;GitHub&quot; description=&quot;代码托管平台&quot; icon=&quot;https://github.com/favicon.ico&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;5. 注意事项&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;确保URL以 &lt;code&gt;http://&lt;/code&gt; 或 &lt;code&gt;https://&lt;/code&gt; 开头&lt;/li&gt;
+&lt;li&gt;自定义图片建议使用合适的尺寸和格式&lt;/li&gt;
+&lt;li&gt;组件会自动获取网站的favicon作为图标，也可以通过 &lt;code&gt;icon&lt;/code&gt; 参数自定义图标&lt;/li&gt;
+&lt;li&gt;自定义图标建议使用16x16或32x32像素的图片&lt;/li&gt;
+&lt;li&gt;支持深色和浅色主题自动切换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在你的博客就拥有了美观的第三方链接大卡片功能！&lt;/p&gt;
+</content:encoded></item><item><title>Uptime Kuma监控美化</title><link>https://blog.fis.ink/posts/29/</link><guid isPermaLink="true">https://blog.fis.ink/posts/29/</guid><description>这是一个关于部署和美化Uptime Kuma监控面板的分享，内容总结如下：首先介绍了Uptime Kuma的部署，可以通过Docker等平台部署，具体细节见官方GitHub仓库。接着提供了一份自定义CSS，用于美化界面，特点包括浅色和暗色模式切换、自定义颜色变量、背景固定图片、卡片半透明和模糊效果、按钮带玻璃质感、状态指示点和百分比徽章的呼吸动画、响应式移动端布局、隐藏更新时间信息，以及柔和的文字边框阴影等视觉优化。最后给出了示例监控站点链接https://status.fishcpy.top/status/web，适合喜欢暗色模式和现代玻璃拟态风格的用户，方便直接套用或二次修改。</description><pubDate>Sat, 09 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;部署Uptime Kuma&lt;/h1&gt;
 &lt;p&gt;首先需要部署&lt;a href=&quot;https://github.com/louislam/uptime-kuma&quot;&gt;Uptime Kuma&lt;/a&gt;，可以在docker等平台部署，这里不多说，自己看看github仓库&lt;/p&gt;
 &lt;h1&gt;美化&lt;/h1&gt;
 &lt;p&gt;我这里提供一个css，可以参考一下，我也是用别人css加了一点效果&lt;/p&gt;
