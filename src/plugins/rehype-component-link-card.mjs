@@ -38,7 +38,7 @@ export function LinkCardComponent(properties, children) {
 
 	// Use custom icon if provided, otherwise use Google favicon service
 	const iconUrl =
-		customIcon || `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+		customIcon || `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
 	const nFavicon = h(`div#${cardUuid}-favicon`, {
 		class: "lc-favicon",
 		style: `background-image: url(${iconUrl})`,
@@ -46,10 +46,7 @@ export function LinkCardComponent(properties, children) {
 
 	const nTitle = h("div", { class: "lc-titlebar" }, [
 		h("div", { class: "lc-titlebar-left" }, [
-			h("div", { class: "lc-site" }, [
-				nFavicon,
-				h("div", { class: "lc-domain" }, domain),
-			]),
+			h("div", { class: "lc-site" }, [nFavicon]),
 		]),
 		h("div", { class: "lc-external-icon" }),
 	]);
