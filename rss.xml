@@ -4,6 +4,9 @@
 &lt;p&gt;:::caution
 修改文件前请注意备份，防止修改失败无法回退
 :::&lt;/p&gt;
+&lt;h1&gt;前言&lt;/h1&gt;
+&lt;p&gt;今天在看liushen大佬文章时看到了个大卡片效果，感觉挺好看的，于是让AI给我加上了&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://blog.liushen.fun/posts/aae6fd55/&quot; title=&quot;清羽飞扬&quot; description=&quot;循一缕风，入山偷得夏日凉&quot; icon=&quot;https://blog.liushen.fun/info/avatar.ico&quot;}&lt;/p&gt;
 &lt;h1&gt;示例&lt;/h1&gt;
 &lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot;}
 &lt;/code&gt;&lt;/pre&gt;
@@ -20,6 +23,10 @@
 &lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;h2&gt;最终效果&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
 &lt;h1&gt;添加教程&lt;/h1&gt;
 &lt;h2&gt;再次提示&lt;/h2&gt;
 &lt;p&gt;:::tip
