@@ -239,7 +239,132 @@ a.card-github.fetch-error
   100%
     opacity: 0.15
 
-.card-github, .gc-description, .gc-titlebar, .gc-stars, .gc-forks, .gc-license, .gc-avatar, .github-logo
+// Link Card Styles
+a.card-link
+  display: block
+  background: var(--license-block-bg)
+  position: relative
+  margin: 0.5rem 0
+  padding: 1.1rem 1.5rem 1.1rem 1.5rem
+  color: var(--tw-prose-body)
+  border-radius: var(--radius-large)
+  text-decoration-thickness: 0px
+  text-decoration-line: none
+  border: 1px solid var(--line-divider)
+
+  &:hover
+    background-color: var(--btn-regular-bg-hover)
+
+    .lc-titlebar
+      color: var(--btn-content)
+
+    .lc-card-title, .lc-description
+      color: var(--tw-prose-headings)
+
+    .lc-external-icon:before
+      background-color: var(--primary)
+
+  &:active
+    scale: .98
+    background-color: var(--btn-regular-bg-active)
+
+  .lc-titlebar
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 0.5rem
+    color: var(--tw-prose-headings)
+    font-size: 0.875rem
+    font-weight: 400
+    opacity: 0.8
+
+    .lc-titlebar-left
+      display: flex
+      flex-flow: row nowrap
+      gap: 0.5rem
+
+    .lc-site
+      display: flex
+      flex-flow: row nowrap
+      gap: 0.5rem
+      align-items: center
+
+    .lc-domain
+      font-weight: 400
+
+    .lc-favicon
+      display: block
+      overflow: hidden
+      width: 1rem
+      height: 1rem
+      background-size: cover
+      border-radius: 2px
+      background-color: var(--tw-prose-body)
+      opacity: 0.8
+
+  .lc-card-title
+    margin-bottom: 0.5rem
+    font-size: 1.25rem
+    font-weight: 600
+    line-height: 1.4
+    color: var(--tw-prose-headings)
+
+  .lc-description
+    margin-bottom: 0.7rem
+    font-size: 1rem
+    font-weight: 300
+    line-height: 1.5rem
+    color: var(--tw-prose-body)
+    opacity: 0.9
+
+  .lc-image
+    margin-top: 1rem
+    border-radius: 0.5rem
+    overflow: hidden
+    
+    img
+      width: 100%
+      height: auto
+      max-height: 200px
+      object-fit: cover
+
+  .lc-external-icon
+    font-size: 1rem
+    opacity: 0.6
+
+    &:before
+      content: ' '
+      display: inline-block
+      height: 1em
+      width: 1em
+      background-color: var(--tw-prose-body)
+      mask-size: contain
+      mask-position: center
+      mask-repeat: no-repeat
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'%3E%3C/path%3E%3Cpolyline points='15,3 21,3 21,9'%3E%3C/polyline%3E%3Cline x1='10' y1='14' x2='21' y2='3'%3E%3C/line%3E%3C/svg%3E")
+      transition-property: background-color
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+      transition-duration: 0.15s
+
+a.card-link.fetch-waiting
+  pointer-events: none
+  opacity: 0.7
+  transition: opacity 0.15s ease-in-out
+
+  .lc-card-title, .lc-description
+    background-color: var(--tw-prose-body)
+    color: transparent
+    opacity: 0.5
+    animation: pulsate 2s infinite linear
+    user-select: none
+    border-radius: 0.25rem
+
+a.card-link.fetch-error
+  pointer-events: all
+  opacity: 1
+  border-color: var(--admonitions-color-warning)
+
+.card-github, .gc-description, .gc-titlebar, .gc-stars, .gc-forks, .gc-license, .gc-avatar, .github-logo, .card-link, .lc-card-title, .lc-description, .lc-favicon, .lc-external-icon
   transition-property: all
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
   transition-duration: 0.15s
