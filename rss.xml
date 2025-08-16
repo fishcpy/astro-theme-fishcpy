@@ -302,9 +302,6 @@ rehypeComponents,
 &lt;ul&gt;
 &lt;li&gt;确保URL以 &lt;code&gt;http://&lt;/code&gt; 或 &lt;code&gt;https://&lt;/code&gt; 开头&lt;/li&gt;
 &lt;li&gt;自定义图片建议使用合适的尺寸和格式&lt;/li&gt;
-&lt;li&gt;组件会自动获取网站的favicon作为图标，也可以通过 &lt;code&gt;icon&lt;/code&gt; 参数自定义图标&lt;/li&gt;
-&lt;li&gt;自定义图标建议使用16x16或32x32像素的图片&lt;/li&gt;
-&lt;li&gt;支持深色和浅色主题自动切换&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;现在你的博客就拥有了美观的第三方链接大卡片功能！&lt;/p&gt;
 </content:encoded></item><item><title>Uptime Kuma监控美化</title><link>https://blog.fis.ink/posts/29/</link><guid isPermaLink="true">https://blog.fis.ink/posts/29/</guid><description>这是一个关于部署和美化Uptime Kuma监控面板的分享，内容总结如下：首先介绍了Uptime Kuma的部署，可以通过Docker等平台部署，具体细节见官方GitHub仓库。接着提供了一份自定义CSS，用于美化界面，特点包括浅色和暗色模式切换、自定义颜色变量、背景固定图片、卡片半透明和模糊效果、按钮带玻璃质感、状态指示点和百分比徽章的呼吸动画、响应式移动端布局、隐藏更新时间信息，以及柔和的文字边框阴影等视觉优化。最后给出了示例监控站点链接https://status.fishcpy.top/status/web，适合喜欢暗色模式和现代玻璃拟态风格的用户，方便直接套用或二次修改。</description><pubDate>Sat, 09 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;部署Uptime Kuma&lt;/h1&gt;
