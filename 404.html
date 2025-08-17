@@ -313,6 +313,62 @@
                 display: none;
             }
         }
+        
+        /* 深色模式适配 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0f172a;
+            }
+            
+            /* 深色模式下的球体颜色 */
+            .orb-light {
+                background: #1e293b;
+            }
+            
+            .orb-dark {
+                background: #334155;
+            }
+            
+            /* 深色模式下的磨砂玻璃遮罩 */
+            .frosted-overlay {
+                background: rgba(15, 23, 42, 0.3);
+            }
+            
+            /* 深色模式下的内容容器 */
+            .content-container {
+                background-color: rgba(30, 41, 59, 0.8);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* 深色模式下的装饰边框 */
+            .content-container::before,
+            .content-container::after,
+            .corner-top-right,
+            .corner-bottom-left {
+                border-color: rgba(148, 163, 184, 0.5);
+            }
+            
+            /* 深色模式下的文字颜色 */
+            h1 {
+                color: #06b6d4;
+            }
+            
+            .poem {
+                color: #0891b2;
+            }
+            
+            .message {
+                color: #cbd5e1;
+            }
+            
+            .countdown {
+                color: #06b6d4;
+            }
+            
+            .admin-message {
+                color: #94a3b8;
+            }
+        }
     </style>
 </head>
 <body>
