@@ -39,5 +39,3 @@
 
 # 本站由 [Fuwari](https://github.com/saicaca/fuwari) 强力驱动
 ::github{repo="saicaca/fuwari"}
-
-# 十年之约
