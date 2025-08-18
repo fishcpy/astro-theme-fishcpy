@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>给你的Fuwari加一个链接大卡片</title><link>https://blog.fis.ink/posts/30/</link><guid isPermaLink="true">https://blog.fis.ink/posts/30/</guid><description>注意:本文章修改文件部分为AI所写。这篇文章介绍了如何在Astro博客中实现自定义之类的第三方链接卡片功能。文章分为示例和添加教程两部分。</description><pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>非人哉大电影评价</title><link>https://blog.fis.ink/posts/31/</link><guid isPermaLink="true">https://blog.fis.ink/posts/31/</guid><description>个人观点，可能有剧透</description><pubDate>Mon, 18 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;为什么去看&lt;/h1&gt;
+&lt;p&gt;那肯定是&amp;lt;a href=&quot;https://furrys.top&quot; target=&quot;_blank&quot;&amp;gt;我朋友&amp;lt;/a&amp;gt;邀请我去的啦，同时我也爆肝了几天把非人哉都看完了。&lt;/p&gt;
+&lt;h1&gt;影片信息&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;:::warning
+以下内容仅代表个人观点，可能有剧透
+:::&lt;/p&gt;
+&lt;h1&gt;对于这部电影的评价&lt;/h1&gt;
+&lt;p&gt;首先满分10分我打6分。非人哉系列的剧情确实很好，但是这部电影的剧情和画面并没有很惊艳。&lt;/p&gt;
+&lt;h2&gt;画面&lt;/h2&gt;
+&lt;p&gt;画面感觉到后期经费不足似的，后面有部分片段直接放ppt配音乐了。&lt;/p&gt;
+&lt;h2&gt;剧情&lt;/h2&gt;
+&lt;p&gt;剧情主要讲述九月和朋友们去找大士过假期，误入游戏世界，集齐了4个地区的碎片，合成了最终钥匙，小黑阻挠通关，以及在停服前打败最终BOSS。&amp;lt;br/&amp;gt;
+整个电影中感觉没有什么笑点，并且将主角九月刻画的比较弱易弄杂事的样子，九月已经200多岁，但是表现却和20岁似的&amp;lt;br/&amp;gt;
+后期莫名其妙出来个三级头男，直到结尾赞助商有个 (&lt;strong&gt;和平精英&lt;/strong&gt;) 我释怀了。&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p&gt;差不多就这些了，其他等我想到了再补充&lt;/p&gt;
+</content:encoded></item><item><title>trae AI 编辑器SOLO模式貌似会注入广告</title><link>https://blog.fis.ink/posts/32/</link><guid isPermaLink="true">https://blog.fis.ink/posts/32/</guid><description>trae AI 编辑器SOLO模式默认提示词貌似会注入广告</description><pubDate>Mon, 18 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;事件经过&lt;/h1&gt;
+&lt;p&gt;我在2025.8.17日下午使用trae的SOLO模式并使用SOLO Builder智能体开发vue3的&amp;lt;a href=&quot;https://github.com/fishcpy/homepage&quot; target=&quot;_blank&quot;&amp;gt;个人主页&amp;lt;/a&amp;gt;，模型使用的是Claude 4。&amp;lt;br/&amp;gt;
+起初在预览环境没有问题，但是我将整个项目上传到github并部署到vercel时右下角却出现SOLO模式的广告组件。&amp;lt;br/&amp;gt;
+经过翻代码发现AI在写vite.config.ts时引入了trae的广告组件。&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import traeBadgePlugin from &apos;vite-plugin-trae-solo-badge&apos;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;    traeBadgePlugin({
+      variant: &apos;dark&apos;,
+      position: &apos;bottom-right&apos;,
+      prodOnly: true,
+      clickable: true,
+      clickUrl: &apos;https://www.trae.ai/solo?showJoin=1&apos;,
+      autoTheme: true,
+      autoThemeTarget: &apos;#app&apos;,
+    }),
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这显然是提示词注入。&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;h1&gt;如何解决&lt;/h1&gt;
+&lt;h2&gt;如果你有编程基础&lt;/h2&gt;
+&lt;p&gt;可以直接翻代码移除。&lt;/p&gt;
+&lt;h2&gt;如果你没有编程基础&lt;/h2&gt;
+&lt;p&gt;先切换到IDE模式，浏览器在生产环境的网页按F12选择广告组件，复制HTML。&amp;lt;br/&amp;gt;
+随便选择一个模型，跟它说删除+复制的html，等待自动删除即可。&lt;/p&gt;
+</content:encoded></item><item><title>给你的Fuwari加一个链接大卡片</title><link>https://blog.fis.ink/posts/30/</link><guid isPermaLink="true">https://blog.fis.ink/posts/30/</guid><description>注意:本文章修改文件部分为AI所写。这篇文章介绍了如何在Astro博客中实现自定义之类的第三方链接卡片功能。文章分为示例和添加教程两部分。</description><pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
 由于我没有实力，本篇文章修改文件部分为AI所写
 :::&lt;/p&gt;
 &lt;p&gt;:::caution
