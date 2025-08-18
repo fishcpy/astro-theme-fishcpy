@@ -21,7 +21,7 @@
 		"@astrojs/sitemap": "^3.4.2",
 		"@astrojs/svelte": "7.1.0",
 		"@astrojs/tailwind": "^6.0.2",
-		"@astrojs/vercel": "^8.2.5",
+		"@astrojs/vercel": "^8.2.6",
 		"@expressive-code/core": "^0.41.2",
 		"@expressive-code/plugin-collapsible-sections": "^0.41.2",
 		"@expressive-code/plugin-line-numbers": "^0.41.2",
