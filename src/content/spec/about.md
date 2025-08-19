@@ -19,7 +19,7 @@
 
 # <a href="https://z.fishcpy.top" target="_blank">赞助</a>
 
-> ## 赞助了一定要给[fishcpy@qq.com](mailto:fishcpy@qq.com)发邮件，表明渠道和单号，否则我认不清可能加不上。
+> ## 赞助了一定要给[fishcpy@qq.com](mailto:fishcpy@qq.com)发邮件，表明渠道和单号，和你自己名称和内容，否则我认不清可能加不上。
 
 | 名字   | 时间       | 备注 | 金额（单位：元） |
 |--------|------------|------|------------------|
