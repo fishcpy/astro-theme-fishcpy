@@ -67,7 +67,7 @@ cd sites/example.com/index
 # 如果报错，可以尝试下方指令
 sh install.sh
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;安装并抓包，这个环境看下方链接中的文章
+&lt;p&gt;安装并抓包，这个环节看下方链接中的文章
 ::link-card{url=&quot;https://www.2x.nz/posts/hack-lskypro/&quot; title=&quot;AcoFork Blog Z&quot; icon=&quot;https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&amp;amp;spec=0&quot;}&lt;/p&gt;
 &lt;h1&gt;再次提示&lt;/h1&gt;
 &lt;p&gt;:::warning
