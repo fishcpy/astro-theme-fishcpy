@@ -87,7 +87,7 @@ function getStatusColor(status: string) {
                         {type}
                         <span class="text-sm font-normal text-neutral-500 dark:text-neutral-400">({typeItems.length})</span>
                     </h2>
-                    <div class="grid grid-cols-1 gap-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {typeItems.map((item) => (
                             <div class="entertainment-card bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-sm border border-[var(--line-divider)] transition-all hover:shadow-lg duration-300 flex" data-status={item.status}>
                                 <!-- 封面图片 -->
