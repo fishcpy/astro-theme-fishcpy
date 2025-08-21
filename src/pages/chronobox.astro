@@ -240,13 +240,23 @@ function getStatusColor(status: string) {
     // 页面加载时初始化
     document.addEventListener('DOMContentLoaded', initializeFilters);
     
-    // Astro页面切换时重新初始化
-    document.addEventListener('astro:page-load', initializeFilters);
+    // Swup 页面切换事件监听器
+    const setupSwupHooks = () => {
+        if (window.swup && window.swup.hooks) {
+            window.swup.hooks.on('page:view', initializeFilters);
+        }
+    };
     
-    // 监听页面显示事件（从缓存返回时触发）
+    if (window.swup) {
+        setupSwupHooks();
+    } else {
+        document.addEventListener('swup:enable', setupSwupHooks);
+    }
+    
+    // 兼容Astro路由和延迟加载
+    document.addEventListener('astro:page-load', initializeFilters);
     document.addEventListener('astro:after-swap', initializeFilters);
     
-    // 兼容其他路由系统和延迟加载
     if (typeof window !== 'undefined') {
         // 延迟执行以确保DOM已更新
         setTimeout(initializeFilters, 100);
