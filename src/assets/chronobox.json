@@ -1,0 +1,68 @@
+[
+	{
+		"id": 1,
+		"title": "非人哉",
+		"type": "番剧",
+		"status": "看过",
+		"rating": 5,
+		"description": "中国古典神话传说中的“著名”精怪是如何在现代社会生存下去...",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6d7ce373e1.webp",
+		"year": 2018,
+		"tags": ["国创", "日常", "搞笑"]
+	},
+	{
+		"id": 2,
+		"title": "非人哉 第二季",
+		"type": "番剧",
+		"status": "看过",
+		"rating": 5,
+		"description": "故事围绕着女主角九尾狐九月展开，表现生活在当代都市中的九月作为一名普通的上班族努力工作挣钱...",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6d8301970c.webp",
+		"year": 2024,
+		"tags": ["国创", "日常", "搞笑"]
+	},
+	{
+		"id": 3,
+		"title": "非人哉 第三季",
+		"type": "番剧",
+		"status": "在看",
+		"rating": 4,
+		"description": "中国古典神话传说中的“著名”精怪是如何在现代社会生存下去...",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6db1a48996.webp",
+		"year": 2025,
+		"tags": ["国创", "日常", "搞笑"]
+	},
+	{
+		"id": 1,
+		"title": "流浪地球",
+		"type": "电影",
+		"status": "看过",
+		"rating": 5,
+		"description": "近年来，科学家们发现太阳急速衰老膨胀，短时间内包括地球在内的整个太阳系都将被太阳所吞没",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6db7c39a2a.webp",
+		"year": 2019,
+		"tags": ["奇幻", "冒险", "灾难"]
+	},
+	{
+		"id": 2,
+		"title": "流浪地球2",
+		"type": "电影",
+		"status": "看过",
+		"rating": 5,
+		"description": "太阳即将毁灭，人类在地球表面建造出巨大的推进器",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6da63071e7.webp",
+		"year": 2023,
+		"tags": ["奇幻", "冒险", "灾难"]
+	},
+	{
+		"id": 3,
+		"title": "非人哉：限时玩家",
+		"type": "电影",
+		"status": "看过",
+		"rating": 3,
+		"description": "平平无奇的打工狐九月与神仙同伴敖烈、哪吒、哮天犬、玉兔，误打误撞进入了一个坑很多的游戏世界。",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/21/68a6df911c367.webp",
+		"year": 2025,
+		"tags": ["国创", "搞笑"]
+	}
+]
