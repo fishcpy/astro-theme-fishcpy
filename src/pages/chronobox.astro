@@ -91,7 +91,7 @@ function getStatusColor(status: string) {
                         {typeItems.map((item) => (
                             <div class="entertainment-card bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-sm border border-[var(--line-divider)] transition-all hover:shadow-lg duration-300" data-status={item.status}>
                                 <!-- 封面图片 -->
-                                <div class="relative aspect-[3/4] overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+                                <div class="relative aspect-[4/3] sm:aspect-[3/4] overflow-hidden bg-zinc-200 dark:bg-zinc-800">
                                     <img 
                                         src={item.cover} 
                                         alt={item.title}
