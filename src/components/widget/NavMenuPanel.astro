@@ -95,7 +95,19 @@ function initSubmenuToggle() {
 
 initSubmenuToggle();
 
-document.addEventListener('astro:page-load', initSubmenuToggle);
+// 设置Swup页面切换事件监听器
+const setupSwupHooks = () => {
+    if (window.swup && window.swup.hooks) {
+        window.swup.hooks.on('page:view', initSubmenuToggle);
+    }
+};
+
+// 如果Swup已经初始化，直接设置钩子；否则等待Swup启用
+if (window.swup) {
+    setupSwupHooks();
+} else {
+    document.addEventListener('swup:enable', setupSwupHooks);
+}
 </script>
 
 <style>

@@ -129,6 +129,20 @@ function loadButtonScript() {
 }
 
 loadButtonScript();
+
+// 设置Swup页面切换事件监听器
+const setupSwupHooks = () => {
+    if (window.swup && window.swup.hooks) {
+        window.swup.hooks.on('page:view', loadButtonScript);
+    }
+};
+
+// 如果Swup已经初始化，直接设置钩子；否则等待Swup启用
+if (window.swup) {
+    setupSwupHooks();
+} else {
+    document.addEventListener('swup:enable', setupSwupHooks);
+}
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
