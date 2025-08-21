@@ -188,16 +188,24 @@ function getStatusColor(status: string) {
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function initializeFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
         const entertainmentCards = document.querySelectorAll('.entertainment-card');
         
+        // 移除之前的事件监听器
         filterBtns.forEach(btn => {
+            btn.replaceWith(btn.cloneNode(true));
+        });
+        
+        // 重新获取按钮元素并添加事件监听器
+        const newFilterBtns = document.querySelectorAll('.filter-btn');
+        
+        newFilterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetStatus = this.getAttribute('data-status');
                 
                 // 更新按钮状态
-                filterBtns.forEach(b => b.classList.remove('active'));
+                newFilterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
                 // 筛选卡片
@@ -227,5 +235,28 @@ function getStatusColor(status: string) {
                 }
             });
         }
-    });
+    }
+    
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', initializeFilters);
+    
+    // Astro页面切换时重新初始化
+    document.addEventListener('astro:page-load', initializeFilters);
+    
+    // 监听页面显示事件（从缓存返回时触发）
+    document.addEventListener('astro:after-swap', initializeFilters);
+    
+    // 兼容其他路由系统和延迟加载
+    if (typeof window !== 'undefined') {
+        // 延迟执行以确保DOM已更新
+        setTimeout(initializeFilters, 100);
+        setTimeout(initializeFilters, 500);
+        
+        // 监听页面可见性变化
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                setTimeout(initializeFilters, 50);
+            }
+        });
+    }
 </script>
