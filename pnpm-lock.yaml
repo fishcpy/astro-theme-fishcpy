@@ -19,13 +19,13 @@ importers:
         version: 3.4.2
       '@astrojs/svelte':
         specifier: 7.1.0
-        version: 7.1.0(@types/node@24.2.1)(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(jiti@1.21.7)(stylus@0.64.0)(svelte@5.38.1)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0)
+        version: 7.1.0(@types/node@24.2.1)(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(jiti@1.21.7)(stylus@0.64.0)(svelte@5.38.2)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0)
       '@astrojs/tailwind':
         specifier: ^6.0.2
         version: 6.0.2(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(tailwindcss@3.4.17)
       '@astrojs/vercel':
         specifier: ^8.2.6
-        version: 8.2.6(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(rollup@2.79.2)(svelte@5.38.1)
+        version: 8.2.6(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(rollup@2.79.2)(svelte@5.38.2)
       '@expressive-code/core':
         specifier: ^0.41.2
         version: 0.41.3
@@ -58,7 +58,7 @@ importers:
         version: 1.2.32
       '@iconify/svelte':
         specifier: ^4.2.0
-        version: 4.2.0(svelte@5.38.1)
+        version: 4.2.0(svelte@5.38.2)
       '@swup/astro':
         specifier: ^1.6.0
         version: 1.7.0
@@ -135,8 +135,8 @@ importers:
         specifier: ^0.64.0
         version: 0.64.0
       svelte:
-        specifier: ^5.38.1
-        version: 5.38.1
+        specifier: ^5.38.2
+        version: 5.38.2
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -1519,11 +1519,11 @@ packages:
     resolution: {integrity: sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==}
     engines: {node: '>=18.0.0'}
 
-  '@jridgewell/gen-mapping@0.3.12':
-    resolution: {integrity: sha512-OuLGC46TjB5BbN1dH8JULVVZY4WTdkF7tV9Ys6wLL1rubZnCMstOhNHueU5bLCrnRuDhKPDM4g6sw4Bel5Gzqg==}
+  '@jridgewell/gen-mapping@0.3.13':
+    resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
-  '@jridgewell/remapping@2.3.4':
-    resolution: {integrity: sha512-aG+WvAz17rhbzhKNkSeMLgbkPPK82ovXdONvmucbGhUqcroRFLLVhoGAk4xEI17gHpXgNX3sr0/B1ybRUsbEWw==}
+  '@jridgewell/remapping@2.3.5':
+    resolution: {integrity: sha512-LI9u/+laYG4Ds1TDKSJW2YPrIlcVYOwi2fUC6xB43lueCjgxV4lffOCZCtYFiH6TNOX+tQKXx97T4IKHbhyHEQ==}
 
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
@@ -1535,8 +1535,11 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.4':
     resolution: {integrity: sha512-VT2+G1VQs/9oz078bLrYbecdZKs912zQlkelYpuf+SXF+QvZDYJlbx/LSx+meSAwdDFnF8FVXW92AVjjkVmgFw==}
 
-  '@jridgewell/trace-mapping@0.3.29':
-    resolution: {integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==}
+  '@jridgewell/sourcemap-codec@1.5.5':
+    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+
+  '@jridgewell/trace-mapping@0.3.30':
+    resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
 
   '@mapbox/node-pre-gyp@2.0.0':
     resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
@@ -4781,8 +4784,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte@5.38.1:
-    resolution: {integrity: sha512-fO6CLDfJYWHgfo6lQwkQU2vhCiHc2MBl6s3vEhK+sSZru17YL4R5s1v14ndRpqKAIkq8nCz6MTk1yZbESZWeyQ==}
+  svelte@5.38.2:
+    resolution: {integrity: sha512-iAcp/oFAWauVSGILdD67n7DiwgLHXZzWZIdzl7araRxu72jUr7PFAo2Iie7gXt0IbnlYvhxCb9GT3ZJUquO3PA==}
     engines: {node: '>=18'}
 
   svgo@2.8.0:
@@ -5393,8 +5396,8 @@ snapshots:
 
   '@ampproject/remapping@2.3.0':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
 
   '@antfu/install-pkg@1.1.0':
     dependencies:
@@ -5424,7 +5427,7 @@ snapshots:
     dependencies:
       '@astrojs/compiler': 2.12.2
       '@astrojs/yaml2ts': 0.2.2
-      '@jridgewell/sourcemap-codec': 1.5.4
+      '@jridgewell/sourcemap-codec': 1.5.5
       '@volar/kit': 2.4.20(typescript@5.9.2)
       '@volar/language-core': 2.4.20
       '@volar/language-server': 2.4.20
@@ -5484,12 +5487,12 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.25.76
 
-  '@astrojs/svelte@7.1.0(@types/node@24.2.1)(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(jiti@1.21.7)(stylus@0.64.0)(svelte@5.38.1)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0)':
+  '@astrojs/svelte@7.1.0(@types/node@24.2.1)(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(jiti@1.21.7)(stylus@0.64.0)(svelte@5.38.2)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0)':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.1.1(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
+      '@sveltejs/vite-plugin-svelte': 5.1.1(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
       astro: 5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0)
-      svelte: 5.38.1
-      svelte2tsx: 0.7.41(svelte@5.38.1)(typescript@5.9.2)
+      svelte: 5.38.2
+      svelte2tsx: 0.7.41(svelte@5.38.2)(typescript@5.9.2)
       typescript: 5.9.2
       vite: 6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)
     transitivePeerDependencies:
@@ -5538,10 +5541,10 @@ snapshots:
       semver: 7.7.2
       vscode-languageserver-textdocument: 1.0.12
 
-  '@astrojs/vercel@8.2.6(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(rollup@2.79.2)(svelte@5.38.1)':
+  '@astrojs/vercel@8.2.6(astro@5.12.9(@types/node@24.2.1)(jiti@1.21.7)(rollup@2.79.2)(stylus@0.64.0)(terser@5.43.1)(typescript@5.9.2)(yaml@2.8.0))(rollup@2.79.2)(svelte@5.38.2)':
     dependencies:
       '@astrojs/internal-helpers': 0.7.2
-      '@vercel/analytics': 1.5.0(svelte@5.38.1)
+      '@vercel/analytics': 1.5.0(svelte@5.38.2)
       '@vercel/functions': 2.2.12
       '@vercel/nft': 0.29.4(rollup@2.79.2)
       '@vercel/routing-utils': 5.1.1
@@ -5597,8 +5600,8 @@ snapshots:
     dependencies:
       '@babel/parser': 7.28.0
       '@babel/types': 7.28.2
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
       jsesc: 3.1.0
 
   '@babel/helper-annotate-as-pure@7.27.3':
@@ -6590,10 +6593,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/svelte@4.2.0(svelte@5.38.1)':
+  '@iconify/svelte@4.2.0(svelte@5.38.2)':
     dependencies:
       '@iconify/types': 2.0.0
-      svelte: 5.38.1
+      svelte: 5.38.2
 
   '@iconify/tools@4.1.2':
     dependencies:
@@ -6801,29 +6804,31 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
-  '@jridgewell/gen-mapping@0.3.12':
+  '@jridgewell/gen-mapping@0.3.13':
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.4
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/trace-mapping': 0.3.30
 
-  '@jridgewell/remapping@2.3.4':
+  '@jridgewell/remapping@2.3.5':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
 
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/source-map@0.3.10':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
 
   '@jridgewell/sourcemap-codec@1.5.4': {}
 
-  '@jridgewell/trace-mapping@0.3.29':
+  '@jridgewell/sourcemap-codec@1.5.5': {}
+
+  '@jridgewell/trace-mapping@0.3.30':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.4
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   '@mapbox/node-pre-gyp@2.0.0':
     dependencies:
@@ -7042,23 +7047,23 @@ snapshots:
     dependencies:
       acorn: 8.15.0
 
-  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)))(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))':
+  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)))(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 5.1.1(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
+      '@sveltejs/vite-plugin-svelte': 5.1.1(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
       debug: 4.4.1
-      svelte: 5.38.1
+      svelte: 5.38.2
       vite: 6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))':
+  '@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)))(svelte@5.38.1)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.1.1(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)))(svelte@5.38.2)(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
       debug: 4.4.1
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.17
-      svelte: 5.38.1
+      svelte: 5.38.2
       vite: 6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)
       vitefu: 1.1.1(vite@6.3.5(@types/node@24.2.1)(jiti@1.21.7)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0))
     transitivePeerDependencies:
@@ -7300,9 +7305,9 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vercel/analytics@1.5.0(svelte@5.38.1)':
+  '@vercel/analytics@1.5.0(svelte@5.38.2)':
     optionalDependencies:
-      svelte: 5.38.1
+      svelte: 5.38.2
 
   '@vercel/functions@2.2.12':
     dependencies:
@@ -8321,7 +8326,7 @@ snapshots:
 
   esrap@2.1.0:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.4
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   estree-walker@0.6.1: {}
 
@@ -9116,7 +9121,7 @@ snapshots:
 
   magic-string@0.30.17:
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.4
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   magicast@0.3.5:
     dependencies:
@@ -10849,7 +10854,7 @@ snapshots:
 
   sucrase@3.35.0:
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
+      '@jridgewell/gen-mapping': 0.3.13
       commander: 4.1.1
       glob: 10.4.5
       lines-and-columns: 1.2.4
@@ -10865,17 +10870,17 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte2tsx@0.7.41(svelte@5.38.1)(typescript@5.9.2):
+  svelte2tsx@0.7.41(svelte@5.38.2)(typescript@5.9.2):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 5.38.1
+      svelte: 5.38.2
       typescript: 5.9.2
 
-  svelte@5.38.1:
+  svelte@5.38.2:
     dependencies:
-      '@jridgewell/remapping': 2.3.4
-      '@jridgewell/sourcemap-codec': 1.5.4
+      '@jridgewell/remapping': 2.3.5
+      '@jridgewell/sourcemap-codec': 1.5.5
       '@sveltejs/acorn-typescript': 1.0.5(acorn@8.15.0)
       '@types/estree': 1.0.8
       acorn: 8.15.0
