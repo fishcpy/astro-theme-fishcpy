@@ -243,7 +243,18 @@ function getStatusColor(status: string) {
     // Swup 页面切换事件监听器
     const setupSwupHooks = () => {
         if (window.swup && window.swup.hooks) {
-            window.swup.hooks.on('page:view', initializeFilters);
+            window.swup.hooks.on('page:view', () => {
+                initializeFilters();
+                // 强制重新渲染图标以解决astro-icon在PJAX切换后消失的问题
+                setTimeout(() => {
+                    const icons = document.querySelectorAll('svg[data-icon]');
+                    icons.forEach(icon => {
+                        const parent = icon.parentNode;
+                        const clone = icon.cloneNode(true);
+                        parent.replaceChild(clone, icon);
+                    });
+                }, 50);
+            });
         }
     };
     
