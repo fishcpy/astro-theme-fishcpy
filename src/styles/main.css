@@ -10,30 +10,41 @@
     --font-primary: 'blog font', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* 自定义鼠标样式 */
-*, 
-a, 
-p {
-    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>") 4 4, auto !important;
+/* 自定义鼠标样式 - 仅在桌面端显示 */
+@media (hover: hover) and (pointer: fine) {
+    *, 
+    a, 
+    p {
+        cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='10px' height='10px'><circle cx='4' cy='4' r='4' fill='white' /></svg>") 4 4, auto !important;
+    }
 }
 
-/* 鼠标跟随元素样式 */
+/* 鼠标跟随元素样式 - 仅在桌面端显示 */
 #g-pointer-1 {
     display: none;
 }
 
-#g-pointer-2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    transition: 0.05s linear;
-    pointer-events: none;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    z-index: 9999999;
-    transform: translate(-50%, -50%);
+@media (hover: hover) and (pointer: fine) {
+    #g-pointer-2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        transition: 0.05s linear;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        z-index: 9999999;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 移动端隐藏鼠标跟随元素 */
+@media (hover: none) or (pointer: coarse) {
+    #g-pointer-2 {
+        display: none !important;
+    }
 }
 
 body {

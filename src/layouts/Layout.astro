@@ -384,6 +384,15 @@ function initMouseEffect() {
 	
 	if (!element || !element2) return;
 	
+	// 检测是否为移动端设备
+	const isMobile = window.matchMedia("(hover: none) or (pointer: coarse)").matches;
+	
+	if (isMobile) {
+		// 移动端直接隐藏鼠标跟随元素
+		element2.style.display = "none";
+		return;
+	}
+	
 	const halfAlementWidth = element.offsetWidth / 2;
 	const halfAlementWidth2 = element2.offsetWidth / 2;
 
@@ -396,14 +405,6 @@ function initMouseEffect() {
 			setPosition(e.clientX, e.clientY);
 		});
 	});
-
-	// 移动端去除鼠标样式
-	if (Boolean(window.navigator.userAgent.match(/AppWebKit.*Mobile.*/))) {
-		const pointer2 = document.getElementById("g-pointer-2");
-		if (pointer2) {
-			pointer2.style.display = "none";
-		}
-	}
 }
 
 function init() {
