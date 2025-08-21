@@ -3,6 +3,7 @@ import BackToTop from "@components/control/BackToTop.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import SideBar from "@components/widget/SideBar.astro";
+import MobileSidebar from "@components/widget/MobileSidebar.astro";
 import Twikoo from "@components/comment/Twikoo.astro";
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
@@ -110,6 +111,9 @@ const mainPanelTop = siteConfig.banner.enable
         <BackToTop></BackToTop>
     </div>
 </div>
+
+<!-- Mobile Sidebar -->
+<MobileSidebar />
 
 <!-- The things that should be under the banner, only the TOC for now -->
 <div class="absolute w-full z-0 hidden 2xl:block">

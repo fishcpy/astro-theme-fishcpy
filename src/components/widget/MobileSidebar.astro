@@ -1,0 +1,223 @@
+---
+import { Icon } from "astro-icon/components";
+import { navBarConfig, profileConfig } from "../../config";
+import { LinkPresets } from "../../constants/link-presets";
+import { LinkPreset, type NavBarLink } from "../../types/config";
+import { url } from "../../utils/url-utils";
+import ImageWrapper from "../misc/ImageWrapper.astro";
+
+let links: NavBarLink[] = navBarConfig.links.map(
+	(item: NavBarLink | LinkPreset): NavBarLink => {
+		if (typeof item === "number") {
+			return LinkPresets[item];
+		}
+		return item;
+	},
+);
+
+const config = profileConfig;
+---
+
+<div id="mobile-sidebar" class="mobile-sidebar-overlay fixed inset-0 z-[60] lg:hidden" style="display: none;">
+    <div class="mobile-sidebar-backdrop absolute inset-0 bg-black/50" id="mobile-sidebar-backdrop"></div>
+    <div class="mobile-sidebar-panel fixed right-0 top-0 h-full w-80 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- 头部关闭按钮 -->
+        <div class="flex justify-end p-4">
+            <button id="mobile-sidebar-close" class="btn-plain rounded-lg w-10 h-10 active:scale-90">
+                <Icon name="material-symbols:close-rounded" class="text-[1.25rem]" />
+            </button>
+        </div>
+        
+        <!-- 个人信息区域 -->
+        <div class="px-6 pb-6">
+            <div class="text-center mb-6">
+                <a href={url('/about/')} class="block mx-auto mb-4 w-24 h-24 rounded-full overflow-hidden active:scale-95 transition-transform">
+                    <ImageWrapper src={config.avatar || ""} alt="Profile Image" class="w-full h-full object-cover" />
+                </a>
+                <h2 class="font-bold text-xl text-[var(--primary)] mb-2">{config.name}</h2>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">{config.bio}</p>
+            </div>
+            
+            <!-- 社交媒体链接 -->
+            <div class="flex justify-center gap-3 mb-6">
+                {config.links.map(item => (
+                    <a 
+                        href={item.url} 
+                        target="_blank" 
+                        class="btn-regular rounded-lg h-10 w-10 active:scale-90 hover:bg-[var(--btn-regular-bg-hover)]"
+                        aria-label={item.name}
+                    >
+                        <Icon name={item.icon} class="text-[1.25rem]" />
+                    </a>
+                ))}
+            </div>
+        </div>
+        
+        <!-- 导航菜单 -->
+        <div class="px-4">
+            <div class="border-t border-[var(--line-divider)] pt-4">
+                <h3 class="text-sm font-semibold text-neutral-600 dark:text-neutral-300 mb-3 px-2">导航菜单</h3>
+                <nav class="space-y-1">
+                    {links.map((link, index) => (
+                        <div class="nav-menu-item">
+                            {link.children && link.children.length > 0 ? (
+                                <div>
+                                    <button
+                                        class="group flex justify-between items-center py-3 px-3 rounded-lg w-full hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition mobile-submenu-toggle"
+                                        data-submenu={`mobile-submenu-${index}`}
+                                    >
+                                        <div class="flex items-center text-neutral-700 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
+                                            {link.icon && <Icon name={link.icon} class="text-[1.1rem] mr-3" />}
+                                            {link.name}
+                                        </div>
+                                        <Icon 
+                                            name="material-symbols:keyboard-arrow-down-rounded"
+                                            class="text-[1.25rem] text-[var(--primary)] transition-transform mobile-submenu-arrow"
+                                        />
+                                    </button>
+                                    <div class={`mobile-submenu mobile-submenu-${index} max-h-0 overflow-hidden transition-all duration-300`}>
+                                        {link.children.map((child) => (
+                                            <a 
+                                                href={child.external ? child.url : url(child.url)} 
+                                                target={child.external ? "_blank" : null}
+                                                class="group flex justify-between items-center py-2.5 pl-10 pr-3 rounded-lg hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
+                                            >
+                                                <div class="flex items-center text-neutral-600 dark:text-neutral-300 text-sm group-hover:text-[var(--primary)]">
+                                                    {child.icon && <Icon name={child.icon} class="text-[0.9rem] mr-3" />}
+                                                    {child.name}
+                                                </div>
+                                                {child.external && (
+                                                    <Icon 
+                                                        name="fa6-solid:arrow-up-right-from-square"
+                                                        class="text-[0.75rem] text-neutral-400 dark:text-neutral-500"
+                                                    />
+                                                )}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <a 
+                                    href={link.external ? link.url : url(link.url)} 
+                                    target={link.external ? "_blank" : null}
+                                    class="group flex justify-between items-center py-3 px-3 rounded-lg hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
+                                >
+                                    <div class="flex items-center text-neutral-700 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
+                                        {link.icon && <Icon name={link.icon} class="text-[1.1rem] mr-3" />}
+                                        {link.name}
+                                    </div>
+                                    {link.external && (
+                                        <Icon 
+                                            name="fa6-solid:arrow-up-right-from-square"
+                                            class="text-[0.75rem] text-neutral-400 dark:text-neutral-500"
+                                        />
+                                    )}
+                                </a>
+                            )}
+                        </div>
+                    ))}
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function initMobileSidebar() {
+    const overlay = document.getElementById('mobile-sidebar');
+    const panel = overlay?.querySelector('.mobile-sidebar-panel');
+    const closeBtn = document.getElementById('mobile-sidebar-close');
+    const menuBtn = document.getElementById('nav-menu-switch');
+    
+    // 保持子菜单状态，不自动重置
+    
+    function openSidebar() {
+        if (overlay && panel) {
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                panel.classList.remove('translate-x-full');
+            }, 10);
+        }
+    }
+    
+    function closeSidebar() {
+        if (overlay && panel) {
+            panel.classList.add('translate-x-full');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+    }
+    
+    // 移除旧的事件监听器
+    const oldToggles = document.querySelectorAll('.mobile-submenu-toggle');
+    oldToggles.forEach(toggle => {
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode?.replaceChild(newToggle, toggle);
+    });
+    
+    // 绑定事件
+    const backdrop = document.getElementById('mobile-sidebar-backdrop');
+    menuBtn?.addEventListener('click', openSidebar);
+    closeBtn?.addEventListener('click', closeSidebar);
+    backdrop?.addEventListener('click', closeSidebar);
+    
+    // 子菜单切换
+    const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+    submenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const submenuId = this.getAttribute('data-submenu');
+            const submenu = document.querySelector(`.${submenuId}`);
+            const arrow = this.querySelector('.mobile-submenu-arrow');
+            
+            if (submenu) {
+                const isExpanded = submenu.style.maxHeight && submenu.style.maxHeight !== '0px';
+                
+                if (isExpanded) {
+                    submenu.style.maxHeight = '0px';
+                    arrow?.classList.remove('rotate-180');
+                } else {
+                    submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                    arrow?.classList.add('rotate-180');
+                }
+            }
+        });
+    });
+}
+
+initMobileSidebar();
+
+// Swup 页面切换事件监听器
+const setupSwupHooks = () => {
+    if (window.swup && window.swup.hooks) {
+        window.swup.hooks.on('page:view', initMobileSidebar);
+    }
+};
+
+if (window.swup) {
+    setupSwupHooks();
+} else {
+    document.addEventListener('swup:enable', setupSwupHooks);
+}
+</script>
+
+<style>
+.mobile-sidebar-panel {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:global(.dark) .mobile-sidebar-panel {
+    background-color: rgba(35, 35, 35, 0.95);
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-sidebar-overlay {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+</style>
