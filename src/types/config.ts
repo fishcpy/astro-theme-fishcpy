@@ -13,6 +13,7 @@ export type SiteConfig = {
 	theme: LIGHT_DARK_MODE;
 	banner: {
 		enable: boolean;
+		type?: "image" | "video";
 		src: string;
 		position?: "top" | "center" | "bottom";
 		credit: {
