@@ -70,5 +70,29 @@
 		"year": 2025,
 		"tags": ["国创", "搞笑"],
 		"url": "https://movie.douban.com/subject/37179769/"
+	},
+	{
+		"id": 3,
+		"title": "哪吒之魔童闹海",
+		"type": "电影",
+		"status": "看过",
+		"rating": 5,
+		"description": "天劫之后，哪吒、敖丙的灵魂虽保住了，但肉身很快会魂飞魄散。",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/22/68a7d1d79248f.webp",
+		"year": 2025,
+		"tags": ["奇幻", "喜剧", "动画"],
+		"url": "https://movie.douban.com/subject/34780991/"
+	},
+	{
+		"id": 3,
+		"title": "哪吒之魔童降世",
+		"type": "电影",
+		"status": "看过",
+		"rating": 5,
+		"description": "天地灵气孕育出一颗能量巨大的混元珠，元始天尊将混元珠提炼成灵珠和魔丸",
+		"cover": "https://cdn.fis.ink/cdn/2025/08/22/68a7d27ae2c14.webp",
+		"year": 2019,
+		"tags": ["奇幻", "喜剧", "动画"],
+		"url": "https://movie.douban.com/subject/26794435/"
 	}
 ]
