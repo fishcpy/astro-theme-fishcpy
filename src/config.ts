@@ -26,8 +26,8 @@ export const siteConfig: SiteConfig = {
 		position: "center", // 等同于CSS的object-position属性，仅支持'top','center','bottom'。默认为'center'
 		credit: {
 			enable: true, // 是否显示横幅图片的版权信息
-			text: "绝区零", // 要显示的版权文本
-			url: "https://zzz.mihoyo.com", // (可选) 原作品或艺术家页面的URL链接
+			text: "Steam @基里曼的蓝精灵", // 要显示的版权文本
+			url: "https://steamcommunity.com/sharedfiles/filedetails/?id=3426980000", // (可选) 原作品或艺术家页面的URL链接
 		},
 		text: {
 			enable: true, // 是否在banner中显示文字
