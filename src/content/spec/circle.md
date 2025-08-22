@@ -7,7 +7,7 @@
             // 点击加载更多时，一次最多加载几篇文章，默认20
             page_turning_number: 24,
             // 头像加载失败时，默认头像地址
-            error_img: 'https://cdn.fishcpy.top/img/2025/07/22/687f17323321a.png',
+            error_img: 'https://cdn.fis.ink/img/2025/07/22/687f17323321a.png',
         }
     }
 </script>
