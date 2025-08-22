@@ -1371,7 +1371,7 @@ bottom:
 &lt;h1&gt;购买云服务器&lt;/h1&gt;
 &lt;p&gt;本次使用的云服务商为 &lt;a href=&quot;https://www.rainyun.com/home&quot;&gt;雨云&lt;/a&gt; 打开雨云官网 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/06/6752d64e51d1c.png&quot; alt=&quot;&quot; /&gt; 点击登录/注册，经行注册，优惠码可以填fishcpy 或者点击&lt;a href=&quot;https://www.rainyun.com/mmm_&quot;&gt;这里一键填写&lt;/a&gt; 点击导航栏的总览&amp;gt;云服务器&amp;gt;购买云服务器 本人建议用香港的云服务器，有35ms和80ms的 如果对延迟有需求的可以选择35ms的，反之可以选择80ms的 演示使用80ms的，因为上行相对来说更高一些 &lt;img src=&quot;https://blogpng.mengmengmao.cn/mengmengmao/2024/12/06/6752d80303d56.png&quot; alt=&quot;&quot; /&gt; 点击立即购买，充钱后就可以购买成功 至此购买云服务器结束&lt;/p&gt;
 </content:encoded></item><item><title>butterfly导航栏图标修改</title><link>https://blog.fis.ink/posts/17/</link><guid isPermaLink="true">https://blog.fis.ink/posts/17/</guid><description>本文介绍如何为导航栏添加图标，通过FontAwesome官网选择合适的图标类名，并替换官方配置中的图标名称，实现自定义导航栏图标的效果。</description><pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;导航栏图标&lt;/h1&gt;
-&lt;p&gt;我看了官方配置文件，里面好像没有关于导航栏图标的描述，修改完效果如下 &lt;img src=&quot;https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751ab17651d2.png&quot; alt=&quot;&quot; /&gt; 官方配置代码如下&lt;/p&gt;
+&lt;p&gt;我看了官方配置文件，里面好像没有关于导航栏图标的描述，修改完效果如下&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;1
 
 例： 首页: / || fas fa-home
