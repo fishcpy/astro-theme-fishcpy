@@ -70,12 +70,19 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
+
+const pageBackgroundConfig = siteConfig.pageBackground;
+const backgroundStyle = pageBackgroundConfig.enable 
+	? (pageBackgroundConfig.type === "image" 
+		? `background-image: url('${pageBackgroundConfig.src}')` 
+		: "")
+	: "";
 ---
 
 <!DOCTYPE html>
 <html lang={siteLang} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px] bg-cover bg-center bg-no-repeat bg-fixed"
 	  data-overlayscrollbars-initialize
-	  style="background-image: url('https://cdn.fis.ink/img/2025/07/20/687cc9ea0e25d.png')"
+	  style={backgroundStyle}
 >
 	<head>
 
@@ -158,6 +165,20 @@ const bannerOffset =
 		<!-- 鼠标跟随效果元素 -->
 		<div id="g-pointer-1"></div>
 		<div id="g-pointer-2"></div>
+		
+		<!-- 页面背景视频 -->
+		{pageBackgroundConfig.enable && pageBackgroundConfig.type === "video" && (
+			<video 
+				src={pageBackgroundConfig.src}
+				class="fixed inset-0 w-full h-full object-cover z-[-2]"
+				autoplay
+				muted
+				loop
+				playsinline
+				preload="metadata"
+			>
+			</video>
+		)}
 		
 		<div class="fixed inset-0 backdrop-blur-md bg-black/30 z-[-1]"></div>
 		<ConfigCarrier></ConfigCarrier>

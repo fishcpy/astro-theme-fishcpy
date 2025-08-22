@@ -27,6 +27,11 @@ export type SiteConfig = {
 			subtitle?: string;
 		};
 	};
+	pageBackground: {
+		enable: boolean;
+		type: "image" | "video";
+		src: string;
+	};
 	toc: {
 		enable: boolean;
 		depth: 1 | 2 | 3;

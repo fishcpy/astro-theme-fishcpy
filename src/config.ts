@@ -35,6 +35,11 @@ export const siteConfig: SiteConfig = {
 			subtitle: "Welcome to my blog", // banner副标题
 		},
 	},
+	pageBackground: {
+		enable: true,
+		type: "video", // 'image' 或 'video'
+		src: "https://www.fis.ink/wj/video/mc.mp4",
+	},
 	toc: {
 		enable: true, // 在文章右侧显示目录
 		depth: 2, // 目录中显示的最大标题层级，取值范围1-3
