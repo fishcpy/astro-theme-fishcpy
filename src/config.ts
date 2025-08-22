@@ -109,7 +109,7 @@ export const navBarConfig: NavBarConfig = {
 				{
 					name: "时间盒",
 					url: "/chronobox/",
-					icon: "material-symbols:play-circle",
+					icon: "fa6-solid:circle-play",
 				},
 				{
 					name: "关于",
