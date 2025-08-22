@@ -92,12 +92,31 @@ function getStatusColor(status: string) {
                             <div class="entertainment-card bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-sm border border-[var(--line-divider)] transition-all hover:shadow-lg duration-300 flex" data-status={item.status}>
                                 <!-- 封面图片 -->
                                 <div class="relative w-32 h-48 flex-shrink-0 overflow-hidden bg-zinc-200 dark:bg-zinc-800">
-                                    <img 
-                                        src={item.cover} 
-                                        alt={item.title}
-                                        class="w-full h-full object-cover"
-                                        loading="lazy"
-                                    />
+                                    {item.url ? (
+                                        <a href={item.url} target="_blank" rel="noopener noreferrer" class="block w-full h-full relative group">
+                                            <img 
+                                                src={item.cover} 
+                                                alt={item.title}
+                                                class="w-full h-full object-cover"
+                                                loading="lazy"
+                                            />
+                                            <!-- 链接指示器 -->
+                                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                                                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-2">
+                                                    <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    ) : (
+                                        <img 
+                                            src={item.cover} 
+                                            alt={item.title}
+                                            class="w-full h-full object-cover"
+                                            loading="lazy"
+                                        />
+                                    )}
                                     <!-- 状态标签 -->
                                     <div class={`absolute top-2 right-2 px-2 py-1 rounded text-xs font-medium ${getStatusColor(item.status)}`}>
                                         {item.status}
@@ -110,9 +129,17 @@ function getStatusColor(status: string) {
                                 
                                 <!-- 内容信息 -->
                                 <div class="p-4 flex-1 flex flex-col">
-                                    <h3 class="font-bold text-lg text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-1">
-                                        {item.title}
-                                    </h3>
+                                    {item.url ? (
+                                        <a href={item.url} target="_blank" rel="noopener noreferrer" class="block group">
+                                            <h3 class="font-bold text-lg text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-1 group-hover:text-[var(--primary)] transition-colors">
+                                                {item.title}
+                                            </h3>
+                                        </a>
+                                    ) : (
+                                        <h3 class="font-bold text-lg text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-1">
+                                            {item.title}
+                                        </h3>
+                                    )}
                                     
                                     <!-- 评分 -->
                                     <div class="flex items-center gap-1 mb-2">
@@ -189,27 +216,45 @@ function getStatusColor(status: string) {
 
 <script>
     function initializeFilters() {
+        console.log('Initializing filters...');
+        
+        // 确保DOM已加载
+        if (!document.querySelector('.filter-btn')) {
+            console.log('Filter buttons not found, retrying...');
+            setTimeout(initializeFilters, 100);
+            return;
+        }
+        
         const filterBtns = document.querySelectorAll('.filter-btn');
         const entertainmentCards = document.querySelectorAll('.entertainment-card');
         
+        console.log(`Found ${filterBtns.length} filter buttons and ${entertainmentCards.length} cards`);
+        
         // 移除之前的事件监听器
         filterBtns.forEach(btn => {
-            btn.replaceWith(btn.cloneNode(true));
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
         });
         
         // 重新获取按钮元素并添加事件监听器
         const newFilterBtns = document.querySelectorAll('.filter-btn');
         
         newFilterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Filter button clicked:', this.getAttribute('data-status'));
+                
                 const targetStatus = this.getAttribute('data-status');
                 
                 // 更新按钮状态
                 newFilterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
+                // 重新获取卡片（防止DOM更新后引用失效）
+                const currentCards = document.querySelectorAll('.entertainment-card');
+                
                 // 筛选卡片
-                entertainmentCards.forEach(card => {
+                currentCards.forEach(card => {
                     const cardStatus = card.getAttribute('data-status');
                     
                     if (targetStatus === 'all' || cardStatus === targetStatus) {
@@ -235,6 +280,8 @@ function getStatusColor(status: string) {
                 }
             });
         }
+        
+        console.log('Filters initialized successfully');
     }
     
     // 页面加载时初始化
@@ -242,9 +289,19 @@ function getStatusColor(status: string) {
     
     // Swup 页面切换事件监听器
     const setupSwupHooks = () => {
+        console.log('Setting up Swup hooks...');
         if (window.swup && window.swup.hooks) {
+            // 页面内容替换后
+            window.swup.hooks.on('content:replace', () => {
+                console.log('Swup content:replace event');
+                setTimeout(initializeFilters, 50);
+            });
+            
+            // 页面视图准备就绪
             window.swup.hooks.on('page:view', () => {
-                initializeFilters();
+                console.log('Swup page:view event');
+                setTimeout(initializeFilters, 100);
+                
                 // 强制重新渲染图标以解决astro-icon在PJAX切换后消失的问题
                 setTimeout(() => {
                     const icons = document.querySelectorAll('svg[data-icon]');
@@ -253,29 +310,67 @@ function getStatusColor(status: string) {
                         const clone = icon.cloneNode(true);
                         parent.replaceChild(clone, icon);
                     });
-                }, 50);
+                }, 100);
+            });
+            
+            // 动画完成后
+            window.swup.hooks.on('animation:out:end', () => {
+                console.log('Swup animation:out:end event');
+            });
+            
+            window.swup.hooks.on('animation:in:end', () => {
+                console.log('Swup animation:in:end event');
+                setTimeout(initializeFilters, 50);
             });
         }
     };
     
+    // 初始化Swup钩子
     if (window.swup) {
         setupSwupHooks();
     } else {
         document.addEventListener('swup:enable', setupSwupHooks);
+        // 监听swup初始化完成
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.swup) {
+                setupSwupHooks();
+            }
+        });
     }
     
     // 兼容Astro路由和延迟加载
-    document.addEventListener('astro:page-load', initializeFilters);
-    document.addEventListener('astro:after-swap', initializeFilters);
+    document.addEventListener('astro:page-load', () => {
+        console.log('Astro page:load event');
+        setTimeout(initializeFilters, 50);
+    });
+    
+    document.addEventListener('astro:after-swap', () => {
+        console.log('Astro after:swap event');
+        setTimeout(initializeFilters, 100);
+    });
+    
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOMContentLoaded event');
+        initializeFilters();
+    });
     
     if (typeof window !== 'undefined') {
         // 延迟执行以确保DOM已更新
-        setTimeout(initializeFilters, 100);
-        setTimeout(initializeFilters, 500);
+        setTimeout(() => {
+            console.log('Delayed initialization (100ms)');
+            initializeFilters();
+        }, 100);
+        
+        setTimeout(() => {
+            console.log('Delayed initialization (500ms)');
+            initializeFilters();
+        }, 500);
         
         // 监听页面可见性变化
         document.addEventListener('visibilitychange', function() {
             if (!document.hidden) {
+                console.log('Page became visible');
                 setTimeout(initializeFilters, 50);
             }
         });
