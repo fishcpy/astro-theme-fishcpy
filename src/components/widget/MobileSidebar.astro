@@ -18,9 +18,9 @@ let links: NavBarLink[] = navBarConfig.links.map(
 const config = profileConfig;
 ---
 
-<div id="mobile-sidebar" class="mobile-sidebar-overlay fixed inset-0 z-[60] lg:hidden" style="display: none;">
-    <div class="mobile-sidebar-backdrop absolute inset-0 bg-black/50" id="mobile-sidebar-backdrop"></div>
-    <div class="mobile-sidebar-panel fixed right-0 top-0 h-full w-80 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+<div id="mobile-sidebar" class="mobile-sidebar-overlay fixed inset-0 z-[60] lg:hidden opacity-0 invisible transition-all duration-200 ease-out">
+    <div class="mobile-sidebar-backdrop absolute inset-0 bg-black/50 transition-opacity duration-200 ease-out opacity-0" id="mobile-sidebar-backdrop"></div>
+    <div class="mobile-sidebar-panel fixed right-0 top-0 h-full w-80 transform translate-x-full transition-all duration-300 ease-out overflow-y-auto">
         <!-- 头部关闭按钮 -->
         <div class="flex justify-end p-4">
             <button id="mobile-sidebar-close" class="btn-plain rounded-lg w-10 h-10 active:scale-90">
@@ -74,7 +74,7 @@ const config = profileConfig;
                                             class="text-[1.25rem] text-[var(--primary)] transition-transform mobile-submenu-arrow"
                                         />
                                     </button>
-                                    <div class={`mobile-submenu mobile-submenu-${index} max-h-0 overflow-hidden transition-all duration-300`}>
+                                    <div class={`mobile-submenu mobile-submenu-${index} max-h-0 overflow-hidden transition-all duration-250 ease-out`}>
                                         {link.children.map((child) => (
                                             <a 
                                                 href={child.external ? child.url : url(child.url)} 
@@ -132,18 +132,30 @@ function initMobileSidebar() {
     
     function openSidebar() {
         if (overlay && panel) {
-            overlay.style.display = 'block';
+            const backdrop = document.getElementById('mobile-sidebar-backdrop');
+            
+            overlay.classList.remove('opacity-0', 'invisible');
+            overlay.classList.add('opacity-100', 'visible');
+            
             setTimeout(() => {
                 panel.classList.remove('translate-x-full');
-            }, 10);
+                backdrop?.classList.remove('opacity-0');
+                backdrop?.classList.add('opacity-100');
+            }, 50);
         }
     }
     
     function closeSidebar() {
         if (overlay && panel) {
+            const backdrop = document.getElementById('mobile-sidebar-backdrop');
+            
             panel.classList.add('translate-x-full');
+            backdrop?.classList.remove('opacity-100');
+            backdrop?.classList.add('opacity-0');
+            
             setTimeout(() => {
-                overlay.style.display = 'none';
+                overlay.classList.add('opacity-0', 'invisible');
+                overlay.classList.remove('opacity-100', 'visible');
             }, 300);
         }
     }
@@ -202,15 +214,16 @@ if (window.swup) {
 
 <style>
 .mobile-sidebar-panel {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
     border-left: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 :global(.dark) .mobile-sidebar-panel {
-    background-color: rgba(35, 35, 35, 0.7);
+    background-color: rgba(35, 35, 35, 0.8);
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.3);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -218,5 +231,15 @@ if (window.swup) {
 .mobile-sidebar-overlay {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mobile-sidebar-backdrop {
+    transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 优化子菜单箭头旋转动画 */
+.mobile-submenu-arrow {
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 </style>
