@@ -37,7 +37,7 @@ export const siteConfig: SiteConfig = {
 	},
 	pageBackground: {
 		enable: true,
-		type: "video", // 'image' 或 'video'
+		type: "image", // 'image' 或 'video'
 		src: "https://api.fis.ink/mc",
 		//https://www.fis.ink/wj/video/mc.mp4
 	},
