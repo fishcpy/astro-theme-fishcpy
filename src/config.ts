@@ -201,3 +201,7 @@ export const screensConfig = {
 	lg: "1280px",
 	xl: "1536px",
 };
+
+export const cardConfig = {
+	opacity: 0.85, // 卡片半透明度，取值范围0-1
+};

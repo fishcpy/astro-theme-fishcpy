@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { navBarConfig, siteConfig } from "../config";
+import { cardConfig, navBarConfig, siteConfig } from "../config";
 import { LinkPresets } from "../constants/link-presets";
 import { LinkPreset, type NavBarLink } from "../types/config";
 import { url } from "../utils/url-utils";
@@ -20,7 +20,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
 );
 ---
 <div id="navbar" class="z-50 onload-animation">
-    <div class="absolute h-8 left-0 right-0 -top-8 bg-[var(--card-bg)] bg-opacity-80 backdrop-blur-md transition"></div> <!-- used for onload animation -->
+    <div class="absolute h-8 left-0 right-0 -top-8 backdrop-blur-md transition" style="background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent);"></div> <!-- used for onload animation -->
     <div class:list={[
         className,
         "card-base !overflow-visible w-full h-[4.5rem] !rounded-t-none !rounded-b-[var(--radius-large)] navbar-glass"]}>

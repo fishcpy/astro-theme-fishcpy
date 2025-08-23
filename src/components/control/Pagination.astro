@@ -2,6 +2,7 @@
 import type { Page } from "astro";
 import { Icon } from "astro-icon/components";
 import { url } from "../../utils/url-utils";
+import { cardConfig } from "../../config";
 
 interface Props {
 	page: Page;
@@ -59,7 +60,7 @@ const getPageUrl = (p: number) => {
     >
         <Icon name="material-symbols:chevron-left-rounded" class="text-[1.75rem]"></Icon>
     </a>
-    <div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
+    <div class="flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold" style={`background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent)`}>
         {pages.map((p) => {
             if (p == HIDDEN)
                 return <Icon name="material-symbols:more-horiz" class="mx-1"/>;
@@ -82,3 +83,6 @@ const getPageUrl = (p: number) => {
         <Icon name="material-symbols:chevron-right-rounded" class="text-[1.75rem]"></Icon>
     </a>
 </div>
+
+<style define:vars={{ 'card-opacity': cardConfig.opacity }}>
+</style>

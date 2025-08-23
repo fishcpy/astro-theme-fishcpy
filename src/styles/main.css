@@ -66,7 +66,16 @@ body {
 
 @layer components {
     .card-base {
-        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
+        @apply rounded-[var(--radius-large)] overflow-hidden transition;
+        background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent);
+    }
+    
+    a.card-github {
+        background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent) !important;
+    }
+    
+    a.card-link {
+        background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent) !important;
     }
     h1, h2, h3, h4, h5, h6, p, a, span, li, ul, ol, blockquote, code, pre, table, th, td, strong {
         @apply transition;
