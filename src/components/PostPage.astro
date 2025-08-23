@@ -1,14 +1,22 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getPostUrlBySlug } from "@utils/url-utils";
+import { layoutConfig } from "@/config";
 import PostCard from "./PostCard.astro";
 
 const { page } = Astro.props;
 
 let delay = 0;
 const interval = 50;
+
+// 根据配置生成布局样式
+const isGridLayout = layoutConfig.postList.type === "grid";
+const gridClasses = isGridLayout
+	? `grid grid-cols-${layoutConfig.postList.grid.columns.sm} md:grid-cols-${layoutConfig.postList.grid.columns.md} lg:grid-cols-${layoutConfig.postList.grid.columns.lg} ${layoutConfig.postList.grid.gap}`
+	: "flex flex-col md:gap-4";
 ---
-<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
+
+<div class:list={["transition rounded-[var(--radius-large)] mb-4", isGridLayout ? "bg-transparent p-0" : "bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent", gridClasses]}>
     {page.data.map((entry: CollectionEntry<"posts">) => (
         <PostCard
                 entry={entry}
