@@ -38,7 +38,8 @@ export const siteConfig: SiteConfig = {
 	pageBackground: {
 		enable: true,
 		type: "video", // 'image' 或 'video'
-		src: "https://www.fis.ink/wj/video/mc.mp4",
+		src: "https://api.fis.ink/mc",
+		//https://www.fis.ink/wj/video/mc.mp4
 	},
 	toc: {
 		enable: true, // 在文章右侧显示目录
