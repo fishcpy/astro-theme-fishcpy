@@ -65,6 +65,12 @@ export type NavBarLink = {
 export type NavBarConfig = {
 	links: (NavBarLink | LinkPreset)[];
 	showHomeIcon?: boolean;
+	searchLeftIcons?: {
+		name: string;
+		url: string;
+		icon: string;
+		external?: boolean;
+	}[];
 };
 
 export type ProfileConfig = {

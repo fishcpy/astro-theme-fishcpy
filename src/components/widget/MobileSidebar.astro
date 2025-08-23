@@ -21,8 +21,24 @@ const config = profileConfig;
 <div id="mobile-sidebar" class="mobile-sidebar-overlay fixed inset-0 z-[60] lg:hidden opacity-0 invisible transition-all duration-200 ease-out">
     <div class="mobile-sidebar-backdrop absolute inset-0 bg-black/50 transition-opacity duration-200 ease-out opacity-0" id="mobile-sidebar-backdrop"></div>
     <div class="mobile-sidebar-panel fixed right-0 top-0 h-full w-80 transform translate-x-full transition-all duration-300 ease-out overflow-y-auto">
-        <!-- 头部关闭按钮 -->
-        <div class="flex justify-end p-4">
+        <!-- 头部区域 -->
+        <div class="flex justify-between items-center p-4">
+            <!-- 搜索左侧图标链接 -->
+            <div class="flex gap-2">
+                {navBarConfig.searchLeftIcons && navBarConfig.searchLeftIcons.map(icon => (
+                    <a 
+                        href={icon.url}
+                        target={icon.external ? "_blank" : "_self"}
+                        rel={icon.external ? "noopener noreferrer" : undefined}
+                        class="btn-plain rounded-lg w-10 h-10 active:scale-90 hover:bg-[var(--btn-plain-bg-hover)]"
+                        aria-label={icon.name}
+                    >
+                        <Icon name={icon.icon} class="text-[1.25rem]" />
+                    </a>
+                ))}
+            </div>
+            
+            <!-- 关闭按钮 -->
             <button id="mobile-sidebar-close" class="btn-plain rounded-lg w-10 h-10 active:scale-90">
                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]" />
             </button>

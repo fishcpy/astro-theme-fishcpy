@@ -131,14 +131,22 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
-		{
-			name: "开往",
-			url: "https://www.travellings.cn/go.html",
-			external: true,
-			icon: "fa6-solid:train-subway",
-		},
 	],
 	showHomeIcon: false, // 控制是否显示home图标
+	searchLeftIcons: [
+		{
+			name: "travellings",
+			url: "https://www.travellings.cn/go.html",
+			icon: "fa6-solid:train-subway",
+			external: true,
+		},
+		{
+			name: "rss",
+			url: "/rss.xml",
+			icon: "ic:twotone-rss-feed",
+			external: true,
+		},
+	],
 };
 
 export const profileConfig: ProfileConfig = {
