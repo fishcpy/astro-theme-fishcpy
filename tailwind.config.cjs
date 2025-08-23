@@ -12,6 +12,18 @@ const screensConfig = {
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,mjs}"],
 	darkMode: "class", // allows toggling dark mode manually
+	safelist: [
+		// 确保动态生成的网格类名被包含在CSS中
+		'grid-cols-1',
+		'grid-cols-2', 
+		'grid-cols-3',
+		'md:grid-cols-1',
+		'md:grid-cols-2',
+		'md:grid-cols-3',
+		'lg:grid-cols-1',
+		'lg:grid-cols-2',
+		'lg:grid-cols-3',
+	],
 	theme: {
 		extend: {
 			fontFamily: {

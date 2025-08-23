@@ -215,13 +215,13 @@ export const layoutConfig = {
 				md: 2, // 中屏幕列数
 				lg: 3, // 大屏幕列数，最大为3，超出会变成2个每行
 			},
-			gap: "gap-6", // 网格间距，对应Tailwind的gap-4
+			gap: "gap-4", // 网格间距，对应Tailwind的gap-4
 		},
 	},
 };
 
 // 使用示例：
-// 1. 网格布局（当前）：type: "grid"
+// 1. 网格布局：type: "grid"
 // 2. 列表布局：type: "list"
 // 3. 自定义网格列数：修改 columns 中的 sm/md/lg 值
 // 4. 调整间距：修改 gap 值（1-12）
