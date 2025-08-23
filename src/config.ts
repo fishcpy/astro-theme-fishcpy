@@ -156,7 +156,8 @@ export const profileConfig: ProfileConfig = {
 	links: [
 		{
 			name: "Rss",
-			icon: "ic:twotone-rss-feed", // 图标代码请访问 https://icones.js.org/
+			icon: "ic:twotone-rss-feed",
+			// 图标代码请访问 https://icones.js.org/
 			// 如果尚未包含相应的图标集，您需要先安装
 			// `pnpm add @iconify-json/<icon-set-name>`
 			url: "/rss.xml",
