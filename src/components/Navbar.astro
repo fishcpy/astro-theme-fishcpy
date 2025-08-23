@@ -24,7 +24,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
     <div class:list={[
         className,
         "card-base !overflow-visible w-full h-[4.5rem] !rounded-t-none !rounded-b-[var(--radius-large)] navbar-glass"]}>
-        <div class="flex items-center justify-between px-4 h-full w-full">
+        <div class="relative flex items-center px-4 h-full w-full">
         <!-- 左侧：网站标题 -->
         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95 flex-shrink-0">
             <div class="flex flex-row text-[var(--primary)] items-center text-md">
@@ -35,7 +35,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
         </a>
         
         <!-- 中间：导航链接 -->
-        <div class="hidden md:flex -ml-40">
+        <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
             {links.map((l) => {
                 if (l.children && l.children.length > 0) {
                     return (
@@ -75,7 +75,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
         </div>
         
         <!-- 右侧：搜索和功能按钮 -->
-        <div class="flex flex-shrink-0">
+        <div class="flex flex-shrink-0 absolute right-4">
             <Search client:only="svelte"></Search>
             {!siteConfig.themeColor.fixed && (
                     <button aria-label="Display Settings" class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90" id="display-settings-switch">
