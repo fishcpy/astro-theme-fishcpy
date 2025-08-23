@@ -35,8 +35,6 @@ const togglePanel = () => {
 	panel?.classList.toggle("float-panel-closed");
 };
 
-
-
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
 	if (!panel) return;
@@ -59,7 +57,6 @@ const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 
 const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 	if (!keyword) {
-		setPanelVisibility(false, isDesktop);
 		result = [];
 		return;
 	}
