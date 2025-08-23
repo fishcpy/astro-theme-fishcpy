@@ -193,3 +193,11 @@ export const commentConfig: CommentConfig = {
 			"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/",
 	},
 };
+
+//不生效就去改 /tailwind.config.cjs
+export const screensConfig = {
+	sm: "768px",
+	md: "1024px",
+	lg: "1280px",
+	xl: "1536px",
+};
