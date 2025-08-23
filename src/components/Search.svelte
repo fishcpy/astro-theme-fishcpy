@@ -6,7 +6,6 @@ import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 import type { SearchResult } from "@/global";
 
-let keywordDesktop = "";
 let keywordMobile = "";
 let result: SearchResult[] = [];
 let isSearching = false;
@@ -35,6 +34,8 @@ const togglePanel = () => {
 	const panel = document.getElementById("search-panel");
 	panel?.classList.toggle("float-panel-closed");
 };
+
+
 
 const setPanelVisibility = (show: boolean, isDesktop: boolean): void => {
 	const panel = document.getElementById("search-panel");
@@ -112,7 +113,6 @@ onMount(() => {
 			!!window.pagefind &&
 			typeof window.pagefind.search === "function";
 		console.log("Pagefind status on init:", pagefindLoaded);
-		if (keywordDesktop) search(keywordDesktop, true);
 		if (keywordMobile) search(keywordMobile, false);
 	};
 
@@ -145,29 +145,14 @@ onMount(() => {
 
 $: if (initialized) {
 	(async () => {
-		await search(keywordDesktop, true);
-	})();
-}
-
-$: if (initialized) {
-	(async () => {
 		await search(keywordMobile, false);
 	})();
 }
 </script>
 
-<!-- search bar for desktop view -->
-<div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg search-bar-glass">
-    <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-    <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordDesktop} on:focus={() => search(keywordDesktop, true)}
-           class="transition-all pl-10 text-sm bg-transparent outline-0
-         h-full w-40 text-black/50 dark:text-white/50"
-    >
-</div>
-
-<!-- toggle btn for phone/tablet view -->
+<!-- search toggle btn for all devices -->
 <button on:click={togglePanel} aria-label="Search Panel" id="search-switch"
-        class="btn-plain scale-animation lg:!hidden rounded-lg w-11 h-11 active:scale-90">
+        class="btn-plain scale-animation rounded-lg w-11 h-11 mr-2 active:scale-90">
     <Icon icon="material-symbols:search" class="text-[1.25rem]"></Icon>
 </button>
 
@@ -175,12 +160,13 @@ $: if (initialized) {
 <div id="search-panel" class="float-panel float-panel-closed search-panel search-panel-glass absolute md:w-[30rem]
 top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
 
-    <!-- search bar inside panel for phone/tablet -->
-    <div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl search-bar-glass">
+    <!-- search bar inside panel for all devices -->
+    <div id="search-bar-inside" class="flex relative transition-all items-center h-11 rounded-xl search-bar-glass">
         <Icon icon="material-symbols:search" class="absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30"></Icon>
-        <input placeholder="Search" bind:value={keywordMobile}
+        <input placeholder="{i18n(I18nKey.search)}" bind:value={keywordMobile}
+               on:input={() => search(keywordMobile, false)}
                class="pl-10 absolute inset-0 text-sm bg-transparent outline-0
-               focus:w-60 text-black/50 dark:text-white/50"
+               text-black/50 dark:text-white/50"
         >
     </div>
 
