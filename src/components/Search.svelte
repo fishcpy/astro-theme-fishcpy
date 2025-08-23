@@ -154,8 +154,8 @@ $: if (initialized) {
 </button>
 
 <!-- search panel -->
-<div id="search-panel" class="float-panel float-panel-closed search-panel search-panel-glass absolute md:w-[30rem]
-top-20 left-4 md:left-[unset] right-4 shadow-2xl rounded-2xl p-2">
+<div id="search-panel" class="float-panel float-panel-closed search-panel search-panel-glass fixed md:w-[30rem] w-[90vw]
+top-20 left-1/2 transform -translate-x-1/2 shadow-2xl rounded-2xl p-2 z-50">
 
     <!-- search bar inside panel for all devices -->
     <div id="search-bar-inside" class="flex relative transition-all items-center h-11 rounded-xl search-bar-glass">
