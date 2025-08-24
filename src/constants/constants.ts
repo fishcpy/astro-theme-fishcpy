@@ -1,4 +1,4 @@
-export const PAGE_SIZE = 9;
+export const PAGE_SIZE = 6;
 
 export const LIGHT_MODE = "light",
 	DARK_MODE = "dark",
