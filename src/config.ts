@@ -10,6 +10,8 @@ import type {
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
+// ----------------------------------------------------------
+
 export const siteConfig: SiteConfig = {
 	title: "fishcpy的小破站",
 	subtitle: "",
@@ -55,6 +57,8 @@ export const siteConfig: SiteConfig = {
 		},
 	],
 };
+
+// ----------------------------------------------------------
 
 export const navBarConfig: NavBarConfig = {
 	links: [
@@ -150,6 +154,8 @@ export const navBarConfig: NavBarConfig = {
 	],
 };
 
+// ----------------------------------------------------------
+
 export const profileConfig: ProfileConfig = {
 	avatar: "https://www.fis.ink/img/logo.png", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
 	name: "fishcpy",
@@ -176,11 +182,15 @@ export const profileConfig: ProfileConfig = {
 	],
 };
 
+// ----------------------------------------------------------
+
 export const licenseConfig: LicenseConfig = {
 	enable: true,
 	name: "CC BY-NC-SA 4.0",
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
+
+// ----------------------------------------------------------
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// 注意：某些样式(如背景色)会被覆盖，请查看astro.config.mjs文件
@@ -188,12 +198,16 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	theme: "github-dark",
 };
 
+// ----------------------------------------------------------
+
 export const commentConfig: CommentConfig = {
 	twikoo: {
 		envId:
 			"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/",
 	},
 };
+
+// ----------------------------------------------------------
 
 //不生效就去改 /tailwind.config.cjs
 export const screensConfig = {
@@ -204,9 +218,13 @@ export const screensConfig = {
 	xl: "1536px",
 };
 
+// ----------------------------------------------------------
+
 export const cardConfig = {
 	opacity: 0.85, // 卡片半透明度，取值范围0-1
 };
+
+// ----------------------------------------------------------
 
 export const layoutConfig = {
 	postList: {
@@ -239,6 +257,9 @@ export const layoutConfig = {
 // 3. 自定义网格列数：修改 columns 中的 sm/md/lg 值
 // 4. 调整间距：修改 gap 值（1-12）
 
+// ----------------------------------------------------------
+
+//好像不可用
 export const beautifyConfig: BeautifyConfig = {
 	enable: true,
 	field: "post",
