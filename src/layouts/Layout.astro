@@ -3,7 +3,6 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import TitleBeautify from "@components/TitleBeautify.astro";
 import { cardConfig, profileConfig, siteConfig } from "@/config";
@@ -19,6 +18,7 @@ import {
 } from "../constants/constants";
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
+import { printConsoleBanner } from "../utils/console-banner";
 import { pathsEqual, url } from "../utils/url-utils";
 import "katex/dist/katex.css";
 
@@ -166,6 +166,13 @@ const backgroundStyle = pageBackgroundConfig.enable
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 		<script defer src="https://um.fis.ink/script.js" data-website-id="2c9221d4-6a50-4cba-b63a-2863ef737fcd"></script>
+		
+		<script is:inline>
+			// 控制台横幅
+			console.log('%cfishcpy', 'background: #007acc; color: white; padding: 4px 8px; font-weight: bold;');
+			console.log('%cblog', 'background: #007acc; color: white; padding: 4px 8px; font-weight: bold;');
+			console.log('%c────────────────────────────────────────', 'color: #007acc; font-weight: bold;');
+		</script>
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
