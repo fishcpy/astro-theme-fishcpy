@@ -35,25 +35,18 @@ const config = {
     
       // 尝试使用原始URL
       try {
-        console.log('Initializing Twikoo...');
         twikoo.init({
           ...config,
           envId: originalEnvId
         });
-        console.log('Twikoo initialized successfully');
       } catch (error) {
-        console.error('Failed to initialize Twikoo, trying alternative configuration');
-      
         // 尝试使用不带协议的URL
         try {
           twikoo.init({
             ...config,
             envId: envIdWithoutProtocol
           });
-          console.log('Twikoo initialized with alternative method');
         } catch (error) {
-          console.error('Failed to initialize with alternative configuration');
-        
           // 最后尝试使用一个简单的字符串
           try {
             // 从原始envId中提取域名部分作为简单ID
@@ -65,13 +58,11 @@ const config = {
               ...config,
               envId: simpleEnvId
             });
-            console.log('Twikoo initialized with simplified method');
           } catch (error) {
-            console.error('All initialization attempts failed');
+            // 初始化失败，静默处理
           }
         }
       }
-      console.log('Twikoo initialization process completed');
     
       // 全面改进的移动端点击处理
       // 存储触摸开始的信息
@@ -216,14 +207,13 @@ const config = {
       }, 1000); // 给Twikoo一些时间来渲染评论区
     };
     script.onerror = (error) => {
-      console.error('Failed to load Twikoo script:', error);
+      // Twikoo 脚本加载失败，静默处理
     };
     document.body.appendChild(script);
   }
   
   // 监听加载评论事件
   document.addEventListener("loadComment", () => {
-    console.log('loadComment event triggered');
     loadTwikoo();
   }, { once: true });
   

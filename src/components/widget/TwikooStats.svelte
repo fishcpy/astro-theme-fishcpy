@@ -19,7 +19,6 @@
           }
           loading = false;
         } catch (err) {
-          console.error('获取Twikoo统计失败:', err);
           error = '统计数据获取失败';
           loading = false;
         }

@@ -92,11 +92,9 @@ export function LinkCardComponent(properties, children) {
 				}
 				
 				cardElement.classList.remove("fetch-waiting");
-				console.log("[LINK-CARD] Loaded card for ${url} | ${cardUuid}.");
 			} catch (err) {
 				const c = document.getElementById('${cardUuid}-card');
 				c?.classList.add("fetch-error");
-				console.warn("[LINK-CARD] (Error) Loading card for ${url} | ${cardUuid}.");
 			}
 		`,
 			)

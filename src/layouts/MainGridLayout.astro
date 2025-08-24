@@ -157,8 +157,6 @@ class TwikooVisitorManager {
       envId: commentConfig.twikoo.envId
     };
 
-    console.log('Initializing TwikooVisitorManager with config:', this.config);
-
     // 等待 Twikoo 加载完成
     await this.waitForTwikoo();
     
@@ -166,7 +164,6 @@ class TwikooVisitorManager {
     this.updateAllVisitors();
     
     this.initialized = true;
-    console.log('TwikooVisitorManager initialized successfully');
   }
 
   // 等待 Twikoo 加载完成
@@ -174,14 +171,11 @@ class TwikooVisitorManager {
     return new Promise((resolve, reject) => {
       const checkTwikoo = () => {
         if (typeof window !== 'undefined' && window.twikoo) {
-          console.log('Twikoo is available');
           resolve();
         } else if (this.retryCount < this.maxRetries) {
           this.retryCount++;
-          console.log(`Waiting for Twikoo... attempt ${this.retryCount}/${this.maxRetries}`);
           setTimeout(checkTwikoo, 500);
         } else {
-          console.error('Twikoo failed to load after maximum retries');
           reject(new Error('Twikoo failed to load'));
         }
       };
@@ -195,11 +189,8 @@ class TwikooVisitorManager {
     const visitorElements = document.querySelectorAll('[id^="twikoo_visitors_"]');
     
     if (visitorElements.length === 0) {
-      console.log('No visitor elements found');
       return;
     }
-
-    console.log(`Found ${visitorElements.length} visitor elements`);
 
     // 收集所有URL
     const urls = [];
@@ -220,21 +211,16 @@ class TwikooVisitorManager {
         const element = elementMap.get(url);
         if (element) {
           element.textContent = count.toString();
-          console.log(`Updated ${url}: ${count} visitors`);
         }
       }
     } catch (error) {
-      console.error('Failed to get visitor counts:', error);
-      
       // 如果批量获取失败，尝试单独获取
       for (const element of visitorElements) {
         try {
           const url = this.extractUrlFromId(element.id);
           const count = await this.getSingleVisitorCount(url);
           element.textContent = count.toString();
-          console.log(`Updated ${url}: ${count} visitors (single)`);
         } catch (singleError) {
-          console.error(`Failed to update visitor count for ${element.id}:`, singleError);
           element.textContent = '0';
         }
       }
@@ -259,8 +245,7 @@ class TwikooVisitorManager {
     if (!window.twikoo) {
       throw new Error('Twikoo not available');
     }
-
-    console.log('Getting visitor counts for URLs:', urls);
+    
     const counts = {};
     
     // 逐个获取每个URL的访问量
@@ -268,9 +253,7 @@ class TwikooVisitorManager {
       try {
         const count = await this.getSingleVisitorCount(url);
         counts[url] = count;
-        console.log(`Got count for ${url}: ${count}`);
       } catch (error) {
-        console.error(`Failed to get count for ${url}:`, error);
         counts[url] = 0;
       }
     }
@@ -299,7 +282,6 @@ class TwikooVisitorManager {
       
       if (response.ok) {
         const data = await response.json();
-        console.log(`Single visitor count for ${url}:`, data);
         
         // 处理返回的数据
         if (data.data && data.data.time !== undefined) {
@@ -311,7 +293,6 @@ class TwikooVisitorManager {
 
       return 0;
     } catch (error) {
-      console.error(`Error getting visitor count for ${url}:`, error);
       return 0;
     }
   }
@@ -327,7 +308,7 @@ class TwikooVisitorManager {
       const count = await this.getSingleVisitorCount(url);
       element.textContent = count.toString();
     } catch (error) {
-      console.error(`Failed to update visitor count for ${url}:`, error);
+      // 静默处理错误
     }
   }
 }
@@ -339,7 +320,7 @@ window.twikooVisitorManager = new TwikooVisitorManager();
 function initTwikooVisitors() {
   if (window.twikooVisitorManager) {
     window.twikooVisitorManager.init().catch(error => {
-      console.error('Failed to initialize Twikoo visitors:', error);
+      // 静默处理初始化错误
     });
   }
 }
