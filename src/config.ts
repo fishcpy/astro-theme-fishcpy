@@ -198,7 +198,7 @@ export const commentConfig: CommentConfig = {
 export const screensConfig = {
 	sm: "768px",
 	md: "1024px",
-	lg: "1280px",
+	lg: "1180px",
 	xl: "1536px",
 };
 
