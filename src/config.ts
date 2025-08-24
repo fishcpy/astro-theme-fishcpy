@@ -1,5 +1,6 @@
 import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "./constants/constants";
 import type {
+	BeautifyConfig,
 	CommentConfig,
 	ExpressiveCodeConfig,
 	LicenseConfig,
@@ -237,3 +238,37 @@ export const layoutConfig = {
 // 2. 列表布局：type: "list"
 // 3. 自定义网格列数：修改 columns 中的 sm/md/lg 值
 // 4. 调整间距：修改 gap 值（1-12）
+
+export const beautifyConfig: BeautifyConfig = {
+	enable: true,
+	field: "post",
+	titlePrefixIcon: "\uf863",
+	titlePrefixIconColor: "#ff7849",
+	animation: {
+		enable: true,
+		speed: 1.6,
+		direction: "counterclockwise",
+		rotate: true,
+	},
+	hover: {
+		enable: true,
+		slowSpeed: 3.2,
+		color: "#49b1f5",
+	},
+	colors: {
+		h1: "#ef50a8",
+		h2: "#fb7061",
+		h3: "#ffbf00",
+		h4: "#a9e000",
+		h5: "#57c850",
+		h6: "#5ec1e0",
+	},
+	sizes: {
+		h1: "1.3rem",
+		h2: "1.1rem",
+		h3: "0.95rem",
+		h4: "0.8rem",
+		h5: "0.7rem",
+		h6: "0.66rem",
+	},
+};

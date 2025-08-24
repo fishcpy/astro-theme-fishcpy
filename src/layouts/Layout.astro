@@ -3,7 +3,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+
 import ConfigCarrier from "@components/ConfigCarrier.astro";
+import TitleBeautify from "@components/TitleBeautify.astro";
 import { cardConfig, profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -153,6 +155,11 @@ const backgroundStyle = pageBackgroundConfig.enable
 			'card-opacity': cardConfig.opacity,
 		}}></style>  <!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
 
+
+		<!-- Font Awesome 6 CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<TitleBeautify />
 
 		<slot name="head"></slot>
 

@@ -1,0 +1,124 @@
+/* 标题美化 - 小风车图标效果 */
+
+/* 基础图标样式 */
+.custom-md h1::before,
+.custom-md h2::before,
+.custom-md h3::before,
+.custom-md h4::before,
+.custom-md h5::before,
+.custom-md h6::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    content: "\f863";
+    display: inline-block;
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+/* 动画效果 */
+.custom-md h1::before,
+.custom-md h2::before,
+.custom-md h3::before,
+.custom-md h4::before,
+.custom-md h5::before,
+.custom-md h6::before {
+    -webkit-animation: windmill-spin 1.6s linear infinite;
+    animation: windmill-spin 1.6s linear infinite;
+}
+
+/* 关键帧动画 */
+@-webkit-keyframes windmill-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes windmill-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+
+/* 不同级别标题的颜色和大小 */
+.custom-md h1::before {
+    color: #ef50a8;
+    font-size: 1.3rem;
+    margin-left: -1.35rem;
+    margin-top: -0.23rem;
+}
+
+.custom-md h2::before {
+    color: #fb7061;
+    font-size: 1.1rem;
+    margin-left: -1.15rem;
+    margin-top: -0.12rem;
+}
+
+.custom-md h3::before {
+    color: #ffbf00;
+    font-size: 0.95rem;
+    margin-left: -1.02rem;
+    margin-top: -0.09rem;
+}
+
+.custom-md h4::before {
+    color: #a9e000;
+    font-size: 0.8rem;
+    margin-left: -0.85rem;
+    margin-top: -0.09rem;
+}
+
+.custom-md h5::before {
+    color: #57c850;
+    font-size: 0.7rem;
+    margin-left: -0.7rem;
+    margin-top: 0rem;
+}
+
+.custom-md h6::before {
+    color: #5ec1e0;
+    font-size: 0.66rem;
+    margin-left: -0.7rem;
+    margin-top: 0rem;
+}
+
+/* 鼠标悬停效果 */
+.custom-md h1:hover,
+.custom-md h2:hover,
+.custom-md h3:hover,
+.custom-md h4:hover,
+.custom-md h5:hover,
+.custom-md h6:hover {
+    color: #49b1f5;
+}
+
+.custom-md h1:hover::before,
+.custom-md h2:hover::before,
+.custom-md h3:hover::before,
+.custom-md h4:hover::before,
+.custom-md h5:hover::before,
+.custom-md h6:hover::before {
+    color: #49b1f5;
+    -webkit-animation-duration: 3.2s;
+    animation-duration: 3.2s;
+}
+
+/* 确保不影响锚点链接 */
+.custom-md h1 .anchor,
+.custom-md h2 .anchor,
+.custom-md h3 .anchor,
+.custom-md h4 .anchor,
+.custom-md h5 .anchor,
+.custom-md h6 .anchor {
+    margin-left: 0.2ch;
+}

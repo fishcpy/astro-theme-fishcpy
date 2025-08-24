@@ -1,0 +1,146 @@
+---
+import { beautifyConfig } from "@/config";
+
+const { enable, field, titlePrefixIcon, titlePrefixIconColor, animation, hover, colors, sizes } = beautifyConfig;
+
+// 根据配置生成CSS变量
+const cssVars = {
+	'--title-icon': `"${titlePrefixIcon}"`,
+	'--title-icon-color': titlePrefixIconColor,
+	'--animation-speed': (animation?.enable && animation?.rotate) ? `${animation.speed}s` : '0s',
+	'--animation-direction': animation?.direction === 'clockwise' ? '360deg' : '-360deg',
+	'--hover-speed': (hover?.enable && animation?.rotate) ? `${hover.slowSpeed}s` : '0s',
+	'--hover-color': hover?.color || titlePrefixIconColor,
+	'--h1-color': colors?.h1 || titlePrefixIconColor,
+	'--h2-color': colors?.h2 || titlePrefixIconColor,
+	'--h3-color': colors?.h3 || titlePrefixIconColor,
+	'--h4-color': colors?.h4 || titlePrefixIconColor,
+	'--h5-color': colors?.h5 || titlePrefixIconColor,
+	'--h6-color': colors?.h6 || titlePrefixIconColor,
+	'--h1-size': sizes?.h1 || '1.3rem',
+	'--h2-size': sizes?.h2 || '1.1rem',
+	'--h3-size': sizes?.h3 || '0.95rem',
+	'--h4-size': sizes?.h4 || '0.8rem',
+	'--h5-size': sizes?.h5 || '0.7rem',
+	'--h6-size': sizes?.h6 || '0.66rem',
+};
+---
+
+{enable && (
+	<style define:vars={cssVars} is:global>
+		/* 动态应用配置的标题美化样式 */
+		.custom-md h1::before,
+		.custom-md h2::before,
+		.custom-md h3::before,
+		.custom-md h4::before,
+		.custom-md h5::before,
+		.custom-md h6::before {
+			content: var(--title-icon);
+			color: var(--title-icon-color);
+			font-family: "Font Awesome 6 Free";
+			font-weight: 900;
+			display: inline-block;
+			margin-right: 0.5rem;
+			position: relative;
+			-webkit-animation: windmill-spin var(--animation-speed) linear infinite;
+			animation: windmill-spin var(--animation-speed) linear infinite;
+		}
+
+		/* 不同级别标题的特定样式 */
+		.custom-md h1::before {
+			color: var(--h1-color);
+			font-size: var(--h1-size);
+			margin-left: -1.35rem;
+			margin-top: -0.23rem;
+		}
+
+		.custom-md h2::before {
+			color: var(--h2-color);
+			font-size: var(--h2-size);
+			margin-left: -1.15rem;
+			margin-top: -0.12rem;
+		}
+
+		.custom-md h3::before {
+			color: var(--h3-color);
+			font-size: var(--h3-size);
+			margin-left: -1.02rem;
+			margin-top: -0.09rem;
+		}
+
+		.custom-md h4::before {
+			color: var(--h4-color);
+			font-size: var(--h4-size);
+			margin-left: -0.85rem;
+			margin-top: -0.09rem;
+		}
+
+		.custom-md h5::before {
+			color: var(--h5-color);
+			font-size: var(--h5-size);
+			margin-left: -0.7rem;
+			margin-top: 0rem;
+		}
+
+		.custom-md h6::before {
+			color: var(--h6-color);
+			font-size: var(--h6-size);
+			margin-left: -0.7rem;
+			margin-top: 0rem;
+		}
+
+		/* 鼠标悬停效果 */
+		.custom-md h1:hover,
+		.custom-md h2:hover,
+		.custom-md h3:hover,
+		.custom-md h4:hover,
+		.custom-md h5:hover,
+		.custom-md h6:hover {
+			color: var(--hover-color);
+		}
+
+		.custom-md h1:hover::before,
+		.custom-md h2:hover::before,
+		.custom-md h3:hover::before,
+		.custom-md h4:hover::before,
+		.custom-md h5:hover::before,
+		.custom-md h6:hover::before {
+			color: var(--hover-color);
+			-webkit-animation-duration: var(--hover-speed);
+			animation-duration: var(--hover-speed);
+		}
+
+		/* 关键帧动画 */
+		@-webkit-keyframes windmill-spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			100% {
+				-webkit-transform: rotate(var(--animation-direction));
+				transform: rotate(var(--animation-direction));
+			}
+		}
+
+		@keyframes windmill-spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+			100% {
+				-webkit-transform: rotate(var(--animation-direction));
+				transform: rotate(var(--animation-direction));
+			}
+		}
+
+		/* 确保不影响锚点链接 */
+		.custom-md h1 .anchor,
+		.custom-md h2 .anchor,
+		.custom-md h3 .anchor,
+		.custom-md h4 .anchor,
+		.custom-md h5 .anchor,
+		.custom-md h6 .anchor {
+			margin-left: 0.2ch;
+		}
+	</style>
+)}

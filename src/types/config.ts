@@ -123,3 +123,37 @@ export type BlogPostData = {
 export type ExpressiveCodeConfig = {
 	theme: string;
 };
+
+export type BeautifyConfig = {
+	enable: boolean;
+	field: "post" | "site";
+	titlePrefixIcon: string;
+	titlePrefixIconColor: string;
+	animation?: {
+		enable: boolean;
+		speed: number;
+		direction: "clockwise" | "counterclockwise";
+		rotate: boolean;
+	};
+	hover?: {
+		enable: boolean;
+		slowSpeed: number;
+		color: string;
+	};
+	colors?: {
+		h1: string;
+		h2: string;
+		h3: string;
+		h4: string;
+		h5: string;
+		h6: string;
+	};
+	sizes?: {
+		h1: string;
+		h2: string;
+		h3: string;
+		h4: string;
+		h5: string;
+		h6: string;
+	};
+};
