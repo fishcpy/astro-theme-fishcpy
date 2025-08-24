@@ -6,7 +6,7 @@ const screensConfig = {
 	sm: "568px",
 	md2: "726px",
 	md: "924px",
-	lg: "1180px",
+	lg: "1400px",
 	xl: "1536px",
 };
 

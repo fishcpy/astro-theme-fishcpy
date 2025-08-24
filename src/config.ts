@@ -199,7 +199,7 @@ export const screensConfig = {
 	sm: "768px",
 	md2: "726px",
 	md: "924px",
-	lg: "1180px",
+	lg: "1400px",
 	xl: "1536px",
 };
 
@@ -218,6 +218,16 @@ export const layoutConfig = {
 				lg: 3, // 大屏幕列数，最大为3，超出会变成2个每行
 			},
 			gap: "gap-4", // 网格间距，对应Tailwind的gap-4
+		},
+	},
+	friends: {
+		grid: {
+			columns: {
+				sm: 1, // 小屏幕列数
+				md: 2, // 中屏幕列数
+				lg: 3, // 大屏幕列数
+			},
+			gap: "gap-x-6 gap-y-8", // 网格间距
 		},
 	},
 };
