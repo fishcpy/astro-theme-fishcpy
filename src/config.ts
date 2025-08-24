@@ -34,7 +34,7 @@ export const siteConfig: SiteConfig = {
 		},
 		text: {
 			enable: true, // 是否在banner中显示文字
-			title: "非淡泊无以明志，非宁静无以致远", // banner主标题
+			title: "Hello👋", // banner主标题
 			subtitle: "Welcome to my blog", // banner副标题
 		},
 	},
