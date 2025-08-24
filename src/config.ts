@@ -197,7 +197,8 @@ export const commentConfig: CommentConfig = {
 //不生效就去改 /tailwind.config.cjs
 export const screensConfig = {
 	sm: "768px",
-	md: "1024px",
+	md2: "726px",
+	md: "924px",
 	lg: "1180px",
 	xl: "1536px",
 };
@@ -212,6 +213,7 @@ export const layoutConfig = {
 		grid: {
 			columns: {
 				sm: 1, // 小屏幕列数
+				md2: 2, // 726px以上显示2列
 				md: 2, // 中屏幕列数
 				lg: 3, // 大屏幕列数，最大为3，超出会变成2个每行
 			},

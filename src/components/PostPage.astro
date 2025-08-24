@@ -12,7 +12,7 @@ const interval = 50;
 // 根据配置生成布局样式
 const isGridLayout = layoutConfig.postList.type === "grid";
 const gridClasses = isGridLayout
-	? `grid grid-cols-${layoutConfig.postList.grid.columns.sm} md:grid-cols-${layoutConfig.postList.grid.columns.md} lg:grid-cols-${layoutConfig.postList.grid.columns.lg} ${layoutConfig.postList.grid.gap}`
+	? `grid grid-cols-${layoutConfig.postList.grid.columns.sm} md2:grid-cols-${layoutConfig.postList.grid.columns.md2} md:grid-cols-${layoutConfig.postList.grid.columns.md} lg:grid-cols-${layoutConfig.postList.grid.columns.lg} ${layoutConfig.postList.grid.gap}`
 	: "flex flex-col md:gap-4";
 ---
 

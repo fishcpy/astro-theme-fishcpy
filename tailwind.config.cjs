@@ -3,8 +3,9 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 // 从 config.ts 导入屏幕断点配置
 const screensConfig = {
-	sm: "768px",
-	md: "1024px",
+	sm: "568px",
+	md2: "726px",
+	md: "924px",
 	lg: "1180px",
 	xl: "1536px",
 };
@@ -17,6 +18,9 @@ module.exports = {
 		"grid-cols-1",
 		"grid-cols-2",
 		"grid-cols-3",
+		"md2:grid-cols-1",
+		"md2:grid-cols-2",
+		"md2:grid-cols-3",
 		"md:grid-cols-1",
 		"md:grid-cols-2",
 		"md:grid-cols-3",
