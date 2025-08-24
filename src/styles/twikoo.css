@@ -114,7 +114,7 @@ html.dark {
 /* Replies */
 .tk-replies {
   .tk-comment {
-    @apply bg-[var(--page-bg)];
+    @apply bg-[var(--card-bg)] bg-opacity-50;
     .tk-content {
       > span:first-of-type {
         @apply text-xs;
