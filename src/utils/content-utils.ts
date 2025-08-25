@@ -15,11 +15,15 @@ export async function getSortedPosts() {
 	});
 
 	for (let i = 1; i < sorted.length; i++) {
-		sorted[i].data.nextSlug = sorted[i - 1].slug;
+		// 计算下一篇文章的实际路径（支持自定义slug）
+		const nextSlug = sorted[i - 1].data.customSlug || sorted[i - 1].slug;
+		sorted[i].data.nextSlug = nextSlug;
 		sorted[i].data.nextTitle = sorted[i - 1].data.title;
 	}
 	for (let i = 0; i < sorted.length - 1; i++) {
-		sorted[i].data.prevSlug = sorted[i + 1].slug;
+		// 计算上一篇文章的实际路径（支持自定义slug）
+		const prevSlug = sorted[i + 1].data.customSlug || sorted[i + 1].slug;
+		sorted[i].data.prevSlug = prevSlug;
 		sorted[i].data.prevTitle = sorted[i + 1].data.title;
 	}
 

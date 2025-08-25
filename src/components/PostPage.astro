@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getPostUrlBySlug } from "@utils/url-utils";
+import { getPostUrl, getPostUrlBySlug } from "@utils/url-utils";
 import { layoutConfig } from "@/config";
 import PostCard from "./PostCard.astro";
 
@@ -25,7 +25,7 @@ const gridClasses = isGridLayout
                 category={entry.data.category}
                 published={entry.data.published}
                 updated={entry.data.updated}
-                url={getPostUrlBySlug(entry.slug)}
+                url={getPostUrl(entry)}
                 image={entry.data.image}
                 description={entry.data.description}
                 draft={entry.data.draft}

@@ -21,7 +21,14 @@ interface Post {
 		tags: string[];
 		category?: string;
 		published: Date;
+		customSlug?: string; // 支持自定义路径
 	};
+}
+
+// 生成文章URL的函数，支持自定义路径
+function getPostUrl(post: Post): string {
+	const finalSlug = post.data.customSlug || post.slug;
+	return getPostUrlBySlug(finalSlug);
 }
 
 interface Group {
@@ -105,7 +112,7 @@ onMount(async () => {
 
             {#each group.posts as post}
                 <a
-                        href={getPostUrlBySlug(post.slug)}
+                        href={getPostUrl(post)}
                         aria-label={post.data.title}
                         class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
                 >

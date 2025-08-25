@@ -16,6 +16,13 @@ export function getPostUrlBySlug(slug: string): string {
 	return url(`/posts/${slug}/`);
 }
 
+// 新增：支持自定义路径的函数
+export function getPostUrl(entry: any): string {
+	// 如果有自定义slug，使用自定义slug；否则使用默认的文件名slug
+	const finalSlug = entry.data?.customSlug || entry.slug;
+	return url(`/posts/${finalSlug}/`);
+}
+
 export function getTagUrl(tag: string): string {
 	if (!tag) return url("/archive/");
 	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);

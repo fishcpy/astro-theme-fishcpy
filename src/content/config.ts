@@ -12,6 +12,7 @@ const postsCollection = defineCollection({
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
 		ai: z.string().optional().default(""),
+		customSlug: z.string().optional(), // 自定义文章路径，覆盖默认的文件名作为路径
 
 		/* For internal use */
 		prevTitle: z.string().default(""),

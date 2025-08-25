@@ -1,25 +1,26 @@
 ---
 import path from "node:path";
+import Comment from "@components/comment/index.astro";
+import AISummary from "@components/misc/AISummary.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
-import { getDir, getPostUrlBySlug } from "@utils/url-utils";
+import { getDir, getPostUrl, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
-import { profileConfig, siteConfig, cardConfig } from "../../config";
+import { cardConfig, profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
-import Comment from "@components/comment/index.astro";
-import AISummary from "@components/misc/AISummary.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
+		// 使用自定义slug（如果存在）或默认的文件名slug
+		params: { slug: entry.data.customSlug || entry.slug },
 		props: { entry },
 	}));
 }
@@ -94,7 +95,7 @@ const jsonLd = {
                         updated={entry.data.updated}
                         tags={entry.data.tags}
                         category={entry.data.category}
-                        url={getPostUrlBySlug(entry.slug)}
+                        url={getPostUrl(entry)}
                 ></PostMetadata>
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
