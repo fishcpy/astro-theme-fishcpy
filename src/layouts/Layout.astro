@@ -10,6 +10,8 @@ import {
 	AUTO_MODE,
 	BANNER_HEIGHT,
 	BANNER_HEIGHT_EXTEND,
+	BANNER_HEIGHT_FULLSCREEN,
+	BANNER_HEIGHT_FULLSCREEN_EXTEND,
 	BANNER_HEIGHT_HOME,
 	DARK_MODE,
 	DEFAULT_THEME,
@@ -65,9 +67,15 @@ if (!lang) {
 }
 const siteLang = lang.replace("_", "-");
 
+// 根据fullscreen配置选择Banner高度和偏移量
+const isFullscreenBanner = siteConfig.banner.fullscreen;
+const currentBannerHeightExtend = isFullscreenBanner
+	? BANNER_HEIGHT_FULLSCREEN_EXTEND
+	: BANNER_HEIGHT_EXTEND;
+
 const bannerOffsetByPosition = {
-	top: `${BANNER_HEIGHT_EXTEND}vh`,
-	center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
+	top: `${currentBannerHeightExtend}vh`,
+	center: `${currentBannerHeightExtend / 2}vh`,
 	bottom: "0",
 };
 const bannerOffset =
@@ -121,7 +129,7 @@ const backgroundStyle = pageBackgroundConfig.enable
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue, configTheme: siteConfig.theme}}>
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, BANNER_HEIGHT_FULLSCREEN_EXTEND, PAGE_WIDTH, configHue, configTheme: siteConfig.theme, isFullscreenBanner}}>
 			// Load the theme from config or local storage
 			const isThemeForced = configTheme === LIGHT_MODE || configTheme === DARK_MODE;
 			const theme = isThemeForced ? configTheme : (localStorage.getItem('theme') || DEFAULT_THEME);
@@ -144,10 +152,35 @@ const backgroundStyle = pageBackgroundConfig.enable
 			const hue = localStorage.getItem('hue') || configHue;
 			document.documentElement.style.setProperty('--hue', hue);
 
+			// 根据fullscreen配置计算banner高度伸展
+			const bannerHeightExtend = isFullscreenBanner ? BANNER_HEIGHT_FULLSCREEN_EXTEND : BANNER_HEIGHT_EXTEND;
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
-			let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
+			let offset = Math.floor(window.innerHeight * (bannerHeightExtend / 100));
 			offset = offset - offset % 4;
 			document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
+			
+			// 设置全屏模式的CSS变量
+			if (isFullscreenBanner) {
+				// 全屏模式使用100vh和100dvh（移动端动态视口高度）
+				document.documentElement.style.setProperty('--banner-height-fullscreen', '100vh');
+				// 为了支持旧浏览器，优先设置100vh，再设置100dvh覆盖
+				try {
+					if (CSS.supports('height', '100dvh')) {
+						document.documentElement.style.setProperty('--banner-height-mobile', '100dvh');
+						// 移动端主内容位置也使用100dvh
+						if (window.innerWidth < 1024) {
+							const mainContentWrapper = document.getElementById('main-content-wrapper');
+							if (mainContentWrapper) {
+								mainContentWrapper.style.top = '100dvh';
+							}
+						}
+					} else {
+						document.documentElement.style.setProperty('--banner-height-mobile', '100vh');
+					}
+				} catch (e) {
+					document.documentElement.style.setProperty('--banner-height-mobile', '100vh');
+				}
+			}
 		</script>
 		<style define:vars={{
 			configHue,
@@ -174,7 +207,7 @@ const backgroundStyle = pageBackgroundConfig.enable
 			console.log('%c────────────────────────────────────────', 'color: #007acc; font-weight: bold;');
 		</script>
 	</head>
-	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
+	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner, "fullscreen-banner": enableBanner && isFullscreenBanner}]}
 		  data-overlayscrollbars-initialize
 	>
 		<!-- 鼠标跟随效果元素 -->
@@ -206,27 +239,65 @@ const backgroundStyle = pageBackgroundConfig.enable
 
 <style is:global define:vars={{
 	bannerOffset,
-	'banner-height-home': `${BANNER_HEIGHT_HOME}vh`,
+	'banner-height-home': isFullscreenBanner ? `${BANNER_HEIGHT_FULLSCREEN}vh` : `${BANNER_HEIGHT_HOME}vh`,
 	'banner-height': `${BANNER_HEIGHT}vh`,
+	'banner-height-fullscreen': `${BANNER_HEIGHT_FULLSCREEN}vh`,
 }}>
 @tailwind components;
 @layer components {
-	.enable-banner.is-home #banner-wrapper {
+	/* 普通模式（80vh） */
+	.enable-banner:not(.fullscreen-banner).is-home #banner-wrapper {
 		@apply h-[var(--banner-height-home)] translate-y-[var(--banner-height-extend)]
 	}
-	.enable-banner #banner-wrapper {
+	.enable-banner:not(.fullscreen-banner) #banner-wrapper {
 		@apply h-[var(--banner-height-home)]
 	}
 
-	.enable-banner.is-home #banner {
+	.enable-banner:not(.fullscreen-banner).is-home #banner {
 		@apply h-[var(--banner-height-home)] translate-y-0
 	}
-	.enable-banner #banner {
+	.enable-banner:not(.fullscreen-banner) #banner {
 		@apply h-[var(--banner-height-home)] translate-y-[var(--bannerOffset)]
 	}
-	.enable-banner.is-home #main-grid {
+	
+	/* 全屏模式（100vh/100dvh） */
+	.enable-banner.fullscreen-banner #banner-wrapper {
+		@apply h-[100vh]
+	}
+	
+	.enable-banner.fullscreen-banner #banner {
+		@apply h-[100vh] translate-y-0
+	}
+	
+	/* 移动端使用动态视口高度，确保真正全屏 */
+	@media (max-width: 1023px) {
+		@supports (height: 100dvh) {
+			.enable-banner.fullscreen-banner #banner-wrapper {
+				height: 100dvh !important;
+			}
+			.enable-banner.fullscreen-banner #banner {
+				height: 100dvh !important;
+			}
+		}
+		
+		@supports not (height: 100dvh) {
+			.enable-banner.fullscreen-banner #banner-wrapper {
+				height: 100vh !important;
+			}
+			.enable-banner.fullscreen-banner #banner {
+				height: 100vh !important;
+			}
+		}
+	}
+	
+	/* 全屏模式下的布局调整 */
+	.enable-banner.fullscreen-banner.is-home #main-grid {
+		@apply lg:translate-y-0 max-lg:translate-y-0
+	}
+	.enable-banner:not(.fullscreen-banner).is-home #main-grid {
 		@apply translate-y-[var(--banner-height-extend)];
 	}
+	
 	.enable-banner #top-row {
 		@apply h-[calc(var(--banner-height-home)_-_4.5rem)] transition-all duration-300
 	}

@@ -1,6 +1,6 @@
 ---
-import ImageWrapper from "./ImageWrapper.astro";
 import { siteConfig } from "../../config";
+import ImageWrapper from "./ImageWrapper.astro";
 
 interface Props {
 	id?: string;
@@ -12,23 +12,25 @@ const { id, alt } = Astro.props;
 const className = Astro.props.class;
 const bannerConfig = siteConfig.banner;
 const isVideo = bannerConfig.type === "video";
+const isFullscreen = bannerConfig.fullscreen;
 const positionClass = {
 	top: "object-top",
-	center: "object-center", 
-	bottom: "object-bottom"
+	center: "object-center",
+	bottom: "object-bottom",
 }[bannerConfig.position || "center"];
 ---
 
-<div id={id} class:list={[className, 'relative overflow-hidden']}>
+<div id={id} class:list={[className, 'relative overflow-hidden', isFullscreen ? 'h-screen max-lg:h-[100dvh]' : 'min-h-screen md:min-h-0']}>
     {isVideo ? (
         <video 
             src={bannerConfig.src}
-            class:list={["w-full h-full object-cover", positionClass]}
+            class:list={["w-full h-full object-cover", positionClass, isFullscreen ? "max-lg:!h-[100dvh]" : "min-h-screen md:min-h-0"]}
             autoplay
             muted
             loop
             playsinline
             preload="metadata"
+            style={isFullscreen ? "height: 100vh; object-fit: cover;" : ""}
         >
             您的浏览器不支持视频播放。
         </video>
