@@ -10,10 +10,6 @@ export const BANNER_HEIGHT = 45;
 export const BANNER_HEIGHT_EXTEND = 35;
 export const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
 
-// Banner fullscreen height unit: vh (100vh for true fullscreen)
-export const BANNER_HEIGHT_FULLSCREEN = 100;
-export const BANNER_HEIGHT_FULLSCREEN_EXTEND = 0; // 全屏模式下不需要额外伸展
-
 // The height the main panel overlaps the banner, unit: rem
 export const MAIN_PANEL_OVERLAPS_BANNER_HEIGHT = 3.5;
 

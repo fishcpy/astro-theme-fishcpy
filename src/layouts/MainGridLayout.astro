@@ -14,8 +14,6 @@ import { siteConfig } from "../config";
 import {
 	BANNER_HEIGHT,
 	BANNER_HEIGHT_EXTEND,
-	BANNER_HEIGHT_FULLSCREEN,
-	BANNER_HEIGHT_FULLSCREEN_EXTEND,
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "../constants/constants";
 import Layout from "./Layout.astro";
@@ -41,14 +39,8 @@ const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
 const hasBannerLink = !!siteConfig.banner.credit.url;
 
-// 根据fullscreen配置计算主面板的顶部位置
-const isFullscreenBanner = siteConfig.banner.fullscreen;
-
-// 全屏模式下，移动端和桌面端都使用100vh，但移动端需要额外处理动态视口高度
 const mainPanelTop = siteConfig.banner.enable
-	? isFullscreenBanner
-		? "100vh" // 全屏模式下，内容从100vh后开始
-		: `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem + 6rem)` // 普通模式
+	? `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem + 6rem)`
 	: "5.5rem";
 ---
 
@@ -63,14 +55,14 @@ const mainPanelTop = siteConfig.banner.enable
 </div>
 
 <!-- Banner -->
-{siteConfig.banner.enable && <div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden`} style={isFullscreenBanner ? "top: 0" : `top: calc(-1 * var(--banner-height-extend))`}>
+{siteConfig.banner.enable && <div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden`} style={`top: calc(-1 * var(--banner-height-extend))`}>
     <BannerWrapper id="banner" alt="Banner image of the blog" class:list={["object-cover h-full transition duration-700 opacity-0 scale-105"]}
     >
     </BannerWrapper>
 </div>}
 
 <!-- Main content -->
-<div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`} id="main-content-wrapper">
+<div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
     <div class="relative max-w-[var(--page-width)] mx-auto pointer-events-auto">
         <div id="main-grid" class="transition duration-700 w-full left-0 right-0 grid grid-cols-[17.5rem_auto] grid-rows-[auto_1fr_auto] md:grid-rows-[auto]

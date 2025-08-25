@@ -16,7 +16,6 @@ export type SiteConfig = {
 		type?: "image" | "video";
 		src: string;
 		position?: "top" | "center" | "bottom";
-		fullscreen?: boolean; // 是否全屏显示（100vh），默认false使用80vh
 		credit: {
 			enable: boolean;
 			text: string;
