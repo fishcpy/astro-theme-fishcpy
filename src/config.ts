@@ -24,7 +24,7 @@ export const siteConfig: SiteConfig = {
 	banner: {
 		enable: true,
 		type: "video", // 'image' 或 'video'，指定banner类型
-		src: "https://www.fis.ink/wj/video/xingjianya.mp4", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
+		src: "https://www.fis.ink/wj/video/mc.mp4", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
 		//背景在src\layouts\Layout.astro中
 		position: "center", // 等同于CSS的object-position属性，仅支持'top','center','bottom'。默认为'center'
 		credit: {
@@ -43,6 +43,7 @@ export const siteConfig: SiteConfig = {
 		type: "image", // 'image' 或 'video'
 		src: "https://api.fis.ink/mc",
 		//https://www.fis.ink/wj/video/mc.mp4
+		//https://www.fis.ink/wj/video/xingjianya.mp4
 	},
 	toc: {
 		enable: true, // 在文章右侧显示目录
