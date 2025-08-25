@@ -6,6 +6,7 @@ tags: [Markdown, Blogging, Demo]
 category: Examples
 draft: false
 image: https://cdn.fis.ink/cdn/2025/08/24/68aaa1047d8cf.webp
+customSlug: "markdown"
 ---
 # Simple Guides for Fuwari
 

@@ -1,0 +1,32 @@
+---
+title: butterfly导航栏图标修改
+published: 2024-12-05
+description: 本文介绍如何为导航栏添加图标，通过FontAwesome官网选择合适的图标类名，并替换官方配置中的图标名称，实现自定义导航栏图标的效果。
+image: https://imgse.fishcpy.top/upload/675da73b18591.png
+tags: [主题, 解决问题]
+category: 解决问题
+draft: false
+customSlug: "17"
+---
+
+# 导航栏图标
+
+我看了官方配置文件，里面好像没有关于导航栏图标的描述，修改完效果如下
+
+    1
+
+    例： 首页: / || fas fa-home
+
+打开[fontawesome](https://fontawesome.com/) ![](https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751acefe84bf.png) 点击顶部导航栏的icons ![](https://blogpng.fishcpy.top/mengmengmao/2024/12/05/6751ad8fe887b.png) 比如我在搜索栏里搜索bilibili 点击你想要的图标 ![](https://blogpng.mengmengmao.cn/mengmengmao/2024/12/05/6751ade0a08b5.png) 这里他给了一个html
+
+    1
+
+    <i class="fa-brands fa-bilibili"></i>```
+
+把里面的fa-brands fa-bilibili复制下来
+
+    1234
+
+    # 原来代码首页: / || fas fa-home#修改后首页: / || fa-brands fa-bilibili
+
+至此修改完毕

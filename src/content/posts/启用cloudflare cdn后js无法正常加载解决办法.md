@@ -1,0 +1,24 @@
+---
+title: 启用cloudflare cdn后js无法正常加载解决办法
+published: 2025-01-18
+description: 这个方法有效解决了开启 Cloudflare Rocket Loader 后导致的页面部分内容加载异常问题，关闭该功能后网站正常显示。
+image: https://imgse.fishcpy.top/upload/67a4ba7c19690.webp
+tags: [cloudflare, CDN]
+category: cloudflare
+draft: false
+customSlug: "25"
+---
+
+# 问题描述
+
+### 前段时间想提升一下多人的网站性能，就把cloudflare cdn打开了，发现评论区和关于页的部分东西加载不正常。
+
+# 解决方法
+
+### 1.在cloudflare控制面板中点击域名
+
+![](https://blogpng.fishcpy.top/img/2025/01/18/678b9c4de7f20.jpg)
+
+### 2.点击侧边栏的 速度-优化-内容优化 把里面的 Rocket Loader™ 关掉
+
+![](https://blogpng.fishcpy.top/img/2025/01/18/678b9d081c70e.jpg)

@@ -1,0 +1,44 @@
+---
+title: 关于casaos国内无法拉取镜像解决方法
+published: 2024-09-06
+description: 本文指导用户如何为 CasaOS 配置 Docker 镜像加速，通过编辑 `daemon.json` 文件添加多个镜像源，加速 Docker 镜像的下载。最后通过重启 Docker 服务和设备，使配置生效。
+image: https://imgse.fishcpy.top/upload/675dab218ba6c.png
+tags: [解决问题, docker]
+category: 解决问题
+draft: false
+customSlug: "14"
+---
+1. 进入 CasaOS。  
+2. 打开 **Files**。  
+3. 点击文件下方的 **root**。  
+4. 打开 **etc** 文件夹。  
+5. 使用 **Ctrl + F** 搜索 **docker**。  
+6. 打开 **docker** 文件夹。  
+7. 在电脑本地创建一个 txt 文件，加入以下内容（JSON 格式）：  
+```json
+{
+  "registry-mirrors": [
+    "https://dockerhub.icu",
+    "https://docker.chenby.cn",
+    "https://docker.1panel.live",
+    "https://docker.awsl9527.cn",
+    "https://docker.anyhub.us.kg",
+    "https://dhub.kubesre.xyz",
+    "https://dockerproxy.cn/",
+    "https://hub.rat.dev/",
+    "https://docker.actima.top/"
+  ]
+}
+保存并重命名为 daemon.json。
+
+上传该文件到 docker 文件夹。
+
+使用 SSH 连接打开终端，输入以下命令：
+
+bash
+复制
+编辑
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo reboot
+设备重启后，即可使用应用商店。

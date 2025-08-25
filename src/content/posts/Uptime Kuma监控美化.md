@@ -1,0 +1,296 @@
+---
+title: Uptime Kuma监控美化
+published: 2025-08-09
+description: 这是一个关于部署和美化Uptime Kuma监控面板的分享，内容总结如下：首先介绍了Uptime Kuma的部署，可以通过Docker等平台部署，具体细节见官方GitHub仓库。接着提供了一份自定义CSS，用于美化界面，特点包括浅色和暗色模式切换、自定义颜色变量、背景固定图片、卡片半透明和模糊效果、按钮带玻璃质感、状态指示点和百分比徽章的呼吸动画、响应式移动端布局、隐藏更新时间信息，以及柔和的文字边框阴影等视觉优化。最后给出了示例监控站点链接https://status.fishcpy.top/status/web，适合喜欢暗色模式和现代玻璃拟态风格的用户，方便直接套用或二次修改。
+image: https://cdn.fis.ink/cdn/2025/08/24/68aaa3d59f2fc.webp
+tags: [监控, Uptime Kuma]
+category: Uptime Kuma
+draft: false
+customSlug: "29"
+---
+# 部署Uptime Kuma
+
+首先需要部署[Uptime Kuma](https://github.com/louislam/uptime-kuma)，可以在docker等平台部署，这里不多说，自己看看github仓库
+
+# 美化
+
+我这里提供一个css，可以参考一下，我也是用别人css加了一点效果
+
+具体效果可以看我的[监控站](https://status.fishcpy.top/status/web)
+
+```markdown
+:root {
+  --bs-white: #fff;
+  --bs-dark: #212529;
+  --bs-green: #008000;
+  --bs-danger: #dc3545;
+  --bs-body-bg: #f6f7f9;
+  --bs-blue: #0d6efd;
+  --bg-linear-gradient: linear-gradient(180deg, #f6f6f6, #f8f8f8);
+  --border-solid-main: 2px solid var(--bs-white);
+  --border-solid-small: 1px solid var(--bs-white);
+  --shadow-inset-box: inset -4px -4px 12px #f1f1f1, inset 4px 4px 12px #e2e2e2;
+}
+
+.dark {
+  --bs-white: #2d2d2d;
+  --bs-dark: #e9ecef;
+  --bs-green: #00c800;
+  --bs-danger: #dc3545;
+  --bs-body-bg: #222222;
+  --bg-linear-gradient: linear-gradient(180deg, #242424, #222222);
+  --border-solid-main: 2px solid rgba(45, 45, 45, 0.8);
+  --border-solid-small: 1px solid rgba(45, 45, 45, 0.6);
+  --shadow-inset-box: inset -4px -4px 12px #0d0d0d, inset 4px 4px 12px #1a1a1a;
+}
+
+body {
+  background-color: var(--bs-body-bg) !important;
+}
+
+/* 全局样式 */
+body {
+  font-family: 'CustomFont', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://api.fis.ink/mc');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* LOGO标题样式 */
+.title-flex {
+  font-weight: bold;
+  justify-content: center;
+}
+
+/* 按钮 */
+.btn-info {
+  color: var(--bs-dark);
+  background-image: var(--bg-linear-gradient);
+  border: var(--border-solid-main);
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: none !important;
+}
+
+.btn-info:hover {
+  color: var(--bs-dark);
+  background-color: transparent;
+  border-color: unset;
+  box-shadow: none !important;
+}
+
+/* 服务组标题 */
+.group-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  opacity: .5;
+  -webkit-mask: linear-gradient(var(--bs-white) 50%, transparent);
+  mask: linear-gradient(var(--bs-white) 50%, transparent);
+  text-stroke: 1px var(--bs-dark);
+  -webkit-text-stroke: 1px var(--bs-dark);
+  -webkit-text-fill-color: transparent;
+}
+
+/* 服务项目列表样式 */
+.monitor-list .monitor-list {
+  min-height: 45px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.monitor-list .item .info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.info1::before,
+.info1::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--bs-white);
+  margin: 0.5rem 0;
+  border-radius: 50%;
+  animation: breath 1.5s ease-in-out infinite;
+}
+
+.info1::after {
+  animation-delay: 0.75s;
+}
+
+.info .bg-danger+.item-name {
+  color: var(--bs-red);
+}
+
+.shadow-box {
+  margin-top: 0 !important;
+  background-image: var(--bg-linear-gradient);
+  box-shadow: none !important;
+}
+
+div[data-v-f71ca08e].mb-5:hover .group-title {
+  -webkit-text-fill-color: var(--bs-dark);
+}
+
+.monitor-list .item {
+  box-shadow: none !important;
+}
+
+.monitor-list .item:hover {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  box-shadow: none !important;
+}
+
+.dark .monitor-list .item:hover {
+  background-color: var(--bs-body-bg);
+  box-shadow: none !important;
+}
+
+/* 服务项目列表标题样式 */
+.item-name {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a.item-name:hover {
+  color: var(--bs-blue) !important;
+}
+
+.overall-status .ok {
+  color: var(--bs-green) !important;
+}
+
+.hp-bar-big .beat[data-v-636dc6a9] {
+  background-color: var(--bs-green);
+}
+
+.item .row {
+  justify-content: space-between;
+}
+
+.info .badge.rounded-pill.bg-primary {
+  --bg: var(--bs-green);
+}
+
+.info .badge.rounded-pill.bg-danger {
+  --bg: var(--bs-danger);
+}
+
+.info .badge.rounded-pill {
+  position: relative;
+  display: flex;
+  min-width: auto;
+  width: 1rem;
+  margin-left: 0.1rem;
+  font-size: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent !important;
+}
+
+.info .badge.rounded-pill::before {
+  position: absolute;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--bg);
+  animation: breath 1.1s ease-in-out infinite;
+}
+
+.info .badge.rounded-pill::after {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background-color: var(--bg);
+}
+
+@keyframes breath {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* 隐藏更新时间 */
+.refresh-info.mb-2 {
+  display: none;
+}
+
+/* 公共样式优化 */
+.col-md-4 {
+  width: 50%;
+}
+
+.col-md-8 {
+  max-width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.mb-5 {
+  margin-bottom: 2rem !important;
+}
+
+/* 底部样式 */
+footer[data-v-b8247e57] {
+  margin: 1.5rem 0 !important;
+}
+
+footer p {
+  margin: 0 !important;
+}
+
+/* 适配手机 */
+@media screen and (max-width: 768px) {
+  .monitor-list .monitor-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .group-title {
+    font-size: 2rem;
+  }
+}
+
+/* 全局半透明背景卡片 */
+.shadow-box,
+.monitor-list .item {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 暗色模式下卡片透明度调低 */
+.dark .shadow-box,
+.dark .monitor-list .item,
+.dark .btn-info {
+  background-color: rgba(34, 34, 34, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 标题透明度柔和 */
+.group-title {
+  opacity: 0.5;
+}
+
+```
+
+如果你需要自定义背景可以把上方css中的第36行左右的 https://api.fis.ink/mc 换为自己的图片或图片api

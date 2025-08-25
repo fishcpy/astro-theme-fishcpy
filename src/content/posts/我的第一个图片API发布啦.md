@@ -1,0 +1,37 @@
+---
+title: 我的第一个图片API发布啦
+published: 2025-07-22
+description: fishcpy API
+image: https://cdn.fis.ink/cdn/2025/08/24/68aaa5242515d.webp
+tags: [API]
+category: API
+draft: false
+customSlug: "27"
+---
+# 官网
+[点击这里哦](https://www.api.fis.ink)打不开说明正在部署
+
+# 支持什么
+
+### 我的世界(MC) ，图片100+
+
+```
+https://api.fis.ink/mc
+```
+##### 预览(刷新网页可查看新图)
+
+![](https://api.fis.ink/mc)
+
+### 暗区突围，图片40+
+
+```
+https://api.fis.ink/aqtw
+```
+##### 预览(刷新网页可查看新图)
+
+![](https://api.fis.ink/aqtw)
+
+------
+
+- Api by fishcpy cloud.
+- Cdn by cloudflare.

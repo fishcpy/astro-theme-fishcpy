@@ -1,0 +1,210 @@
+---
+title: 使用1panel搭建免费开源的icp虚拟备案系统
+published: 2025-05-19
+description: 本教程手把手教你从购买雨云服务器开始，使用 1Panel 快速部署网站及数据库，并安装开源项目 dBd-Filing。内容覆盖服务器选购、环境配置、程序上传、MySQL 安装等完整建站流程，适合新手快速上手和个人项目搭建。
+image: https://cdn.fis.ink/img/2025/05/20/682c5b5d7659e.png
+tags: [虚拟备案, ICP, 网站]
+category: 个人虚拟备案系统
+draft: false
+customSlug: "7"
+---
+# 预览
+
+![](https://cdn.fis.ink/img/2025/05/20/682b757d9de27.jpg)
+
+![1000000272.jpg](https://cdn.fis.ink/img/2025/05/20/682b5c22934eb.jpg)
+
+# 首先需要购买一台服务器
+
+## 打开雨云官网
+
+点击链接打开雨云官网（使用这个链接会自动优惠）[https://www.rainyun.com/fishcpy\_](https://www.rainyun.com/fishcpy_)
+
+[https://www.rainyun.com/fishcpy\_](https://www.rainyun.com/fishcpy_)
+
+或者注册时输入优惠码：fishcpy
+
+注册完成后来到总揽，点击云服务器  
+![](https://cdn.fis.ink/img/2025/04/14/67fd048316cba.png)
+
+点击购买云服务器
+
+![](https://cdn.fis.ink/img/2025/04/14/67fd04e1aa3c8.png)这里我推荐中国香港极速三网，三大运营商直连，速度超快  
+![](https://cdn.fis.ink/img/2025/04/14/67fd0588731de.png)配置选择 **AMD® EPYC**
+
+![](https://cdn.fis.ink/img/2025/04/14/67fd05cdd0361.png)
+
+如果你的网站访问量很大就选择 **流量叠加型 ，** 访问量不大就选择 **流量不限型。**
+
+![](/upload/image-KVAC.png)
+
+套餐选择KVM标准版
+
+![](https://cdn.fis.ink/img/2025/04/14/67fd0ab2820f7.png)
+
+其他的按照我的这个选
+
+**公网ip 1个  
+debian版本选择12**
+
+![](https://cdn.fis.ink/img/2025/04/14/67fd0d828cdce.png)
+
+# 安装1panel
+
+打开[finalshell](https://www.hostbuf.com/)官网
+
+[www.hostbuf.com](www.hostbuf.com)
+
+点击顶部的
+
+**_FinalShell SSH工具,服务器管理,远程桌面加速软件,支持Windows,macOS,Linux,版本x.x.x,更新日期20xx.xx.xx_**
+
+![](https://cdn.fis.ink/img/2025/04/16/67fe8c90becb3.png)
+
+选择自己的系统版本下载，安装。
+
+## 打开雨云
+
+点击你的服务器卡片
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b44b158e9b.png)
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b44d11b748.png)
+
+## 打开[finalshell](https://www.hostbuf.com/)
+
+点击文件夹图标，打开链接管理器  
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b4519c6d3e.png)
+
+点击白色加号图标，选择SSH链接(Linux)  
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b4570ddde0.png)![](/upload/image-LUlI.png)
+
+名称
+
+填写值
+
+1
+
+名称
+
+随便
+
+2
+
+主机
+
+填写雨云控制台中的公网ip地址
+
+3
+
+用户名
+
+填写雨云控制台中填写远程用户名
+
+4
+
+密码
+
+填写雨云控制台中的远程密码
+
+完成效果
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b46bd5aa75.png)
+
+填写完后，点击确定并在链接管理器中双击你刚添加的服务器链接
+
+遇到这个点击 **_接受并保存_**  
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b46f29b346.png)
+
+不出意外，你应该来到这个页面  
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b4733a4937.png)
+
+在下方 **_命令输入框_** 中输入下方命令并回车  
+
+    curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && bash quick_start.sh
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b47c09ce23.png)
+
+填写输出的问题即可
+
+来到最后输出的结尾打开外部地址的网址
+
+    [1Panel 2025-05-19 23:16:42 install Log]: 正在启动1Panel服务 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: =================感谢您的耐心等待，安装已完成================== 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: 请使用您的浏览器访问面板:  
+    [1Panel 2025-05-19 23:16:43 install Log]: 外部地址:  http://154.64.254.179:12014/a46144d21a 
+    [1Panel 2025-05-19 23:16:43 install Log]: 内部地址:  http://154.64.254.179:12014/a46144d21a 
+    [1Panel 2025-05-19 23:16:43 install Log]: 面板用户:  d88f56f426 
+    [1Panel 2025-05-19 23:16:43 install Log]: 面板密码:  79157ec8b5 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: 官方网站: https://1panel.cn 
+    [1Panel 2025-05-19 23:16:43 install Log]: 项目文档: https://1panel.cn/docs 
+    [1Panel 2025-05-19 23:16:43 install Log]: 代码仓库: https://github.com/1Panel-dev/1Panel 
+    [1Panel 2025-05-19 23:16:43 install Log]: 前往 1Panel 官方论坛获取帮助: https://bbs.fit2cloud.com/c/1p/7 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: 如果您使用的是云服务器，请在安全组中打开端口 12014 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: 为了您的服务器安全，离开此屏幕后您将无法再次看到您的密码，请记住您的密码。 
+    [1Panel 2025-05-19 23:16:43 install Log]:  
+    [1Panel 2025-05-19 23:16:43 install Log]: ================================================================ 
+
+例如我就打开http://154.64.254.179:12014/a46144d21a
+
+输入上方的用户和密码
+
+# 部署系统
+
+点击侧边栏应用商店安装OpenResty，配置保持默认即可
+
+OpenResty安装完后，点击侧边栏的网站-运行环境，在PHP中点击创建运行环境，并按照我这样配置，名称随便。
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b4dc74ff57.png)
+
+点击确定，等待镜像制作完成
+
+制作完成后点击网站并点击创建按钮，按照我这样配置  
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b52f6a3f24.png)主域名如果用自己的域名就把 域名 解析 A 记录到你服务器的ip上，那么这里就写你自己的域名
+
+点击**_确定 ，_** 打开ip或域名如果为下图即为创建成功
+
+![image.png](https://cdn.fis.ink/img/2025/05/19/682b5398523b0.png)
+
+## 下载程序
+
+打开
+
+[https://github.com/bbb-lsy07/dBd-Filing/releases](https://github.com/bbb-lsy07/dBd-Filing/releases)
+
+选择最新版本下载，例如我就下载 [**_dBd-Filing-V2.5.0.zip_**](https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip)
+
+在1panel中点击按钮  
+将 [**_dBd-Filing-V2.5.0.zip_**](https://github.com/bbb-lsy07/dBd-Filing/releases/download/V2.5.0/dBd-Filing-V2.5.0.zip)_中的内容解压到含有_index.php 的目录，配置请按照下方仓库简介配置
+
+[https://github.com/bbb-lsy07/dBd-Filing/](https://github.com/bbb-lsy07/dBd-Filing/)
+
+# 安装数据库
+
+![image.png](https://cdn.fis.ink/img/2025/05/31/6839dc198678c.png)
+
+在1panel应用商店里找到MySQL点击确定，安装
+
+![image.png](https://cdn.fis.ink/img/2025/05/31/6839dc4c3f5e5.png)
+
+点击侧边栏数据库按钮
+
+![image.png](https://cdn.fis.ink/img/2025/05/31/6839dca036d9d.png)
+
+创建一个新数据库
+
+![image.png](https://cdn.fis.ink/img/2025/05/31/6839dcddf3471.png)
+
+点击这里查看链接信息
+
+在ip或域名里填写数据库信息
+
+* * *
+
+**_验证id：489356_**
