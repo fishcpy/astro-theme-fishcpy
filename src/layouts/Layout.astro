@@ -260,32 +260,32 @@ const backgroundStyle = pageBackgroundConfig.enable
 		@apply h-[var(--banner-height-home)] translate-y-[var(--bannerOffset)]
 	}
 	
-	/* 全屏模式（100vh/100dvh） */
+	/* 全屏模式（100vh/100dvh延伸到130vh） */
 	.enable-banner.fullscreen-banner #banner-wrapper {
-		@apply h-[100vh]
+		@apply h-[105vh]
 	}
 	
 	.enable-banner.fullscreen-banner #banner {
-		@apply h-[100vh] translate-y-0
+		@apply h-[105vh] translate-y-0
 	}
 	
-	/* 移动端使用动态视口高度，确保真正全屏 */
+	/* 移动端使用动态视口高度，确保真正全屏并延伸 */
 	@media (max-width: 1023px) {
 		@supports (height: 100dvh) {
 			.enable-banner.fullscreen-banner #banner-wrapper {
-				height: 100dvh !important;
+				height: 105dvh !important;
 			}
 			.enable-banner.fullscreen-banner #banner {
-				height: 100dvh !important;
+				height: 105dvh !important;
 			}
 		}
 		
 		@supports not (height: 100dvh) {
 			.enable-banner.fullscreen-banner #banner-wrapper {
-				height: 100vh !important;
+				height: 105vh !important;
 			}
 			.enable-banner.fullscreen-banner #banner {
-				height: 100vh !important;
+				height: 105vh !important;
 			}
 		}
 	}

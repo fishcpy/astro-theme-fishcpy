@@ -20,17 +20,17 @@ const positionClass = {
 }[bannerConfig.position || "center"];
 ---
 
-<div id={id} class:list={[className, 'relative overflow-hidden', isFullscreen ? 'h-screen max-lg:h-[100dvh]' : 'min-h-screen md:min-h-0']}>
+<div id={id} class:list={[className, 'relative overflow-hidden', isFullscreen ? 'h-[105vh] max-lg:h-[105dvh]' : 'min-h-screen md:min-h-0']}>
     {isVideo ? (
         <video 
             src={bannerConfig.src}
-            class:list={["w-full h-full object-cover", positionClass, isFullscreen ? "max-lg:!h-[100dvh]" : "min-h-screen md:min-h-0"]}
+            class:list={["w-full h-full object-cover", positionClass, isFullscreen ? "max-lg:!h-[105dvh]" : "min-h-screen md:min-h-0"]}
             autoplay
             muted
             loop
             playsinline
             preload="metadata"
-            style={isFullscreen ? "height: 100vh; object-fit: cover;" : ""}
+            style={isFullscreen ? "height: 105vh; object-fit: cover;" : ""}
         >
             您的浏览器不支持视频播放。
         </video>

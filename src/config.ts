@@ -27,7 +27,7 @@ export const siteConfig: SiteConfig = {
 		src: "https://www.fis.ink/wj/video/xingjianya.mp4", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
 		//背景在src\layouts\Layout.astro中
 		position: "center", // 等同于CSS的object-position属性，仅支持'top','center','bottom'。默认为'center'
-		fullscreen: true, // true全屏显示，设置false半屏，关闭请山寨上方enable选择
+		fullscreen: true, // true全屏显示，设置false半屏，关闭设置上方enable选择
 		credit: {
 			enable: true, // 是否显示横幅图片的版权信息
 			text: "Steam @基里曼的蓝精灵", // 要显示的版权文本
