@@ -111,12 +111,10 @@ export function LinkCardComponent(properties, children) {
 		style: `background-image: url(${iconUrl})` 
 	});
 
+	// 隐藏域名显示的标题栏
 	const nTitle = h("div", { class: "lc-titlebar" }, [
 		h("div", { class: "lc-titlebar-left" }, [
-			h("div", { class: "lc-site" }, [
-				nFavicon,
-				h("div", { class: "lc-domain" }, domain),
-			]),
+			// h("div", { class: "lc-site" }, domain), // 已注释掉域名显示
 		]),
 		h("div", { class: "lc-external-icon" }),
 	]);
@@ -124,13 +122,13 @@ export function LinkCardComponent(properties, children) {
 	const nCardTitle = h(
 		`div#${cardUuid}-title`,
 		{ class: "lc-card-title" },
-		customTitle || "Loading...",
+		customTitle || "Link",
 	);
 
 	const nDescription = h(
 		`div#${cardUuid}-description`,
 		{ class: "lc-description" },
-		customDescription || "Loading description...",
+		customDescription || "Click to visit",
 	);
 
 	const nImage = h(
@@ -154,10 +152,10 @@ export function LinkCardComponent(properties, children) {
 				
 				// Set default values if custom ones weren't provided
 				if (!titleElement.dataset.hasCustomTitle) {
-					titleElement.innerText = '${domain}';
+					titleElement.innerText = 'Link';
 				}
 				if (!descElement.dataset.hasCustomDesc) {
-					descElement.innerText = 'Visit ${domain}';
+					descElement.innerText = 'Click to visit';
 				}
 				
 				cardElement.classList.remove("fetch-waiting");
@@ -236,11 +234,9 @@ a.card-link
     transform: translateY(0)
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
 
+  // 隐藏标题栏以移除域名显示和空白区域
   .lc-titlebar
-    display: flex
-    justify-content: space-between
-    align-items: center
-    margin-bottom: 8px
+    display: none
 
     .lc-titlebar-left
       display: flex
@@ -287,8 +283,9 @@ a.card-link
     line-height: 1.4
     margin-bottom: 12px
 
+  // 移除图片上方的空白区域
   .lc-image
-    margin-top: 12px
+    margin-top: 0
     
     img
       width: 100%
