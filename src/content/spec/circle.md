@@ -11,7 +11,7 @@
         }
     }
 </script>
-<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css">
+<link rel="stylesheet" href="https://file.fis.ink/css/blog/friend-circle-lite/min.css">
 <script src="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js"></script>
 
 
