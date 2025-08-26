@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
 	},
 	theme: DARK_MODE, // 主题模式: AUTO_MODE(默认), LIGHT_MODE(强制浅色), DARK_MODE(强制深色)
 	banner: {
-		enable: true,
+		enable: false,
 		type: "video", // 'image' 或 'video'，指定banner类型
 		src: "https://www.fis.ink/wj/video/mc.mp4", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
 		//背景在src\layouts\Layout.astro中
