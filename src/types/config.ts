@@ -36,6 +36,9 @@ export type SiteConfig = {
 		enable: boolean;
 		depth: 1 | 2 | 3;
 	};
+	post: {
+		showCover: boolean;
+	};
 
 	favicon: Favicon[];
 };

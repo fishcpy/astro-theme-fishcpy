@@ -49,6 +49,9 @@ export const siteConfig: SiteConfig = {
 		enable: true, // 在文章右侧显示目录
 		depth: 2, // 目录中显示的最大标题层级，取值范围1-3
 	},
+	post: {
+		showCover: false, // 是否在文章页面显示封面
+	},
 	favicon: [
 		// 保留空数组则使用默认favicon
 		{
