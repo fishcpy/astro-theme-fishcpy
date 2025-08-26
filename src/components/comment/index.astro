@@ -7,8 +7,9 @@ interface Props {
 }
 
 const { id, data, slug } = Astro.props.post || {};
-// 确保slug存在，并且路径格式正确
-const path = slug ? `/posts/${slug}` : Astro.url.pathname;
+// 优先使用customSlug，如果没有则使用默认的slug
+const finalSlug = data?.customSlug || slug;
+const path = finalSlug ? `/posts/${finalSlug}` : Astro.url.pathname;
 console.log("Comment组件初始化");
 
 let commentService = "";
