@@ -47,7 +47,11 @@
 整个电影中感觉没有什么笑点，并且将主角九月刻画的比较弱易弄杂事的样子，九月已经200多岁，但是表现却和20岁似的&amp;lt;br/&amp;gt;
 后期莫名其妙出来个三级头男，直到结尾赞助商有个 (&lt;strong&gt;和平精英&lt;/strong&gt;) 我释怀了。&amp;lt;br/&amp;gt;&lt;/p&gt;
 &lt;p&gt;差不多就这些了，其他等我想到了再补充&lt;/p&gt;
-</content:encoded></item><item><title>给你的Fuwari加一个链接大卡片</title><link>https://blog.fis.ink/posts/30/</link><guid isPermaLink="true">https://blog.fis.ink/posts/30/</guid><description>注意:本文章修改文件部分为AI所写。这篇文章介绍了如何在Astro博客中实现自定义之类的第三方链接卡片功能。文章分为示例和添加教程两部分。</description><pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;:::tip
+</content:encoded></item><item><title>给你的Fuwari加一个链接大卡片</title><link>https://blog.fis.ink/posts/30/</link><guid isPermaLink="true">https://blog.fis.ink/posts/30/</guid><description>注意:本文章修改文件部分为AI所写。这篇文章介绍了如何在Astro博客中实现自定义之类的第三方链接卡片功能。文章分为示例和添加教程两部分。</description><pubDate>Sat, 16 Aug 2025 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;h1&gt;25.8.26更新&lt;/h1&gt;
+&lt;h3&gt;更改了部分UI&lt;/h3&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;:::tip
 由于我没有实力，本篇文章修改文件部分为AI所写
 :::&lt;/p&gt;
 &lt;p&gt;:::caution
@@ -119,12 +123,10 @@ export function LinkCardComponent(properties, children) {
 		style: `background-image: url(${iconUrl})` 
 	});
 
+	// 隐藏域名显示的标题栏
 	const nTitle = h(&quot;div&quot;, { class: &quot;lc-titlebar&quot; }, [
 		h(&quot;div&quot;, { class: &quot;lc-titlebar-left&quot; }, [
-			h(&quot;div&quot;, { class: &quot;lc-site&quot; }, [
-				nFavicon,
-				h(&quot;div&quot;, { class: &quot;lc-domain&quot; }, domain),
-			]),
+			// h(&quot;div&quot;, { class: &quot;lc-site&quot; }, domain), // 已注释掉域名显示
 		]),
 		h(&quot;div&quot;, { class: &quot;lc-external-icon&quot; }),
 	]);
@@ -132,13 +134,13 @@ export function LinkCardComponent(properties, children) {
 	const nCardTitle = h(
 		`div#${cardUuid}-title`,
 		{ class: &quot;lc-card-title&quot; },
-		customTitle || &quot;Loading...&quot;,
+		customTitle || &quot;Link&quot;,
 	);
 
 	const nDescription = h(
 		`div#${cardUuid}-description`,
 		{ class: &quot;lc-description&quot; },
-		customDescription || &quot;Loading description...&quot;,
+		customDescription || &quot;Click to visit&quot;,
 	);
 
 	const nImage = h(
@@ -162,10 +164,10 @@ export function LinkCardComponent(properties, children) {
 				
 				// Set default values if custom ones weren&apos;t provided
 				if (!titleElement.dataset.hasCustomTitle) {
-					titleElement.innerText = &apos;${domain}&apos;;
+					titleElement.innerText = &apos;Link&apos;;
 				}
 				if (!descElement.dataset.hasCustomDesc) {
-					descElement.innerText = &apos;Visit ${domain}&apos;;
+					descElement.innerText = &apos;Click to visit&apos;;
 				}
 				
 				cardElement.classList.remove(&quot;fetch-waiting&quot;);
@@ -240,11 +242,9 @@ a.card-link
     transform: translateY(0)
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
 
+  // 隐藏标题栏以移除域名显示和空白区域
   .lc-titlebar
-    display: flex
-    justify-content: space-between
-    align-items: center
-    margin-bottom: 8px
+    display: none
 
     .lc-titlebar-left
       display: flex
@@ -291,8 +291,9 @@ a.card-link
     line-height: 1.4
     margin-bottom: 12px
 
+  // 移除图片上方的空白区域
   .lc-image
-    margin-top: 12px
+    margin-top: 0
     
     img
       width: 100%
