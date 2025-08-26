@@ -8,6 +8,8 @@ draft: false
 customSlug: "30"
 image: https://cdn.fis.ink/cdn/2025/08/24/68aaa7a9908f2.webp
 ---
+> # 25.8.26更新
+> ### 更改了部分UI
 
 :::tip
 由于我没有实力，本篇文章修改文件部分为AI所写
