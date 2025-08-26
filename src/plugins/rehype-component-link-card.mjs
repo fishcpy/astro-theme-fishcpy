@@ -46,7 +46,7 @@ export function LinkCardComponent(properties, children) {
 
 	const nTitle = h("div", { class: "lc-titlebar" }, [
 		h("div", { class: "lc-titlebar-left" }, [
-			h("div", { class: "lc-site" }, [nFavicon]),
+			// 隐藏域名显示
 		]),
 		h("div", { class: "lc-external-icon" }),
 	]);
@@ -85,10 +85,10 @@ export function LinkCardComponent(properties, children) {
 				
 				// Set default values if custom ones weren't provided
 				if (!titleElement.dataset.hasCustomTitle) {
-					titleElement.innerText = '${domain}';
+					titleElement.innerText = 'Link';
 				}
 				if (!descElement.dataset.hasCustomDesc) {
-					descElement.innerText = 'Visit ${domain}';
+					descElement.innerText = 'Click to visit';
 				}
 				
 				cardElement.classList.remove("fetch-waiting");
@@ -108,7 +108,13 @@ export function LinkCardComponent(properties, children) {
 		nDescription.properties["data-has-custom-desc"] = "true";
 	}
 
-	const cardContent = [nTitle, nCardTitle, nDescription];
+	// 创建主要内容区域
+	const nContentWrapper = h("div", { class: "lc-content-wrapper" }, [
+		h("div", { class: "lc-icon-area" }, [nFavicon]),
+		h("div", { class: "lc-text-area" }, [nTitle, nCardTitle, nDescription])
+	]);
+
+	const cardContent = [nContentWrapper];
 
 	if (customImage) {
 		cardContent.push(nImage);

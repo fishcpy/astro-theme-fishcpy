@@ -268,15 +268,25 @@ a.card-link
     scale: .98
     background-color: var(--btn-regular-bg-active)
 
-  .lc-titlebar
+  .lc-content-wrapper
     display: flex
-    align-items: center
-    justify-content: space-between
-    margin-bottom: 0.5rem
-    color: var(--tw-prose-headings)
-    font-size: 0.875rem
-    font-weight: 400
-    opacity: 0.8
+    gap: 1rem
+    align-items: flex-start
+
+  .lc-icon-area
+    flex-shrink: 0
+    width: 3rem
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    padding-top: 0.25rem
+
+  .lc-text-area
+    flex: 1
+    min-width: 0
+
+  .lc-titlebar
+    display: none
 
     .lc-titlebar-left
       display: flex
@@ -292,25 +302,27 @@ a.card-link
     .lc-domain
       font-weight: 400
 
-    .lc-favicon
-      display: block
-      overflow: hidden
-      width: 1rem
-      height: 1rem
-      background-size: cover
-      border-radius: 2px
-      background-color: var(--tw-prose-body)
-      opacity: 0.8
+  .lc-favicon
+    display: block
+    overflow: hidden
+    width: 2.5rem
+    height: auto
+    min-height: 2.5rem
+    aspect-ratio: 1
+    background-size: cover
+    border-radius: 4px
+    background-color: var(--tw-prose-body)
+    opacity: 0.9
 
   .lc-card-title
-    margin-bottom: 0.5rem
+    margin-bottom: 0.3rem
     font-size: 1.25rem
     font-weight: 600
     line-height: 1.4
     color: var(--tw-prose-headings)
 
   .lc-description
-    margin-bottom: 0.7rem
+    margin-bottom: 0
     font-size: 1rem
     font-weight: 300
     line-height: 1.5rem
@@ -318,7 +330,7 @@ a.card-link
     opacity: 0.9
 
   .lc-image
-    margin-top: 1rem
+    margin-top: 0
     border-radius: 0.5rem
     overflow: hidden
     
