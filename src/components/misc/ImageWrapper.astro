@@ -47,8 +47,90 @@ if (isLocal) {
 const imageClass = "w-full h-full object-cover";
 const imageStyle = `object-position: ${position}`;
 ---
-<div id={id} class:list={[className, 'overflow-hidden relative']}>
+<div id={id} class:list={[className, 'overflow-hidden relative image-wrapper']}>
     <div class="transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none"></div>
-    {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}
-    {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle}/>}
+    
+    <!-- 加载占位符 -->
+    <div class="image-placeholder absolute inset-0 flex items-center justify-center bg-neutral-100 dark:bg-neutral-800">
+        <div class="animate-pulse w-8 h-8 bg-neutral-300 dark:bg-neutral-600 rounded-full"></div>
+    </div>
+    
+    {isLocal && img && (
+        <Image 
+            src={img} 
+            alt={alt || ""} 
+            class={`${imageClass} image-content opacity-0 transition-opacity duration-300`}
+            style={imageStyle}
+            loading="lazy"
+        />
+    )}
+    {!isLocal && (
+        <img 
+            src={isPublic ? url(src) : src} 
+            alt={alt || ""} 
+            class={`${imageClass} image-content opacity-0 transition-opacity duration-300`}
+            style={imageStyle}
+            loading="lazy"
+        />
+    )}
 </div>
+
+<script>
+    function initImageWrapper() {
+        const imageWrappers = document.querySelectorAll('.image-wrapper');
+        
+        imageWrappers.forEach(wrapper => {
+            const img = wrapper.querySelector('.image-content');
+            const placeholder = wrapper.querySelector('.image-placeholder');
+            
+            if (img && placeholder) {
+                // 图片加载完成处理
+                const handleImageLoad = () => {
+                    img.classList.remove('opacity-0');
+                    img.classList.add('opacity-100');
+                    placeholder.style.display = 'none';
+                };
+                
+                // 图片加载错误处理
+                const handleImageError = () => {
+                    placeholder.innerHTML = `
+                        <div class="flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500">
+                            <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-xs">图片加载失败</span>
+                        </div>
+                    `;
+                };
+                
+                // 检查图片是否已经加载
+                if (img.complete && img.naturalHeight !== 0) {
+                    handleImageLoad();
+                } else {
+                    img.addEventListener('load', handleImageLoad);
+                    img.addEventListener('error', handleImageError);
+                }
+            }
+        });
+    }
+    
+    // 页面加载时初始化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initImageWrapper);
+    } else {
+        initImageWrapper();
+    }
+    
+    // Swup 页面切换支持
+    const setupImageWrapperSwupHooks = () => {
+        if (window.swup && window.swup.hooks) {
+            window.swup.hooks.on('page:view', initImageWrapper);
+        }
+    };
+    
+    if (window.swup) {
+        setupImageWrapperSwupHooks();
+    } else {
+        document.addEventListener('swup:enable', setupImageWrapperSwupHooks);
+    }
+</script>

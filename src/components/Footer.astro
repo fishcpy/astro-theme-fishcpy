@@ -59,110 +59,75 @@ const currentYear = new Date().getFullYear();
 </div>
 
 <script is:inline>
-function show_runtime(){
-    window.setTimeout("show_runtime()",1000);
-    X = new Date("9/6/2024 00:00:00");
-    Y = new Date();
-    T = (Y.getTime() - X.getTime());
-    M = 24 * 60 * 60 * 1000;
-    a = T / M;
-    A = Math.floor(a);
-    b = (a - A) * 24;
-    B = Math.floor(b);
-    c = (b - B) * 60;
-    C = Math.floor(c);
-    D = Math.floor((c - C) * 60);
-    document.getElementById('runtime_span').innerHTML = "本站已十分不安全的运行了" + A + "天" + B + "小时" + C + "分" + D + "秒"
+// 全局运行时间管理
+window.footerRuntime = window.footerRuntime || {
+    interval: null,
+    startDate: new Date("9/6/2024 00:00:00")
+};
+
+function show_runtime() {
+    const X = window.footerRuntime.startDate;
+    const Y = new Date();
+    const T = (Y.getTime() - X.getTime());
+    const M = 24 * 60 * 60 * 1000;
+    const a = T / M;
+    const A = Math.floor(a);
+    const b = (a - A) * 24;
+    const B = Math.floor(b);
+    const c = (b - B) * 60;
+    const C = Math.floor(c);
+    const D = Math.floor((c - C) * 60);
+    const runtime_span = document.getElementById("runtime_span");
+    if (runtime_span) {
+        runtime_span.innerHTML = "本站已运行 " + A + " 天 " + B + " 小时 " + C + " 分钟 " + D + " 秒";
+    }
 }
 
-(function() {
-    let startTime = Date.now();
-    let loadingTimer = null;
-    let isPageLoaded = false;
-
-    function updateLoadingTime() {
-        const performanceElement = document.getElementById('performance_info');
-        if (!performanceElement) return;
-        
-        if (!isPageLoaded) {
-            const currentTime = Date.now() - startTime;
-            
-            // 获取内存信息（如果浏览器支持）
-            let memoryInfo = '';
-            if (window.performance && window.performance.memory) {
-                const memory = window.performance.memory;
-                const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
-                memoryInfo = ` | 内存占用: ${usedMB}MB`;
-            }
-            
-            performanceElement.innerHTML = `页面加载时间: ${currentTime}ms${memoryInfo}`;
-            
-            // 每100毫秒更新一次加载时间
-            loadingTimer = setTimeout(updateLoadingTime, 100);
-        }
-    }
-
-    function showFinalLoadTime() {
-        const performanceElement = document.getElementById('performance_info');
-        if (!performanceElement) return;
-        
-        isPageLoaded = true;
-        
-        // 清除加载计时器
-        if (loadingTimer) {
-            clearTimeout(loadingTimer);
-            loadingTimer = null;
-        }
-        
-        // 获取最终的页面加载时间
-        let finalLoadTime;
-        if (window.performance && window.performance.timing && window.performance.timing.loadEventEnd > 0) {
-            finalLoadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-        } else {
-            finalLoadTime = Date.now() - startTime;
-        }
-        
-        // 获取内存信息（如果浏览器支持）
-        let memoryInfo = '';
-        if (window.performance && window.performance.memory) {
-            const memory = window.performance.memory;
-            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
-            memoryInfo = ` | 内存占用: ${usedMB}MB`;
-        }
-        
-        performanceElement.innerHTML = `页面加载时间: ${finalLoadTime}ms${memoryInfo}`;
-        
-        // 开始定期更新内存信息
-        updateMemoryInfo();
-    }
-
-    function updateMemoryInfo() {
-        const performanceElement = document.getElementById('performance_info');
-        if (!performanceElement || !isPageLoaded) return;
-        
-        // 只更新内存信息部分
-        if (window.performance && window.performance.memory) {
-            const memory = window.performance.memory;
-            const usedMB = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
-            const currentContent = performanceElement.innerHTML;
-            const loadTimePart = currentContent.split(' | ')[0];
-            performanceElement.innerHTML = `${loadTimePart} | 内存占用: ${usedMB}MB`;
-        }
-        
-        // 每5秒更新一次内存信息
-        setTimeout(updateMemoryInfo, 5000);
+function initFooter() {
+    // 清除之前的定时器
+    if (window.footerRuntime.interval) {
+        clearInterval(window.footerRuntime.interval);
     }
     
-    // 立即开始显示加载时间计时
-    updateLoadingTime();
-
-    // 等待页面完全加载后显示最终加载时间
-    if (document.readyState === 'complete') {
-        showFinalLoadTime();
-    } else {
-        window.addEventListener('load', showFinalLoadTime);
+    const startTime = performance.now();
+    
+    function updatePerformanceInfo() {
+        const loadTime = (performance.now() - startTime).toFixed(2);
+        const memoryInfo = performance.memory ? 
+            `内存使用: ${(performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2)}MB` : 
+            '';
+        
+        const performanceElement = document.getElementById('performance_info');
+        if (performanceElement) {
+            performanceElement.innerHTML = `页面加载耗时: ${loadTime}ms ${memoryInfo ? '| ' + memoryInfo : ''}`;
+        }
     }
-})();
+    
+    // 立即显示运行时间和性能信息
+    show_runtime();
+    updatePerformanceInfo();
+    
+    // 设置新的定时器
+    window.footerRuntime.interval = setInterval(show_runtime, 1000);
+}
 
-show_runtime();
+// 页面加载时初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooter);
+} else {
+    initFooter();
+}
+
+// Swup 页面切换支持
+const setupFooterSwupHooks = () => {
+    if (window.swup && window.swup.hooks) {
+        window.swup.hooks.on('page:view', initFooter);
+    }
+};
+
+if (window.swup) {
+    setupFooterSwupHooks();
+} else {
+    document.addEventListener('swup:enable', setupFooterSwupHooks);
+}
 </script>

@@ -27,12 +27,19 @@ const style = Astro.props.style;
 </WidgetLayout>
 
 <script>
+    // 全局缓存一言数据
+    window.hitokotoCache = window.hitokotoCache || {
+        data: null,
+        timestamp: 0,
+        isLoading: false,
+        CACHE_DURATION: 5 * 60 * 1000 // 5分钟缓存
+    };
+
     function initHitokoto() {
         const textElement = document.getElementById('hitokoto-text');
-        let isLoading = false;
+        if (!textElement) return;
 
         function setLoading(loading) {
-            isLoading = loading;
             if (loading && textElement) {
                 textElement.innerHTML = `
                     <div class="flex items-center justify-center py-4">
@@ -66,8 +73,22 @@ const style = Astro.props.style;
         }
 
         async function fetchHitokoto() {
-            if (isLoading) return;
+            const cache = window.hitokotoCache;
+            const now = Date.now();
             
+            // 检查缓存是否有效
+            if (cache.data && (now - cache.timestamp) < cache.CACHE_DURATION) {
+                displayHitokoto(cache.data);
+                return;
+            }
+            
+            // 防止重复请求
+            if (cache.isLoading) {
+                setLoading(true);
+                return;
+            }
+            
+            cache.isLoading = true;
             setLoading(true);
 
             try {
@@ -75,6 +96,9 @@ const style = Astro.props.style;
                 const data = await response.json();
                 
                 if (data.code === 200 && data.data) {
+                    // 更新缓存
+                    cache.data = data.data;
+                    cache.timestamp = now;
                     displayHitokoto(data.data);
                 } else {
                     displayError('获取一言失败');
@@ -83,7 +107,7 @@ const style = Astro.props.style;
                 console.error('获取一言时出错:', error);
                 displayError('网络连接失败');
             } finally {
-                setLoading(false);
+                cache.isLoading = false;
             }
         }
 
@@ -98,17 +122,17 @@ const style = Astro.props.style;
         initHitokoto();
     }
 
-    // Swup 页面切换支持
-    const setupSwupHooks = () => {
+    // Swup 页面切换支持 - 只初始化显示，不重新获取数据
+    const setupHitokotoSwupHooks = () => {
         if (window.swup && window.swup.hooks) {
             window.swup.hooks.on('page:view', initHitokoto);
         }
     };
 
     if (window.swup) {
-        setupSwupHooks();
+        setupHitokotoSwupHooks();
     } else {
-        document.addEventListener('swup:enable', setupSwupHooks);
+        document.addEventListener('swup:enable', setupHitokotoSwupHooks);
     }
 </script>
 
