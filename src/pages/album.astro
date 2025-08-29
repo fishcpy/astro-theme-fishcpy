@@ -1,0 +1,74 @@
+---
+import { Icon } from "astro-icon/components";
+import albumData from "../assets/album.json";
+import Comment from "../components/comment/index.astro";
+import AlbumCard from "../components/widget/AlbumCard.astro";
+import { layoutConfig } from "../config";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+// 按创建时间倒序排列
+const albums = albumData.sort(
+	(a, b) => new Date(b.created).getTime() - new Date(a.created).getTime(),
+);
+
+// 生成相册网格类名
+const albumGridClasses = [
+	"grid-cols-1",
+	"md:grid-cols-2",
+	"lg:grid-cols-3",
+].join(" ");
+
+// 为评论区创建一个模拟的post对象
+const mockPost = {
+	slug: "album-index",
+	data: {
+		title: "相册",
+		customSlug: "album",
+	},
+};
+---
+
+<MainGridLayout title="相册" description="记录生活中的美好瞬间">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32 mb-8">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <h1 class="text-4xl font-bold mb-6 text-neutral-900 dark:text-white">相册</h1>
+            <p class="text-neutral-600 dark:text-neutral-400 mb-8">记录生活中的美好瞬间</p>
+            
+            {albums.length > 0 ? (
+                <div class={`grid ${albumGridClasses} gap-6`}>
+                    {albums.map((album) => (
+                        <AlbumCard album={album} />
+                    ))}
+                </div>
+            ) : (
+                <div class="text-center py-16">
+                    <Icon name="material-symbols:photo-library-outline" class="w-16 h-16 mx-auto mb-4 text-neutral-500 dark:text-neutral-400" />
+                    <p class="text-neutral-600 dark:text-neutral-400 text-lg">暂无相册内容</p>
+                </div>
+            )}
+        </div>
+    </div>
+    
+    <!-- 评论区 -->
+    <Comment post={mockPost} />
+</MainGridLayout>
+
+<style>
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .album-card {
+        margin-bottom: 1rem;
+    }
+}
+</style>

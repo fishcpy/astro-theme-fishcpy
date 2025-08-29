@@ -1,0 +1,56 @@
+[
+	{
+		"id": 1,
+		"title": "风景摄影",
+		"slug": "1",
+		"description": "记录大自然的美丽瞬间",
+		"cover": "https://cdn.fis.ink/img/2025/07/24/6881fcb459da3.webp",
+		"tags": ["风景", "自然", "摄影"],
+		"created": "2025-08-29",
+		"images": [
+			{
+				"id": 1,
+				"url": "https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp",
+				"title": "山间晨雾",
+				"description": "清晨山间的薄雾缭绕",
+				"tags": ["山景", "晨雾", "测试"],
+				"date": "2025-08-29"
+			},
+			{
+				"id": 2,
+				"url": "https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp",
+				"title": "金狮",
+				"description": "雕像",
+				"tags": ["海景", "日落"],
+				"date": "2025-08-29"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"title": "城市建筑",
+		"slug": "architecture",
+		"description": "现代都市的建筑之美",
+		"cover": "https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp",
+		"tags": ["建筑", "城市", "现代"],
+		"created": "2025-08-29",
+		"images": [
+			{
+				"id": 4,
+				"url": "https://cdn.fis.ink/img/2025/07/24/6881fcb459da3.webp",
+				"title": "摩天大楼",
+				"description": "城市中心的现代建筑群",
+				"tags": ["摩天楼", "现代建筑"],
+				"date": "2025-08-29"
+			},
+			{
+				"id": 5,
+				"url": "https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp",
+				"title": "古典建筑",
+				"description": "历史悠久的古典建筑风格",
+				"tags": ["古典", "历史建筑"],
+				"date": "2025-08-28"
+			}
+		]
+	}
+]

@@ -118,6 +118,11 @@ export const navBarConfig: NavBarConfig = {
 			icon: "fa6-solid:user",
 			children: [
 				{
+					name: "相册",
+					url: "/album/",
+					icon: "material-symbols:photo-library",
+				},
+				{
 					name: "瞬间",
 					url: "/essay/",
 					icon: "material-symbols:photo-camera",

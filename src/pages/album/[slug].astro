@@ -1,0 +1,80 @@
+---
+import { Icon } from "astro-icon/components";
+import ImageGrid from "../../components/widget/ImageGrid.astro";
+
+import Comment from "@components/comment/index.astro";
+import I18nKey from "../../i18n/i18nKey";
+import { i18n } from "../../i18n/translation";
+import MainGridLayout from "../../layouts/MainGridLayout.astro";
+import albumData from "../../assets/album.json";
+
+export async function getStaticPaths() {
+	return albumData.map((album) => ({
+		params: { slug: album.slug },
+		props: { album },
+	}));
+}
+
+const { album } = Astro.props;
+
+if (!album) {
+	throw new Error("Album not found");
+}
+
+// 为评论区创建一个模拟的post对象
+const mockPost = {
+	slug: `album-${album.slug}`,
+	data: {
+		title: album.title,
+		customSlug: `album/${album.slug}`
+	}
+};
+---
+
+<MainGridLayout title={album.title} description={album.description}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32 mb-8">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 返回按钮和标题 -->
+            <div class="flex items-center gap-4 mb-6">
+                <a href="/album/" 
+                   class="btn-card w-10 h-10 rounded-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200">
+                    <Icon name="material-symbols:arrow-back" class="text-xl" />
+                </a>
+                <div>
+                    <h1 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200">{album.title}</h1>
+                    <p class="text-neutral-600 dark:text-neutral-400 mt-2 text-base">{album.description}</p>
+                </div>
+            </div>
+            
+            <!-- 相册信息 -->
+            <div class="flex flex-wrap items-center gap-4 mb-6 pb-4 border-b border-[var(--line-divider)]">
+                <!-- 图片数量 -->
+                <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    <Icon name="material-symbols:photo-camera" class="text-lg" />
+                    <span>{album.images.length} 张图片</span>
+                </div>
+                
+                <!-- 创建时间 -->
+                <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    <Icon name="material-symbols:calendar-today" class="text-lg" />
+                    <span>{new Date(album.created).toLocaleDateString('zh-CN')}</span>
+                </div>
+                
+                <!-- 标签 -->
+                <div class="flex flex-wrap gap-2">
+                    {album.tags.map((tag) => (
+                        <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-sm rounded-full hover:bg-[var(--btn-card-bg-hover)] transition-colors">
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
+            </div>
+            
+            <!-- 图片网格 -->
+            <ImageGrid images={album.images} />
+        </div>
+    </div>
+    
+    <!-- 评论区 -->
+    <Comment post={mockPost} />
+</MainGridLayout>

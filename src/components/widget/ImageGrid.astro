@@ -1,0 +1,106 @@
+---
+interface Props {
+	images: Array<{
+		id: string;
+		url: string;
+		title: string;
+		description?: string;
+		tags?: string[];
+		date: string;
+	}>;
+}
+
+const { images } = Astro.props;
+---
+
+<div class="photo-gallery mb-8">
+	{images.map((image, index) => {
+		return (
+			<a href={image.url} 
+			   class="photo-item group relative overflow-hidden rounded-xl bg-[var(--card-bg)] shadow-sm border border-[var(--line-divider)] hover:shadow-lg transition-all duration-300 cursor-pointer block"
+			   data-pswp-width="auto"
+			   data-pswp-height="auto">
+				<div class="aspect-[4/3] overflow-hidden">
+					<img 
+						src={image.url} 
+						alt={image.title}
+						class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+						loading="lazy"
+					/>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+				</div>
+				<div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+					<h4 class="text-sm font-medium mb-1 drop-shadow-sm">{image.title}</h4>
+					{image.description && (
+						<p class="text-xs mb-2 line-clamp-2 opacity-90 drop-shadow-sm">{image.description}</p>
+					)}
+					{image.tags && image.tags.length > 0 && (
+						<div class="flex flex-wrap gap-1 mb-2">
+							{image.tags.slice(0, 2).map((tag) => (
+								<span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30">
+									{tag}
+								</span>
+							))}
+						</div>
+					)}
+					<div class="text-xs opacity-75 drop-shadow-sm">
+						{new Date(image.date).toLocaleDateString('zh-CN')}
+					</div>
+				</div>
+			</a>
+		);
+	})}
+</div>
+
+<style>
+.photo-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1rem;
+	padding: 0;
+}
+
+@media (min-width: 640px) {
+	.photo-gallery {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.25rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.photo-gallery {
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+		gap: 1.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.photo-gallery {
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.5rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.photo-gallery {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+}
+
+.photo-item {
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.75rem;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.photo-item:hover {
+	transform: translateY(-2px);
+}
+
+.photo-item img {
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+</style>
