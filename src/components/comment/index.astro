@@ -1,21 +1,28 @@
 ---
 import { commentConfig } from "@/config";
-import Twikoo from "./Twikoo.astro";
 import Artalk from "./Artalk.astro";
+import Twikoo from "./Twikoo.astro";
 
 interface Props {
-	post: any;
+	post?: any;
+	path?: string;
 }
 
-const { id, data, slug } = Astro.props.post || {};
-// 优先使用customSlug，如果没有则使用默认的slug
-const finalSlug = data?.customSlug || slug;
-const path = finalSlug ? `/posts/${finalSlug}` : Astro.url.pathname;
+// 如果直接传递了path，使用path；否则从post对象构建path
+let path: string;
+if (Astro.props.path) {
+	path = Astro.props.path;
+} else {
+	const { id, data, slug } = Astro.props.post || {};
+	// 优先使用customSlug，如果没有则使用默认的slug
+	const finalSlug = data?.customSlug || slug;
+	path = finalSlug ? `/posts/${finalSlug}` : Astro.url.pathname;
+}
 console.log("Comment组件初始化");
 
 // 检查评论系统是否启用以及使用哪种类型
 const isCommentEnabled = commentConfig?.enable;
-const commentService = isCommentEnabled ? commentConfig?.type : '';
+const commentService = isCommentEnabled ? commentConfig?.type : "";
 ---
 {isCommentEnabled && (
 <div class="card-base p-6 mb-4 mt-4">

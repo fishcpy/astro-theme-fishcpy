@@ -15,10 +15,11 @@ if (!commentsPost) {
 
 const { Content } = await render(commentsPost);
 
-// 创建一个虚拟的post对象用于评论组件
+// 创建一个虚拟的post对象用于评论组件，使用customSlug避免posts前缀
 const virtualPost = {
 	slug: 'comments',
 	data: {
+		title: i18n(I18nKey.comments),
 		customSlug: 'comments'
 	}
 };
