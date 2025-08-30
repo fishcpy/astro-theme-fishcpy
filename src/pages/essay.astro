@@ -1,10 +1,10 @@
 ---
-import { Icon } from "astro-icon/components";
 import Comment from "@components/comment/index.astro";
+import { Icon } from "astro-icon/components";
+import essayData from "../assets/essay.json";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import essayData from "../assets/essay.json";
 
 // 按ID倒序排列，ID越大越靠前
 const essays = essayData.sort((a, b) => b.id - a.id);
@@ -13,8 +13,8 @@ const essays = essayData.sort((a, b) => b.id - a.id);
 const mockPost = {
 	slug: "essay",
 	data: {
-		title: "瞬间"
-	}
+		title: "瞬间",
+	},
 };
 ---
 
@@ -90,7 +90,7 @@ const mockPost = {
 
     <!-- 评论区 -->
     <div id="comments-section">
-        <Comment post={mockPost}></Comment>
+        <Comment path="/essay/" />
     </div>
 </MainGridLayout>
 

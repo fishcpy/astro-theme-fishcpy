@@ -1,12 +1,11 @@
 ---
-import { Icon } from "astro-icon/components";
-import ImageGrid from "../../components/widget/ImageGrid.astro";
-
 import Comment from "@components/comment/index.astro";
+import { Icon } from "astro-icon/components";
+import albumData from "../../assets/album.json";
+import ImageGrid from "../../components/widget/ImageGrid.astro";
 import I18nKey from "../../i18n/i18nKey";
 import { i18n } from "../../i18n/translation";
 import MainGridLayout from "../../layouts/MainGridLayout.astro";
-import albumData from "../../assets/album.json";
 
 export async function getStaticPaths() {
 	return albumData.map((album) => ({
@@ -26,8 +25,8 @@ const mockPost = {
 	slug: `album-${album.slug}`,
 	data: {
 		title: album.title,
-		customSlug: `album/${album.slug}`
-	}
+		customSlug: `album/${album.slug}`,
+	},
 };
 ---
 
@@ -76,5 +75,5 @@ const mockPost = {
     </div>
     
     <!-- 评论区 -->
-    <Comment post={mockPost} />
+    <Comment path={`/album/${Astro.params.slug}/`} />
 </MainGridLayout>

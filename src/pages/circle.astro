@@ -1,7 +1,7 @@
 ---
 import { getEntry, render } from "astro:content";
-import Markdown from "@components/misc/Markdown.astro";
 import Comment from "@components/comment/index.astro";
+import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
@@ -18,8 +18,8 @@ const { Content } = await render(circlePost);
 const mockPost = {
 	slug: "circle",
 	data: {
-		title: i18n(I18nKey.friendsCircle)
-	}
+		title: i18n(I18nKey.friendsCircle),
+	},
 };
 ---
 
@@ -32,5 +32,5 @@ const mockPost = {
         </div>
     </div>
 
-    <Comment post={mockPost}></Comment>
+    <Comment path="/circle/" />
 </MainGridLayout>

@@ -16,7 +16,15 @@ if (Astro.props.path) {
 	const { id, data, slug } = Astro.props.post || {};
 	// 优先使用customSlug，如果没有则使用默认的slug
 	const finalSlug = data?.customSlug || slug;
-	path = finalSlug ? `/posts/${finalSlug}` : Astro.url.pathname;
+	if (finalSlug) {
+		// 确保文章页面路径以 /posts 开头
+		path = `/posts/${finalSlug}`;
+	} else {
+		// 对于其他页面，使用当前URL路径
+		let currentPath = Astro.url.pathname;
+		// 移除末尾的斜杠以保持一致性（除了根路径）
+		path = currentPath.replace(/\/$/, "") || "/";
+	}
 }
 console.log("Comment组件初始化");
 
