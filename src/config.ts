@@ -219,7 +219,7 @@ export const commentConfig: CommentConfig = {
 	artalk: {
 		server: "https://artalk.fis.ink",
 		site: "fishcpy的小破站",
-		darkMode: "auto", // 根据全局主题自动切换
+		darkMode: true, // 强制深色模式
 	},
 };
 
