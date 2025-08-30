@@ -748,342 +748,62 @@ if (document.readyState === 'loading') {
                 `)}async function l(){const t=window.hitokotoCache,r=Date.now();if(t.data&&r-t.timestamp<t.CACHE_DURATION){n(t.data);return}if(t.isLoading){a();return}t.isLoading=!0,a();try{const o=await(await fetch("https://v2.xxapi.cn/api/yiyan?type=hitokoto")).json();o.code===200&&o.data?(t.data=o.data,t.timestamp=r,n(o.data)):s("获取一言失败")}catch(c){console.error("获取一言时出错:",c),s("网络连接失败")}finally{t.isLoading=!1}}l()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i):i();const d=()=>{window.swup&&window.swup.hooks&&window.swup.hooks.on("page:view",i)};window.swup?d():document.addEventListener("swup:enable",d);</script>  <div class="flex flex-col w-full gap-4 mb-4 sticky top-4 z-10 onload-animation" style="animation-delay: 250ms"> <div class="card-base card-shadow card-glass p-4"> <a href="https://cloud.zyidc.net/aff/MYIMKXBB" target="_blank" rel="noopener noreferrer" class="block"> <img src="https://cdn.fis.ink/img/2025/04/19/680346cf235f8.png" alt="广告" class="w-full rounded-lg"> </a> </div> </div> </div> </div> <main id="swup-container" class="transition-swup-fade col-span-2 md:col-span-1 overflow-hidden"> <div id="content-wrapper" class="onload-animation"> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property -->  <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32 mb-8"> <div class="card-base z-10 px-9 py-6 relative w-full"> <!-- 返回按钮和标题 --> <div class="flex items-center gap-4 mb-6"> <a href="/album/" class="btn-card w-10 h-10 rounded-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:arrow-back">   <symbol id="ai:material-symbols:arrow-back" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"/></symbol><use href="#ai:material-symbols:arrow-back"></use>  </svg> </a> <div> <h1 class="text-3xl font-bold text-neutral-800 dark:text-neutral-200">风景摄影</h1> <p class="text-neutral-600 dark:text-neutral-400 mt-2 text-base">记录大自然的美丽瞬间</p> </div> </div> <!-- 相册信息 --> <div class="flex flex-wrap items-center gap-4 mb-6 pb-4 border-b border-[var(--line-divider)]"> <!-- 图片数量 --> <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400"> <svg width="1em" height="1em" class="text-lg" data-icon="material-symbols:photo-camera">   <symbol id="ai:material-symbols:photo-camera" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17.5q1.875 0 3.188-1.312T16.5 13t-1.312-3.187T12 8.5T8.813 9.813T7.5 13t1.313 3.188T12 17.5m0-2q-1.05 0-1.775-.725T9.5 13t.725-1.775T12 10.5t1.775.725T14.5 13t-.725 1.775T12 15.5M4 21q-.825 0-1.412-.587T2 19V7q0-.825.588-1.412T4 5h3.15L9 3h6l1.85 2H20q.825 0 1.413.588T22 7v12q0 .825-.587 1.413T20 21z"/></symbol><use href="#ai:material-symbols:photo-camera"></use>  </svg> <span>2 张图片</span> </div> <!-- 创建时间 --> <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400"> <svg width="1em" height="1em" class="text-lg" data-icon="material-symbols:calendar-today">   <symbol id="ai:material-symbols:calendar-today" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5z"/></symbol><use href="#ai:material-symbols:calendar-today"></use>  </svg> <span>2025/8/29</span> </div> <!-- 标签 --> <div class="flex flex-wrap gap-2"> <span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-sm rounded-full hover:bg-[var(--btn-card-bg-hover)] transition-colors">
 #风景 </span><span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-sm rounded-full hover:bg-[var(--btn-card-bg-hover)] transition-colors">
 #自然 </span><span class="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-sm rounded-full hover:bg-[var(--btn-card-bg-hover)] transition-colors">
-#摄影 </span> </div> </div> <!-- 图片网格 --> <div class="photo-gallery mb-8" data-astro-cid-zag3haex> <a href="https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp" class="photo-item group relative overflow-hidden rounded-xl bg-[var(--card-bg)] shadow-sm border border-[var(--line-divider)] hover:shadow-lg transition-all duration-300 cursor-pointer block" data-pswp-width="auto" data-pswp-height="auto" data-astro-cid-zag3haex> <div class="aspect-[4/3] overflow-hidden" data-astro-cid-zag3haex> <img src="https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp" alt="山间晨雾" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" data-astro-cid-zag3haex> </div> <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-zag3haex></div> <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" data-astro-cid-zag3haex> <h4 class="text-sm font-medium mb-1 drop-shadow-sm" data-astro-cid-zag3haex>山间晨雾</h4> <p class="text-xs mb-2 line-clamp-2 opacity-90 drop-shadow-sm" data-astro-cid-zag3haex>清晨山间的薄雾缭绕</p> <div class="flex flex-wrap gap-1 mb-2" data-astro-cid-zag3haex> <span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 山景 </span><span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 晨雾 </span> </div> <div class="text-xs opacity-75 drop-shadow-sm" data-astro-cid-zag3haex> 2025/8/29 </div> </div> </a><a href="https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp" class="photo-item group relative overflow-hidden rounded-xl bg-[var(--card-bg)] shadow-sm border border-[var(--line-divider)] hover:shadow-lg transition-all duration-300 cursor-pointer block" data-pswp-width="auto" data-pswp-height="auto" data-astro-cid-zag3haex> <div class="aspect-[4/3] overflow-hidden" data-astro-cid-zag3haex> <img src="https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp" alt="金狮" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" data-astro-cid-zag3haex> </div> <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-zag3haex></div> <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" data-astro-cid-zag3haex> <h4 class="text-sm font-medium mb-1 drop-shadow-sm" data-astro-cid-zag3haex>金狮</h4> <p class="text-xs mb-2 line-clamp-2 opacity-90 drop-shadow-sm" data-astro-cid-zag3haex>雕像</p> <div class="flex flex-wrap gap-1 mb-2" data-astro-cid-zag3haex> <span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 海景 </span><span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 日落 </span> </div> <div class="text-xs opacity-75 drop-shadow-sm" data-astro-cid-zag3haex> 2025/8/29 </div> </div> </a> </div>  </div> </div>  <div class="card-base p-6 mb-4 mt-4"> <!-- 简化了配置部分的代码，实际上可以把配置文件统一写入fuwari的配置文件统一读取 --><div id="twikoo"></div> <script>(function(){const config = {"el":"#twikoo","path":"/posts/album/1","envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/","lang":"zh-CN","visitor":true};
+#摄影 </span> </div> </div> <!-- 图片网格 --> <div class="photo-gallery mb-8" data-astro-cid-zag3haex> <a href="https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp" class="photo-item group relative overflow-hidden rounded-xl bg-[var(--card-bg)] shadow-sm border border-[var(--line-divider)] hover:shadow-lg transition-all duration-300 cursor-pointer block" data-pswp-width="auto" data-pswp-height="auto" data-astro-cid-zag3haex> <div class="aspect-[4/3] overflow-hidden" data-astro-cid-zag3haex> <img src="https://cdn.fis.ink/img/2025/07/24/6881f86b1baf2.webp" alt="山间晨雾" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" data-astro-cid-zag3haex> </div> <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-zag3haex></div> <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" data-astro-cid-zag3haex> <h4 class="text-sm font-medium mb-1 drop-shadow-sm" data-astro-cid-zag3haex>山间晨雾</h4> <p class="text-xs mb-2 line-clamp-2 opacity-90 drop-shadow-sm" data-astro-cid-zag3haex>清晨山间的薄雾缭绕</p> <div class="flex flex-wrap gap-1 mb-2" data-astro-cid-zag3haex> <span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 山景 </span><span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 晨雾 </span> </div> <div class="text-xs opacity-75 drop-shadow-sm" data-astro-cid-zag3haex> 2025/8/29 </div> </div> </a><a href="https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp" class="photo-item group relative overflow-hidden rounded-xl bg-[var(--card-bg)] shadow-sm border border-[var(--line-divider)] hover:shadow-lg transition-all duration-300 cursor-pointer block" data-pswp-width="auto" data-pswp-height="auto" data-astro-cid-zag3haex> <div class="aspect-[4/3] overflow-hidden" data-astro-cid-zag3haex> <img src="https://cdn.fis.ink/img/2025/07/24/6881fcb3a051f.webp" alt="金狮" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" data-astro-cid-zag3haex> </div> <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-zag3haex></div> <div class="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" data-astro-cid-zag3haex> <h4 class="text-sm font-medium mb-1 drop-shadow-sm" data-astro-cid-zag3haex>金狮</h4> <p class="text-xs mb-2 line-clamp-2 opacity-90 drop-shadow-sm" data-astro-cid-zag3haex>雕像</p> <div class="flex flex-wrap gap-1 mb-2" data-astro-cid-zag3haex> <span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 海景 </span><span class="bg-white/20 backdrop-blur-sm text-white px-2 py-0.5 rounded-full text-xs border border-white/30" data-astro-cid-zag3haex> 日落 </span> </div> <div class="text-xs opacity-75 drop-shadow-sm" data-astro-cid-zag3haex> 2025/8/29 </div> </div> </a> </div>  </div> </div>  <div class="card-base p-6 mb-4 mt-4"><div id="artalk"></div> <script>(function(){const config = {"el":"#artalk","pageKey":"/posts/album/1","pageTitle":"","server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":"auto"};
 
-  function loadTwikoo() {
-    console.log('loadTwikoo function called');
-    // 不输出包含敏感信息的配置
-    const script = document.createElement("script");
-    script.src =
-      "https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js";
+  function loadArtalk() {
+    console.log('loadArtalk function called');
+    
+    // 加载CSS
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = 'https://artalk.fis.ink/dist/Artalk.css';
+    document.head.appendChild(cssLink);
+    
+    // 加载JS
+    const script = document.createElement('script');
+    script.src = 'https://artalk.fis.ink/dist/Artalk.js';
     script.defer = true;
     script.onload = () => {
-      console.log('Twikoo script loaded, initializing...');
-      // 不输出包含敏感信息的配置
-    
-      // 尝试多种环境ID格式
-      const originalEnvId = config.envId;
-      const envIdWithoutProtocol = originalEnvId ? originalEnvId.replace(/^https?:\/\//, '') : '';
-    
-      // 尝试使用原始URL
+      console.log('Artalk script loaded, initializing...');
+      
       try {
-        twikoo.init({
-          ...config,
-          envId: originalEnvId
+        Artalk.init({
+          el: config.el,
+          pageKey: config.pageKey,
+          pageTitle: config.pageTitle || document.title,
+          server: config.server,
+          site: config.site,
+          darkMode: config.darkMode,
         });
+        console.log('Artalk initialized successfully');
       } catch (error) {
-        // 尝试使用不带协议的URL
-        try {
-          twikoo.init({
-            ...config,
-            envId: envIdWithoutProtocol
-          });
-        } catch (error) {
-          // 最后尝试使用一个简单的字符串
-          try {
-            // 从原始envId中提取域名部分作为简单ID
-            const simpleEnvId = originalEnvId ? 
-              originalEnvId.replace(/^https?:\/\//, '').split('.')[0] : 
-              'twikoo-env';
-            
-            twikoo.init({
-              ...config,
-              envId: simpleEnvId
-            });
-          } catch (error) {
-            // 初始化失败，静默处理
-          }
-        }
+        console.error('Artalk initialization failed:', error);
       }
-    
-      // 全面改进的移动端点击处理
-      // 存储触摸开始的信息
-      let touchStartInfo = {
-        target: null,
-        x: 0,
-        y: 0,
-        time: 0,
-        isScrolling: false
-      };
-      
-      // 添加触摸移动事件处理
-      const handleTouchMove = function(e) {
-        if (!touchStartInfo.target) return;
-        
-        // 计算移动距离
-        const touchMoveX = e.touches[0].clientX;
-        const touchMoveY = e.touches[0].clientY;
-        const moveDistance = Math.sqrt(
-          Math.pow(touchMoveX - touchStartInfo.x, 2) + 
-          Math.pow(touchMoveY - touchStartInfo.y, 2)
-        );
-        
-        // 如果移动距离超过阈值，标记为滑动操作
-        if (moveDistance > 10) {
-          touchStartInfo.isScrolling = true;
-        }
-      };
-      
-      const preventDefaultForTwikoo = function(e) {
-        const target = e.target.closest('#twikoo button, #twikoo a');
-        if (target) {
-          // 特别处理href="#"的链接，这些链接会导致页面跳转到顶部
-          if (target.tagName === 'A' && 
-              (target.getAttribute('href') === '#' || 
-               target.getAttribute('href') === '' || 
-               target.getAttribute('href') === 'javascript:void(0)' ||
-               target.getAttribute('href') === 'javascript:;')) {
-            // 替换href属性，防止导航到页面顶部
-            if (target.getAttribute('original-href') === null) {
-              target.setAttribute('original-href', target.getAttribute('href'));
-            }
-            target.setAttribute('href', 'javascript:void(0);');
-          }
-          
-          // 处理触摸开始事件
-          if (e.type === 'touchstart') {
-            // 记录触摸开始的目标元素和位置
-            touchStartInfo.target = target;
-            touchStartInfo.x = e.touches[0].clientX;
-            touchStartInfo.y = e.touches[0].clientY;
-            touchStartInfo.time = Date.now();
-            touchStartInfo.isScrolling = false;
-            
-            // 只对空链接阻止默认行为，允许按钮正常工作
-            if (target.tagName === 'A' && 
-                (target.getAttribute('href') === '#' || 
-                 target.getAttribute('href') === '' || 
-                 target.getAttribute('href') === 'javascript:void(0)' ||
-                 target.getAttribute('href') === 'javascript:;')) {
-              e.preventDefault();
-            }
-          }
-          
-          // 处理触摸结束事件
-          if (e.type === 'touchend') {
-            // 如果被标记为滑动操作，不触发点击
-            if (touchStartInfo.isScrolling) {
-              // 重置触摸信息
-              touchStartInfo = {
-                target: null,
-                x: 0,
-                y: 0,
-                time: 0,
-                isScrolling: false
-              };
-              return;
-            }
-            
-            // 计算触摸的移动距离和时间
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            const touchEndTime = Date.now();
-            
-            const moveDistance = Math.sqrt(
-              Math.pow(touchEndX - touchStartInfo.x, 2) + 
-              Math.pow(touchEndY - touchStartInfo.y, 2)
-            );
-            const touchDuration = touchEndTime - touchStartInfo.time;
-            
-            // 检查触摸结束时的元素是否与开始时相同
-            const isSameTarget = touchStartInfo.target === target;
-            
-            // 设置阈值：移动距离小于10px且触摸时间小于300ms视为点击
-            const isValidTap = moveDistance < 10 && touchDuration < 300;
-            
-            // 只有当触摸结束时的元素与开始时相同，且移动距离小于阈值时，才触发点击
-            if (isSameTarget && isValidTap) {
-              // 只对空链接阻止默认行为，允许按钮正常工作
-              if (target.tagName === 'A' && 
-                  (target.getAttribute('href') === '#' || 
-                   target.getAttribute('href') === '' || 
-                   target.getAttribute('href') === 'javascript:void(0)' ||
-                   target.getAttribute('href') === 'javascript:;')) {
-                e.preventDefault();
-                
-                // 如果链接有onclick处理函数，手动触发它
-                if (typeof target.onclick === 'function') {
-                  target.onclick.call(target);
-                }
-              }
-              // 不再阻止按钮的默认行为
-            }
-            
-            // 重置触摸信息
-            touchStartInfo = {
-              target: null,
-              x: 0,
-              y: 0,
-              time: 0,
-              isScrolling: false
-            };
-          }
-        }
-      };
-      
-      // 添加事件监听器
-      document.addEventListener('touchstart', preventDefaultForTwikoo, {passive: false, capture: true});
-      document.addEventListener('touchmove', handleTouchMove, {passive: true, capture: true});
-      document.addEventListener('touchend', preventDefaultForTwikoo, {passive: false, capture: true});
-      document.addEventListener('click', function(e) {
-        const target = e.target.closest('#twikoo a[href="#"]');
-        if (target) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      }, {capture: true});
-    
-      // 在Twikoo初始化完成后添加事件处理
-      setTimeout(() => {
-        setupCommentEventHandlers();
-      }, 1000); // 给Twikoo一些时间来渲染评论区
     };
+    
     script.onerror = (error) => {
-      // Twikoo 脚本加载失败，静默处理
+      console.error('Artalk script loading failed:', error);
     };
+    
     document.body.appendChild(script);
   }
   
   // 监听加载评论事件
   document.addEventListener("loadComment", () => {
-    loadTwikoo();
+    loadArtalk();
   }, { once: true });
   
-  // 页面加载完成后自动加载Twikoo（作为备用方案）
+  // 页面加载完成后自动加载Artalk
   window.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded event triggered');
-    // 检查是否已经加载过Twikoo
-    if (!document.querySelector('script[src*="twikoo.min.js"]')) {
-      console.log('Twikoo not loaded yet, loading now...');
-      loadTwikoo();
+    console.log('DOMContentLoaded event triggered for Artalk');
+    if (!document.querySelector('script[src*="Artalk.js"]')) {
+      console.log('Artalk not loaded yet, loading now...');
+      loadArtalk();
     }
   });
   
-  console.log('Twikoo component initialized');
-  
-  // 设置评论区事件处理函数
-  function setupCommentEventHandlers() {
-    console.log('Setting up comment event handlers');
-    
-    // 移除之前可能存在的事件监听器
-    document.removeEventListener('click', handleCommentClick);
-    
-    // 添加新的事件监听器
-    document.addEventListener('click', handleCommentClick);
-    
-    // 使用MutationObserver监听DOM变化
-    const observer = new MutationObserver((mutations) => {
-      // 当DOM变化时，确保所有新添加的按钮都被正确处理
-      console.log('DOM mutations detected in comment area');
-    });
-    
-    // 开始观察评论区的DOM变化
-    const twikooElement = document.getElementById('twikoo');
-    if (twikooElement) {
-      observer.observe(twikooElement, { 
-        childList: true, 
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['href', 'onclick']
-      });
-      console.log('MutationObserver started for #twikoo element');
-    }
-    
-    // 直接修改所有评论区内的链接和按钮
-    fixAllCommentButtons();
-  }
-  
-  // 处理评论区内的点击事件
-  function handleCommentClick(event) {
-    // 检查点击事件是否发生在评论区内
-    const twikooElement = event.target.closest('#twikoo');
-    if (!twikooElement) return;
-    
-    // 检查点击的元素是否是按钮或链接
-    const clickedElement = event.target.closest('button, a');
-    if (!clickedElement) return;
-    
-    // 获取原始点击事件的目标元素
-    const originalTarget = event.target;
-    
-    // 检查是否是评论提交按钮或其他特殊按钮
-    const isSubmitButton = clickedElement.classList.contains('tk-submit') || 
-                          clickedElement.classList.contains('el-button--primary') ||
-                          clickedElement.getAttribute('type') === 'submit';
-    
-    // 检查是否是有效的外部链接
-    const href = clickedElement.getAttribute('href');
-    const isExternalLink = href && href.startsWith('http') && !href.includes('#');
-    
-    // 只阻止空链接的默认行为，允许其他按钮正常工作
-    if (clickedElement.tagName === 'A' && 
-        (href === '#' || href === '' || href === 'javascript:void(0)' || href === 'javascript:;')) {
-      event.preventDefault();
-      console.log('Prevented default action for empty link in comment area');
-      
-      // 如果元素有onclick属性或事件监听器，手动触发点击逻辑但不导航
-      if (typeof clickedElement.onclick === 'function') {
-        console.log('Element has onclick handler, executing custom logic without navigation');
-        clickedElement.onclick.call(clickedElement);
-      }
-    }
-  }
-  
-  // 修复所有评论区内的按钮
-  function fixAllCommentButtons() {
-    console.log('Fixing all comment buttons');
-    const twikooElement = document.getElementById('twikoo');
-    if (!twikooElement) return;
-    
-    // 只修复空链接，避免干扰其他正常链接
-    const links = twikooElement.querySelectorAll('a');
-    links.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === '#' || href === '' || href === 'javascript:void(0)') {
-        // 替换href属性，防止导航到页面顶部
-        link.setAttribute('href', 'javascript:void(0);');
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log('Prevented navigation for empty link');
-          
-          // 如果链接有onclick处理函数，手动触发它
-          if (typeof link.onclick === 'function') {
-            link.onclick.call(link);
-          }
-        });
-      }
-    });
-    
-    // 不再阻止按钮的默认行为，让它们正常工作
-    
-    console.log('Fixed all comment buttons');
-  }
-  
-  // 初始的事件监听器设置 - 只处理空链接
-  document.addEventListener('click', function(event) {
-    // 检查点击事件是否发生在评论区内
-    if (event.target.closest('#twikoo')) {
-      // 检查点击的元素是否是链接
-      const clickedElement = event.target.closest('a');
-      if (clickedElement) {
-        // 如果是链接且href为#或javascript:void(0)等，阻止默认行为
-        if (clickedElement.getAttribute('href') === '#' || 
-            clickedElement.getAttribute('href') === 'javascript:void(0)' ||
-            clickedElement.getAttribute('href') === '') {
-          event.preventDefault();
-          console.log('Prevented default action for empty link in comment area');
-          
-          // 如果链接有onclick处理函数，手动触发它
-          if (typeof clickedElement.onclick === 'function') {
-            clickedElement.onclick.call(clickedElement);
-          }
-        }
-      }
-      
-      // 不再阻止按钮的默认行为，让它们正常工作
-    }
-  });
-})();</script>  </div>    <div class="footer col-span-2 onload-animation hidden lg:block"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="flex flex-col items-center gap-2"> <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力" class="transition hover:opacity-80"> <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"> </a> <div class="text-center"> <a href="https://beian.miit.gov.cn" target="_blank" class="transition link text-[var(--primary)] font-medium text-base">京ICP备2025138063号</a> </div> <div class="flex justify-center gap-4 mt-2"> <a href="https://hopedomain.com/zh/age/fis.ink" target="_blank"> <img src="https://hopedomain.com/api/badge/domain-age/fis.ink?theme=spotify&lang=zh" alt="域名年龄"> </a> <a href="https://ipw.cn/ssl/?site=blog.fis.ink" title="本站支持SSL安全访问" target="_blank"> <img style="display:inline-block;vertical-align:middle" alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"> </a> </div> <div id="runtime_span" class="text-xs text-50"></div> <div class="flex flex-wrap justify-center gap-4 text-sm mt-2"> <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌备20241732号</a> <a href="https://icp.fishcpy.top/query.php?keyword=20252224" class="transition link text-[var(--primary)]">鱼备20252224</a> <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a> <a href="http://icpgov.xin/beian/ICP-1145141145.html" class="transition link text-[var(--primary)]">酱1145141145号</a> <a href="https://icp.6uu.us/query.php?icp_number=%E5%85%83-92291" class="transition link text-[var(--primary)]">元-92291</a> </div> <!-- 版权和基础信息 --> <div class="transition text-50 text-sm text-center mt-4">
+  console.log('Artalk component initialized');
+})();</script></div>    <div class="footer col-span-2 onload-animation hidden lg:block"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="flex flex-col items-center gap-2"> <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力" class="transition hover:opacity-80"> <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120"> </a> <div class="text-center"> <a href="https://beian.miit.gov.cn" target="_blank" class="transition link text-[var(--primary)] font-medium text-base">京ICP备2025138063号</a> </div> <div class="flex justify-center gap-4 mt-2"> <a href="https://hopedomain.com/zh/age/fis.ink" target="_blank"> <img src="https://hopedomain.com/api/badge/domain-age/fis.ink?theme=spotify&lang=zh" alt="域名年龄"> </a> <a href="https://ipw.cn/ssl/?site=blog.fis.ink" title="本站支持SSL安全访问" target="_blank"> <img style="display:inline-block;vertical-align:middle" alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"> </a> </div> <div id="runtime_span" class="text-xs text-50"></div> <div class="flex flex-wrap justify-center gap-4 text-sm mt-2"> <a href="https://icp.gov.moe/?keyword=20241732" target="_blank" class="transition link text-[var(--primary)]">萌备20241732号</a> <a href="https://icp.fishcpy.top/query.php?keyword=20252224" class="transition link text-[var(--primary)]">鱼备20252224</a> <a href="https://icp.wudu.ltd/xg.php?keyword=fishcpy" target="_blank"><img src="https://shields.wudu.ltd/gen.php?part1=雾备&part2=fishcpy&url=https://icp.wudu.ltd/id.php?keyword=fishcpy&style=blue" alt="雾备案标识"></a> <a href="http://icpgov.xin/beian/ICP-1145141145.html" class="transition link text-[var(--primary)]">酱1145141145号</a> <a href="https://icp.6uu.us/query.php?icp_number=%E5%85%83-92291" class="transition link text-[var(--primary)]">元-92291</a> </div> <!-- 版权和基础信息 --> <div class="transition text-50 text-sm text-center mt-4">
 &copy; 2024-<span id="copyright-year">2025</span> fishcpy. All Rights Reserved. /
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/rss.xml">RSS</a> /
 <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
