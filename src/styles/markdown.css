@@ -33,6 +33,16 @@
             border-bottom: 1px dashed var(--link-hover);
             text-decoration: none;
         }
+
+        /* External link icon styles */
+        .external-link-icon {
+            @apply inline-block ml-1 opacity-60 transition-opacity;
+            vertical-align: text-top;
+        }
+
+        &:hover .external-link-icon {
+            @apply opacity-100;
+        }
     }
 
     code {
