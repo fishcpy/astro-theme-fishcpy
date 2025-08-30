@@ -94,13 +94,26 @@ export type LicenseConfig = {
 };
 
 export type CommentConfig = {
+	enable: boolean;
+	type: "twikoo" | "artalk";
 	twikoo?: TwikooConfig;
+	artalk?: ArtalkConfig;
 };
 
 type TwikooConfig = {
 	envId: string;
 	region?: string;
 	lang?: string;
+};
+
+type ArtalkConfig = {
+	server: string;
+	site: string;
+	pageKey?: string;
+	pageTitle?: string;
+	darkMode?: boolean | "auto";
+	useBackendConf?: boolean;
+	customCSS?: string;
 };
 
 export type LIGHT_DARK_MODE =

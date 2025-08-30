@@ -210,9 +210,16 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 // ----------------------------------------------------------
 
 export const commentConfig: CommentConfig = {
+	enable: true,
+	type: "artalk",
 	twikoo: {
 		envId:
 			"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/",
+	},
+	artalk: {
+		server: "https://artalk.fis.ink",
+		site: "fishcpy的小破站",
+		darkMode: "auto", // 根据全局主题自动切换
 	},
 };
 

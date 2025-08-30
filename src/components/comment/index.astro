@@ -1,6 +1,7 @@
 ---
 import { commentConfig } from "@/config";
 import Twikoo from "./Twikoo.astro";
+import Artalk from "./Artalk.astro";
 
 interface Props {
 	post: any;
@@ -12,12 +13,13 @@ const finalSlug = data?.customSlug || slug;
 const path = finalSlug ? `/posts/${finalSlug}` : Astro.url.pathname;
 console.log("Comment组件初始化");
 
-let commentService = "";
-if (commentConfig?.twikoo) {
-	commentService = "twikoo";
-}
+// 检查评论系统是否启用以及使用哪种类型
+const isCommentEnabled = commentConfig?.enable;
+const commentService = isCommentEnabled ? commentConfig?.type : '';
 ---
+{isCommentEnabled && (
 <div class="card-base p-6 mb-4 mt-4">
   {commentService === 'twikoo' && <Twikoo path={path} />}
-  {commentService === '' && null}
+  {commentService === 'artalk' && <Artalk path={path} />}
 </div>
+)}

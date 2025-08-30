@@ -1,0 +1,73 @@
+---
+interface Props {
+	path: string;
+}
+
+import { commentConfig } from "@/config";
+
+const config = {
+	el: "#artalk",
+	pageKey: Astro.props.path,
+	pageTitle: "",
+	server: commentConfig.artalk?.server || "http://localhost:8080",
+	site: commentConfig.artalk?.site || "fishcpy的小破站",
+	darkMode: commentConfig.artalk?.darkMode || "auto",
+};
+---
+
+<div id="artalk"></div>
+<script define:vars={{ config }}>
+  function loadArtalk() {
+    console.log('loadArtalk function called');
+    
+    // 加载CSS
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = 'https://artalk.fis.ink/dist/Artalk.css';
+    document.head.appendChild(cssLink);
+    
+    // 加载JS
+    const script = document.createElement('script');
+    script.src = 'https://artalk.fis.ink/dist/Artalk.js';
+    script.defer = true;
+    script.onload = () => {
+      console.log('Artalk script loaded, initializing...');
+      
+      try {
+        Artalk.init({
+          el: config.el,
+          pageKey: config.pageKey,
+          pageTitle: config.pageTitle || document.title,
+          server: config.server,
+          site: config.site,
+          darkMode: config.darkMode,
+        });
+        console.log('Artalk initialized successfully');
+      } catch (error) {
+        console.error('Artalk initialization failed:', error);
+      }
+    };
+    
+    script.onerror = (error) => {
+      console.error('Artalk script loading failed:', error);
+    };
+    
+    document.body.appendChild(script);
+  }
+  
+  // 监听加载评论事件
+  document.addEventListener("loadComment", () => {
+    loadArtalk();
+  }, { once: true });
+  
+  // 页面加载完成后自动加载Artalk
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event triggered for Artalk');
+    if (!document.querySelector('script[src*="Artalk.js"]')) {
+      console.log('Artalk not loaded yet, loading now...');
+      loadArtalk();
+    }
+  });
+  
+  console.log('Artalk component initialized');
+</script>
