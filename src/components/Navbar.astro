@@ -23,7 +23,8 @@ let links: NavBarLink[] = navBarConfig.links.map(
     <div class="absolute h-8 left-0 right-0 -top-8 backdrop-blur-md transition" style="background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent);"></div> <!-- used for onload animation -->
     <div class:list={[
         className,
-        "card-base !overflow-visible w-full h-[4.5rem] !rounded-t-none !rounded-b-[var(--radius-large)] navbar-glass"]}>
+        "!overflow-visible w-full h-[4.5rem] !rounded-t-none !rounded-b-[var(--radius-large)] navbar-glass"]}
+        style={`background-color: color-mix(in srgb, var(--card-bg) calc(var(--card-opacity) * 100%), transparent)`}>
         <div class="relative flex items-center px-4 h-full w-full">
         <!-- 左侧：网站标题 -->
         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95 flex-shrink-0">
@@ -51,7 +52,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
                                 {l.children.map((child, index) => (
                                     <a href={child.external ? child.url : url(child.url)} 
                                        target={child.external ? "_blank" : null}
-                                       class={`flex items-center px-6 py-3 text-base !text-gray-700 dark:!text-gray-300 hover:!text-gray-900 dark:hover:!text-white hover:bg-[var(--btn-plain-bg-hover)] transition-colors ${index === 0 ? 'rounded-l-xl' : ''} ${index === l.children.length - 1 ? 'rounded-r-xl' : ''}`}>
+                                       class={`flex items-center px-6 py-3 text-base !text-black dark:!text-gray-300 hover:!text-gray-900 dark:hover:!text-white hover:bg-[var(--btn-plain-bg-hover)] transition-colors ${index === 0 ? 'rounded-l-xl' : ''} ${index === l.children.length - 1 ? 'rounded-r-xl' : ''}`}>
                                         {child.icon && <Icon name={child.icon} class="text-[1rem] mr-3" />}
                                         <span>{child.name}</span>
                                         {child.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.75rem] text-black/[0.3] dark:text-white/[0.3] ml-1" />}
@@ -194,7 +195,6 @@ if (document.readyState === 'loading') {
 
 <style>
     .navbar-glass {
-        background-color: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -202,7 +202,6 @@ if (document.readyState === 'loading') {
 
     /* 确保在深色模式下也有适当的透明度 */
     :global(.dark) .navbar-glass {
-        background-color: rgba(35, 35, 35, 0.8);
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
