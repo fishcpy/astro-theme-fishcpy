@@ -756,7 +756,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">25.5.3-5.4被攻击经过</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-05-05</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A2%AB%E6%94%BB%E5%87%BB" aria-label="View all posts in the 被攻击 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">25.5.3-5.4被攻击经过</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/5/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-05-05</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A2%AB%E6%94%BB%E5%87%BB" aria-label="View all posts in the 被攻击 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 被攻击 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:tag-rounded">   <symbol id="ai:material-symbols:tag-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m9 16l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T6.3 18.8L7 16H4.275q-.5 0-.8-.387T3.3 14.75q.075-.35.35-.55t.625-.2H7.5l1-4H5.775q-.5 0-.8-.387T4.8 8.75q.075-.35.35-.55t.625-.2H9l.825-3.275Q9.9 4.4 10.15 4.2t.6-.2q.475 0 .775.375t.175.825L11 8h4l.825-3.275q.075-.325.325-.525t.6-.2q.475 0 .775.375t.175.825L17 8h2.725q.5 0 .8.387t.175.863q-.075.35-.35.55t-.625.2H16.5l-1 4h2.725q.5 0 .8.388t.175.862q-.075.35-.35.55t-.625.2H15l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T12.3 18.8L13 16zm.5-2h4l1-4h-4z"/></symbol><use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E8%A2%AB%E6%94%BB%E5%87%BB" aria-label="View all posts with the 被攻击 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 被攻击 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -766,7 +804,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">小米平板7pro澎湃os2Bate版使用体验</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-04-17</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%B0%8F%E7%B1%B3" aria-label="View all posts in the 小米 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">小米平板7pro澎湃os2Bate版使用体验</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/6/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-04-17</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%B0%8F%E7%B1%B3" aria-label="View all posts in the 小米 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 小米 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E5%B0%8F%E7%B1%B3" aria-label="View all posts with the 小米 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 小米 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -778,7 +854,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">音乐播放器预览</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-22</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E4%B8%BB%E9%A2%98%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E9%A2%84%E8%A7%88" aria-label="View all posts in the 主题音乐播放器预览 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">音乐播放器预览</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/8/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-22</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E4%B8%BB%E9%A2%98%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E9%A2%84%E8%A7%88" aria-label="View all posts in the 主题音乐播放器预览 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 主题音乐播放器预览 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E4%B8%BB%E9%A2%98" aria-label="View all posts with the 主题 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 主题 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -790,7 +904,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">爱国图片</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-18</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%88%86%E4%BA%AB%E7%88%B1%E5%9B%BD%E5%9B%BE%E7%89%87" aria-label="View all posts in the 分享爱国图片 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">爱国图片</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/9/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-18</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%88%86%E4%BA%AB%E7%88%B1%E5%9B%BD%E5%9B%BE%E7%89%87" aria-label="View all posts in the 分享爱国图片 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 分享爱国图片 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E5%88%86%E4%BA%AB" aria-label="View all posts with the 分享 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 分享 </a>  </div> </div> <!-- page views -->  </div><!-- description --><div class="transition text-75 mb-3.5 line-clamp-3 flex-1" data-astro-cid-iyiqi2so style="--coverWidth: 28%;">本篇文章整理并分享了多张高质量爱国主题图片，包括《中华人民共和国国旗》《袁隆平·稻下乘凉梦》《永远的人民英雄》《开国大典》等经典画面，适合用于宣传设计、纪念活动或学习参考。文末附带图包下载链接，支持一键获取。</div><!-- word count and read time  --><div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">82 字</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">1 分钟</div></div></div></div><!-- 网格布局样式 -->
@@ -798,7 +950,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">极域</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-07</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E6%9E%81%E5%9F%9F" aria-label="View all posts in the 极域 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">极域</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/10/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-03-07</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E6%9E%81%E5%9F%9F" aria-label="View all posts in the 极域 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 极域 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E6%9E%81%E5%9F%9F" aria-label="View all posts with the 极域 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 极域 </a>  </div> </div> <!-- page views -->  </div><!-- description --><div class="transition text-75 mb-3.5 line-clamp-3 flex-1" data-astro-cid-iyiqi2so style="--coverWidth: 28%;">部分内容不向互联网公开</div><!-- word count and read time  --><div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">13 字</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">1 分钟</div></div></div></div><!-- 网格布局样式 -->
@@ -806,7 +996,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">一班热榜历史记录2024-2025（下半学期）</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-02-28</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%AE%B6%E6%A0%A1" aria-label="View all posts in the 家校 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">一班热榜历史记录2024-2025（下半学期）</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/11/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-02-28</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%AE%B6%E6%A0%A1" aria-label="View all posts in the 家校 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 家校 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E5%AE%B6%E6%A0%A1" aria-label="View all posts with the 家校 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 家校 </a>  </div> </div> <!-- page views -->  </div><!-- description --><div class="transition text-75 mb-3.5 line-clamp-3 flex-1" data-astro-cid-iyiqi2so style="--coverWidth: 28%;">记录 2025 年 2 月 27 日与 28 日的班级日常：有同学积极领奖，也有不当行为和未交作业的情况。文中还特别送出新年祝福，并附有历史记录传送门，见证热榜成长足迹。</div><!-- word count and read time  --><div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">108 字</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">1 分钟</div></div></div></div><!-- 网格布局样式 -->
@@ -814,7 +1042,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">greasyfork新可用地址</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-02-13</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts in the 解决问题 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">greasyfork新可用地址</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/22/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-02-13</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts in the 解决问题 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 解决问题 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts with the 解决问题 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 解决问题 </a>  </div> </div> <!-- page views -->  </div><!-- description --><div class="transition text-75 mb-3.5 line-clamp-3 flex-1" data-astro-cid-iyiqi2so style="--coverWidth: 28%;">本文介绍了 GreasyFork 在中国遭遇 SNI 阻断后提供的最新可用域名和镜像地址，并详细说明了访问限制、使用注意事项以及推荐的 DNS 服务器，确保用户能够稳定访问 GreasyFork 脚本资源。</div><!-- word count and read time  --><div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">358 字</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">2 分钟</div></div></div></div><!-- 网格布局样式 -->
@@ -822,7 +1088,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">启用cloudflare cdn后js无法正常加载解决办法</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-18</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=cloudflare" aria-label="View all posts in the cloudflare category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">启用cloudflare cdn后js无法正常加载解决办法</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/25/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-18</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=cloudflare" aria-label="View all posts in the cloudflare category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> cloudflare </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=cloudflare" aria-label="View all posts with the cloudflare tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> cloudflare </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -832,7 +1136,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">水-1</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-10</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts in the 解决问题 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">水-1</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/23/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-10</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98" aria-label="View all posts in the 解决问题 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 解决问题 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E4%B8%BB%E9%A2%98" aria-label="View all posts with the 主题 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 主题 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -842,7 +1184,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">给你的博客加上一个十年倒计时吧</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-10</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts in the 十年之约 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">给你的博客加上一个十年倒计时吧</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/21/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2025-01-10</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts in the 十年之约 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 十年之约 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6" aria-label="View all posts with the 十年之约 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 十年之约 </a>  </div> </div> <!-- page views -->  </div><!-- description --><div class="transition text-75 mb-3.5 line-clamp-3 flex-1" data-astro-cid-iyiqi2so style="--coverWidth: 28%;">本文详细介绍了如何在 hexo-theme-anzhiyu 主题博客中添加自定义倒计时功能。通过新建JavaScript文件和在Markdown文件中插入HTML代码，实现动态倒计时显示，且支持自定义目标时间和样式。</div><!-- word count and read time  --><div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition" data-astro-cid-iyiqi2so style="--coverWidth: 28%;"><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">367 字</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">|</div><div data-astro-cid-iyiqi2so style="--coverWidth: 28%;">2 分钟</div></div></div></div><!-- 网格布局样式 -->
@@ -850,7 +1230,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">在byrutgame上下载免费游戏</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-23</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E6%B8%B8%E6%88%8F" aria-label="View all posts in the 游戏 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">在byrutgame上下载免费游戏</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/24/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-23</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E6%B8%B8%E6%88%8F" aria-label="View all posts in the 游戏 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 游戏 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E6%B8%B8%E6%88%8F" aria-label="View all posts with the 游戏 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 游戏 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
@@ -860,7 +1278,45 @@ if (document.readyState === 'loading') {
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
             active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
             line-clamp-2
-            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">安知鱼主题音乐馆默认歌单修改</a><!-- metadata --><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-14</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E4%B8%BB%E9%A2%98" aria-label="View all posts in the 主题 category" class="link-lg transition text-50 text-sm font-medium
+            " data-astro-cid-iyiqi2so style="--coverWidth: 28%;">安知鱼主题音乐馆默认歌单修改</a><!-- metadata --><script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/20/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-4"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-14</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=%E4%B8%BB%E9%A2%98" aria-label="View all posts in the 主题 category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 主题 </a> </div> </div> <!-- tags --> <div class="items-center hidden md:flex"> <div class="meta-icon"> <svg width="1em" height="1em" viewBox="0 0 24 24" class="text-xl" data-icon="material-symbols:tag-rounded">   <use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=%E4%B8%BB%E9%A2%98" aria-label="View all posts with the 主题 tag" class="link-lg transition text-50 text-sm font-medium
                                 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> 主题 </a><div class="mx-1.5 text-[var(--meta-divider)] text-sm">/</div>

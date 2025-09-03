@@ -749,10 +749,48 @@ if (document.readyState === 'loading') {
                     text-black/90 dark:text-white/90
                     md:before:w-1 before:h-5 before:rounded-md before:bg-[var(--primary)]
                     before:absolute before:top-[0.75rem] before:left-[-1.125rem]
-                " data-astro-cid-egg7nqdx style="--card-opacity: 0.85;"> 引入Aplayer播放音乐-自定义api地址 </div> </div> <!-- metadata --> <div class="onload-animation" data-astro-cid-egg7nqdx style="--card-opacity: 0.85;"> <div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-07</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=Aplayer" aria-label="View all posts in the Aplayer category" class="link-lg transition text-50 text-sm font-medium
+                " data-astro-cid-egg7nqdx style="--card-opacity: 0.85;"> 引入Aplayer播放音乐-自定义api地址 </div> </div> <!-- metadata --> <div class="onload-animation" data-astro-cid-egg7nqdx style="--card-opacity: 0.85;"> <script>(function(){const commentConfig = {"enable":true,"type":"artalk","twikoo":{"envId":"https://fishcpy-cloud-twkioo-1-2-3-4-5-6-7-8-9-10-11-12-13.fis.ink/"},"artalk":{"server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true}};
+const url = "/posts/19/";
+
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+})();</script><div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2024-12-07</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=Aplayer" aria-label="View all posts in the Aplayer category" class="link-lg transition text-50 text-sm font-medium
                             hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> Aplayer </a> </div> </div> <!-- tags --> <div class="items-center flex"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:tag-rounded">   <symbol id="ai:material-symbols:tag-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m9 16l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T6.3 18.8L7 16H4.275q-.5 0-.8-.387T3.3 14.75q.075-.35.35-.55t.625-.2H7.5l1-4H5.775q-.5 0-.8-.387T4.8 8.75q.075-.35.35-.55t.625-.2H9l.825-3.275Q9.9 4.4 10.15 4.2t.6-.2q.475 0 .775.375t.175.825L11 8h4l.825-3.275q.075-.325.325-.525t.6-.2q.475 0 .775.375t.175.825L17 8h2.725q.5 0 .8.387t.175.863q-.075.35-.35.55t-.625.2H16.5l-1 4h2.725q.5 0 .8.388t.175.862q-.075.35-.35.55t-.625.2H15l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T12.3 18.8L13 16zm.5-2h4l1-4h-4z"/></symbol><use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-[var(--meta-divider)] text-sm">/</div>
                 <a href="/archive/?tag=Aplayer" aria-label="View all posts with the Aplayer tag" class="link-lg transition text-50 text-sm font-medium
-                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> Aplayer </a>  </div> </div> <!-- page views --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:visibility-outline-rounded">   <symbol id="ai:material-symbols:visibility-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16q1.875 0 3.188-1.312T16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16m0-1.8q-1.125 0-1.912-.788T9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2m0 4.8q-3.35 0-6.113-1.8t-4.362-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19m0-2q2.825 0 5.188-1.487T20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17"/></symbol><use href="#ai:material-symbols:visibility-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium"> <span id="twikoo_visitors__posts_19_">0</span> 次访问
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap"> Aplayer </a>  </div> </div> <!-- page views --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:visibility-outline-rounded">   <symbol id="ai:material-symbols:visibility-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16q1.875 0 3.188-1.312T16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16m0-1.8q-1.125 0-1.912-.788T9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2m0 4.8q-3.35 0-6.113-1.8t-4.362-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19m0-2q2.825 0 5.188-1.487T20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17"/></symbol><use href="#ai:material-symbols:visibility-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium"> <span class="artalk-pv-count" data-page-key="/posts/19/">0</span> 次访问
 </span> </div> </div>  </div> <!-- AI Summary --> <div class="ai-summary mb-6 onload-animation"><div class="ai-title"><div class="ai-title-left"><i>🤖</i><span class="ai-title-text">AI 摘要</span></div><div class="ai-tag">fishcpy AI</div></div><div class="ai-explanation" data-content="本文分享如何在 akilar糖果屋主题中自定义 Aplayer 的 meting_js API 地址，解决官方API不稳定、歌曲播放断续的问题，通过在注入的 Aplayer 容器中添加 `data-meting_api` 参数，实现调用自定义的音乐接口。"></div></div><script type="module">function u(){return window.location.pathname.includes("/posts/")}function c(){if(!u())return;document.querySelectorAll(".ai-summary").forEach(n=>{const t=n.querySelector(".ai-explanation");if(!t||t.hasAttribute("data-initialized"))return;const i=t.getAttribute("data-content");if(!i)return;t.setAttribute("data-initialized","true"),t.textContent="",t.classList.remove("typing-complete");let a=0;const r=30;function s(){a<i.length?(t.textContent+=i.charAt(a),a++,setTimeout(s,r)):t.classList.add("typing-complete")}setTimeout(s,800)})}function e(){setTimeout(c,100)}function d(){document.readyState==="loading"?document.addEventListener("DOMContentLoaded",e):e(),document.addEventListener("astro:page-load",e),window.addEventListener("popstate",e);const o=history.pushState,n=history.replaceState;history.pushState=function(){o.apply(history,arguments),setTimeout(e,100)},history.replaceState=function(){n.apply(history,arguments),setTimeout(e,100)}}d();</script> <!-- show cover based on config and if it has one -->  <div data-pagefind-body class="prose dark:prose-invert prose-base !max-w-none custom-md mb-6 markdown-content onload-animation"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <blockquote>
 <section><h2 id="此文章仅适用于akilar糖果屋中的-引入aplayer播放音乐-文章-httpsakilartopposts3afa069a-其他请自行测试">此文章仅适用于akilar糖果屋中的 <strong>引入Aplayer播放音乐</strong> 文章 <a href="https://akilar.top/posts/3afa069a/" rel="nofollow noopener noreferrer" target="_blank">https://akilar.top/posts/3afa069a/</a> ，其他请自行测试]<a class="anchor" href="#此文章仅适用于akilar糖果屋中的-引入aplayer播放音乐-文章-httpsakilartopposts3afa069a-其他请自行测试"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h2></section>
 </blockquote>
@@ -773,7 +811,7 @@ bottom:
 - </p><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listfolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><p></p><p># 修改后
 - &#x3C;div class=“aplayer no-destroy” data-id=“5183531430” data-server=“netease” data-type=“playlist” data-fixed=“true” data-mini=“true” data-listFolded=“false” data-order=“random” data-preload=“none” data-autoplay=“false” data-meting_api=“<a href="https://meting.qjqq.cn/?server=:server&#x26;type=:type&#x26;id=:id&#x26;auth=:auth&#x26;r=:r" rel="nofollow noopener noreferrer" target="_blank">https://meting.qjqq.cn/?server=:server&#x26;type=:type&#x26;id=:id&#x26;auth=:auth&#x26;r=:r</a>” muted></p><p>根据上方的配置参数，这里添加了一个data-meting_api=”<a href="https://meting.qjqq.cn/?server=:server&#x26;type=:type&#x26;id=:id&#x26;auth=:auth&#x26;r=:r" rel="nofollow noopener noreferrer" target="_blank">https://meting.qjqq.cn/?server=<server></server>&#x26;type=<type></type>&#x26;id=<id></id>&#x26;auth=<auth></auth>&#x26;r=<r></r></a>“ 如果以后这个挂了也可以自建或者使用别人的api</p></section>  </div> <script type="module">document.addEventListener("click",function(s){const t=s.target;if(t&&t.classList.contains("copy-btn")){const c=t.closest("pre")?.querySelector("code"),i=Array.from(c?.querySelectorAll(".code:not(summary *)")??[]).map(e=>e.textContent).map(e=>e===`
 `?"":e).join(`
-`);navigator.clipboard.writeText(i);const o=t.getAttribute("data-timeout-id");o&&clearTimeout(parseInt(o)),t.classList.add("success");const n=setTimeout(()=>{t.classList.remove("success")},1e3);t.setAttribute("data-timeout-id",n.toString())}});</script> <div class="relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 mb-6 rounded-xl license-container onload-animation"> <div class="transition font-bold text-black/75 dark:text-white/75"> 引入Aplayer播放音乐-自定义api地址 </div> <a href="https://blog.fis.ink/posts/19/" class="link text-[var(--primary)]"> https://blog.fis.ink/posts/19/ </a> <div class="flex gap-6 mt-2"> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">作者</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">fishcpy</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">发布于</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">2024-12-07</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">许可协议</div> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="link text-[var(--primary)] line-clamp-2">CC BY-NC-SA 4.0</a> </div> </div> <svg width="0.97em" height="1em" class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5" data-icon="fa6-brands:creative-commons">   <symbol id="ai:fa6-brands:creative-commons" viewBox="0 0 496 512"><path fill="currentColor" d="m245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93c-22.13 0-33.22 14.61-33.22 43.84c0 23.57 9.21 43.84 33.22 43.84c14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98c-22.6 0-73.96-10.32-73.96-77.05c0-58.69 43-77.06 72.63-77.06c30.72-.01 52.7 11.95 65.99 35.86m143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93c-22.14 0-33.22 14.61-33.22 43.84c0 23.55 9.23 43.84 33.22 43.84c14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98c-22.69 0-73.96-9.87-73.96-77.05c0-58.67 42.97-77.06 72.63-77.06c30.71-.01 52.58 11.95 65.56 35.86M247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248c129.93 0 248.44-100.87 248.44-248c0-137.87-106.62-248-248.44-248m.87 450.81c-112.54 0-203.7-93.04-203.7-202.81c0-105.42 85.43-203.27 203.72-203.27c112.53 0 202.82 89.46 202.82 203.26c-.01 121.69-99.68 202.82-202.84 202.82"/></symbol><use href="#ai:fa6-brands:creative-commons"></use>  </svg> </div> </div> </div> <div class="card-base p-6 mb-4 mt-4"><!-- Artalk 统计信息 --><div class="mb-4 text-sm text-gray-600 dark:text-gray-400 flex gap-4"> <span>浏览量：<span class="artalk-pv-count">-</span></span> <span>评论数：<span class="artalk-comment-count">-</span></span> </div> <!-- Artalk 评论区 --> <div id="artalk"></div> <script>(function(){const config = {"el":"#artalk","pageKey":"/posts/19","pageTitle":"","server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true};
+`);navigator.clipboard.writeText(i);const o=t.getAttribute("data-timeout-id");o&&clearTimeout(parseInt(o)),t.classList.add("success");const n=setTimeout(()=>{t.classList.remove("success")},1e3);t.setAttribute("data-timeout-id",n.toString())}});</script> <div class="relative transition overflow-hidden bg-[var(--license-block-bg)] py-5 px-6 mb-6 rounded-xl license-container onload-animation"> <div class="transition font-bold text-black/75 dark:text-white/75"> 引入Aplayer播放音乐-自定义api地址 </div> <a href="https://blog.fis.ink/posts/19/" class="link text-[var(--primary)]"> https://blog.fis.ink/posts/19/ </a> <div class="flex gap-6 mt-2"> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">作者</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">fishcpy</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">发布于</div> <div class="transition text-black/75 dark:text-white/75 line-clamp-2">2024-12-07</div> </div> <div> <div class="transition text-black/30 dark:text-white/30 text-sm">许可协议</div> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="link text-[var(--primary)] line-clamp-2">CC BY-NC-SA 4.0</a> </div> </div> <svg width="0.97em" height="1em" class="transition text-[15rem] absolute pointer-events-none right-6 top-1/2 -translate-y-1/2 text-black/5 dark:text-white/5" data-icon="fa6-brands:creative-commons">   <symbol id="ai:fa6-brands:creative-commons" viewBox="0 0 496 512"><path fill="currentColor" d="m245.83 214.87l-33.22 17.28c-9.43-19.58-25.24-19.93-27.46-19.93c-22.13 0-33.22 14.61-33.22 43.84c0 23.57 9.21 43.84 33.22 43.84c14.47 0 24.65-7.09 30.57-21.26l30.55 15.5c-6.17 11.51-25.69 38.98-65.1 38.98c-22.6 0-73.96-10.32-73.96-77.05c0-58.69 43-77.06 72.63-77.06c30.72-.01 52.7 11.95 65.99 35.86m143.05 0l-32.78 17.28c-9.5-19.77-25.72-19.93-27.9-19.93c-22.14 0-33.22 14.61-33.22 43.84c0 23.55 9.23 43.84 33.22 43.84c14.45 0 24.65-7.09 30.54-21.26l31 15.5c-2.1 3.75-21.39 38.98-65.09 38.98c-22.69 0-73.96-9.87-73.96-77.05c0-58.67 42.97-77.06 72.63-77.06c30.71-.01 52.58 11.95 65.56 35.86M247.56 8.05C104.74 8.05 0 123.11 0 256.05c0 138.49 113.6 248 247.56 248c129.93 0 248.44-100.87 248.44-248c0-137.87-106.62-248-248.44-248m.87 450.81c-112.54 0-203.7-93.04-203.7-202.81c0-105.42 85.43-203.27 203.72-203.27c112.53 0 202.82 89.46 202.82 203.26c-.01 121.69-99.68 202.82-202.84 202.82"/></symbol><use href="#ai:fa6-brands:creative-commons"></use>  </svg> </div> </div> </div> <div class="card-base p-6 mb-4 mt-4"><div id="artalk"></div> <script>(function(){const config = {"el":"#artalk","pageKey":"/posts/19","pageTitle":"","server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true};
 
   function loadArtalk() {
     console.log('loadArtalk function called');
@@ -792,7 +830,7 @@ bottom:
       console.log('Artalk script loaded, initializing...');
       
       try {
-        const artalk = Artalk.init({
+        Artalk.init({
           el: config.el,
           pageKey: config.pageKey,
           pageTitle: config.pageTitle || document.title,
@@ -801,13 +839,6 @@ bottom:
           darkMode: config.darkMode,
         });
         console.log('Artalk initialized successfully');
-        
-        // 等待Artalk完全加载后更新统计数据
-        setTimeout(() => {
-          updateStats();
-          // 设置定期更新统计数据
-          setInterval(updateStats, 30000); // 每30秒更新一次
-        }, 1000);
       } catch (error) {
         console.error('Artalk initialization failed:', error);
       }
@@ -818,33 +849,6 @@ bottom:
     };
     
     document.body.appendChild(script);
-  }
-  
-  // 更新统计数据的函数
-  function updateStats() {
-    console.log('Updating Artalk stats...');
-    
-    // 获取浏览量
-    const pvElement = document.querySelector('.artalk-pv-count');
-    const commentCountElement = document.querySelector('.artalk-comment-count');
-    
-    if (pvElement || commentCountElement) {
-      // 使用Artalk的API获取统计数据
-      fetch(`${config.server}/api/v2/stat?site_name=${encodeURIComponent(config.site)}&page_key=${encodeURIComponent(config.pageKey)}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log('Stats data received:', data);
-          if (pvElement && data.pv !== undefined) {
-            pvElement.textContent = data.pv;
-          }
-          if (commentCountElement && data.comment_count !== undefined) {
-            commentCountElement.textContent = data.comment_count;
-          }
-        })
-        .catch(error => {
-          console.error('Failed to fetch stats:', error);
-        });
-    }
   }
   
   // 监听加载评论事件

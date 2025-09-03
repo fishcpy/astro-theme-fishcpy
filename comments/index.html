@@ -746,7 +746,7 @@ if (document.readyState === 'loading') {
                     </div>
                 `)}async function l(){const t=window.hitokotoCache,r=Date.now();if(t.data&&r-t.timestamp<t.CACHE_DURATION){n(t.data);return}if(t.isLoading){a();return}t.isLoading=!0,a();try{const o=await(await fetch("https://v2.xxapi.cn/api/yiyan?type=hitokoto")).json();o.code===200&&o.data?(t.data=o.data,t.timestamp=r,n(o.data)):s("获取一言失败")}catch(c){console.error("获取一言时出错:",c),s("网络连接失败")}finally{t.isLoading=!1}}l()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i):i();const d=()=>{window.swup&&window.swup.hooks&&window.swup.hooks.on("page:view",i)};window.swup?d():document.addEventListener("swup:enable",d);</script>  <div class="flex flex-col w-full gap-4 mb-4 sticky top-4 z-10 onload-animation" style="animation-delay: 250ms"> <div class="card-base card-shadow card-glass p-4"> <a href="https://cloud.zyidc.net/aff/MYIMKXBB" target="_blank" rel="noopener noreferrer" class="block"> <img src="https://cdn.fis.ink/img/2025/04/19/680346cf235f8.png" alt="广告" class="w-full rounded-lg"> </a> </div> </div> </div> </div> <main id="swup-container" class="transition-swup-fade col-span-2 md:col-span-1 overflow-hidden"> <div id="content-wrapper" class="onload-animation"> <!-- the overflow-hidden here prevent long text break the layout--> <!-- make id different from windows.swup global property -->  <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"> <div class="card-base z-10 px-9 py-6 relative w-full "> <div data-pagefind-body class="prose dark:prose-invert prose-base !max-w-none custom-md mt-2"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <section><h1 id="留言板">留言板<a class="anchor" href="#留言板"><span class="anchor-icon" data-pagefind-ignore="">#</span></a></h1></section>  </div> <script type="module">document.addEventListener("click",function(s){const t=s.target;if(t&&t.classList.contains("copy-btn")){const c=t.closest("pre")?.querySelector("code"),i=Array.from(c?.querySelectorAll(".code:not(summary *)")??[]).map(e=>e.textContent).map(e=>e===`
 `?"":e).join(`
-`);navigator.clipboard.writeText(i);const o=t.getAttribute("data-timeout-id");o&&clearTimeout(parseInt(o)),t.classList.add("success");const n=setTimeout(()=>{t.classList.remove("success")},1e3);t.setAttribute("data-timeout-id",n.toString())}});</script> </div> </div> <div class="card-base p-6 mb-4 mt-4"><!-- Artalk 统计信息 --><div class="mb-4 text-sm text-gray-600 dark:text-gray-400 flex gap-4"> <span>浏览量：<span class="artalk-pv-count">-</span></span> <span>评论数：<span class="artalk-comment-count">-</span></span> </div> <!-- Artalk 评论区 --> <div id="artalk"></div> <script>(function(){const config = {"el":"#artalk","pageKey":"/comments/","pageTitle":"","server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true};
+`);navigator.clipboard.writeText(i);const o=t.getAttribute("data-timeout-id");o&&clearTimeout(parseInt(o)),t.classList.add("success");const n=setTimeout(()=>{t.classList.remove("success")},1e3);t.setAttribute("data-timeout-id",n.toString())}});</script> </div> </div> <div class="card-base p-6 mb-4 mt-4"><div id="artalk"></div> <script>(function(){const config = {"el":"#artalk","pageKey":"/comments/","pageTitle":"","server":"https://artalk.fis.ink","site":"fishcpy的小破站","darkMode":true};
 
   function loadArtalk() {
     console.log('loadArtalk function called');
@@ -765,7 +765,7 @@ if (document.readyState === 'loading') {
       console.log('Artalk script loaded, initializing...');
       
       try {
-        const artalk = Artalk.init({
+        Artalk.init({
           el: config.el,
           pageKey: config.pageKey,
           pageTitle: config.pageTitle || document.title,
@@ -774,13 +774,6 @@ if (document.readyState === 'loading') {
           darkMode: config.darkMode,
         });
         console.log('Artalk initialized successfully');
-        
-        // 等待Artalk完全加载后更新统计数据
-        setTimeout(() => {
-          updateStats();
-          // 设置定期更新统计数据
-          setInterval(updateStats, 30000); // 每30秒更新一次
-        }, 1000);
       } catch (error) {
         console.error('Artalk initialization failed:', error);
       }
@@ -791,33 +784,6 @@ if (document.readyState === 'loading') {
     };
     
     document.body.appendChild(script);
-  }
-  
-  // 更新统计数据的函数
-  function updateStats() {
-    console.log('Updating Artalk stats...');
-    
-    // 获取浏览量
-    const pvElement = document.querySelector('.artalk-pv-count');
-    const commentCountElement = document.querySelector('.artalk-comment-count');
-    
-    if (pvElement || commentCountElement) {
-      // 使用Artalk的API获取统计数据
-      fetch(`${config.server}/api/v2/stat?site_name=${encodeURIComponent(config.site)}&page_key=${encodeURIComponent(config.pageKey)}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log('Stats data received:', data);
-          if (pvElement && data.pv !== undefined) {
-            pvElement.textContent = data.pv;
-          }
-          if (commentCountElement && data.comment_count !== undefined) {
-            commentCountElement.textContent = data.comment_count;
-          }
-        })
-        .catch(error => {
-          console.error('Failed to fetch stats:', error);
-        });
-    }
   }
   
   // 监听加载评论事件
