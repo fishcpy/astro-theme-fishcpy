@@ -1,4 +1,4 @@
-import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "./constants/constants";
+import { DARK_MODE } from "./constants/constants";
 import type {
 	BeautifyConfig,
 	CommentConfig,
@@ -8,7 +8,6 @@ import type {
 	ProfileConfig,
 	SiteConfig,
 } from "./types/config";
-import { LinkPreset } from "./types/config";
 
 // ----------------------------------------------------------
 
@@ -189,6 +188,12 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/fishcpy",
 		},
 	],
+	showStats: true, // 统计信息总开关
+	statsConfig: {
+		showPosts: true, // 是否显示文章数
+		showTags: true, // 是否显示标签数
+		showCategories: true, // 是否显示分类数
+	},
 };
 
 // ----------------------------------------------------------

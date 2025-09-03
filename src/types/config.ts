@@ -85,6 +85,12 @@ export type ProfileConfig = {
 		url: string;
 		icon: string;
 	}[];
+	showStats?: boolean; // 统计信息总开关
+	statsConfig?: {
+		showPosts?: boolean; // 是否显示文章数
+		showTags?: boolean; // 是否显示标签数
+		showCategories?: boolean; // 是否显示分类数
+	};
 };
 
 export type LicenseConfig = {
