@@ -103,7 +103,7 @@ function getStatusColor(status: string) {
                                             <!-- 链接指示器 -->
                                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                                                 <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-2">
-                                                    <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-5 h-5" style="color: var(--text-secondary)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                                     </svg>
                                                 </div>
@@ -148,7 +148,8 @@ function getStatusColor(status: string) {
                                             {getStarRating(item.rating).map((filled) => (
                                                 <Icon 
                                                 name={filled ? "material-symbols:star" : "material-symbols:star-outline"} 
-                                                class={`w-4 h-4 ${filled ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`} 
+                                                class={`w-4 h-4 ${filled ? 'text-yellow-400' : ''}`}
+                                                style={filled ? {} : {color: 'var(--text-tertiary)'}} 
                                             />
                                             ))}
                                         </div>

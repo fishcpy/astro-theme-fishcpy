@@ -1,4 +1,4 @@
-import { DARK_MODE } from "./constants/constants";
+import { AUTO_MODE } from "./constants/constants";
 import type {
 	BeautifyConfig,
 	CommentConfig,
@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
 		hue: 260, // 主题色默认色调，取值范围0-360。例如红色:0，蓝绿色:200，青色:250，粉色:345
 		fixed: true, // 对访客隐藏主题色选择器
 	},
-	theme: DARK_MODE, // 主题模式: AUTO_MODE(默认), LIGHT_MODE(强制浅色), DARK_MODE(强制深色)
+	theme: AUTO_MODE, // 主题模式: AUTO_MODE(默认), LIGHT_MODE(强制浅色), DARK_MODE(强制深色)
 	banner: {
 		enable: false,
 		type: "video", // 'image' 或 'video'，指定banner类型

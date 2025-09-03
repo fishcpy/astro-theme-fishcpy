@@ -51,7 +51,7 @@ const config = profileConfig;
                     <ImageWrapper src={config.avatar || ""} alt="Profile Image" class="w-full h-full object-cover" />
                 </a>
                 <h2 class="font-bold text-xl text-[var(--primary)] mb-2">{config.name}</h2>
-                <p class="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed">{config.bio}</p>
+                <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">{config.bio}</p>
             </div>
             
             <!-- 社交媒体链接 -->
@@ -81,7 +81,7 @@ const config = profileConfig;
                                         class="group flex justify-between items-center py-3 px-3 rounded-lg w-full hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition mobile-submenu-toggle"
                                         data-submenu={`mobile-submenu-${index}`}
                                     >
-                                        <div class="flex items-center text-neutral-700 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
+                                        <div class="flex items-center text-neutral-900 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
                                             {link.icon && <Icon name={link.icon} class="text-[1.1rem] mr-3" />}
                                             {link.name}
                                         </div>
@@ -97,7 +97,7 @@ const config = profileConfig;
                                                 target={child.external ? "_blank" : null}
                                                 class="group flex justify-between items-center py-2.5 pl-10 pr-3 rounded-lg hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
                                             >
-                                                <div class="flex items-center text-neutral-600 dark:text-neutral-300 text-sm group-hover:text-[var(--primary)]">
+                                                <div class="flex items-center text-neutral-800 dark:text-neutral-300 text-sm group-hover:text-[var(--primary)]">
                                                     {child.icon && <Icon name={child.icon} class="text-[0.9rem] mr-3" />}
                                                     {child.name}
                                                 </div>
@@ -117,7 +117,7 @@ const config = profileConfig;
                                     target={link.external ? "_blank" : null}
                                     class="group flex justify-between items-center py-3 px-3 rounded-lg hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
                                 >
-                                    <div class="flex items-center text-neutral-700 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
+                                    <div class="flex items-center text-neutral-800 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
                                         {link.icon && <Icon name={link.icon} class="text-[1.1rem] mr-3" />}
                                         {link.name}
                                     </div>

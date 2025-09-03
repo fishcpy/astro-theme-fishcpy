@@ -105,7 +105,7 @@ onMount(async () => {
                   -outline-offset-[2px] z-50 outline-3"
                     ></div>
                 </div>
-                <div class="w-[70%] md:w-[80%] transition text-left text-50">
+                <div class="w-[70%] md:w-[80%] transition text-left text-neutral-600 dark:text-neutral-400">
                     {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
                 </div>
             </div>
@@ -118,7 +118,7 @@ onMount(async () => {
                 >
                     <div class="flex flex-row justify-start items-center h-full">
                         <!-- date -->
-                        <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
+                        <div class="w-[15%] md:w-[10%] transition text-sm text-right text-neutral-600 dark:text-neutral-400">
                             {formatDate(post.data.published)}
                         </div>
 

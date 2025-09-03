@@ -36,7 +36,7 @@
 </script>
 
 {#if !loading && commentConfig.type === 'artalk'}
-  <div class="flex gap-4 text-sm text-gray-600 dark:text-gray-400">
+  <div class="flex gap-4 text-sm" style="color: var(--text-tertiary)">
     <span class="flex items-center gap-1">
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>

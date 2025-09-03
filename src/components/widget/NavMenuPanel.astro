@@ -19,7 +19,7 @@ const links = Astro.props.links;
                         nav-submenu-toggle"
                         data-submenu={`submenu-${index}`}
                     >
-                        <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center">
+                        <div class="transition font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center" style="color: var(--text-secondary)">
                             {link.icon && <Icon name={link.icon} class="text-[1rem] mr-2" />}
                             {link.name}
                         </div>
@@ -35,12 +35,12 @@ const links = Astro.props.links;
                                    hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
                                "
                             >
-                                <div class="transition text-black/60 dark:text-white/60 font-medium group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center text-sm">
+                                <div class="transition text-neutral-700 dark:text-white/60 font-medium group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center text-sm">
                                     {child.icon && <Icon name={child.icon} class="text-[0.875rem] mr-2" />}
                                     {child.name}
                                 </div>
                                 {child.external && <Icon name="fa6-solid:arrow-up-right-from-square"
-                                      class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
+                                      class="transition text-[0.75rem] text-neutral-400 dark:text-white/25 -translate-x-1"
                                 />}
                             </a>
                         ))}
@@ -52,7 +52,49 @@ const links = Astro.props.links;
                 "
                    target={link.external ? "_blank" : null}
                 >
-                    <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center">
+                    <div class="transition font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)] flex items-center" style="color: var(--text-secondary)">
++++++++ REPLACE</div>
+</replace_in_file>
+
+现在让我检查主导航栏的文字颜色：
+
+<grep>
+<path>src/components/Navbar.astro</path>
+<regex>text-.*dark:</regex>
+</grep>
+
+<read_file>
+<path>src/components/Navbar.astro</path>
+<offset>50</offset>
+<limit>20</limit>
+</read_file>
+
+让我查看完整的Navbar组件来找到需要修复的文字颜色：
+
+<grep>
+<path>src/components/Navbar.astro</path>
+<regex>text-black|text-white|text-neutral</regex>
+</grep>
+
+现在让我检查导航栏中可能还有其他需要调整的文字颜色。让我查看移动端侧边栏的导航文字：
+
+<replace_in_file>
+<path>src/components/widget/MobileSidebar.astro</path>
+<diff>------- SEARCH
+                                        <div class="flex items-center text-neutral-800 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
+=======
+                                        <div class="flex items-center text-neutral-900 dark:text-neutral-200 font-medium group-hover:text-[var(--primary)]">
++++++++ REPLACE</div>
+</replace_in_file>
+
+现在修复Profile组件：
+
+<replace_in_file>
+<path>src/components/widget/Profile.astro</path>
+<diff>------- SEARCH
+        <div class="font-bold text-xl text-center mb-1 dark:text-neutral-50 transition">{config.name}</div>
+=======
+        <div class="font-bold text-xl text-center mb-1 text-neutral-900 dark:text-neutral-50 transition">{config.name}</div>
                         {link.icon && <Icon name={link.icon} class="text-[1rem] mr-2" />}
                         {link.name}
                     </div>
@@ -60,7 +102,7 @@ const links = Astro.props.links;
                           class="transition text-[1.25rem] text-[var(--primary)]"
                     />}
                     {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
-                          class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
+                          class="transition text-[0.75rem] text-neutral-400 dark:text-white/25 -translate-x-1"
                     />}
                 </a>
             )}

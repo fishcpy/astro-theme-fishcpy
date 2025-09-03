@@ -48,7 +48,7 @@
   
   <div class="px-4 overflow-hidden">
     {#if loading}
-      <div class="text-sm text-gray-500 py-2">
+      <div class="text-sm py-2" style="color: var(--text-tertiary)">
         <div class="flex items-center justify-center">
           <svg class="animate-spin h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -59,7 +59,7 @@
       </div>
     {:else if error}
       <div class="text-sm py-2">
-        <div class="flex items-center justify-center text-gray-500 dark:text-gray-400">
+        <div class="flex items-center justify-center" style="color: var(--text-tertiary)">
           <svg class="h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -72,7 +72,7 @@
           <span>博客访问量:</span>
           <span>{totalViews > 0 ? totalViews : '统计中'}</span>
         </div>
-        <div class="flex justify-between text-gray-500 dark:text-gray-400">
+        <div class="flex justify-between" style="color: var(--text-tertiary)">
           <span>数据来源:</span>
           <span>Twikoo</span>
         </div>

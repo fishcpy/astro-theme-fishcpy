@@ -226,20 +226,20 @@ if (document.readyState === 'loading') {
 
     /* 下拉菜单项的悬停效果 */
     .dropdown-menu a {
-        color: white !important;
+        color: var(--text-secondary);
     }
     
     .dropdown-menu a span {
-        color: white !important;
+        color: var(--text-secondary);
     }
     
     .dropdown-menu a:hover {
         background-color: var(--btn-plain-bg-hover);
-        color: white !important;
+        @apply text-[var(--primary)] dark:text-[var(--primary)];
     }
     
     .dropdown-menu a:hover span {
-        color: white !important;
+        @apply text-[var(--primary)] dark:text-[var(--primary)];
     }
 
     /* 确保下拉菜单在悬停时保持可见 */

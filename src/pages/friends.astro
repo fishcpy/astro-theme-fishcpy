@@ -2,10 +2,10 @@
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import items from "../assets/friends.json";
+import { layoutConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { layoutConfig } from "../config";
 
 const friendsPost = await getEntry("spec", "friends");
 
@@ -50,17 +50,17 @@ const groupedItems = items.reduce(
                                 </div>
                                 <div class="grow w-full">
                                     <div class="font-bold transition text-lg text-neutral-900 dark:text-neutral-100 mb-1">{item.title}</div>
-                                    <div class="text-50 text-sm font-medium">{item.desc}</div>
+                                    <div class="text-neutral-600 dark:text-neutral-400 text-sm font-medium">{item.desc}</div>
                                     <div class:list={["items-center", {"flex": true, "hidden md:flex" : false}]}>
                                         <div class="flex flex-row flex-nowrap items-center">
                                             {(item.tags && item.tags.length > 0) && item.tags.map((tag,i) => (
                                             <div class:list={[{"hidden": i==0}, "mx-1.5 text-[var(--meta-divider)] text-sm" ]}>
                                                 /
                                             </div>
-                                            <span class="transition text-50 text-sm font-medium">
+                                            <span class="transition text-neutral-600 dark:text-neutral-400 text-sm font-medium">
                                                 {tag}
                                             </span>))}
-                                            {!(item.tags && item.tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
+                                            {!(item.tags && item.tags.length > 0) && <div class="transition text-neutral-600 dark:text-neutral-400 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
                                         </div>
                                     </div>
                                 </div>
