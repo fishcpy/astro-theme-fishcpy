@@ -21,7 +21,7 @@ const className = Astro.props.class;
     <div id={id} class:list={["collapse-wrapper px-4 overflow-hidden", {"collapsed": isCollapsed}]}>
         <slot></slot>
     </div>
-    {isCollapsed && <div class="expand-btn px-4 -mb-2">
+    {isCollapsed && <div class="expand-btn px-4 mt-2 -mb-2">
         <button class="btn-plain rounded-lg w-full h-9">
             <div class="text-[var(--primary)] flex items-center justify-center gap-2 -translate-x-2">
                 <Icon name="material-symbols:more-horiz" class="text-[1.75rem]"></Icon> {i18n(I18nKey.more)}
@@ -41,16 +41,55 @@ const className = Astro.props.class;
         constructor() {
             super();
 
-            if (this.dataset.isCollapsed !== "true")
-                return;
-
             const id = this.dataset.id;
             const btn = this.querySelector('.expand-btn');
             const wrapper = this.querySelector(`#${id}`)
-            btn!.addEventListener('click', () => {
-                wrapper!.classList.remove('collapsed');
-                btn!.classList.add('hidden');
-            })
+            const nameElement = this.querySelector('.font-bold');
+            let isCollapsed = this.dataset.isCollapsed === 'true';
+            
+            // 更新按钮文本和图标
+            const updateButton = () => {
+                if (btn) {
+                    const buttonContent = btn.querySelector('.text-\\[var\\(--primary\\)\\]');
+                    if (buttonContent) {
+                        buttonContent.innerHTML = isCollapsed 
+                            ? '<svg class="text-[1.75rem] inline-block" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg> 更多'
+                            : '<svg class="text-[1.75rem] inline-block" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg> 收起';
+                    }
+                }
+            };
+            
+            // 初始化按钮
+            if (isCollapsed) {
+                updateButton();
+            }
+            
+            // 点击按钮切换状态
+            btn?.addEventListener('click', () => {
+                isCollapsed = !isCollapsed;
+                this.dataset.isCollapsed = String(isCollapsed);
+                
+                if (isCollapsed) {
+                    wrapper!.classList.add('collapsed');
+                    btn!.classList.remove('hidden');
+                } else {
+                    wrapper!.classList.remove('collapsed');
+                    // 展开状态下也显示按钮，不再隐藏
+                    btn!.classList.remove('hidden');
+                }
+                
+                updateButton();
+            });
+            
+            // 点击标题也可以切换（仅当有超过阈值的内容时）
+            if (this.dataset.isCollapsed === 'true' || !isCollapsed) {
+                nameElement?.addEventListener('click', () => {
+                    if (btn) {
+                        (btn as HTMLElement).click();
+                    }
+                });
+                nameElement?.classList.add('cursor-pointer');
+            }
         }
     }
 
