@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { commentConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
@@ -33,13 +34,53 @@ const generateVisitorId = (url?: string) => {
 	if (!url) {
 		// 如果没有传入URL，使用当前页面路径
 		const currentPath = Astro.url.pathname;
-		return `twikoo_visitors_${currentPath.replace(/[^a-zA-Z0-9]/g, '_')}`;
+		return `twikoo_visitors_${currentPath.replace(/[^a-zA-Z0-9]/g, "_")}`;
 	}
-	return `twikoo_visitors_${url.replace(/[^a-zA-Z0-9]/g, '_')}`;
+	return `twikoo_visitors_${url.replace(/[^a-zA-Z0-9]/g, "_")}`;
 };
 
 const visitorId = generateVisitorId(url);
 ---
+
+{commentConfig.type === "artalk" && (
+<script define:vars={{ commentConfig, url: url || Astro.url.pathname }}>
+  // Artalk统计数据更新函数
+  function updateArtalkStats() {
+    const pvElements = document.querySelectorAll('.artalk-pv-count');
+    
+    if (pvElements.length > 0 && commentConfig.artalk?.server) {
+      const server = commentConfig.artalk.server;
+      const site = commentConfig.artalk.site || 'fishcpy的小破站';
+      const pageKey = url;
+      
+      // 获取统计数据
+      fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Artalk stats received:', data);
+          if (data.pv !== undefined) {
+            pvElements.forEach(el => {
+              el.textContent = data.pv;
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch Artalk stats:', error);
+        });
+    }
+  }
+  
+  // 页面加载完成后更新统计
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateArtalkStats, 1000);
+  });
+  
+  // 监听Artalk加载完成事件
+  document.addEventListener('loadComment', () => {
+    setTimeout(updateArtalkStats, 2000);
+  });
+</script>
+)}
 
 <div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
     <!-- publish date -->
@@ -103,7 +144,11 @@ const visitorId = generateVisitorId(url);
                 <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
             </div>
             <span class="text-50 text-sm font-medium">
-                <span id={visitorId}>0</span> 次访问
+                {commentConfig.type === "artalk" ? (
+                    <span class="artalk-pv-count" data-page-key={url || Astro.url.pathname}>0</span>
+                ) : (
+                    <span id={visitorId}>0</span>
+                )} 次访问
             </span>
         </div>
     )}
