@@ -788,7 +788,7 @@ if (document.readyState === 'loading') {
       console.log('Artalk script loaded, initializing...');
       
       try {
-        Artalk.init({
+        const artalk = Artalk.init({
           el: config.el,
           pageKey: config.pageKey,
           pageTitle: config.pageTitle || document.title,
@@ -797,6 +797,13 @@ if (document.readyState === 'loading') {
           darkMode: config.darkMode,
         });
         console.log('Artalk initialized successfully');
+        
+        // 等待Artalk完全加载后更新统计数据
+        setTimeout(() => {
+          updateStats();
+          // 设置定期更新统计数据
+          setInterval(updateStats, 30000); // 每30秒更新一次
+        }, 1000);
       } catch (error) {
         console.error('Artalk initialization failed:', error);
       }
@@ -807,6 +814,33 @@ if (document.readyState === 'loading') {
     };
     
     document.body.appendChild(script);
+  }
+  
+  // 更新统计数据的函数
+  function updateStats() {
+    console.log('Updating Artalk stats...');
+    
+    // 获取浏览量
+    const pvElement = document.querySelector('.artalk-pv-count');
+    const commentCountElement = document.querySelector('.artalk-comment-count');
+    
+    if (pvElement || commentCountElement) {
+      // 使用Artalk的API获取统计数据
+      fetch(`${config.server}/api/v2/stat?site_name=${encodeURIComponent(config.site)}&page_key=${encodeURIComponent(config.pageKey)}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Stats data received:', data);
+          if (pvElement && data.pv !== undefined) {
+            pvElement.textContent = data.pv;
+          }
+          if (commentCountElement && data.comment_count !== undefined) {
+            commentCountElement.textContent = data.comment_count;
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch stats:', error);
+        });
+    }
   }
   
   // 监听加载评论事件
