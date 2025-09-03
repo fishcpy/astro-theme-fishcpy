@@ -51,7 +51,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
                                 {l.children.map((child, index) => (
                                     <a href={child.external ? child.url : url(child.url)} 
                                        target={child.external ? "_blank" : null}
-                                       class={`flex items-center px-6 py-3 text-base hover:bg-[var(--btn-plain-bg-hover)] transition-colors ${index === 0 ? 'rounded-l-xl' : ''} ${index === l.children.length - 1 ? 'rounded-r-xl' : ''}`}>
+                                       class={`flex items-center px-6 py-3 text-base !text-gray-700 dark:!text-gray-300 hover:!text-gray-900 dark:hover:!text-white hover:bg-[var(--btn-plain-bg-hover)] transition-colors ${index === 0 ? 'rounded-l-xl' : ''} ${index === l.children.length - 1 ? 'rounded-r-xl' : ''}`}>
                                         {child.icon && <Icon name={child.icon} class="text-[1rem] mr-3" />}
                                         <span>{child.name}</span>
                                         {child.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.75rem] text-black/[0.3] dark:text-white/[0.3] ml-1" />}
@@ -226,20 +226,19 @@ if (document.readyState === 'loading') {
 
     /* 下拉菜单项的悬停效果 */
     .dropdown-menu a {
-        color: var(--text-secondary);
+        /* 颜色由 Tailwind 类控制 */
     }
     
     .dropdown-menu a span {
-        color: var(--text-secondary);
+        color: inherit;
     }
     
     .dropdown-menu a:hover {
         background-color: var(--btn-plain-bg-hover);
-        @apply text-[var(--primary)] dark:text-[var(--primary)];
     }
     
     .dropdown-menu a:hover span {
-        @apply text-[var(--primary)] dark:text-[var(--primary)];
+        color: inherit;
     }
 
     /* 确保下拉菜单在悬停时保持可见 */
