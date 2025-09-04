@@ -18,7 +18,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         
-    - name: Clean posts directory (keep only markdown.md)
+    - name: Clean posts directory and remove workflow files
       run: |
         # 进入posts目录
         cd src/content/posts
@@ -30,13 +30,25 @@ jobs:
         echo "Remaining files in posts directory:"
         ls -la
         
+        # 返回项目根目录
+        cd ../../..
+        
+        # 删除所有工作流文件
+        if [ -d ".github" ]; then
+          echo "Removing .github directory..."
+          rm -rf .github
+          echo "✅ .github directory removed"
+        else
+          echo "No .github directory found"
+        fi
+        
     - name: Commit changes if any
       run: |
         git add .
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
-          git commit -m "Clean posts directory for theme sync"
+          git commit -m "Clean posts directory and remove workflows for theme sync"
         fi
         
     - name: Add target repository as remote
@@ -57,5 +69,6 @@ jobs:
       run: |
         echo "✅ Successfully synced to theme repository"
         echo "🗑️  Cleaned posts directory (kept only markdown.md)"
+        echo "🗑️  Removed all workflow files (.github directory)"
         echo "📝 Updated banner.enable to true"
         echo "🔄 Pushed with commit history to https://github.com/fishcpy/astro-theme-fishcpy.git"
