@@ -27,7 +27,7 @@ export const siteConfig: SiteConfig = {
 		//背景在src\layouts\Layout.astro中
 		position: "center", // 等同于CSS的object-position属性，仅支持'top','center','bottom'。默认为'center'
 		credit: {
-			enable: true, // 是否显示横幅图片的版权信息
+			enable: false, // 是否显示横幅图片的版权信息
 			text: "Steam @基里曼的蓝精灵", // 要显示的版权文本
 			url: "https://steamcommunity.com/sharedfiles/filedetails/?id=3426980000", // (可选) 原作品或艺术家页面的URL链接
 		},
