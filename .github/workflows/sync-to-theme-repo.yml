@@ -51,40 +51,33 @@ jobs:
           git commit -m "Clean posts directory and remove workflows for theme sync"
         fi
         
-    - name: Check if target repository exists and push
+    - name: Setup SSH and push to target repository
       env:
-        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        # 检查是否设置了PAT_TOKEN
-        if [ -z "$PAT_TOKEN" ]; then
-          echo "❌ PAT_TOKEN secret not found!"
-          echo "Please create a Personal Access Token and add it as PAT_TOKEN secret"
-          echo "Token needs 'repo' permissions to push to the target repository"
+        # 检查是否设置了SSH_PRIVATE_KEY
+        if [ -z "$SSH_PRIVATE_KEY" ]; then
+          echo "❌ SSH_PRIVATE_KEY secret not found!"
+          echo "Please add your SSH private key as SSH_PRIVATE_KEY secret"
+          echo "Generate SSH key: ssh-keygen -t rsa -b 4096 -C 'your_email@example.com'"
+          echo "Add public key to GitHub: https://github.com/settings/keys"
           exit 1
         fi
         
-        # 设置目标仓库URL
-        TARGET_REPO="https://github.com/fishcpy/astro-theme-fishcpy.git"
+        # 设置SSH密钥
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
         
-        # 检查目标仓库是否存在（如果检查失败也继续执行）
-        echo "🔍 Checking if target repository exists..."
-        REPO_CHECK=$(curl -s -H "Authorization: token $PAT_TOKEN" \
-           "https://api.github.com/repos/fishcpy/astro-theme-fishcpy")
+        # 添加GitHub到known_hosts
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
         
-        if echo "$REPO_CHECK" | grep -q '"name"'; then
-          echo "✅ Target repository exists and is accessible"
-        elif echo "$REPO_CHECK" | grep -q '"message.*Not Found"'; then
-          echo "❌ Target repository not found"
-          echo "Please ensure the repository exists: https://github.com/fishcpy/astro-theme-fishcpy"
-          echo "If it exists, check PAT token permissions (needs 'repo' scope)"
-          exit 1
-        else
-          echo "⚠️  Cannot verify repository existence (may be private)"
-          echo "Proceeding with push attempt..."
-        fi
+        # 测试SSH连接
+        echo "🔍 Testing SSH connection to GitHub..."
+        ssh -T git@github.com || echo "SSH connection test completed"
         
-        # 添加远程仓库
-        git remote add theme-repo https://x-access-token:$PAT_TOKEN@github.com/fishcpy/astro-theme-fishcpy.git
+        # 添加远程仓库（使用SSH）
+        git remote add theme-repo git@github.com:fishcpy/astro-theme-fishcpy.git
         
         # 推送到目标仓库
         echo "🚀 Pushing to target repository..."
@@ -96,17 +89,10 @@ jobs:
         echo "🗑️  Cleaned posts directory (kept only markdown.md)"
         echo "🗑️  Removed all workflow files (.github directory)"
         echo "📝 Updated banner.enable to true"
-        echo "🔄 Pushed with commit history to https://github.com/fishcpy/astro-theme-fishcpy.git"
+        echo "🔄 Pushed with commit history to git@github.com:fishcpy/astro-theme-fishcpy.git"
         echo ""
         echo "📋 Setup Instructions (if this was your first run):"
-        echo "1. Create Personal Access Token: https://github.com/settings/tokens"
-        echo "2. Add token as PAT_TOKEN secret in repository settings"
-        echo "3. Ensure target repository exists: https://github.com/fishcpy/astro-theme-fishcpy"own.md)"
-        echo "🗑️  Removed all workflow files (.github directory)"
-        echo "📝 Updated banner.enable to true"
-        echo "🔄 Pushed with commit history to https://github.com/fishcpy/astro-theme-fishcpy.git"
-        echo ""
-        echo "📋 Setup Instructions (if this was your first run):"
-        echo "1. Create Personal Access Token: https://github.com/settings/tokens"
-        echo "2. Add token as PAT_TOKEN secret in repository settings"
-        echo "3. Ensure target repository exists: https://github.com/fishcpy/astro-theme-fishcpy"
+        echo "1. Generate SSH key: ssh-keygen -t rsa -b 4096 -C 'your_email@example.com'"
+        echo "2. Add public key to GitHub: https://github.com/settings/keys"
+        echo "3. Add private key as SSH_PRIVATE_KEY secret in repository settings"
+        echo "4. Ensure target repository exists: https://github.com/fishcpy/astro-theme-fishcpy"
