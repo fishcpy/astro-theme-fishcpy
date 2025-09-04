@@ -66,40 +66,21 @@ jobs:
         # 设置目标仓库URL
         TARGET_REPO="https://github.com/fishcpy/astro-theme-fishcpy.git"
         
-        # 检查目标仓库是否存在
+        # 检查目标仓库是否存在（如果检查失败也继续执行）
         echo "🔍 Checking if target repository exists..."
-        if curl -s -H "Authorization: token $PAT_TOKEN" \
-           "https://api.github.com/repos/fishcpy/astro-theme-fishcpy" | grep -q '"name"'; then
-          echo "✅ Target repository exists"
+        REPO_CHECK=$(curl -s -H "Authorization: token $PAT_TOKEN" \
+           "https://api.github.com/repos/fishcpy/astro-theme-fishcpy")
+        
+        if echo "$REPO_CHECK" | grep -q '"name"'; then
+          echo "✅ Target repository exists and is accessible"
+        elif echo "$REPO_CHECK" | grep -q '"message.*Not Found"'; then
+          echo "❌ Target repository not found"
+          echo "Please ensure the repository exists: https://github.com/fishcpy/astro-theme-fishcpy"
+          echo "If it exists, check PAT token permissions (needs 'repo' scope)"
+          exit 1
         else
-          echo "❌ Target repository does not exist, creating it..."
-          
-          # 创建仓库
-          CREATE_RESPONSE=$(curl -s -X POST \
-            -H "Authorization: token $PAT_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/user/repos \
-            -d '{
-              "name": "astro-theme-fishcpy",
-              "description": "A beautiful Astro theme - fishcpy edition",
-              "private": true,
-              "auto_init": false
-            }')
-          
-          # 检查创建结果
-          if echo "$CREATE_RESPONSE" | grep -q '"name"'; then
-            echo "✅ Repository created successfully!"
-          else
-            echo "❌ Failed to create repository"
-            echo "Response: $CREATE_RESPONSE"
-            echo ""
-            echo "Please manually create the repository:"
-            echo "1. Go to https://github.com/new"
-            echo "2. Repository name: astro-theme-fishcpy"
-            echo "3. Make it private"
-            echo "4. Don't initialize with README"
-            exit 1
-          fi
+          echo "⚠️  Cannot verify repository existence (may be private)"
+          echo "Proceeding with push attempt..."
         fi
         
         # 添加远程仓库
