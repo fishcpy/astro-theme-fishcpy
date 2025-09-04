@@ -51,18 +51,38 @@ jobs:
           git commit -m "Clean posts directory and remove workflows for theme sync"
         fi
         
-    - name: Add target repository as remote
-      run: |
-        git remote add theme-repo https://github.com/fishcpy/astro-theme-fishcpy.git
-        
-    - name: Push to target repository
+    - name: Check if target repository exists and push
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        # 使用token进行认证推送
-        git remote set-url theme-repo https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/fishcpy/astro-theme-fishcpy.git
+        # 检查是否设置了PAT_TOKEN
+        if [ -z "$PAT_TOKEN" ]; then
+          echo "❌ PAT_TOKEN secret not found!"
+          echo "Please create a Personal Access Token and add it as PAT_TOKEN secret"
+          echo "Token needs 'repo' permissions to push to the target repository"
+          exit 1
+        fi
         
-        # 推送到目标仓库的main分支
+        # 设置目标仓库URL
+        TARGET_REPO="https://github.com/fishcpy/astro-theme-fishcpy.git"
+        
+        # 检查目标仓库是否存在
+        echo "🔍 Checking if target repository exists..."
+        if curl -s -H "Authorization: token $PAT_TOKEN" \
+           "https://api.github.com/repos/fishcpy/astro-theme-fishcpy" | grep -q '"name"'; then
+          echo "✅ Target repository exists"
+        else
+          echo "❌ Target repository does not exist!"
+          echo "Please create the repository: https://github.com/fishcpy/astro-theme-fishcpy"
+          echo "Or check if the repository name is correct"
+          exit 1
+        fi
+        
+        # 添加远程仓库
+        git remote add theme-repo https://x-access-token:$PAT_TOKEN@github.com/fishcpy/astro-theme-fishcpy.git
+        
+        # 推送到目标仓库
+        echo "🚀 Pushing to target repository..."
         git push theme-repo main --force-with-lease
         
     - name: Summary
@@ -72,3 +92,8 @@ jobs:
         echo "🗑️  Removed all workflow files (.github directory)"
         echo "📝 Updated banner.enable to true"
         echo "🔄 Pushed with commit history to https://github.com/fishcpy/astro-theme-fishcpy.git"
+        echo ""
+        echo "📋 Setup Instructions (if this was your first run):"
+        echo "1. Create Personal Access Token: https://github.com/settings/tokens"
+        echo "2. Add token as PAT_TOKEN secret in repository settings"
+        echo "3. Ensure target repository exists: https://github.com/fishcpy/astro-theme-fishcpy"
