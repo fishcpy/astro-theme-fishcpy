@@ -72,10 +72,34 @@ jobs:
            "https://api.github.com/repos/fishcpy/astro-theme-fishcpy" | grep -q '"name"'; then
           echo "✅ Target repository exists"
         else
-          echo "❌ Target repository does not exist!"
-          echo "Please create the repository: https://github.com/fishcpy/astro-theme-fishcpy"
-          echo "Or check if the repository name is correct"
-          exit 1
+          echo "❌ Target repository does not exist, creating it..."
+          
+          # 创建仓库
+          CREATE_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: token $PAT_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/user/repos \
+            -d '{
+              "name": "astro-theme-fishcpy",
+              "description": "A beautiful Astro theme - fishcpy edition",
+              "private": true,
+              "auto_init": false
+            }')
+          
+          # 检查创建结果
+          if echo "$CREATE_RESPONSE" | grep -q '"name"'; then
+            echo "✅ Repository created successfully!"
+          else
+            echo "❌ Failed to create repository"
+            echo "Response: $CREATE_RESPONSE"
+            echo ""
+            echo "Please manually create the repository:"
+            echo "1. Go to https://github.com/new"
+            echo "2. Repository name: astro-theme-fishcpy"
+            echo "3. Make it private"
+            echo "4. Don't initialize with README"
+            exit 1
+          fi
         fi
         
         # 添加远程仓库
