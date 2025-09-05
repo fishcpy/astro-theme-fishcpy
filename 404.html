@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 诗意之境</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background: #f0f9ff;
+        }
+        
+        /* 动态球体背景 */
+        .orb-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.7;
+        }
+        
+        /* 大球体 */
+        .orb-large {
+            width: 400px;
+            height: 400px;
+        }
+        
+        /* 中等球体 */
+        .orb-medium {
+            width: 250px;
+            height: 250px;
+        }
+        
+        /* 小球体 */
+        .orb-small {
+            width: 150px;
+            height: 150px;
+        }
+        
+        /* 浅蓝色球体 */
+        .orb-light {
+            background: #b2ebf2;
+        }
+        
+        /* 深蓝色球体 */
+        .orb-dark {
+            background: #4dd0e1;
+        }
+        
+        /* 球体动画 */
+        @keyframes orb-move-1 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50vw, 25vh);
+            }
+            50% {
+                transform: translate(30vw, 60vh);
+            }
+            75% {
+                transform: translate(-20vw, 40vh);
+            }
+        }
+        
+        @keyframes orb-move-2 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            33% {
+                transform: translate(-30vw, 20vh);
+            }
+            66% {
+                transform: translate(40vw, -10vh);
+            }
+        }
+        
+        @keyframes orb-move-3 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            20% {
+                transform: translate(25vw, -15vh);
+            }
+            40% {
+                transform: translate(-15vw, 30vh);
+            }
+            60% {
+                transform: translate(10vw, 20vh);
+            }
+            80% {
+                transform: translate(-30vw, -10vh);
+            }
+        }
+        
+        @keyframes orb-move-4 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-40vw, 10vh);
+            }
+            50% {
+                transform: translate(20vw, -30vh);
+            }
+            75% {
+                transform: translate(15vw, 25vh);
+            }
+        }
+        
+        @keyframes orb-move-5 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            30% {
+                transform: translate(35vw, 15vh);
+            }
+            60% {
+                transform: translate(-25vw, -20vh);
+            }
+        }
+        
+        @keyframes orb-move-6 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            40% {
+                transform: translate(-15vw, 35vh);
+            }
+            80% {
+                transform: translate(20vw, -15vh);
+            }
+        }
+        
+        /* 磨砂玻璃遮罩层 */
+        .frosted-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            z-index: 1;
+        }
+        
+        /* 内容容器 */
+        .content-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 2;
+        }
+        
+        /* 四个小三角装饰 */
+        .content-container::before,
+        .content-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(76, 208, 225, 0.5);
+            z-index: 3;
+        }
+        
+        .content-container::before {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .content-container::after {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .corner-top-right,
+        .corner-bottom-left {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(76, 208, 225, 0.5);
+            z-index: 3;
+        }
+        
+        .corner-top-right {
+            top: 10px;
+            right: 10px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #00796b;
+            font-weight: 300;
+        }
+        
+        .poem {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin: 30px 0;
+            padding: 20px;
+            font-style: italic;
+            color: #00695c;
+        }
+        
+        .message {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 30px;
+        }
+        
+        .countdown {
+            font-weight: bold;
+            color: #00796b;
+        }
+        
+        .admin-message {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .poem {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            
+            .message {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                content: "即将跳转";
+            }
+            
+            .content-container {
+                padding: 30px 20px;
+            }
+            
+            .poem {
+                font-size: 1rem;
+                margin: 20px 0;
+                padding: 10px;
+            }
+            
+            .message {
+                font-size: 0.8rem;
+                margin-top: 20px;
+            }
+            
+            .admin-message {
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* 窄屏时隐藏原始h1内容，显示"即将跳转" */
+        @media (max-width: 480px) {
+            h1::after {
+                content: "即将跳转";
+                display: block;
+            }
+            
+            h1 span {
+                display: none;
+            }
+        }
+        
+        /* 深色模式适配 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0f172a;
+            }
+            
+            /* 深色模式下的球体颜色 */
+            .orb-light {
+                background: #1e293b;
+            }
+            
+            .orb-dark {
+                background: #334155;
+            }
+            
+            /* 深色模式下的磨砂玻璃遮罩 */
+            .frosted-overlay {
+                background: rgba(15, 23, 42, 0.3);
+            }
+            
+            /* 深色模式下的内容容器 */
+            .content-container {
+                background-color: rgba(30, 41, 59, 0.8);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* 深色模式下的装饰边框 */
+            .content-container::before,
+            .content-container::after,
+            .corner-top-right,
+            .corner-bottom-left {
+                border-color: rgba(148, 163, 184, 0.5);
+            }
+            
+            /* 深色模式下的文字颜色 */
+            h1 {
+                color: #06b6d4;
+            }
+            
+            .poem {
+                color: #0891b2;
+            }
+            
+            .message {
+                color: #cbd5e1;
+            }
+            
+            .countdown {
+                color: #06b6d4;
+            }
+            
+            .admin-message {
+                color: #94a3b8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb-container">
+        <!-- 大球体 -->
+        <div class="orb orb-large orb-light" style="top: 10%; left: 10%; animation: orb-move-1 25s infinite ease-in-out;"></div>
+        <div class="orb orb-large orb-dark" style="top: 60%; left: 70%; animation: orb-move-2 30s infinite ease-in-out;"></div>
+        
+        <!-- 中等球体 -->
+        <div class="orb orb-medium orb-light" style="top: 30%; left: 50%; animation: orb-move-3 20s infinite ease-in-out;"></div>
+        <div class="orb orb-medium orb-dark" style="top: 70%; left: 20%; animation: orb-move-4 25s infinite ease-in-out;"></div>
+        
+        <!-- 小球体 -->
+        <div class="orb orb-small orb-light" style="top: 20%; left: 80%; animation: orb-move-5 15s infinite ease-in-out;"></div>
+        <div class="orb orb-small orb-dark" style="top: 80%; left: 40%; animation: orb-move-6 18s infinite ease-in-out;"></div>
+    </div>
+    
+    <div class="frosted-overlay"></div>
+    
+    <div class="content-container">
+        <div class="corner-top-right"></div>
+        <div class="corner-bottom-left"></div>
+        <h1><span>404</span></h1>
+        <div class="poem" id="poem">正在寻找诗意的远方...</div>
+        <div class="message">
+            此路不通，即将引您重返人间<br>
+            <span class="countdown" id="countdown">10</span>秒后自动跳转
+        </div>
+        <div class="admin-message">该页面被管理员刻意的禁止访问或不存在</div>
+    </div>
+
+    <script>
+        // 获取一言
+        fetch('https://v2.xxapi.cn/api/yiyan?type=hitokoto')
+            .then(response => response.json())
+            .then(data => {
+                if(data.code === 200) {
+                    document.getElementById('poem').textContent = data.data;
+                } else {
+                    document.getElementById('poem').textContent = "寻寻觅觅，冷冷清清，凄凄惨惨戚戚。";
+                }
+            })
+            .catch(() => {
+                document.getElementById('poem').textContent = "海上生明月，天涯共此时。";
+            });
+        
+        // 倒计时跳转
+        let seconds = 10;
+        const countdownElement = document.getElementById('countdown');
+        const timer = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if(seconds <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
