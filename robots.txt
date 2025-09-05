@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /_astro/
 
-Sitemap: https://blog.fis.ink/sitemap-index.xml
+Sitemap: https://fishcpy-theme.demo.fis.ink/sitemap-index.xml
