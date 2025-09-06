@@ -2,6 +2,8 @@
 ![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
 ![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue) 
 
+[**docs**](https://docs.fis.ink/astro-theme-fishcpy/)  
+
 > A static blog template built with [Astro](https://astro.build), modified from [Fuwari](https://github.com/saicaca/fuwari).
 
 [**🖥️ Live Demo **](https://fishcpy-theme.demo.fis.ink)
