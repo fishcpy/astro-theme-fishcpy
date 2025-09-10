@@ -198,6 +198,21 @@ export type SidebarConfig = {
 	};
 };
 
+// 朋友圈配置类型
+export type CircleConfig = {
+	dataSource: {
+		url: string; // 朋友圈数据API地址
+		timeout: number; // 请求超时时间(毫秒)，默认10秒
+	};
+	display: {
+		articlesPerPage: number; // 每页显示文章数量
+		showAvatar: boolean; // 是否显示作者头像
+		showAuthor: boolean; // 是否显示作者名称
+		dateFormat: string; // 日期格式，默认'YYYY-MM-DD HH:mm'
+		enablePagination: boolean; // 是否启用分页
+	};
+};
+
 // 鼠标样式配置
 export const cursorConfig = {
 	overrideDefault: true, // 是否覆盖访问者系统默认鼠标样式 (false=尊重用户设置, true=强制覆盖)

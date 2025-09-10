@@ -2,35 +2,318 @@
 import { getEntry, render } from "astro:content";
 import Comment from "@components/comment/index.astro";
 import Markdown from "@components/misc/Markdown.astro";
+import { circleConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import type { CircleApiResponse } from "../types/config";
 
 const circlePost = await getEntry("spec", "circle");
-
 if (!circlePost) {
 	throw new Error("Circle page content not found");
 }
-
 const { Content } = await render(circlePost);
 
-// 为评论区创建一个模拟的post对象
-const mockPost = {
-	slug: "circle",
-	data: {
-		title: i18n(I18nKey.friendsCircle),
-	},
-};
+// 服务端获取朋友圈数据
+let circleData: CircleApiResponse;
+let errorMessage = "";
+
+try {
+	// 使用fetch获取朋友圈数据
+	const controller = new AbortController();
+	const timeoutId = setTimeout(
+		() => controller.abort(),
+		circleConfig.dataSource.timeout,
+	);
+
+	const response = await fetch(circleConfig.dataSource.url, {
+		signal: controller.signal,
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+	});
+
+	clearTimeout(timeoutId);
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+
+	circleData = await response.json();
+} catch (error) {
+	console.error("Failed to load circle data on server:", error);
+	errorMessage = "加载朋友圈数据失败，请稍后重试";
+	// 使用默认数据
+	circleData = {
+		article_data: [],
+	};
+}
+
+const { display } = circleConfig;
+
+// 日期格式化函数
+function formatDate(dateString: string): string {
+	const date = new Date(dateString);
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	const hours = String(date.getHours()).padStart(2, "0");
+	const minutes = String(date.getMinutes()).padStart(2, "0");
+
+	return display.dateFormat
+		.replace("YYYY", String(year))
+		.replace("MM", month)
+		.replace("DD", day)
+		.replace("HH", hours)
+		.replace("mm", minutes);
+}
 ---
 
-<MainGridLayout title={i18n(I18nKey.circle)} description={i18n(I18nKey.circle)}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full">
-            <Markdown class="mt-2">
-                <Content />
-            </Markdown>
-        </div>
-    </div>
+<MainGridLayout title={i18n(I18nKey.circle)} description="朋友圈 - 分享生活点滴">
+	<!-- 朋友圈容器，支持PJAX -->
+	<div id="circle-container">
+		
+		<!-- 错误提示 -->
+		{errorMessage && (
+			<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32 mb-4">
+				<div class="card-base z-10 px-9 py-6 relative w-full">
+					<div class="error-message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+						{errorMessage}
+					</div>
+				</div>
+			</div>
+		)}
+
+		<!-- 文章列表 -->
+		<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32 mb-4">
+			<div class="card-base z-10 px-9 py-6 relative w-full">
+				<div class="flex justify-between items-center mb-4">
+					<h1 class="text-4xl font-bold mb-6 text-neutral-900 dark:text-white">朋友圈</h1>
+					<p class="text-xs text-black/50 dark:text-white/50">
+						Powered by <a href="https://github.com/willow-god/friend-circle-lite" target="_blank" rel="noopener noreferrer" class="text-[var(--primary)] hover:text-[var(--link-hover)] transition-colors">FriendCircleLite</a>
+					</p>
+				</div>
+				
+				{circleData.article_data.length === 0 ? (
+					<div class="no-articles text-center py-8 opacity-75">
+						<p class="text-black/75 dark:text-white/75">暂无文章数据</p>
+						{errorMessage && (
+							<p class="text-sm mt-2 text-black/60 dark:text-white/60">请检查网络连接或稍后重试</p>
+						)}
+					</div>
+				) : (
+					<div>
+						<div id="articles-container" class="articles-grid grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+							{circleData.article_data.slice(0, display.articlesPerPage).map((article) => (
+								<article class="article-card p-4 rounded-lg border border-black/10 dark:border-white/25 hover:border-black/20 dark:hover:border-white/40 transition-all duration-300 bg-black/5 dark:bg-white/5">
+									<div class="article-header flex items-center mb-3">
+										{display.showAvatar && article.avatar && (
+											<img 
+												src={article.avatar} 
+												alt={article.author}
+												class="author-avatar w-8 h-8 rounded-full mr-3 border-2 border-white dark:border-gray-600 shadow-sm"
+												loading="lazy"
+												onerror="this.src='https://cdn.fis.ink/img/2025/07/22/687f17323321a.png'"
+											/>
+										)}
+										{display.showAuthor && (
+											<div class="author-info">
+												<div class="author-name text-sm font-medium text-black/75 dark:text-white/75">{article.author}</div>
+											</div>
+										)}
+									</div>
+									
+									<h3 class="article-title mb-2">
+										<a 
+											href={article.link} 
+											target="_blank" 
+											rel="noopener noreferrer"
+											class="text-[var(--primary)] hover:text-[var(--link-hover)] font-medium line-clamp-2 transition-colors"
+										>
+											{article.title}
+										</a>
+									</h3>
+									
+									<div class="article-meta text-sm text-black/60 dark:text-white/60">
+										{formatDate(article.created)}
+									</div>
+								</article>
+							))}
+						</div>
+						
+						<!-- 查看更多按钮 -->
+						{circleData.article_data.length > display.articlesPerPage && (
+							<div class="text-center mt-6">
+								<button 
+									id="load-more-btn" 
+									class="px-6 py-2 bg-[var(--btn-regular-bg)] hover:bg-[var(--btn-regular-bg-hover)] text-[var(--btn-content)] rounded-lg transition-colors"
+									data-loaded={display.articlesPerPage}
+									data-total={circleData.article_data.length}
+								>
+									查看更多
+								</button>
+							</div>
+						)}
+					</div>
+				)}
+			</div>
+		</div>
+
+		<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative">
+			<div class="card-base z-10 px-9 py-4 relative w-full">
+				<Markdown class="">
+					<Content />
+				</Markdown>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- PJAX兼容的JavaScript -->
+	<script define:vars={{ circleConfig, circleData, display }}>
+		// 全局变量存储所有文章数据
+		let allArticles = circleData.article_data;
+		let currentLoaded = display.articlesPerPage;
+
+		// 日期格式化函数
+		function formatDate(dateString) {
+			const date = new Date(dateString);
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, '0');
+			const day = String(date.getDate()).padStart(2, '0');
+			const hours = String(date.getHours()).padStart(2, '0');
+			const minutes = String(date.getMinutes()).padStart(2, '0');
+
+			return display.dateFormat
+				.replace('YYYY', String(year))
+				.replace('MM', month)
+				.replace('DD', day)
+				.replace('HH', hours)
+				.replace('mm', minutes);
+		}
+
+		// 渲染文章卡片
+		function renderArticle(article) {
+			const avatarHtml = display.showAvatar && article.avatar ? 
+				`<img src="${article.avatar}" alt="${article.author}" class="author-avatar w-8 h-8 rounded-full mr-3 border-2 border-white dark:border-gray-600 shadow-sm" loading="lazy" onerror="this.src='https://cdn.fis.ink/img/2025/07/22/687f17323321a.png'">` : '';
+			
+			const authorHtml = display.showAuthor ? 
+				`<div class="author-info"><div class="author-name text-sm font-medium text-black/75 dark:text-white/75">${article.author}</div></div>` : '';
+
+			return `
+				<article class="article-card p-4 rounded-lg border border-black/10 dark:border-white/25 hover:border-black/20 dark:hover:border-white/40 transition-all duration-300 bg-black/5 dark:bg-white/5">
+					<div class="article-header flex items-center mb-3">
+						${avatarHtml}
+						${authorHtml}
+					</div>
+					<h3 class="article-title mb-2">
+						<a href="${article.link}" target="_blank" rel="noopener noreferrer" class="text-[var(--primary)] hover:text-[var(--link-hover)] font-medium line-clamp-2 transition-colors">
+							${article.title}
+						</a>
+					</h3>
+					<div class="article-meta text-sm text-black/60 dark:text-white/60">
+						${formatDate(article.created)}
+					</div>
+				</article>
+			`;
+		}
+
+		// PJAX兼容的初始化函数
+		function initCirclePage() {
+			const container = document.querySelector('#circle-container');
+			if (!container) return;
+
+			// 绑定刷新按钮事件
+			const refreshBtn = document.querySelector('#refresh-circle-data');
+			if (refreshBtn) {
+				refreshBtn.addEventListener('click', async () => {
+					refreshBtn.disabled = true;
+					refreshBtn.textContent = '刷新中...';
+
+					try {
+						// 重新加载页面数据
+						window.location.reload();
+					} catch (error) {
+						console.error('Refresh failed:', error);
+						alert('刷新失败，请稍后重试');
+					}
+				});
+			}
+
+			// 绑定查看更多按钮事件
+			const loadMoreBtn = document.querySelector('#load-more-btn');
+			if (loadMoreBtn) {
+				loadMoreBtn.addEventListener('click', () => {
+					const articlesContainer = document.querySelector('#articles-container');
+					if (!articlesContainer) return;
+
+					// 计算要加载的文章
+					const nextBatch = allArticles.slice(currentLoaded, currentLoaded + display.articlesPerPage);
+					
+					// 渲染新文章
+					nextBatch.forEach(article => {
+						const articleElement = document.createElement('div');
+						articleElement.innerHTML = renderArticle(article);
+						articlesContainer.appendChild(articleElement.firstElementChild);
+					});
+
+					// 更新已加载数量
+					currentLoaded += nextBatch.length;
+
+					// 更新按钮文本
+					loadMoreBtn.textContent = '查看更多';
+
+					// 如果已加载完所有文章，隐藏按钮
+					if (currentLoaded >= allArticles.length) {
+						loadMoreBtn.style.display = 'none';
+					}
+				});
+			}
+
+			// 如果配置了滚动到顶部
+			if (circleConfig.pjax.scrollToTop) {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+		}
+
+		// 页面加载时初始化
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initCirclePage);
+		} else {
+			initCirclePage();
+		}
+
+		// PJAX导航时重新初始化
+		document.addEventListener('pjax:complete', initCirclePage);
+		document.addEventListener('swup:contentReplaced', initCirclePage);
+	</script>
+
+	<!-- 样式 -->
+	<style>
+		.line-clamp-2 {
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+
+		.error-message {
+			animation: fadeIn 0.3s ease-in;
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(-10px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		/* 响应式设计 */
+		@media (max-width: 768px) {
+			.articles-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 
     <Comment path="/circle/" />
 </MainGridLayout>

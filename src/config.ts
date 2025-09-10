@@ -347,3 +347,20 @@ export const sidebarConfig: SidebarConfig = {
 		labelText: "广告", // 广告标识文本
 	},
 };
+
+// ----------------------------------------------------------
+
+// 朋友圈配置
+export const circleConfig = {
+	dataSource: {
+		url: "https://fc.fis.ink/all.json", // 朋友圈数据API地址
+		timeout: 10000, // 请求超时时间(毫秒)，默认10秒
+	},
+	display: {
+		articlesPerPage: 12, // 每页显示文章数量
+		showAvatar: true, // 是否显示作者头像
+		showAuthor: true, // 是否显示作者名称
+		dateFormat: "YYYY-MM-DD HH:mm", // 日期格式，默认'YYYY-MM-DD HH:mm'
+		enablePagination: true, // 是否启用分页
+	},
+};
