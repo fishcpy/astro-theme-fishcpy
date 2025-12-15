@@ -13,7 +13,7 @@ import type {
 // ----------------------------------------------------------
 
 export const siteConfig: SiteConfig = {
-	title: "fishcpy的小破站",
+	title: "fishcpy theme demo",
 	subtitle: "",
 	lang: "zh_CN", // 可选值: 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {

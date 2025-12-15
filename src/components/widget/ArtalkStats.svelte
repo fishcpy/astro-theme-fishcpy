@@ -12,7 +12,7 @@
     if (commentConfig.type === 'artalk' && commentConfig.artalk?.server) {
       try {
         const server = commentConfig.artalk.server;
-        const site = commentConfig.artalk.site || 'fishcpy的小破站';
+        const site = commentConfig.artalk.site || 'fishcpy theme demo';
         
         // 获取统计数据
         const response = await fetch(`${server}/api/v2/stats?site_name=${encodeURIComponent(site)}&page_key=${encodeURIComponent(pageKey)}`);
