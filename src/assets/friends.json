@@ -361,7 +361,7 @@
 	},
 	{
 		"title": "fishcpy cloud",
-		"imgurl": "https://www.fis.ink/img/logo.png",
+		"imgurl": "https://file.fis.ink/img/fishcpy/logo.png",
 		"desc": "fishcpy cloud",
 		"siteurl": "https://www.fis.ink",
 		"category": "赞助商",
@@ -379,7 +379,7 @@
 	},
 	{
 		"title": "fishcpy theme",
-		"imgurl": "https://www.fis.ink/img/logo.png",
+		"imgurl": "https://file.fis.ink/img/fishcpy/logo.png",
 		"desc": "本站主题",
 		"siteurl": "https://github.com/fishcpy/astro-theme-fishcpy",
 		"category": "框架&主题",

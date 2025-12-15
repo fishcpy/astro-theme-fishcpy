@@ -41,23 +41,23 @@ image: https://cdn.fis.ink/cdn/2025/08/24/68aaa7a9908f2.webp
 ::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://github.com/github.png"}
 ```
 
-::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" image="https://www.fis.ink/img/logo.png"}
+::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" image="https://file.fis.ink/img/fishcpy/logo.png"}
 
 ## 自定义图标的链接卡片
 
 ```markdown
-::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://www.fis.ink/img/logo.png"}
+::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://file.fis.ink/img/fishcpy/logo.png"}
 ```
 
-::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://www.fis.ink/img/logo.png"}
+::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://file.fis.ink/img/fishcpy/logo.png"}
 
 ## 最终效果
 
 ```markdown
-::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://www.fis.ink/img/logo.png" image="https://www.fis.ink/img/logo.png"}
+::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://file.fis.ink/img/fishcpy/logo.png" image="https://file.fis.ink/img/fishcpy/logo.png"}
 ```
 
-::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://www.fis.ink/img/logo.png" image="https://www.fis.ink/img/logo.png"}
+::link-card{url="https://www.fis.ink" title="fishcpy的主页" description="fishcpy的个人主页" icon="https://file.fis.ink/img/fishcpy/logo.png" image="https://file.fis.ink/img/fishcpy/logo.png"}
 
 
 # 添加教程

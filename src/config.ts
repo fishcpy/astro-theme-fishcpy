@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		// 保留空数组则使用默认favicon
 		{
-			src: "https://www.fis.ink/img/logo_c.png", // favicon路径，相对于/public目录
+			src: "https://file.fis.ink/img/fishcpy/logo_c.png", // favicon路径，相对于/public目录
 			//theme: 'light',              // (可选) 'light'或'dark'，仅在为浅色和深色模式设置了不同favicon时使用
 			//sizes: '32x32',              // (可选) favicon尺寸，仅在设置了不同尺寸的favicon时使用
 		},
@@ -166,7 +166,7 @@ export const navBarConfig: NavBarConfig = {
 // ----------------------------------------------------------
 
 export const profileConfig: ProfileConfig = {
-	avatar: "https://www.fis.ink/img/logo.png", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
+	avatar: "https://file.fis.ink/img/fishcpy/logo.png", // 相对于/src目录的路径。如果以'/'开头则表示相对于/public目录
 	name: "fishcpy",
 	bio: "非淡泊无以明志，非宁静无以致远",
 	links: [

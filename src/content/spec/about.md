@@ -13,7 +13,7 @@
 </style>
 
 <div class="center-content">
-    <img src="https://www.fis.ink/img/logo_c.png" alt="图片描述">
+    <img src="https://file.fis.ink/img/fishcpy/logo_c.png" alt="图片描述">
     <p>Hello 👋 I'm fishcpy</p>
 </div>
 
