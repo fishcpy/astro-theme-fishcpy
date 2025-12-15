@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy的小破站</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>给你的Fuwari加一个AI摘要</title><link>https://blog.fis.ink/posts/35/</link><guid isPermaLink="true">https://blog.fis.ink/posts/35/</guid><description>这篇文章介绍了如何在Fuwari博客中实现自定义AI摘要功能</description><pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;预览：本文字上方&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/rss-style.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>fishcpy theme demo</title><description> 非淡泊无以明志，非宁静无以致远</description><link>https://blog.fis.ink/</link><language>zh_CN</language><item><title>给你的Fuwari加一个AI摘要</title><link>https://blog.fis.ink/posts/35/</link><guid isPermaLink="true">https://blog.fis.ink/posts/35/</guid><description>这篇文章介绍了如何在Fuwari博客中实现自定义AI摘要功能</description><pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;预览：本文字上方&lt;/h1&gt;
 &lt;h1&gt;现在教程开始！&lt;/h1&gt;
 &lt;p&gt;:::caution
 修改文件前请注意备份，防止修改失败无法回退
@@ -425,15 +425,15 @@ export async function getStaticPaths() {
 &lt;h2&gt;带图片的链接卡片&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://github.com/github.png&quot;}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; image=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot;}&lt;/p&gt;
 &lt;h2&gt;自定义图标的链接卡片&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot;}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot;}&lt;/p&gt;
 &lt;h2&gt;最终效果&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot; image=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot;}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://www.fis.ink/img/logo.png&quot; image=&quot;https://www.fis.ink/img/logo.png&quot;}&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.fis.ink&quot; title=&quot;fishcpy的主页&quot; description=&quot;fishcpy的个人主页&quot; icon=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot; image=&quot;https://file.fis.ink/img/fishcpy/logo.png&quot;}&lt;/p&gt;
 &lt;h1&gt;添加教程&lt;/h1&gt;
 &lt;h2&gt;再次提示&lt;/h2&gt;
 &lt;p&gt;:::tip
