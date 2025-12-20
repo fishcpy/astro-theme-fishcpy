@@ -4,7 +4,7 @@
 
 > 基于[Astro](https://astro.build)构建的静态博客模板，由[Fuwari](https://github.com/saicaca/fuwari)修改而来。
 
-[**🖥️ 实时演示 **](https://blog.fis.ink)
+[**🖥️ 实时演示 **](https://astro-theme-fishcpy.demo.fis.ink)
 
 ![预览图](https://cdn.fis.ink/cdn/2025/09/06/68bb1a79306d1.webp)
 
@@ -37,10 +37,10 @@
 | `pnpm astro ...`           | 运行 Astro CLI 命令（例如 `astro add`）          |
 | `pnpm astro --help`        | 显示 Astro CLI 帮助                                 |
 
+# 请完成必要的配置与修改后再部署项目，**不得使用“fishcpy”相关名称、Logo建立“镜像”网站或照搬文章内容而不标注来源**，否则我将设法与你联系。
+
 ## 📄 许可协议
 
 本项目采用 MIT 许可协议授权。
 
 基于 [Fuwari](https://github.com/saicaca/fuwari) 修改而来。
-
-# 请完成必要的配置与修改后再部署项目，**不得使用“fishcpy”相关名称、Logo建立“镜像”网站或照搬文章内容而不标注来源**，否则我将设法与你联系。
