@@ -4,7 +4,7 @@
 
 > 基于[Astro](https://astro.build)构建的静态博客模板，由[Fuwari](https://github.com/saicaca/fuwari)修改而来。
 
-[**🖥️ 实时演示 **](https://astro-theme-fishcpy.demo.fis.ink)
+# [🖥️ 实时演示](https://astro-theme-fishcpy.demo.fis.ink)
 
 ![预览图](https://cdn.fis.ink/cdn/2025/09/06/68bb1a79306d1.webp)
 
